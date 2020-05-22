@@ -20,6 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 SECRET_KEY = os.getenv('DELIVERY24_DJANGO_SECRET_KEY')
+DB_NAME = os.getenv('DELIVERY24_DB_NAME')
+DB_USER = os.getenv('DELIVERY24_DB_USER')
+DB_PASS = os.getenv('DELIVERY24_DB_PASS')
+DB_HOST = os.getenv('DELIVERY24_DB_HOST')
+DB_PORT = os.getenv('DELIVERY24_DB_PORT')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,6 +37,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'core',
     'accounts',
+    'phone_field',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,8 +82,12 @@ WSGI_APPLICATION = 'delivery24.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
