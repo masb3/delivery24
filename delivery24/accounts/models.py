@@ -21,7 +21,7 @@ class User(AbstractBaseUser):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
-    user_type = models.CharField(choices=USER_TYPE, max_length=2, blank=False, null=False)
+    user_type = models.CharField(choices=USER_TYPE, max_length=2, blank=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
