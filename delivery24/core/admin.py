@@ -1,12 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
-from core.models import Driver, Work, Order
-
-
-@admin.register(Driver)
-class DriverAdmin(admin.ModelAdmin):
-    #TODO: replace with custom auth
-    list_display = ('name',)
+#from django.contrib.auth.models import User
+from core.models import Work, Order
 
 
 @admin.register(Work)
