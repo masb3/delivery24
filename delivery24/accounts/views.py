@@ -10,7 +10,7 @@ class SignUpView(FormView):
     success_url = reverse_lazy('core:index')
 
 
-class LoginView(FormView):
-    template_name = 'accounts/form.html'
-    form_class = LoginForm
-    success_url = reverse_lazy('core:index')
+# class LoginView(FormView):
+#     template_name = 'accounts/form.html'
+#     form_class = LoginForm
+#     success_url = reverse_lazy('core:index')

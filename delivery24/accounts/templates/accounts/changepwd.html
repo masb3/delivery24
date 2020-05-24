@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Password</title>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+    <form method="post" novalidate class="justify-content-center">
+        {% csrf_token %}
+        <!-- {% include 'core/includes/form.html' %} !-->
+        <button type="submit" class="btn btn-primary">Change password</button>
+    </form>
+{% else %}
+    <h1>You are not logged in.</h1>
+    <a class="btn btn-primary" href="{% url 'accounts:login' %}" role="button">Login</a>
+{% endif %}
+
+</body>
+</html>
