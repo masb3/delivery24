@@ -6,6 +6,6 @@ from .models import User
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        exclude = ['created_at', 'updated_at', 'is_active', 'is_admin', 'groups',
-                   'last_login', 'is_superuser', 'user_permissions']
+        fields = ('email', 'first_name', 'last_name', 'ik', 'phone', 'car_model',
+                  'car_carrying', 'car_number', 'payment',)
 
