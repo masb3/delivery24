@@ -1,9 +1,7 @@
 import uuid
 
 from django.db import models
-from django.contrib.auth.models import User
 from django.conf import settings
-from accounts.models import Driver
 from phone_field import PhoneField
 
 
@@ -15,7 +13,7 @@ class Work(models.Model):
         (4, 'Canceled'),
     ]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    driver = models.ForeignKey(Driver,  # settings.AUTH_USER_MODEL,
+    driver = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.SET_NULL,
                                blank=True,
                                null=True,

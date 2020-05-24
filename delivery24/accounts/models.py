@@ -1,29 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from .user_manager import UserManager
 from phone_field import PhoneField
 
 
-USER_TYPE = [
-    ('DR', 'Driver'),
-    ('CU', 'Customer'),
-    ('NO', 'None'),  # TODO: do I need admin here
-]
-
-
 class User(AbstractBaseUser, PermissionsMixin):
+    PAYMENT_METHOD = [
+        (1, 'Cash'),
+        (2, 'Bank'),
+        (3, 'Both'),
+    ]
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
         unique=True,
     )
+
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=150, blank=True)
+    ik = models.IntegerField(_('isikukood'), null=True, blank=True)
+    phone = PhoneField(help_text='Contact phone number', null=True)
+    car_model = models.CharField(_('car model'), max_length=50)
+    car_carrying = models.IntegerField(_('car carrying'), blank=True, null=True)
+    car_number = models.CharField(_('car number'), max_length=7)
+    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, blank=True, null=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
-    user_type = models.CharField(choices=USER_TYPE, max_length=2, blank=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -54,31 +60,3 @@ class User(AbstractBaseUser, PermissionsMixin):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
-
-class Driver(models.Model):
-    PAYMENT_METHOD = [
-        (1, 'Cash'),
-        (2, 'Bank'),
-        (3, 'Both'),
-    ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=150, blank=True)
-    ik = models.IntegerField(_('isikukood'), null=True, blank=True)
-    phone = PhoneField(help_text='Contact phone number', null=True)
-    car_model = models.CharField(_('car model'), max_length=50)
-    car_carrying = models.IntegerField(_('car carrying'), blank=True, null=True)
-    car_number = models.CharField(_('car number'), max_length=7)
-    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, blank=True, null=True)
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Driver.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.driver.save()
