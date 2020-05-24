@@ -9,3 +9,7 @@ class SignUpForm(UserCreationForm):
         fields = ('email', 'first_name', 'last_name', 'ik', 'phone', 'car_model',
                   'car_carrying', 'car_number', 'payment',)
 
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        model = User
