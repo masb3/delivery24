@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import PermissionsMixin
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
@@ -10,6 +11,7 @@ from phone_field import PhoneField
 USER_TYPE = [
     ('DR', 'Driver'),
     ('CU', 'Customer'),
+    ('NO', 'None'),  # TODO: do I need admin here
 ]
 
 
@@ -28,7 +30,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_type',]
+    REQUIRED_FIELDS = []
 
     class Meta:
         verbose_name = _('user',)
@@ -66,9 +68,9 @@ class Driver(models.Model):
     ik = models.IntegerField(_('isikukood'), null=True, blank=True)
     phone = PhoneField(help_text='Contact phone number', null=True)
     car_model = models.CharField(_('car model'), max_length=50)
-    car_carrying = models.IntegerField(_('car carrying'))
+    car_carrying = models.IntegerField(_('car carrying'), blank=True, null=True)
     car_number = models.CharField(_('car number'), max_length=7)
-    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD)
+    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, blank=True, null=True)
 
 
 @receiver(post_save, sender=User)
