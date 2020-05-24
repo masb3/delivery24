@@ -8,6 +8,12 @@ from phone_field import PhoneField
 
 
 class Work(models.Model):
+    WORK_STATUS = [
+        (1, 'Not started'),
+        (2, 'In progress'),
+        (3, 'Done'),
+        (4, 'Canceled'),
+    ]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     driver = models.ForeignKey(Driver,  # settings.AUTH_USER_MODEL,
                                on_delete=models.SET_NULL,
@@ -20,6 +26,7 @@ class Work(models.Model):
     deliver_date = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     price = models.FloatField()
+    status = models.IntegerField(choices=WORK_STATUS)
 
     def __str__(self):
         return f'Deliver from: {self.deliver_from}\nDeliver to: {self.deliver_to}\nDate: {self.deliver_date}'

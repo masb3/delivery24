@@ -55,11 +55,20 @@ class User(AbstractBaseUser):
 
 
 class Driver(models.Model):
+    PAYMENT_METHOD = [
+        (1, 'Cash'),
+        (2, 'Bank'),
+        (3, 'Both'),
+    ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=150, blank=True)
     ik = models.IntegerField(_('isikukood'), null=True, blank=True)
     phone = PhoneField(help_text='Contact phone number', null=True)
+    car_model = models.CharField(_('car model'), max_length=50)
+    car_carrying = models.IntegerField(_('car carrying'))
+    car_number = models.CharField(_('car number'), max_length=7)
+    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD)
 
 
 @receiver(post_save, sender=User)
