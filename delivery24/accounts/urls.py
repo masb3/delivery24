@@ -10,8 +10,7 @@ app_name = 'accounts'
 urlpatterns = [
     path('signup/', views.SignUpView.as_view(), name='signup'),
     #path('login/', views.LoginView.as_view(), name='login'),
-    path('login/', LoginView.as_view(template_name='accounts/form.html',
-                                     success_url=reverse_lazy('core:index')), name='login'),
+    path('login/', LoginView.as_view(template_name='accounts/form.html'), name='login'),
 
     path('logout/', LogoutView.as_view(), name='logout'),
 
