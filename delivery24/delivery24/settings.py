@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import datetime
 
 from django.urls import reverse_lazy
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'accounts',
     'phone_field',
+    'axes',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,6 +58,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
+    # It only formats user lockout messages and renders Axes lockout responses
+    # on failed user authentication attempts from login views.
+    # If you do not want Axes to override the authentication response
+    # you can skip installing the middleware and use your own views.
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'delivery24.urls'
@@ -148,3 +157,13 @@ LOGOUT_URL = reverse_lazy('accounts:logout')
 
 # TODO: remove
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesBackend',
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+AXES_ENABLED = True
+AXES_FAILURE_LIMIT = 6
+AXES_COOLOFF_TIME = datetime.timedelta(minutes=1)
+AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
