@@ -148,6 +148,8 @@ LOGOUT_REDIRECT_URL = reverse_lazy('core:index')
 LOGIN_URL = reverse_lazy('accounts:login')
 LOGOUT_URL = reverse_lazy('accounts:logout')
 
+PASSWORD_RESET_TIMEOUT_DAYS = 1
+
 # TODO: enable
 # EMAIL_USE_TLS = True
 # EMAIL_HOST = 'smtp.gmail.com'
