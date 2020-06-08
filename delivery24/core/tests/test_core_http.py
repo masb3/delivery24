@@ -2,13 +2,10 @@ import pytest
 import pytest_django
 
 from django.urls import reverse, resolve
-from django.test import TestCase, Client
-
 from core.views import IndexView
 
 
 class TestIndexView:
-    @pytest.mark.django_db
     def test_index_view_status_code(self, client):
         url = reverse('core:index')
         response = client.get(url)
