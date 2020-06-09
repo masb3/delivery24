@@ -4,11 +4,15 @@ import pytest_django
 from django.urls import reverse, resolve
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.http import HttpResponseRedirect
-from django.test import TestCase
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.sites.shortcuts import get_current_site
 
 from accounts.views import signup
 from accounts.models import User
+from accounts.tokens import account_activation_token
 
+from django.test.client import Client
 
 class TestViews:
     # Test /accounts/login/
@@ -75,8 +79,22 @@ class TestSignUp:
         resp = client.post(self.url, self.data)
         assert resp.status_code == HttpResponseRedirect.status_code
         assert resp.url == reverse('accounts:account_activation_sent')
+
+        # Test sent email
         assert len(mailoutbox) == 1
         mail = mailoutbox[0]
         subject = 'Activate Your delivery24.ee Account'
         assert mail.subject == subject
         assert mail.to == [self.data['email']]
+        assert User.objects.exists() is True
+
+        # Test activation link
+        user = User.objects.get(pk=1)
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        token = account_activation_token.make_token(user)
+        server_name = 'testserver'
+        activation_url = f"http://{server_name}" \
+                         f"{reverse('accounts:activate', kwargs={'uidb64': uid, 'token': token})}"
+        assert activation_url in mail.body
+
+        # TODO: test activation link click

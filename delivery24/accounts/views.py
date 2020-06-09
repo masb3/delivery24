@@ -2,11 +2,10 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_decode
 from django.urls import path, reverse_lazy
 from django.core.mail import EmailMessage
 from .forms import SignUpForm
