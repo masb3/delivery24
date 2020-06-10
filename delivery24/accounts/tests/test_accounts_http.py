@@ -3,10 +3,11 @@ import pytest_django
 
 from django.urls import reverse, resolve
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import render
 
 from accounts.views import signup
 from accounts.models import User
@@ -97,4 +98,13 @@ class TestSignUp:
                          f"{reverse('accounts:activate', kwargs={'uidb64': uid, 'token': token})}"
         assert activation_url in mail.body
 
-        # TODO: test activation link click
+        # Test activation link first click
+        first_resp = client.get(activation_url)
+        assert first_resp.status_code == HttpResponseRedirect.status_code
+        assert first_resp.url == reverse('core:index')
+
+        # Test activation link second click
+        second_resp = client.get(activation_url)
+        assert second_resp.status_code == 200
+        exp_resp = render(resp.request, 'accounts/account_activation_invalid.html')
+        assert exp_resp.content == second_resp.content
