@@ -6,7 +6,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.shortcuts import render
 
-
+from delivery24 import settings
 from accounts.models import User
 from accounts.tokens import account_activation_token
 
@@ -55,6 +55,11 @@ class TestSignUp:
                          f"{reverse('accounts:activate', kwargs={'uidb64': uid, 'token': token})}"
         assert activation_url in mail.body
 
+        # Test user CAN'T login until email confirmed
+        resp = client.post(reverse('accounts:login'),
+                           data={'username': self.data['email'], 'password': self.data['password1']})
+        assert resp.status_code == 200
+
         # Test activation link first click
         first_resp = client.get(activation_url)
         assert first_resp.status_code == HttpResponseRedirect.status_code
@@ -65,3 +70,9 @@ class TestSignUp:
         assert second_resp.status_code == 200
         exp_resp = render(resp.request, 'accounts/account_activation_invalid.html')
         assert exp_resp.content == second_resp.content
+
+        # Test user CAN login when email confirmed
+        resp = client.post(reverse('accounts:login'),
+                           data={'username': self.data['email'], 'password': self.data['password1']})
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == settings.LOGIN_REDIRECT_URL
