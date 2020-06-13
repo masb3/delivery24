@@ -14,11 +14,6 @@ from delivery24 import settings
 class TestResetPassword:
     reset_url = reverse('accounts:password_reset')
 
-    @pytest.mark.skip
-    def test_reset_view_redirect_not_logged_in(self):
-        pass
-        # TODO:
-
     def test_reset_url_resolves_reset_view(self):
         view = resolve('/accounts/reset/')
         assert view.func.__name__ == CustomPasswordResetView.as_view().__name__
@@ -28,10 +23,11 @@ class TestResetPassword:
         assert resp.status_code == 200
         assert "Forgot password" in str(resp.content)
 
-    @pytest.mark.skip
-    def test_reset_post_unavailable_email(self, client):
-        # TODO:
-        pass
+    @pytest.mark.django_db
+    def test_reset_post_unavailable_email(self, client, mailoutbox):
+        resp = client.post(self.reset_url, data={'email': 'somerandomemail123@address.ee'})
+        assert len(mailoutbox) == 0
+        assert resp.status_code == HttpResponseRedirect.status_code
 
     def test_reset_post_valid_email(self, client, create_user):
         user = create_user()
