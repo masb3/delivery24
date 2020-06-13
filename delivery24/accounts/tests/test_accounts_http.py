@@ -4,7 +4,7 @@ from django.urls import reverse, resolve
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 
-from accounts.views import signup
+from accounts.views import signup, CustomLoginView
 
 
 class TestViews:
@@ -16,7 +16,7 @@ class TestViews:
 
     def test_login_url_resolves_login_view(self):
         view = resolve('/accounts/login/')
-        assert view.func.__name__ == LoginView.as_view().__name__
+        assert view.func.__name__ == CustomLoginView.as_view().__name__
 
     # Test /accounts/signup/
     def test_signup_view_status_code(self, client):

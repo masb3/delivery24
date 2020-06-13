@@ -48,3 +48,15 @@ class TestLogin:
         resp_login_page = client.get(resp.url)
         assert resp_login_page.status_code == 200
         assert f'You are logged in as: {user.email}' in str(resp_login_page.content)
+
+    def test_login_get_view_redirects_logged_users(self, auto_login_user):
+        client, user = auto_login_user()
+        resp = client.get(reverse('accounts:login'))
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == settings.LOGIN_REDIRECT_URL
+
+    def test_login_post_view_redirects_logged_users(self, auto_login_user, test_password):
+        client, user = auto_login_user()
+        resp = client.post(reverse('accounts:login'), data={'username': user.email, 'password': test_password})
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == settings.LOGIN_REDIRECT_URL

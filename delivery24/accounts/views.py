@@ -5,11 +5,27 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .tokens import account_activation_token
-from django.utils.encoding import force_text
-from django.urls import path, reverse_lazy
+from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
+from django.contrib.auth.views import LoginView
 from .forms import SignUpForm
 from .models import User
+
+from delivery24 import settings
+
+
+class CustomLoginView(LoginView):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(settings.LOGIN_REDIRECT_URL)
+        else:
+            return super(CustomLoginView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(settings.LOGIN_REDIRECT_URL)
+        else:
+            return super(CustomLoginView, self).post(request, *args, **kwargs)
 
 
 # class SignUpView(FormView):
@@ -23,6 +39,7 @@ from .models import User
 #     #     #form.send_email()
 #     #     print('++++++++++++++++++++++++++++++++++++++++++')
 #     #     return super().form_valid(form)
+
 
 def signup(request):
     if request.method == 'POST':
