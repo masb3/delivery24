@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetView
 from .forms import SignUpForm
 from .models import User
 
@@ -26,6 +26,20 @@ class CustomLoginView(LoginView):
             return redirect(settings.LOGIN_REDIRECT_URL)
         else:
             return super(CustomLoginView, self).post(request, *args, **kwargs)
+
+
+class CustomPasswordResetView(PasswordResetView):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(settings.LOGIN_REDIRECT_URL)
+        else:
+            return super(CustomPasswordResetView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(settings.LOGIN_REDIRECT_URL)
+        else:
+            return super(CustomPasswordResetView, self).post(request, *args, **kwargs)
 
 
 # class SignUpView(FormView):

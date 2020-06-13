@@ -4,8 +4,11 @@ from django.shortcuts import render
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.http import HttpResponseRedirect
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
+from django.contrib.auth.views import PasswordResetDoneView
 from .accounts_fixtures import *
+from ..views import CustomPasswordResetView
+
+from delivery24 import settings
 
 
 class TestResetPassword:
@@ -18,7 +21,7 @@ class TestResetPassword:
 
     def test_reset_url_resolves_reset_view(self):
         view = resolve('/accounts/reset/')
-        assert view.func.__name__ == PasswordResetView.as_view().__name__
+        assert view.func.__name__ == CustomPasswordResetView.as_view().__name__
 
     def test_reset_view_status_code(self, client):
         resp = client.get(self.reset_url)
@@ -86,3 +89,15 @@ class TestResetPassword:
         assert second_resp.status_code == 200
         assert "The password reset link was invalid, " \
                "possibly because it has already been used." in str(second_resp.content)
+
+    def test_reset_get_view_redirects_logged_users(self, auto_login_user):
+        client, user = auto_login_user()
+        resp = client.get(self.reset_url)
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == settings.LOGIN_REDIRECT_URL
+
+    def test_reset_post_view_redirects_logged_users(self, auto_login_user):
+        client, user = auto_login_user()
+        resp = client.post(self.reset_url, data={'email': user.email})
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == settings.LOGIN_REDIRECT_URL
