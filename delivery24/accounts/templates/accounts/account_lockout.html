@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account is locked</title>
+</head>
+<body>
+<p>Account locked: too many ({{ failure_limit }}) login attempts.
+    Please try again later, after {{ cooloff_time }} minutes.</p>
+<p><a href="{% url 'accounts:login' %}">Login</a></p>
+</body>
+</html>

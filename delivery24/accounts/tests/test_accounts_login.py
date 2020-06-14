@@ -1,4 +1,5 @@
 from django.urls import reverse
+from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 from delivery24 import settings
@@ -33,7 +34,13 @@ class TestLogin:
             assert resp.status_code == 200
         resp = client.post(url, data={'username': user.email, 'password': password + 'salt'})
         assert resp.status_code == HttpResponseForbidden.status_code
-        assert "Account locked: too many login attempts. Please try again later" in str(resp.content)
+        secs = settings.AXES_COOLOFF_TIME.total_seconds()
+        minutes = int(secs / 60) % 60
+        cooloff_time = f"PT{minutes}M"
+        exp_content = render(resp.request, 'accounts/account_lockout.html',
+                             context={'failure_limit': settings.AXES_FAILURE_LIMIT,
+                                      'cooloff_time': cooloff_time})
+        assert resp.content == exp_content.content
 
     def test_correct_login(self, client, create_user, test_password):
         url = reverse('accounts:login')
