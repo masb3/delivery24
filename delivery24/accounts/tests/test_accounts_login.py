@@ -36,13 +36,7 @@ class TestLogin:
         assert resp.status_code == HttpResponseForbidden.status_code
 
         # Test locked account template and redirection
-        secs = settings.AXES_COOLOFF_TIME.total_seconds()
-        minutes = int(secs / 60) % 60
-        cooloff_time = f"PT{minutes}M"
-        exp_content = render(resp.request, 'accounts/account_lockout.html',
-                             context={'failure_limit': settings.AXES_FAILURE_LIMIT,
-                                      'cooloff_time': cooloff_time})
-        assert resp.content == exp_content.content
+        assert resp.content == render(resp.request, 'accounts/account_lockout.html').content
 
     def test_correct_login(self, client, create_user, test_password):
         url = reverse('accounts:login')
