@@ -43,7 +43,6 @@ class TestLogin:
                              context={'failure_limit': settings.AXES_FAILURE_LIMIT,
                                       'cooloff_time': cooloff_time})
         assert resp.content == exp_content.content
-        assert resp.url == reverse('core:index')  # TODO: DEL-53
 
     def test_correct_login(self, client, create_user, test_password):
         url = reverse('accounts:login')
