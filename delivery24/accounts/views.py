@@ -42,46 +42,36 @@ class CustomPasswordResetView(PasswordResetView):
             return super(CustomPasswordResetView, self).post(request, *args, **kwargs)
 
 
-# class SignUpView(FormView):
-#     template_name = 'accounts/form.html'
-#     form_class = SignUpForm
-#     success_url = reverse_lazy('core:index')
-#
-#     # def form_valid(self, form):
-#     #     # This method is called when valid form data has been POSTed.
-#     #     # It should return an HttpResponse.
-#     #     #form.send_email()
-#     #     print('++++++++++++++++++++++++++++++++++++++++++')
-#     #     return super().form_valid(form)
-
-
 def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request)
-            subject = 'Activate Your delivery24.ee Account'
-            message = render_to_string('accounts/account_activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            # Below uses send_email defined in model
-            # user.email_user(subject, message)
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request)
+                subject = 'Activate Your delivery24.ee Account'
+                message = render_to_string('accounts/account_activation_email.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+                # Below uses send_email defined in model
+                # user.email_user(subject, message)
 
-            # Below sets content type html
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(subject, message, to=[to_email])
-            email.content_subtype = "html"
-            email.send()
-            return redirect(reverse_lazy('accounts:account_activation_sent'))
+                # Below sets content type html
+                to_email = form.cleaned_data.get('email')
+                email = EmailMessage(subject, message, to=[to_email])
+                email.content_subtype = "html"
+                email.send()
+                return render(request, 'accounts/account_activation_sent.html')
+        else:
+            form = SignUpForm()
+        return render(request, 'accounts/form.html', {'form': form})
     else:
-        form = SignUpForm()
-    return render(request, 'accounts/form.html', {'form': form})
+        return redirect('core:index')
 
 
 def activate(request, uidb64, token):
@@ -99,7 +89,3 @@ def activate(request, uidb64, token):
         return redirect(reverse_lazy('core:index'))
     else:
         return render(request, 'accounts/account_activation_invalid.html')
-
-
-def account_activation_sent(request):
-    return render(request, 'accounts/account_activation_sent.html')

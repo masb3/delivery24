@@ -1,5 +1,3 @@
-import pytest
-
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.utils.http import urlsafe_base64_encode
@@ -7,8 +5,8 @@ from django.utils.encoding import force_bytes
 from django.shortcuts import render
 
 from delivery24 import settings
-from accounts.models import User
 from accounts.tokens import account_activation_token
+from .accounts_fixtures import *
 
 
 @pytest.mark.django_db
@@ -35,8 +33,8 @@ class TestSignUp:
 
     def test_correct_signup(self, client, mailoutbox):
         resp = client.post(self.url, self.data)
-        assert resp.status_code == HttpResponseRedirect.status_code
-        assert resp.url == reverse('accounts:account_activation_sent')
+        assert resp.status_code == 200
+        assert resp.content == render(resp.request, 'accounts/account_activation_sent.html').content
 
         # Test sent email
         assert len(mailoutbox) == 1
@@ -76,3 +74,15 @@ class TestSignUp:
                            data={'username': self.data['email'], 'password': self.data['password1']})
         assert resp.status_code == HttpResponseRedirect.status_code
         assert resp.url == settings.LOGIN_REDIRECT_URL
+
+    def test_singup_get_view_redirects_already_logged_users(self, auto_login_user):
+        client, user = auto_login_user()
+        resp = client.get(reverse('accounts:signup'))
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == reverse('core:index')
+
+    def test_singup_post_view_redirects_already_logged_users(self, auto_login_user):
+        client, user = auto_login_user()
+        resp = client.post(reverse('accounts:signup'), data=self.data)
+        assert resp.status_code == HttpResponseRedirect.status_code
+        assert resp.url == reverse('core:index')
