@@ -1,0 +1,48 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DELIVERY24</title>
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+{% block body %}
+  <nav class="navbar navbar-expand-sm navbar-white bg-white">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'core:index' %}">HOME</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if user.is_authenticated %}
+        <div class="dropdown show">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-bars" aria-hidden="false"></i>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      {% else %}
+        <form class="form-inline ml-auto">
+          <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary">Log in</a>
+          <a href="{% url 'accounts:signup' %}" class="btn btn-primary ml-2">Sign up</a>
+        </form>
+      {% endif %}
+    </div>
+  </nav>
+
+{% block content %}
+{% endblock content %}
+
+{% endblock body %}
+
+<script src="{% static 'core/js/jquery-3.2.1.min.js' %}"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>
