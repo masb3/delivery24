@@ -31,7 +31,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                                             ik_validator])
     phone = PhoneField(help_text='Contact phone number', null=True)
     car_model = models.CharField(_('car model'), max_length=50)
-    car_carrying = models.IntegerField(_('car carrying'), blank=True, null=True)
+    car_carrying = models.IntegerField(_('car carrying (kg)'), blank=True, null=True,
+                                       validators=[MinValueValidator(100), MaxValueValidator(10000)])
     car_number = models.CharField(_('car number'), max_length=7)
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, blank=True, null=True)
 
