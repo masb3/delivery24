@@ -10,5 +10,9 @@ class SignUpForm(UserCreationForm):
                   'car_carrying', 'car_number', 'payment',)
         widgets = {
             'ik': TextInput(attrs={'placeholder': ''}),
+            'car_carrying': TextInput(attrs={'type': 'number',
+                                             'min': 100,
+                                             'max': 10000,
+                                             'step': 50}),
         }
 
