@@ -2,9 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core.mail import send_mail
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
 from .user_manager import UserManager
 from phone_field import PhoneField
+
+from core.utils import ik_validator
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -22,7 +25,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=150, blank=True)
-    ik = models.IntegerField(_('isikukood'), null=True, blank=True)
+    ik = models.BigIntegerField(_('isikukood'), null=True, blank=True,
+                                validators=[MinValueValidator(30000000000),
+                                            MaxValueValidator(69999999999),
+                                            ik_validator])
     phone = PhoneField(help_text='Contact phone number', null=True)
     car_model = models.CharField(_('car model'), max_length=50)
     car_carrying = models.IntegerField(_('car carrying'), blank=True, null=True)
@@ -41,8 +47,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = _('user',)
-        verbose_name_plural = _('users',)
+        verbose_name = _('user', )
+        verbose_name_plural = _('users', )
 
     def __str__(self):
         return self.email
