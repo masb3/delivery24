@@ -2,7 +2,7 @@ import uuid
 
 from django.db import models
 from django.conf import settings
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Work(models.Model):
@@ -33,7 +33,7 @@ class Work(models.Model):
 class Order(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=254)
-    phone = PhoneField(help_text='Contact phone number')
+    phone = PhoneNumberField(help_text='Contact phone number')
     verified = models.BooleanField(default=False)
     work = models.ForeignKey(Work,
                              on_delete=models.SET_NULL,

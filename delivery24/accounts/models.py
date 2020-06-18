@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
 from django.utils.translation import ugettext_lazy as _
 from .user_manager import UserManager
-from phone_field import PhoneField
+from phonenumber_field.modelfields import PhoneNumberField
 
 from core.utils import ik_validator, car_number_validator
 
@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                                 validators=[MinValueValidator(30000000000),
                                             MaxValueValidator(69999999999),
                                             ik_validator])
-    phone = PhoneField(help_text='Contact phone number', null=True)
+    phone = PhoneNumberField(help_text='Contact phone number', blank=True)
     car_model = models.CharField(_('car model'), max_length=50)
     car_carrying = models.IntegerField(_('car carrying (kg)'), blank=True, null=True,
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])

@@ -40,7 +40,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'core',
     'accounts',
-    'phone_field',
+    'phonenumber_field',
     'axes',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -174,3 +174,5 @@ AXES_COOLOFF_TIME = datetime.timedelta(minutes=1)
 AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
 AXES_LOCKOUT_TEMPLATE = 'accounts/account_lockout.html'
 AXES_LOCKOUT_URL = reverse_lazy('core:index')
+
+PHONENUMBER_DB_FORMAT = 'E164'
