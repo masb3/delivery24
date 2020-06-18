@@ -1,3 +1,5 @@
+import re
+
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -25,8 +27,29 @@ def ik_validator(ik: int):
 
     if ik_list[-1] != check_num:
         raise ValidationError(
-            _('Isikukood is not correct'),
+            _('Isikukood is incorrect'),
             params={'ik': ik},
+        )
+
+
+def car_number_validator(num: str):
+    """
+    Verifies entered car number
+    :param num: car number
+    :return:
+    """
+    pattern1 = re.compile(r'^\d{3}[A-Za-z]{3}$')  # 123abc
+    pattern2 = re.compile(r'^\d{3} [A-Za-z]{3}$')  # 123 abc
+    pattern3 = re.compile(r'^[A-Za-z]{6}\d{1}$')  # abcdef1
+    pattern4 = re.compile(r'^\d{2}[A-Za-z]{3}$')  # 12abc
+
+    if not pattern1.match(num) and \
+            not pattern2.match(num) and \
+            not pattern3.match(num) and \
+            not pattern4.match(num):
+        raise ValidationError(
+            _('Car number is incorrect'),
+            params={'car_number': num},
         )
 
 

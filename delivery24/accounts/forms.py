@@ -14,5 +14,6 @@ class SignUpForm(UserCreationForm):
                                              'min': 100,
                                              'max': 10000,
                                              'step': 50}),
+            'car_number': TextInput(attrs={'size': 7})
         }
 

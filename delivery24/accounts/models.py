@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core.mail import send_mail
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator, MinLengthValidator, MaxLengthValidator
 from django.utils.translation import ugettext_lazy as _
 from .user_manager import UserManager
 from phone_field import PhoneField
 
-from core.utils import ik_validator
+from core.utils import ik_validator, car_number_validator
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -33,7 +33,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     car_model = models.CharField(_('car model'), max_length=50)
     car_carrying = models.IntegerField(_('car carrying (kg)'), blank=True, null=True,
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])
-    car_number = models.CharField(_('car number'), max_length=7)
+    car_number = models.CharField(_('car number'), max_length=7,
+                                  validators=[MinLengthValidator(5), MaxLengthValidator(7), car_number_validator])
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
