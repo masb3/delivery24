@@ -12,9 +12,9 @@ from core.utils import ik_validator, car_number_validator
 
 class User(AbstractBaseUser, PermissionsMixin):
     PAYMENT_METHOD = [
-        (1, 'Cash'),
-        (2, 'Bank'),
-        (3, 'Both'),
+        (1, _('Cash')),
+        #(2, 'Bank'),
+        #(3, 'Both'),
     ]
 
     email = models.EmailField(
@@ -23,19 +23,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         unique=True,
     )
 
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=150, blank=True)
+    first_name = models.CharField(_('first name'), max_length=30)
+    last_name = models.CharField(_('last name'), max_length=150)
     ik = models.BigIntegerField(_('isikukood'), null=True, blank=True,
                                 validators=[MinValueValidator(30000000000),
                                             MaxValueValidator(69999999999),
                                             ik_validator])
-    phone = PhoneNumberField(help_text='Contact phone number')
+    phone = PhoneNumberField(help_text=_('Contact phone number'))
     car_model = models.CharField(_('car model'), max_length=50)
-    car_carrying = models.IntegerField(_('car carrying (kg)'), blank=True, null=True,
+    car_carrying = models.IntegerField(_('car carrying (kg)'),
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])
     car_number = models.CharField(_('car number'), max_length=7,
                                   validators=[MinLengthValidator(5), MaxLengthValidator(7), car_number_validator])
-    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, blank=True, null=True)
+    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
