@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                                 validators=[MinValueValidator(30000000000),
                                             MaxValueValidator(69999999999),
                                             ik_validator])
-    phone = PhoneNumberField(help_text='Contact phone number', blank=True)
+    phone = PhoneNumberField(help_text='Contact phone number')
     car_model = models.CharField(_('car model'), max_length=50)
     car_carrying = models.IntegerField(_('car carrying (kg)'), blank=True, null=True,
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])

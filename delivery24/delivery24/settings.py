@@ -176,3 +176,4 @@ AXES_LOCKOUT_TEMPLATE = 'accounts/account_lockout.html'
 AXES_LOCKOUT_URL = reverse_lazy('core:index')
 
 PHONENUMBER_DB_FORMAT = 'E164'
+PHONENUMBER_DEFAULT_REGION = 'EE'
