@@ -2,6 +2,7 @@ import uuid
 
 from django.db import models
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -31,9 +32,10 @@ class Work(models.Model):
 
 
 class Order(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=254)
-    phone = PhoneNumberField(help_text='Contact phone number')
+    first_name = models.CharField(_('first name'), max_length=100)
+    last_name = models.CharField(_('last name'), max_length=100)
+    email = models.EmailField(_('email'), max_length=254)
+    phone = PhoneNumberField(_('phone'), help_text='Contact phone number')
     verified = models.BooleanField(default=False)
     work = models.ForeignKey(Work,
                              on_delete=models.SET_NULL,
@@ -43,4 +45,4 @@ class Order(models.Model):
                              related_query_name='work')
 
     def __str__(self):
-        return self.name
+        return self.email
