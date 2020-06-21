@@ -10,3 +10,16 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['order_form'] = OrderForm()
         return context
+
+
+def index(request):
+    template_name = "core/index.html"
+    context = {'order_form': OrderForm()}
+
+    if request.method == 'POST':
+        print('*************************************++++')
+
+    if request.method == 'GET':
+        print('----------------*************************************++++')
+
+    return render(request, template_name=template_name, context=context)

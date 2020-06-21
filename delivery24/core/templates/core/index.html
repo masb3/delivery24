@@ -179,72 +179,73 @@
     </div>
 
 
-    <div class="site-section bg-light" id="start-section">
+    <!--<div class="site-section bg-image2 overlay" id="order-section" style="background-image: url({% static 'core/images/footer_bg.png' %});">-->
+    <div class="site-section bg-light" id="order-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
             <h2 class="section-title mb-3">Get Started</h2>
           </div>
         </div>
-        <div class="row mb-5">
-          <div class="col-lg-5 ml-auto pl-lg-5">
-
-            <form method="post" action="{% url 'accounts:signup' %}" class="p-5 bg-white" novalidate>
-              {% csrf_token %}
-              <!--{{ order_form.as_p }}-->
-              {{ order_form.email }}
-              {% for i in order_form %}
-              {{ i.label_tag }}
-              {{ i }}
-              {% endfor %}
-
-              <button type="submit" class="btn btn-primary btn-lg">submit</button>
-            </form>
-
-          </div>
-        </div>
 
         <div class="row justify-content-center">
           <div class="col-lg-7 mb-5">
 
-            <form method="post" action="{% url 'accounts:signup' %}" class="p-5 bg-white" novalidate>
+            <form method="post" action="{% url 'core:index' %}" class="p-5 bg-white" novalidate>
+              {% csrf_token %}
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
-                  <label class="text-black" for="fname">First Name</label>
-                  <input type="text" id="fname" class="form-control rounded-0">
+                  <label class="text-black" for="{{ order_form.first_name.auto_id }}">{{ order_form.first_name.label }}</label>
+                  {{ order_form.first_name }}
                 </div>
                 <div class="col-md-6">
-                  <label class="text-black" for="lname">Last Name</label>
-                  <input type="text" id="lname" class="form-control rounded-0">
-                </div>
-              </div>
-
-              <div class="row form-group">
-
-                <div class="col-md-12">
-                  <label class="text-black" for="email">Email</label>
-                  <input type="email" id="email" class="form-control rounded-0">
-                </div>
-              </div>
-
-              <div class="row form-group">
-
-                <div class="col-md-12">
-                  <label class="text-black" for="subject">Subject</label>
-                  <input type="subject" id="subject" class="form-control rounded-0">
+                  <label class="text-black" for="{{ order_form.last_name.auto_id }}">{{ order_form.last_name.label }}</label>
+                  {{ order_form.last_name }}
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label class="text-black" for="message">Message</label>
-                  <textarea name="message" id="message" cols="30" rows="7" class="form-control rounded-0" placeholder="Leave your message here..."></textarea>
+                  <label class="text-black" for="{{ order_form.email.auto_id }}">{{ order_form.email.label }}</label>
+                  {{ order_form.email }}
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Send Message" class="btn btn-primary mr-2 mb-2">
+                  <label class="text-black" for="{{ order_form.phone.auto_id }}">{{ order_form.phone.label }}</label>
+                  {{ order_form.phone }}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="{{ order_form.address_from.auto_id }}">{{ order_form.address_from.label }}</label>
+                  {{ order_form.address_from }}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ order_form.address_to.auto_id }}">{{ order_form.address_to.label }}</label>
+                  {{ order_form.address_to }}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.delivery_date.auto_id }}">{{ order_form.delivery_date.label }}</label>
+                  {{ order_form.delivery_date }}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.message.auto_id }}">{{ order_form.message.label }}</label>
+                  {{ order_form.message }}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Order" class="btn btn-primary mr-2 mb-2">
                 </div>
               </div>
 

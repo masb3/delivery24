@@ -35,7 +35,11 @@ class Order(models.Model):
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
     email = models.EmailField(_('email'), max_length=254)
-    phone = PhoneNumberField(_('phone'), help_text='Contact phone number')
+    phone = PhoneNumberField(_('phone'), help_text=_('Contact phone number'))
+    address_from = models.CharField(_('address from'), max_length=128)
+    address_to = models.CharField(_('address to'), max_length=128)
+    delivery_date = models.DateTimeField(_('delivery date'))
+    message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     verified = models.BooleanField(default=False)
     work = models.ForeignKey(Work,
                              on_delete=models.SET_NULL,
