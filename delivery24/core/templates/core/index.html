@@ -179,8 +179,7 @@
     </div>
 
 
-    <!--<div class="site-section bg-image2 overlay" id="order-section" style="background-image: url({% static 'core/images/footer_bg.png' %});">-->
-    <div class="site-section bg-light" id="order-section">
+    <div class="site-section bg-light" id="start-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
@@ -191,7 +190,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-7 mb-5">
 
-            <form method="post" action="{% url 'core:index' %}" class="p-5 bg-white" novalidate>
+            <form method="post" action="{% url 'core:order' %}" class="p-5 bg-white" novalidate>
               {% csrf_token %}
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">

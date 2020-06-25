@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-from django.views.generic import TemplateView
+from django.shortcuts import render, HttpResponse, redirect, reverse
+from django.views.generic import TemplateView, FormView
 from core.forms import OrderForm
 
 
@@ -12,14 +12,20 @@ class IndexView(TemplateView):
         return context
 
 
-def index(request):
-    template_name = "core/index.html"
-    context = {'order_form': OrderForm()}
+def order(request):
+    template_name = "core/order.html"
 
     if request.method == 'POST':
-        print('*************************************++++')
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            pass
 
-    if request.method == 'GET':
-        print('----------------*************************************++++')
+    else:
+        form = OrderForm()
 
-    return render(request, template_name=template_name, context=context)
+    return render(request, template_name=template_name, context={'order_form': form})
+
+
+class OrderFormView(FormView):
+    form_class = OrderForm()
+    template_name = "core/order.html"
