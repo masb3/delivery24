@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="site-section bg-light" id="start-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3"><br>Order Verification</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-7 mb-5">
+
+        <form method="post" action="{% url 'core:veriff' %}" class="p-5 bg-white" novalidate>
+            {% csrf_token %}
+<!-- {{ form.as_p }} !-->
+            {% for field in veriff_form %}
+          <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+        {% endfor %}
+
+            <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="Verify" class="btn btn-primary mr-2 mb-2">
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

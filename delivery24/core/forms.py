@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Textarea, DateTimeInput
+from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, IntegerField
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Order
@@ -7,7 +7,7 @@ from .models import Order
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        exclude = ('verified', 'work')
+        exclude = ('verified', 'work', 'verification_code')
 
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
@@ -21,3 +21,9 @@ class OrderForm(ModelForm):
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here...")}),
         }
+
+
+class OrderVeriffForm(Form):
+    verification_code = IntegerField(
+        widget=TextInput(attrs={'class': 'form-control rounded-0'})
+    )

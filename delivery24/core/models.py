@@ -1,9 +1,19 @@
 import uuid
+import secrets
+import string
 
 from django.db import models
 from django.conf import settings
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
+
+VERIFF_CODE_LEN = 4
+
+
+def get_rand_id():
+    return int(''.join(secrets.choice(string.digits)
+                       for _ in range(VERIFF_CODE_LEN)))
 
 
 class Work(models.Model):
@@ -41,6 +51,8 @@ class Order(models.Model):
     delivery_date = models.DateTimeField(_('delivery date'))
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     verified = models.BooleanField(default=False)
+    verification_code = models.IntegerField(unique=True, null=True,
+                                            validators=[MinValueValidator(0000), MaxValueValidator(9999)])
     work = models.ForeignKey(Work,
                              on_delete=models.SET_NULL,
                              blank=True,
