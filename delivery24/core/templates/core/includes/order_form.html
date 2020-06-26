@@ -1,0 +1,97 @@
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="{{ order_form.first_name.auto_id }}">{{ order_form.first_name.label }}</label>
+                  {{ order_form.first_name }}
+                  {% if order_form.first_name.help_text %}
+                    <small style="color: grey">{{ order_form.first_name.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.first_name.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ order_form.last_name.auto_id }}">{{ order_form.last_name.label }}</label>
+                  {{ order_form.last_name }}
+                  {% if order_form.last_name.help_text %}
+                    <small style="color: grey">{{ order_form.last_name.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.last_name.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.email.auto_id }}">{{ order_form.email.label }}</label>
+                  {{ order_form.email }}
+                  {% if order_form.email.help_text %}
+                    <small style="color: grey">{{ order_form.email.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.email.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.phone.auto_id }}">{{ order_form.phone.label }}</label>
+                  {{ order_form.phone }}
+                  {% if order_form.phone.help_text %}
+                    <small style="color: grey">{{ order_form.phone.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.phone.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="{{ order_form.address_from.auto_id }}">{{ order_form.address_from.label }}</label>
+                  {{ order_form.address_from }}
+                  {% if order_form.address_from.help_text %}
+                    <small style="color: grey">{{ order_form.address_from.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.address_from.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ order_form.address_to.auto_id }}">{{ order_form.address_to.label }}</label>
+                  {{ order_form.address_to }}
+                  {% if order_form.address_to.help_text %}
+                    <small style="color: grey">{{ order_form.address_to.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.address_to.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.delivery_date.auto_id }}">{{ order_form.delivery_date.label }}</label>
+                  {{ order_form.delivery_date }}
+                  {% if order_form.delivery_date.help_text %}
+                    <small style="color: grey">{{ order_form.delivery_date.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.delivery_date.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.message.auto_id }}">{{ order_form.message.label }}</label>
+                  {{ order_form.message }}
+                  {% if order_form.message.help_text %}
+                    <small style="color: grey">{{ order_form.message.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.message.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>

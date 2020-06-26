@@ -7,5 +7,6 @@ app_name = 'core'
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('order/', views.order, name='order'),
-    path('order/veriff', views.order_veriff, name='veriff'),
+    path('order/veriff/', views.order_veriff, name='veriff'),
+    path('order/<int:order_id>/', views.order_complete, name='complete'),
 ]

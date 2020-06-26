@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponse, redirect, reverse,get_object_or_404
-from django.views.generic import TemplateView, FormView
-from core.forms import OrderForm, OrderVeriffForm
+from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
+from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
 from core.models import Order, get_rand_id
 
 
@@ -19,16 +19,14 @@ def order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            order = form.save(commit=False)
-
+            new_order = form.save(commit=False)
             unique_veriff_code = get_rand_id()
             is_exists = Order.objects.filter(verification_code=unique_veriff_code).exists()
             while is_exists:
                 unique_veriff_code = get_rand_id()
                 is_exists = Order.objects.filter(unique_view_id=unique_veriff_code).exists()
-
-            order.verification_code = unique_veriff_code
-            order.save()
+            new_order.verification_code = unique_veriff_code
+            new_order.save()
 
             return redirect('core:veriff')
 
@@ -55,9 +53,13 @@ def order_veriff(request):
                 order.verification_code = None
                 order.save()
 
+                return redirect('core:complete', order_id=order.pk)
+
     return render(request, template_name=template_name, context={'veriff_form': form})
 
 
-class OrderFormView(FormView):
-    form_class = OrderForm()
-    template_name = "core/order.html"
+def order_complete(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    order_complete_form = OrderCompleteForm(instance=order)
+
+    return render(request, template_name='core/order_complete.html', context={'order_form': order_complete_form})
