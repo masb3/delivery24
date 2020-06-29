@@ -1,7 +1,11 @@
-from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, IntegerField
+from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, IntegerField, DateTimeField
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Order
+
+
+class DateForm(DateTimeInput):
+    input_type = 'datetime-local'
 
 
 class OrderForm(ModelForm):
@@ -16,7 +20,7 @@ class OrderForm(ModelForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_from': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_to': TextInput(attrs={'class': 'form-control rounded-0'}),
-            'delivery_date': DateTimeInput(attrs={'class': 'form-control rounded-0'}),
+            'delivery_date': DateForm(attrs={'class': 'form-control rounded-0'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here...")}),
