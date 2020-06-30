@@ -74,6 +74,16 @@
                 <div class="col-md-12">
                   <label class="text-black" for="{{ order_form.delivery_date.auto_id }}">{{ order_form.delivery_date.label }}</label>
                   {{ order_form.delivery_date }}
+
+                  <script>
+                    let $jQverForDateTime = jQuery.noConflict();
+                    $jQverForDateTime(function () {
+                      $jQverForDateTime("#id_delivery_date").datetimepicker({
+                        format: 'd/m/Y H:i',
+                      });
+                    });
+                  </script>
+
                   {% if order_form.delivery_date.help_text %}
                     <small style="color: grey">{{ order_form.delivery_date.help_text }}</small>
                   {% endif %}

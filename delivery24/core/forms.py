@@ -4,11 +4,14 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Order
 
 
-class DateForm(DateTimeInput):
-    input_type = 'datetime-local'
+class DateWidget(DateTimeInput):
+    input_type = 'text'
 
 
 class OrderForm(ModelForm):
+    delivery_date = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+                                  widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
+
     class Meta:
         model = Order
         exclude = ('verified', 'work', 'verification_code')
@@ -20,7 +23,6 @@ class OrderForm(ModelForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_from': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_to': TextInput(attrs={'class': 'form-control rounded-0'}),
-            'delivery_date': DateForm(attrs={'class': 'form-control rounded-0'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here...")}),
@@ -34,6 +36,11 @@ class OrderVeriffForm(Form):
 
 
 class OrderCompleteForm(ModelForm):
+    delivery_date = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+                                  widget=DateWidget(attrs={'class': 'form-control rounded-0',
+                                                           'readonly': 'readonly',
+                                                           'disabled': 'disabled'}))
+
     class Meta:
         model = Order
         exclude = ('verified', 'work', 'verification_code')
@@ -45,7 +52,6 @@ class OrderCompleteForm(ModelForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'address_from': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'address_to': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
-            'delivery_date': DateTimeInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here..."),
