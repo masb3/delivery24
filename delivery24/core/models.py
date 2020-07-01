@@ -9,11 +9,17 @@ from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
 VERIFF_CODE_LEN = 4
+UNIQUE_ID_LEN = 8
 
 
-def get_rand_id():
+def gen_unique_veriff_code():
     return int(''.join(secrets.choice(string.digits)
                        for _ in range(VERIFF_CODE_LEN)))
+
+
+def gen_unique_order_id():
+    return ''.join(secrets.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits)
+                   for _ in range(UNIQUE_ID_LEN))
 
 
 class Work(models.Model):
@@ -42,6 +48,7 @@ class Work(models.Model):
 
 
 class Order(models.Model):
+    order_id = models.SlugField(unique=True, max_length=UNIQUE_ID_LEN)
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
     email = models.EmailField(_('email'), max_length=254)
@@ -59,6 +66,17 @@ class Order(models.Model):
                              null=True,
                              related_name='works',
                              related_query_name='work')
+
+    def save(self, *args, **kwargs):
+        if not self.order_id:  # new object creating
+            unique_id = gen_unique_order_id()
+            is_exists = Order.objects.filter(order_id=unique_id).exists()
+            while is_exists:
+                unique_id = gen_unique_order_id()
+                is_exists = Order.objects.filter(order_id=unique_id).exists()
+            self.order_id = unique_id
+        print(self.order_id)
+        super(Order, self).save()
 
     def __str__(self):
         return self.email

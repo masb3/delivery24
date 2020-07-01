@@ -14,7 +14,7 @@ class OrderForm(ModelForm):
 
     class Meta:
         model = Order
-        exclude = ('verified', 'work', 'verification_code')
+        exclude = ('order_id', 'verified', 'work', 'verification_code')
 
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
@@ -43,7 +43,7 @@ class OrderCompleteForm(ModelForm):
 
     class Meta:
         model = Order
-        exclude = ('verified', 'work', 'verification_code')
+        exclude = ('order_id', 'verified', 'work', 'verification_code')
 
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
