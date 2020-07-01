@@ -1,6 +1,4 @@
 import uuid
-import secrets
-import string
 
 from django.db import models
 from django.conf import settings
@@ -8,18 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
-VERIFF_CODE_LEN = 4
-UNIQUE_ID_LEN = 8
-
-
-def gen_unique_veriff_code():
-    return int(''.join(secrets.choice(string.digits)
-                       for _ in range(VERIFF_CODE_LEN)))
-
-
-def gen_unique_order_id():
-    return ''.join(secrets.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits)
-                   for _ in range(UNIQUE_ID_LEN))
+from .services.order import gen_unique_order_id, ORDER_ID_LEN
 
 
 class Work(models.Model):
@@ -48,7 +35,7 @@ class Work(models.Model):
 
 
 class Order(models.Model):
-    order_id = models.SlugField(unique=True, max_length=UNIQUE_ID_LEN)
+    order_id = models.SlugField(unique=True, max_length=ORDER_ID_LEN)
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
     email = models.EmailField(_('email'), max_length=254)

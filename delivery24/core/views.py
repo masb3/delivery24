@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
-from core.models import Order, gen_unique_veriff_code
+from core.models import Order
+
+from .services.veriff_code import get_veriff_code, confirm_veriff_code
 
 
 class IndexView(TemplateView):
@@ -20,16 +22,9 @@ def order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             new_order = form.save(commit=False)
-            unique_veriff_code = gen_unique_veriff_code()
-            is_exists = Order.objects.filter(verification_code=unique_veriff_code).exists()
-            while is_exists:
-                unique_veriff_code = gen_unique_veriff_code()
-                is_exists = Order.objects.filter(unique_view_id=unique_veriff_code).exists()
-            new_order.verification_code = unique_veriff_code
+            new_order.verification_code = get_veriff_code()
             new_order.save()
-
             return redirect('core:veriff')
-
     else:
         form = OrderForm()
 
@@ -43,11 +38,7 @@ def order_veriff(request):
         form = OrderVeriffForm(request.POST)
         if form.is_valid():
             veriff_code = form.cleaned_data.get('verification_code')
-            new_order = Order.objects.get(verification_code=veriff_code)
-            new_order.verified = True
-            new_order.verification_code = None
-            new_order.save()
-
+            new_order = confirm_veriff_code(veriff_code)
             return redirect('core:complete', order_id=new_order.order_id)
 
     return render(request, template_name=template_name, context={'veriff_form': form})
