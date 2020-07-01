@@ -43,23 +43,18 @@ def order_veriff(request):
         form = OrderVeriffForm(request.POST)
         if form.is_valid():
             veriff_code = form.cleaned_data.get('verification_code')
-            try:
-                order = Order.objects.get(verification_code=veriff_code)
-            except Order.DoesNotExist:
-                order = None
+            new_order = Order.objects.get(verification_code=veriff_code)
+            new_order.verified = True
+            new_order.verification_code = None
+            new_order.save()
 
-            if order:
-                order.verified = True
-                order.verification_code = None
-                order.save()
-
-                return redirect('core:complete', order_id=order.order_id)
+            return redirect('core:complete', order_id=new_order.order_id)
 
     return render(request, template_name=template_name, context={'veriff_form': form})
 
 
 def order_complete(request, order_id):
-    order = Order.objects.get(order_id=order_id)
-    order_complete_form = OrderCompleteForm(instance=order)
+    new_order = Order.objects.get(order_id=order_id)
+    order_complete_form = OrderCompleteForm(instance=new_order)
 
     return render(request, template_name='core/order_complete.html', context={'order_form': order_complete_form})

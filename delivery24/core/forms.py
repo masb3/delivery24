@@ -1,5 +1,6 @@
 from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, IntegerField, DateTimeField
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 from .models import Order
 
@@ -33,6 +34,14 @@ class OrderVeriffForm(Form):
     verification_code = IntegerField(
         widget=TextInput(attrs={'class': 'form-control rounded-0'})
     )
+
+    def clean_verification_code(self):
+        input_veriff_code = self.cleaned_data.get('verification_code')
+        existing = Order.objects.filter(verification_code=input_veriff_code).exists()
+
+        if not existing:
+            raise ValidationError(_('Invalid code'))
+        return input_veriff_code
 
 
 class OrderCompleteForm(ModelForm):
