@@ -1,51 +1,62 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views import View
 from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
 from core.models import Order
 
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
 
 
-class IndexView(TemplateView):
+class IndexView(View):
     template_name = "core/index.html"
+    form_class = OrderForm
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['order_form'] = OrderForm()
-        return context
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'order_form': form})
 
 
-def order(request):
+class OrderView(View):
     template_name = "core/order.html"
+    form_class = OrderForm
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            new_order = form.save(commit=False)
-            new_order.verification_code = get_veriff_code()
-            new_order.save()
+            order = form.save(commit=False)
+            order.verification_code = get_veriff_code()
+            order.save()
             return redirect('core:veriff')
-    else:
-        form = OrderForm()
+        else:
+            return render(request, self.template_name, {'order_form': form})
 
-    return render(request, template_name=template_name, context={'order_form': form})
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'order_form': form})
 
 
-def order_veriff(request):
+class OrderVeriffView(View):
     template_name = "core/order_veriff.html"
-    form = OrderVeriffForm()
-    if request.method == 'POST':
-        form = OrderVeriffForm(request.POST)
+    form_class = OrderVeriffForm
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
         if form.is_valid():
             veriff_code = form.cleaned_data.get('verification_code')
             new_order = confirm_veriff_code(veriff_code)
             return redirect('core:complete', order_id=new_order.order_id)
+        else:
+            return render(request, self.template_name, {'veriff_form': form})
 
-    return render(request, template_name=template_name, context={'veriff_form': form})
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'veriff_form': form})
 
 
-def order_complete(request, order_id):
-    new_order = Order.objects.get(order_id=order_id)
-    order_complete_form = OrderCompleteForm(instance=new_order)
+class OrderCompleteView(View):
+    template_name = "core/order_complete.html"
+    form_class = OrderCompleteForm
 
-    return render(request, template_name='core/order_complete.html', context={'order_form': order_complete_form})
+    def get(self, request, order_id, *args, **kwargs):
+        order = Order.objects.get(order_id=order_id)
+        form = self.form_class(instance=order)
+        return render(request, self.template_name, {'order_form': form})
