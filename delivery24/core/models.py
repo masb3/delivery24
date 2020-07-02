@@ -42,7 +42,8 @@ class Order(models.Model):
     phone = PhoneNumberField(_('phone'), help_text=_('Contact phone number'))
     address_from = models.CharField(_('address from'), max_length=128)
     address_to = models.CharField(_('address to'), max_length=128)
-    delivery_date = models.DateTimeField(_('delivery date'))
+    delivery_start = models.DateTimeField(_('delivery start date-time'))
+    delivery_end = models.DateTimeField(_('delivery end date-time'))
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     verified = models.BooleanField(default=False)
     verification_code = models.IntegerField(unique=True, null=True,
