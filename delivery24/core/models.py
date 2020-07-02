@@ -66,7 +66,6 @@ class Order(models.Model):
                 unique_id = gen_unique_order_id()
                 is_exists = Order.objects.filter(order_id=unique_id).exists()
             self.order_id = unique_id
-        print(self.order_id)
         super(Order, self).save()
 
     def __str__(self):

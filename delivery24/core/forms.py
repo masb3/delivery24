@@ -1,3 +1,5 @@
+import datetime
+
 from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, IntegerField, DateTimeField
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
@@ -10,6 +12,9 @@ class DateWidget(DateTimeInput):
 
 
 class OrderForm(ModelForm):
+    DELIVERY_TIMEDELTA_MIN_H = 1  # hours
+    DELIVERY_TIMEDELTA_MAX_H = 12  # hours
+
     delivery_start = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
                                    widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
     delivery_end = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
@@ -30,6 +35,16 @@ class OrderForm(ModelForm):
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here...")}),
         }
+
+    def clean_delivery_end(self):
+        input_delivery_start = self.cleaned_data.get('delivery_start')
+        input_delivery_end = self.cleaned_data.get('delivery_end')
+
+        if input_delivery_end < (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MIN_H)):
+            raise ValidationError(_(f'Must be at least {self.DELIVERY_TIMEDELTA_MIN_H} hour after delivery start'))
+        if input_delivery_end > (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MAX_H)):
+            raise ValidationError(_(f'Must be less than {self.DELIVERY_TIMEDELTA_MAX_H} hours after delivery start'))
+        return input_delivery_end
 
 
 class OrderVeriffForm(Form):
