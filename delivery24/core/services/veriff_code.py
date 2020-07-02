@@ -1,18 +1,15 @@
 import secrets
 import string
 
-from core.models import Order
+from core.models import Order, VERIFF_CODE_LEN
 
 
-VERIFF_CODE_LEN = 4
+def gen_unique_veriff_code() -> str:
+    return ''.join(secrets.choice(string.digits)
+                   for _ in range(VERIFF_CODE_LEN))
 
 
-def gen_unique_veriff_code() -> int:
-    return int(''.join(secrets.choice(string.digits)
-                       for _ in range(VERIFF_CODE_LEN)))
-
-
-def get_veriff_code() -> int:
+def get_veriff_code() -> str:
     unique_veriff_code = gen_unique_veriff_code()
     is_exists = Order.objects.filter(verification_code=unique_veriff_code).exists()
     while is_exists:
@@ -21,7 +18,7 @@ def get_veriff_code() -> int:
     return unique_veriff_code
 
 
-def confirm_veriff_code(veriff_code: int) -> Order:
+def confirm_veriff_code(veriff_code: str) -> Order:
     order = Order.objects.get(verification_code=veriff_code)
     order.verified = True
     order.verification_code = None

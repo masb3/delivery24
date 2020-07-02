@@ -12,6 +12,8 @@ class DateWidget(DateTimeInput):
 class OrderForm(ModelForm):
     delivery_start = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
                                    widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
+    delivery_end = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+                                 widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
 
     class Meta:
         model = Order
@@ -49,6 +51,10 @@ class OrderCompleteForm(ModelForm):
                                    widget=DateWidget(attrs={'class': 'form-control rounded-0',
                                                             'readonly': 'readonly',
                                                             'disabled': 'disabled'}))
+    delivery_end = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+                                 widget=DateWidget(attrs={'class': 'form-control rounded-0',
+                                                          'readonly': 'readonly',
+                                                          'disabled': 'disabled'}))
 
     class Meta:
         model = Order

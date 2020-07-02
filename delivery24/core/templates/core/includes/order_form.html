@@ -71,14 +71,14 @@
               </div>
 
               <div class="row form-group">
-                <div class="col-md-12">
+                <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="{{ order_form.delivery_start.auto_id }}">{{ order_form.delivery_start.label }}</label>
                   {{ order_form.delivery_start }}
 
                   <script>
-                    let $jQverForDateTime = jQuery.noConflict();
-                    $jQverForDateTime(function () {
-                      $jQverForDateTime("#id_delivery_start").datetimepicker({
+                    let $jQverForDateTimeStart = jQuery.noConflict();
+                    $jQverForDateTimeStart(function () {
+                      $jQverForDateTimeStart("#id_delivery_start").datetimepicker({
                         format: 'd/m/Y H:i',
                       });
                     });
@@ -88,6 +88,26 @@
                     <small style="color: grey">{{ order_form.delivery_start.help_text }}</small>
                   {% endif %}
                   {% for error in order_form.delivery_start.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ order_form.delivery_end.auto_id }}">{{ order_form.delivery_end.label }}</label>
+                  {{ order_form.delivery_end }}
+
+                  <script>
+                    let $jQverForDateTimeEnd = jQuery.noConflict();
+                    $jQverForDateTimeEnd(function () {
+                      $jQverForDateTimeEnd("#id_delivery_end").datetimepicker({
+                        format: 'd/m/Y H:i',
+                      });
+                    });
+                  </script>
+
+                  {% if order_form.delivery_end.help_text %}
+                    <small style="color: grey">{{ order_form.delivery_end.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.delivery_end.errors %}
                     <p style="color: red">{{ error }}</p>
                   {% endfor %}
                 </div>
