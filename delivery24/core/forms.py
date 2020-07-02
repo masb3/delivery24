@@ -1,6 +1,6 @@
 import datetime
 
-from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, IntegerField, DateTimeField
+from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, DateTimeField, CharField
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
@@ -48,7 +48,7 @@ class OrderForm(ModelForm):
 
 
 class OrderVeriffForm(Form):
-    verification_code = IntegerField(
+    verification_code = CharField(
         widget=TextInput(attrs={'class': 'form-control rounded-0'})
     )
 
