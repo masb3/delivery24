@@ -1,6 +1,7 @@
 import datetime
 
 from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, DateTimeField, CharField, Select
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
@@ -14,6 +15,8 @@ class DateWidget(DateTimeInput):
 class OrderForm(ModelForm):
     DELIVERY_TIMEDELTA_MIN_H = 1  # hours
     DELIVERY_TIMEDELTA_MAX_H = 12  # hours
+    DELIVERY_TIMEDELTA_START_MIN_H = 1  # hours
+    DELIVERY_TIMEDELTA_START_MAX_D = 7  # days
 
     delivery_start = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
                                    widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
@@ -37,15 +40,25 @@ class OrderForm(ModelForm):
                                        'placeholder': _("Leave your message here...")}),
         }
 
-    def clean_delivery_end(self):
-        input_delivery_start = self.cleaned_data.get('delivery_start')
-        input_delivery_end = self.cleaned_data.get('delivery_end')
+    def clean(self):
+        cleaned_data = super().clean()
+        input_delivery_start = cleaned_data.get('delivery_start')
+        input_delivery_end = cleaned_data.get('delivery_end')
 
-        if input_delivery_end < (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MIN_H)):
-            raise ValidationError(_(f'Must be at least {self.DELIVERY_TIMEDELTA_MIN_H} hour after delivery start'))
-        if input_delivery_end > (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MAX_H)):
-            raise ValidationError(_(f'Must be less than {self.DELIVERY_TIMEDELTA_MAX_H} hours after delivery start'))
-        return input_delivery_end
+        tallinn_time_now = timezone.now() + datetime.timedelta(hours=3)  # Tallinn time UTC+3
+
+        if input_delivery_start < (tallinn_time_now + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_START_MIN_H)):
+            msg = _(f'Must be at least {self.DELIVERY_TIMEDELTA_START_MIN_H} hour from current time')
+            self.add_error('delivery_start', msg)
+        elif input_delivery_start > (tallinn_time_now + datetime.timedelta(days=self.DELIVERY_TIMEDELTA_START_MAX_D)):
+            msg = _(f'Must be less than {self.DELIVERY_TIMEDELTA_START_MAX_D} days from current date')
+            self.add_error('delivery_start', msg)
+        elif input_delivery_end < (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MIN_H)):
+            msg = _(f'Must be at least {self.DELIVERY_TIMEDELTA_MIN_H} hour after delivery start')
+            self.add_error('delivery_end', msg)
+        elif input_delivery_end > (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MAX_H)):
+            msg = _(f'Must be less than {self.DELIVERY_TIMEDELTA_MAX_H} hours after delivery start')
+            self.add_error('delivery_end', msg)
 
 
 class OrderVeriffForm(Form):
