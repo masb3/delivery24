@@ -47,6 +47,9 @@ class Order(models.Model):
     address_to = models.CharField(_('address to'), max_length=128)
     delivery_start = models.DateTimeField(_('delivery start date-time'))
     delivery_end = models.DateTimeField(_('delivery end date-time'))
+    movers_num = models.IntegerField(_('number of required movers'),
+                                     choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
+                                     default=0)
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     verified = models.BooleanField(default=False)
     verification_code = models.CharField(unique=True, null=True, max_length=VERIFF_CODE_LEN,

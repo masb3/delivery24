@@ -1,6 +1,6 @@
 import datetime
 
-from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, DateTimeField, CharField
+from django.forms import ModelForm, Form, TextInput, Textarea, DateTimeInput, DateTimeField, CharField, Select
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
@@ -31,6 +31,7 @@ class OrderForm(ModelForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_from': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_to': TextInput(attrs={'class': 'form-control rounded-0'}),
+            'movers_num': Select(attrs={'class': 'form-control rounded-0'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here...")}),
@@ -82,6 +83,7 @@ class OrderCompleteForm(ModelForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'address_from': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'address_to': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
+            'movers_num': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',
                                        'cols': 30, 'rows': 7,
                                        'placeholder': _("Leave your message here..."),

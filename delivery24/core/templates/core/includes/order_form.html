@@ -115,6 +115,19 @@
 
               <div class="row form-group">
                 <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.movers_num.auto_id }}">{{ order_form.movers_num.label }}</label>
+                  {{ order_form.movers_num }}
+                  {% if order_form.movers_num.help_text %}
+                    <small style="color: grey">{{ order_form.movers_num.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.movers_num.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
                   <label class="text-black" for="{{ order_form.message.auto_id }}">{{ order_form.message.label }}</label>
                   {{ order_form.message }}
                   {% if order_form.message.help_text %}
