@@ -69,10 +69,10 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
-                <li><a href="#home-section" class="nav-link">Home</a></li>
-                <li><a href="#features-section" class="nav-link">Features</a></li>
+                <li><a href="{% url 'core:index' %}#home-section" class="nav-link">Home</a></li>
+                <li><a href="{% url 'core:index' %}#features-section" class="nav-link">Features</a></li>
                 <li class="has-children">
-                  <a href="#start-section" class="nav-link">Get Started</a>
+                  <a href="{% url 'core:index' %}#start-section" class="nav-link">Get Started</a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#" target="_blank" class="nav-link"><span class="text-primary">More Free Templates</span></a></li>
                     <li><a href="#our-team-section" class="nav-link">Our Team</a></li>
@@ -86,9 +86,9 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="#partner-section" class="nav-link">Become a Partner</a></li>
-                <li><a href="#blog-section" class="nav-link">Blog</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                <li><a href="{% url 'core:index' %}#partner-section" class="nav-link">Become a Partner</a></li>
+                <li><a href="{% url 'core:index' %}#blog-section" class="nav-link">Blog</a></li>
+                <li><a href="{% url 'core:index' %}#contact-section" class="nav-link">Contact</a></li>
               </ul>
             </nav>
           </div>
