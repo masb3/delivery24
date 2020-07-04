@@ -36,6 +36,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     car_number = models.CharField(_('car number'), max_length=7,
                                   validators=[MinLengthValidator(5), MaxLengthValidator(7), car_number_validator])
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
+    movers_num = models.IntegerField(_('number of available movers'),
+                                     choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
+                                     default=0)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)
