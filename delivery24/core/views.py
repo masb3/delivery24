@@ -60,3 +60,31 @@ class OrderCompleteView(View):
         order = Order.objects.get(order_id=order_id)
         form = self.form_class(instance=order)
         return render(request, self.template_name, {'order_form': form})
+
+
+class BlogView(View):
+    template_name = "core/blog.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class ContactView(View):
+    template_name = "core/contact.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class PartnerView(View):
+    template_name = "core/partner.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class FeaturesView(View):
+    template_name = "core/features.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)

@@ -69,11 +69,11 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
-                <li><a href="{% url 'core:index' %}#home-section" class="nav-link">Home</a></li>
-                <li><a href="{% url 'core:index' %}#features-section" class="nav-link">Features</a></li>
-                <li><a href="{% url 'core:index' %}#start-section" class="nav-link"><span class="badge badge-pill badge-success">GET STARTED</span></a></li>
+                <li><a href="{% url 'core:index' %}" class="nav-link">Home</a></li>
+                <li><a href="{% url 'core:features' %}" class="nav-link">Features</a></li>
+                <li><a href="{% url 'core:order' %}" class="nav-link"><span class="badge badge-pill badge-success">GET STARTED</span></a></li>
                 <li class="has-children">
-                  <a href="{% url 'core:index' %}#partner-section" class="nav-link">Become a Partner</a>
+                  <a href="{% url 'core:partner' %}" class="nav-link">Become a Partner</a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#" target="_blank" class="nav-link"><span class="text-primary">More Free Templates</span></a></li>
                     <li><a href="#our-team-section" class="nav-link">Our Team</a></li>
@@ -87,8 +87,8 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="{% url 'core:index' %}#blog-section" class="nav-link">Blog</a></li>
-                <li><a href="{% url 'core:index' %}#contact-section" class="nav-link">Contact</a></li>
+                <li><a href="{% url 'core:blog' %}" class="nav-link">Blog</a></li>
+                <li><a href="{% url 'core:contact' %}" class="nav-link">Contact</a></li>
               </ul>
             </nav>
           </div>
@@ -108,33 +108,30 @@
 {% endblock content %}
 
 <!-- FOOTER SECTION -->
-  <br>
-  <br>
-  <br>
-    <div class="footer py-5 text-center">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12">
-            <p class="mb-0">
-              <a href="#" class="p-3"><span class="icon-facebook"></span></a>
-              <a href="#" class="p-3"><span class="icon-twitter"></span></a>
-              <a href="#" class="p-3"><span class="icon-instagram"></span></a>
-              <a href="#" class="p-3"><span class="icon-linkedin"></span></a>
-              <a href="#" class="p-3"><span class="icon-pinterest"></span></a>
-            </p>
-          </div>
+  <div class="footer py-5 text-center">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12">
+          <p class="mb-0">
+            <a href="#" class="p-3"><span class="icon-facebook"></span></a>
+            <a href="#" class="p-3"><span class="icon-twitter"></span></a>
+            <a href="#" class="p-3"><span class="icon-instagram"></span></a>
+            <a href="#" class="p-3"><span class="icon-linkedin"></span></a>
+            <a href="#" class="p-3"><span class="icon-pinterest"></span></a>
+          </p>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <p class="mb-0">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-0">
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
         </div>
       </div>
     </div>
+  </div>
 <!-- END FOOTER SECTION -->
 {% endblock body %}
 
