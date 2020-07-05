@@ -1,4 +1,6 @@
 import uuid
+import secrets
+import string
 
 from django.db import models
 from django.conf import settings
@@ -6,10 +8,14 @@ from django.core.validators import MinLengthValidator
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
-from .services.order import gen_unique_order_id, ORDER_ID_LEN
-
 
 VERIFF_CODE_LEN = 4
+ORDER_ID_LEN = 8
+
+
+def gen_unique_order_id():
+    return ''.join(secrets.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits)
+                   for _ in range(ORDER_ID_LEN))
 
 
 class Work(models.Model):
