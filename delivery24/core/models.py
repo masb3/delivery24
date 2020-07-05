@@ -34,13 +34,15 @@ class Work(models.Model):
                                related_query_name='driver')
     deliver_from = models.CharField(max_length=500)
     deliver_to = models.CharField(max_length=500)
-    deliver_date = models.DateTimeField()
+    delivery_start = models.DateTimeField()
+    delivery_end = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     price = models.FloatField()
     status = models.IntegerField(choices=WORK_STATUS)
 
     def __str__(self):
-        return f'Deliver from: {self.deliver_from}\nDeliver to: {self.deliver_to}\nDate: {self.deliver_date}'
+        return f'Deliver from: {self.deliver_from}\nDeliver to: {self.deliver_to}\n' \
+               f'Date start: {self.delivery_start}\nDate end: {self.delivery_end}'
 
 
 class Order(models.Model):
