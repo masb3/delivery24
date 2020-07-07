@@ -4,7 +4,7 @@ from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
 from core.models import Order
 
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
-from .services.order import find_driver
+from .services.order import find_suitable_drivers
 
 
 class IndexView(View):
@@ -61,7 +61,8 @@ class OrderCompleteView(View):
         order = Order.objects.get(order_id=order_id)
         form = self.form_class(instance=order)
         if order.work is None:
-            find_driver()
+            find_suitable_drivers(order)
+            # TODO:
         return render(request, self.template_name, {'order_form': form})
 
 

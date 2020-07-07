@@ -29,9 +29,7 @@ class Work(models.Model):
     driver = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.SET_NULL,
                                blank=True,
-                               null=True,
-                               related_name='drivers',
-                               related_query_name='driver')
+                               null=True,)
     deliver_from = models.CharField(max_length=500)
     deliver_to = models.CharField(max_length=500)
     delivery_start = models.DateTimeField()
@@ -42,7 +40,7 @@ class Work(models.Model):
 
     def __str__(self):
         return f'Deliver from: {self.deliver_from}\nDeliver to: {self.deliver_to}\n' \
-               f'Date start: {self.delivery_start}\nDate end: {self.delivery_end}'
+               f'Date start: {self.delivery_start}\nDate end: {self.delivery_end}\nDriver: {self.driver}'
 
 
 class Order(models.Model):
