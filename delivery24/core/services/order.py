@@ -10,7 +10,6 @@ def find_suitable_drivers(order: Order):
     print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
     print('------------')
 
-    # Get drivers without work
     drivers = User.objects.filter(is_active=True,
                                   email_confirmed=True,
                                   movers_num__gte=order.movers_num,
@@ -20,8 +19,16 @@ def find_suitable_drivers(order: Order):
         if driver.work_set.all():  # Drivers with work
             driver_ok = True  # For use case if one of driver's work is suitable and other is not
             for driver_work in driver.work_set.all():
-                if not ((driver_work.delivery_start <= order.delivery_start <= driver_work.delivery_end) or
-                        (driver_work.delivery_start <= order.delivery_end <= driver_work.delivery_end)):
+                print(f'******************* {driver}: {driver_work.delivery_start} - {driver_work.delivery_end}')
+
+                if not (((order.delivery_start > driver_work.delivery_start and
+                          order.delivery_start > driver_work.delivery_end) and
+                         (order.delivery_end > driver_work.delivery_start and
+                          order.delivery_end > driver_work.delivery_end)) or
+                        ((order.delivery_start < driver_work.delivery_start and
+                          order.delivery_start < driver_work.delivery_end) and
+                         (order.delivery_end < driver_work.delivery_start and
+                          order.delivery_end < driver_work.delivery_end))):
                     driver_ok = False
             if driver_ok:
                 suitable_drivers_list.append(driver)
