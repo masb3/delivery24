@@ -61,8 +61,8 @@ class OrderCompleteView(View):
         order = Order.objects.get(order_id=order_id)
         form = self.form_class(instance=order)
         if order.work is None:
-            find_suitable_drivers(order)
-            # TODO:
+            drivers = find_suitable_drivers(order)
+            # TODO: notify_drivers(drivers)
         return render(request, self.template_name, {'order_form': form})
 
 
