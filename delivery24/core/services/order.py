@@ -4,7 +4,7 @@ from core.models import Order, Work
 from accounts.models import User
 
 
-def find_suitable_drivers(order: Order):
+def find_suitable_drivers(order: Order) -> list:
     # TODO: remove log
     print('------------')
     print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
@@ -39,10 +39,13 @@ def find_suitable_drivers(order: Order):
     for driver in suitable_drivers_list:
         print(driver)
 
+    return suitable_drivers_list
+
 # work = Work()
 # work.driver = driver
 # work.price = 123
-# work.deliver_date = order.delivery_start
+# work.delivery_start = order.delivery_start
+# work.delivery_end = order.delivery_end
 # work.deliver_to = order.address_to
 # work.deliver_from = order.address_from
 # work.status = Work.WORK_STATUS[0][0]
