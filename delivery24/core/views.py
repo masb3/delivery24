@@ -61,7 +61,7 @@ class OrderCompleteView(View):
         order = Order.objects.get(order_id=order_id)
         form = self.form_class(instance=order)
         if order.work is None:
-            drivers = find_suitable_drivers(order)
+            drivers = find_suitable_drivers(order, request)
             # TODO: notify_drivers(drivers)
         return render(request, self.template_name, {'order_form': form})
 
@@ -92,3 +92,8 @@ class FeaturesView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
+
+
+def newjob(request, uidb64, token):
+    # TODO:
+    pass

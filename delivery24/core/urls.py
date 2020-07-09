@@ -15,4 +15,5 @@ urlpatterns = [
     path('features/', views.FeaturesView.as_view(), name='features'),
     path('blog/', views.BlogView.as_view(), name='blog'),
     path('contact/', views.ContactView.as_view(), name='contact'),
+    path('newjob/<uidb64>/<token>/', views.newjob, name='newjob'),
 ]

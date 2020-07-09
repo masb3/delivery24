@@ -1,12 +1,16 @@
 from django.db.models import Q
 from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
 
+from .tokens import job_confirm_token
 from core.models import Order, Work
 from accounts.models import User
 
 
-def find_suitable_drivers(order: Order) -> list:
+def find_suitable_drivers(order: Order, request) -> list:
     # TODO: remove log
     print('------------')
     print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
@@ -43,17 +47,20 @@ def find_suitable_drivers(order: Order) -> list:
         print(driver)
     print('///////////////////')
 
-    notify_drivers_email(suitable_drivers_list)
+    notify_drivers_email(suitable_drivers_list, request)
 
     return suitable_drivers_list
 
 
-def notify_drivers_email(drivers: list):
+def notify_drivers_email(drivers: list, request):
     subject = 'delivery24.ee New Job'
+    current_site = get_current_site(request)
     for driver in drivers:
         message = render_to_string('core/new_job_notify_email.html', {
             'user': driver,
-            'domain': 'delivery24.ee',
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
+            'token': job_confirm_token.make_token(driver),
         })
         to_email = driver.email
         email = EmailMessage(subject, message, to=[to_email])
