@@ -47,18 +47,19 @@ def find_suitable_drivers(order: Order, request) -> list:
         print(driver)
     print('///////////////////')
 
-    notify_drivers_email(suitable_drivers_list, request)
+    notify_drivers_email(suitable_drivers_list, order, request)
 
     return suitable_drivers_list
 
 
-def notify_drivers_email(drivers: list, request):
+def notify_drivers_email(drivers: list, order, request):
     subject = 'delivery24.ee New Job'
     current_site = get_current_site(request)
     for driver in drivers:
         message = render_to_string('core/new_job_notify_email.html', {
             'user': driver,
             'domain': current_site.domain,
+            'order': order.order_id,
             'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
             'token': job_confirm_token.make_token(driver),
         })

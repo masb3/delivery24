@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
+from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
+
 from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
 from core.models import Order
+from accounts.models import User
 
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
 from .services.order import find_suitable_drivers
+from .services.tokens import job_confirm_token
 
 
 class IndexView(View):
@@ -94,6 +99,21 @@ class FeaturesView(View):
         return render(request, self.template_name)
 
 
-def newjob(request, uidb64, token):
-    # TODO:
-    pass
+class NewJob(View):
+    template_name = 'core/driver_newjob_confirm.html'
+
+    def get(self, request, order_id, uidb64, token, *args, **kwargs):
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        if user is not None and job_confirm_token.check_token(user, token):
+            # TODO: some logic here
+            pass
+
+        return render(request, self.template_name, context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
+
+    def post(self, request, order_id, uidb64, token, *args, **kwargs):
+        return render(request, self.template_name, context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
