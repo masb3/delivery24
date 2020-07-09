@@ -1,4 +1,6 @@
 from django.db.models import Q
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 
 from core.models import Order, Work
 from accounts.models import User
@@ -10,7 +12,8 @@ def find_suitable_drivers(order: Order) -> list:
     print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
     print('------------')
 
-    drivers = User.objects.filter(is_active=True,
+    drivers = User.objects.filter(is_admin=False,
+                                  is_active=True,
                                   email_confirmed=True,
                                   movers_num__gte=order.movers_num,
                                   )
@@ -19,8 +22,6 @@ def find_suitable_drivers(order: Order) -> list:
         if driver.work_set.all():  # Drivers with work
             driver_ok = True  # For use case if one of driver's work is suitable and other is not
             for driver_work in driver.work_set.all():
-                print(f'******************* {driver}: {driver_work.delivery_start} - {driver_work.delivery_end}')
-
                 if not (((order.delivery_start > driver_work.delivery_start and
                           order.delivery_start > driver_work.delivery_end) and
                          (order.delivery_end > driver_work.delivery_start and
@@ -36,10 +37,28 @@ def find_suitable_drivers(order: Order) -> list:
             suitable_drivers_list.append(driver)
 
     # TODO: remove
+    print('///////////////////')
+    print('Suitable drivers')
     for driver in suitable_drivers_list:
         print(driver)
+    print('///////////////////')
+
+    notify_drivers_email(suitable_drivers_list)
 
     return suitable_drivers_list
+
+
+def notify_drivers_email(drivers: list):
+    subject = 'delivery24.ee New Job'
+    for driver in drivers:
+        message = render_to_string('core/new_job_notify_email.html', {
+            'user': driver,
+            'domain': 'delivery24.ee',
+        })
+        to_email = driver.email
+        email = EmailMessage(subject, message, to=[to_email])
+        email.content_subtype = "html"
+        email.send()
 
 # work = Work()
 # work.driver = driver
