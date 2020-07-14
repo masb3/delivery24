@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from django.views import View
 
 from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
@@ -114,7 +114,6 @@ class NewJob(View):
             user = None
 
         order = get_object_or_404(Order, order_id=order_id)
-        print('***********GET TOKEN {}'.format(job_confirm_token.check_token(user, order, token)))
         if user is not None and job_confirm_token.check_token(user, order, token):
             if order.work is not None:
                 return render(request, self.template_name, context={'completed': True})
@@ -132,7 +131,6 @@ class NewJob(View):
             user = None
 
         order = get_object_or_404(Order, order_id=order_id)
-        print('***********POST TOKEN {}'.format(job_confirm_token.check_token(user, order, token)))
         if user is not None and job_confirm_token.check_token(user, order, token):
             if order.work is None:
                 work = Work(driver=user,
