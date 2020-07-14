@@ -61,7 +61,7 @@ def notify_drivers_email(drivers: list, order, request):
             'domain': current_site.domain,
             'order': order.order_id,
             'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
-            'token': job_confirm_token.make_token(driver),
+            'token': job_confirm_token.make_token(driver, order),
         })
         to_email = driver.email
         email = EmailMessage(subject, message, to=[to_email])
