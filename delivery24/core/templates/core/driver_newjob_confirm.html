@@ -17,6 +17,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-7 mb-5">
 
+        {% if completed == None %}
         <form method="post" action="{% url 'core:newjob' order_id uidb64 token %}" class="p-5 bg-white" novalidate>
             {% csrf_token %}
             <!--{% include 'core/includes/order_complete_form.html' %}-->
@@ -27,6 +28,9 @@
                 </div>
             </div>
         </form>
+        {% else %}
+          <h1 class="text-success">Completed</h1>
+        {% endif %}
       </div>
     </div>
   </div>

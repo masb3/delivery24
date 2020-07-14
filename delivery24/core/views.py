@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, Http404
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
 
 from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
-from core.models import Order
+from core.models import Order, Work
 from accounts.models import User
 
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
@@ -64,11 +64,14 @@ class OrderCompleteView(View):
 
     def get(self, request, order_id, *args, **kwargs):
         order = Order.objects.get(order_id=order_id)
-        form = self.form_class(instance=order)
         if order.work is None:
-            drivers = find_suitable_drivers(order, request)
-            # TODO: notify_drivers(drivers)
-        return render(request, self.template_name, {'order_form': form})
+            form = self.form_class(instance=order)
+            if order.work is None:
+                drivers = find_suitable_drivers(order, request)
+                # TODO: notify_drivers(drivers)
+            return render(request, self.template_name, {'order_form': form})
+        else:
+            return render(request, self.template_name, {'confirmed': True})
 
 
 class BlogView(View):
@@ -110,10 +113,37 @@ class NewJob(View):
             user = None
 
         if user is not None and job_confirm_token.check_token(user, token):
-            # TODO: some logic here
-            pass
+            order = Order.objects.get(order_id=order_id)
+            if order.work is not None:
+                return render(request, self.template_name, context={'completed': True})
 
         return render(request, self.template_name, context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
 
     def post(self, request, order_id, uidb64, token, *args, **kwargs):
-        return render(request, self.template_name, context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
+        try:
+            uid = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=uid)
+        except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        if user is not None and job_confirm_token.check_token(user, token):
+            order = Order.objects.get(order_id=order_id)
+            if order.work is None:
+                work = Work(driver=user,
+                            deliver_from=order.address_from,
+                            deliver_to=order.address_to,
+                            delivery_start=order.delivery_start,
+                            delivery_end=order.delivery_end,
+                            price=123,  # TODO
+                            status=1,  # TODO
+                            )
+                work.save()
+                order.work = work
+                order.save()
+
+            else:
+                return render(request, self.template_name, context={'completed': True})
+        return render(request, self.template_name, context={'order_id': order_id,
+                                                            'uidb64': uidb64,
+                                                            'token': token,
+                                                            'completed': False})
