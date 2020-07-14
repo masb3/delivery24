@@ -1,3 +1,5 @@
+from random import random, randrange
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound
 from django.utils.encoding import force_str
@@ -138,7 +140,7 @@ class NewJob(View):
                             deliver_to=order.address_to,
                             delivery_start=order.delivery_start,
                             delivery_end=order.delivery_end,
-                            price=123,  # TODO
+                            price=randrange(30, 150.0) + random(),  # TODO
                             status=1,  # TODO
                             )
                 work.save()
