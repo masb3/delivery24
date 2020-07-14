@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, Http404
+from django.shortcuts import render, redirect, Http404, HttpResponse
+from django.http import HttpResponseNotFound
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
@@ -116,8 +117,11 @@ class NewJob(View):
             order = Order.objects.get(order_id=order_id)
             if order.work is not None:
                 return render(request, self.template_name, context={'completed': True})
+            else:
+                return render(request, self.template_name,
+                              context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
 
-        return render(request, self.template_name, context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
+        return HttpResponseNotFound('<h1>Page not found</h1>')
 
     def post(self, request, order_id, uidb64, token, *args, **kwargs):
         try:
@@ -141,9 +145,6 @@ class NewJob(View):
                 order.work = work
                 order.save()
 
-            else:
-                return render(request, self.template_name, context={'completed': True})
-        return render(request, self.template_name, context={'order_id': order_id,
-                                                            'uidb64': uidb64,
-                                                            'token': token,
-                                                            'completed': False})
+            return render(request, self.template_name, context={'completed': True})
+
+        return HttpResponseNotFound('<h1>Page not found</h1>')
