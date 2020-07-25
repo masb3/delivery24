@@ -37,6 +37,7 @@ class Work(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     price = models.FloatField()
     status = models.IntegerField(choices=WORK_STATUS)
+    order_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Deliver from: {self.deliver_from}\nDeliver to: {self.deliver_to}\n' \
@@ -68,6 +69,7 @@ class Order(models.Model):
                              null=True,
                              related_name='works',
                              related_query_name='work')
+    drivers_notified = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.order_id:  # new object creating

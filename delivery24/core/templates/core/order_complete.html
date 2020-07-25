@@ -5,6 +5,22 @@
 
 {% block content %}
 
+<script>
+function Poll() {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("demo").innerHTML = this.responseText;
+      console.log(this.responseText);
+    }
+    console.log(this.status)
+  };
+  xhttp.open("GET", "waitdriver/", true);
+  xhttp.send();
+  setTimeout(Poll, 3000);
+}
+setTimeout(Poll, 3000);
+</script>
 
 <div class="site-section bg-light" id="start-section">
   <div class="container">

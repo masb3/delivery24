@@ -10,6 +10,7 @@ urlpatterns = [
     path('order/', views.OrderView.as_view(), name='order'),
     path('order/veriff/', views.OrderVeriffView.as_view(), name='veriff'),
     path('order/<slug:order_id>/', views.OrderCompleteView.as_view(), name='complete'),
+    path('order/<slug:order_id>/waitdriver/', views.WaitDriver.as_view(), name='waitdriver'),
 
     path('partner/', views.PartnerView.as_view(), name='partner'),
     path('features/', views.FeaturesView.as_view(), name='features'),

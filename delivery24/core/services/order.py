@@ -48,6 +48,8 @@ def find_suitable_drivers(order: Order, request) -> list:
 
     notify_drivers_email(suitable_drivers_list, order, request)
 
+    order.drivers_notified = True
+
     return suitable_drivers_list
 
 

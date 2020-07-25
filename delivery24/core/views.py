@@ -1,7 +1,7 @@
 from random import random, randrange
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseNotFound, JsonResponse
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
@@ -67,14 +67,30 @@ class OrderCompleteView(View):
 
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-        if order.work is None:
+        if order.work is None or order.work.order_confirmed is False:
             form = self.form_class(instance=order)
-            if order.work is None:
+            if order.work is None and order.drivers_notified is False:  # TODO: drivers still notified every time
                 drivers = find_suitable_drivers(order, request)
                 # TODO: notify_drivers(drivers)
             return render(request, self.template_name, {'order_form': form})
         else:
             return render(request, self.template_name, {'confirmed': True})
+
+    def post(self, request, order_id, *args, **kwargs):
+        # TODO: order.work.order_confirmed = True
+        pass
+
+
+class WaitDriver(View):
+    def get(self, request, order_id, *args, **kwargs):
+        order = get_object_or_404(Order, order_id=order_id)
+        if order.work_id and order.work.order_confirmed is False:
+            resp = JsonResponse({'foo': 'bar'})
+        else:
+            resp = JsonResponse({'nothing': 'for now'})
+            resp.status_code = 301  # TODO: correct code
+        return resp
+
 
 
 class BlogView(View):
