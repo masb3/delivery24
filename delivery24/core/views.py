@@ -71,6 +71,7 @@ class OrderCompleteView(View):
             form = self.form_class(instance=order)
             if order.drivers_notified is False:
                 drivers = find_suitable_drivers(order, request)
+                # TODO: what to do with drivers here
             return render(request, self.template_name, {'order_form': form, 'order_id': order_id})
         else:
             return render(request, self.template_name, {'confirmed': True, 'order_id': order_id})
@@ -79,7 +80,7 @@ class OrderCompleteView(View):
         # TODO: don't confirm until driver accept job, hide confirm button
         order = get_object_or_404(Order, order_id=order_id)
         order.work.order_confirmed = True
-        order.save()
+        order.work.save()
         # TODO: render with green Confirmed
         return render(request, self.template_name, {'confirmed': True, 'order_id': order_id})
 
