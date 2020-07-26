@@ -86,6 +86,7 @@ class OrderCompleteView(View):
 
 
 class WaitDriver(View):
+    # TODO: stop polling if Order already confirmed, for ex. dont return order_id in OrderCompleteView
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
         if order.work_id:  # and order.work.order_confirmed is False:
