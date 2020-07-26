@@ -8,16 +8,25 @@
 <script>
 function Poll() {
   let xhttp = new XMLHttpRequest();
+  let polling = true;
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      //document.getElementById("demo").innerHTML = this.responseText;
+      document.getElementById("demo").innerHTML = this.responseText;
+      polling = false;
       console.log(this.responseText);
+    }
+    else {
+        document.getElementById("demo").innerHTML = this.responseText;
+        console.log(this.responseText);
     }
     console.log(this.status)
   };
-  xhttp.open("GET", "waitdriver/", true);
-  xhttp.send();
-  setTimeout(Poll, 3000);
+  if(polling) {
+    xhttp.open("GET", "waitdriver/", true);
+    xhttp.send();
+
+    setTimeout(Poll, 3000);
+  }
 }
 setTimeout(Poll, 3000);
 </script>
@@ -33,7 +42,7 @@ setTimeout(Poll, 3000);
     <div class="row justify-content"><!--<div class="row justify-content-center">-->
       <div class="col-lg-7 mb-5">
         {% if confirmed == None %}
-        <form method="post" action="{% url 'core:index' %}" class="p-5 bg-white" novalidate>
+        <form method="post" action="{% url 'core:complete' order_id=order_id %}" class="p-5 bg-white" novalidate>
             {% csrf_token %}
             {% include 'core/includes/order_complete_form.html' %}
 
@@ -42,6 +51,7 @@ setTimeout(Poll, 3000);
                   <input type="submit" value="Confirm" class="btn btn-primary mr-2 mb-2">
                 </div>
             </div>
+            <p id="demo"></p>
         </form>
         {% else %}
           <h1 class="text-danger">Order already confirmed</h1>

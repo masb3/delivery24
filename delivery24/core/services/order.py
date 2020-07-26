@@ -46,9 +46,11 @@ def find_suitable_drivers(order: Order, request) -> list:
         print(driver)
     print('///////////////////')
 
-    notify_drivers_email(suitable_drivers_list, order, request)
-
+    # order.drivers_notified = True must be set before notify_drivers_email(), otherwise token hash will not match
     order.drivers_notified = True
+    order.save()
+
+    notify_drivers_email(suitable_drivers_list, order, request)
 
     return suitable_drivers_list
 

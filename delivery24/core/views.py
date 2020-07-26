@@ -1,7 +1,7 @@
 from random import random, randrange
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import HttpResponseNotFound, JsonResponse, HttpResponse
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
@@ -69,59 +69,34 @@ class OrderCompleteView(View):
         order = get_object_or_404(Order, order_id=order_id)
         if order.work is None or order.work.order_confirmed is False:
             form = self.form_class(instance=order)
-            if order.work is None and order.drivers_notified is False:  # TODO: drivers still notified every time
+            if order.drivers_notified is False:
                 drivers = find_suitable_drivers(order, request)
-                # TODO: notify_drivers(drivers)
-            return render(request, self.template_name, {'order_form': form})
+            return render(request, self.template_name, {'order_form': form, 'order_id': order_id})
         else:
-            return render(request, self.template_name, {'confirmed': True})
+            return render(request, self.template_name, {'confirmed': True, 'order_id': order_id})
 
     def post(self, request, order_id, *args, **kwargs):
-        # TODO: order.work.order_confirmed = True
-        pass
+        # TODO: don't confirm until driver accept job, hide confirm button
+        order = get_object_or_404(Order, order_id=order_id)
+        order.work.order_confirmed = True
+        order.save()
+        # TODO: render with green Confirmed
+        return render(request, self.template_name, {'confirmed': True, 'order_id': order_id})
 
 
 class WaitDriver(View):
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-        if order.work_id and order.work.order_confirmed is False:
+        if order.work_id:  # and order.work.order_confirmed is False:
             resp = JsonResponse({'foo': 'bar'})
         else:
-            resp = JsonResponse({'nothing': 'for now'})
+            resp = HttpResponse(b"Please wait ...")
             resp.status_code = 301  # TODO: correct code
         return resp
 
 
-
-class BlogView(View):
-    template_name = "core/blog.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-
-class ContactView(View):
-    template_name = "core/contact.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-
-class PartnerView(View):
-    template_name = "core/partner.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-
-class FeaturesView(View):
-    template_name = "core/features.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
-
-
 class NewJob(View):
+    """ Driver takes new job here """
     template_name = 'core/driver_newjob_confirm.html'
 
     def get(self, request, order_id, uidb64, token, *args, **kwargs):
@@ -166,3 +141,32 @@ class NewJob(View):
             return render(request, self.template_name, context={'completed': True})
 
         return HttpResponseNotFound('<h1>Page not found</h1>')
+
+
+
+class BlogView(View):
+    template_name = "core/blog.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class ContactView(View):
+    template_name = "core/contact.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class PartnerView(View):
+    template_name = "core/partner.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class FeaturesView(View):
+    template_name = "core/features.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
