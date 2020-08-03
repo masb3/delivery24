@@ -90,7 +90,7 @@ class WaitDriver(View):
             resp = JsonResponse({'driver': f'{driver}'})  # TODO
         else:
             resp = HttpResponse(b"Please wait ...")
-            resp.status_code = 301  # TODO: correct code
+            resp.status_code = 202
         return resp
 
 
