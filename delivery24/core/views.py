@@ -70,27 +70,24 @@ class OrderCompleteView(View):
         if order.work is None or order.work.order_confirmed is False:
             form = self.form_class(instance=order)
             if order.drivers_notified is False:
-                drivers = find_suitable_drivers(order, request)
-                # TODO: what to do with drivers here
+                find_suitable_drivers(order, request)
             return render(request, self.template_name, {'order_form': form, 'order_id': order_id})
         else:
-            return render(request, self.template_name, {'confirmed': True, 'order_id': order_id})
+            return render(request, self.template_name, {'already_confirmed': True})
 
     def post(self, request, order_id, *args, **kwargs):
-        # TODO: don't confirm until driver accept job, hide confirm button
         order = get_object_or_404(Order, order_id=order_id)
         order.work.order_confirmed = True
         order.work.save()
-        # TODO: render with green Confirmed
-        return render(request, self.template_name, {'confirmed': True, 'order_id': order_id})
+        return render(request, self.template_name, {'confirmed': True})
 
 
 class WaitDriver(View):
-    # TODO: stop polling if Order already confirmed, for ex. dont return order_id in OrderCompleteView
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-        if order.work_id:  # and order.work.order_confirmed is False:
-            resp = JsonResponse({'foo': 'bar'})
+        if order.work_id:
+            driver = order.work.driver
+            resp = JsonResponse({'driver': f'{driver}'})  # TODO
         else:
             resp = HttpResponse(b"Please wait ...")
             resp.status_code = 301  # TODO: correct code
@@ -143,7 +140,6 @@ class NewJob(View):
             return render(request, self.template_name, context={'completed': True})
 
         return HttpResponseNotFound('<h1>Page not found</h1>')
-
 
 
 class BlogView(View):

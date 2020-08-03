@@ -52,8 +52,6 @@ def find_suitable_drivers(order: Order, request) -> list:
 
     notify_drivers_email(suitable_drivers_list, order, request)
 
-    return suitable_drivers_list
-
 
 def notify_drivers_email(drivers: list, order, request):
     subject = 'delivery24.ee New Job'

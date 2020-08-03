@@ -5,13 +5,17 @@
 
 {% block content %}
 
+
+{{ order_id|json_script:"order_id_js" }}
 <script>
+let polling = true;
+
 function Poll() {
   let xhttp = new XMLHttpRequest();
-  let polling = true;
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("demo").innerHTML = this.responseText;
+      document.getElementById("confirm-button").hidden = false;
       polling = false;
       console.log(this.responseText);
     }
@@ -21,14 +25,18 @@ function Poll() {
     }
     console.log(this.status)
   };
-  if(polling) {
+
     xhttp.open("GET", "waitdriver/", true);
     xhttp.send();
 
-    setTimeout(Poll, 3000);
-  }
+    if(polling == true) {
+        setTimeout(Poll, 3000);
+    }
 }
-setTimeout(Poll, 3000);
+const isOrderId = JSON.parse(document.getElementById('order_id_js').textContent);
+if(isOrderId) {
+    setTimeout(Poll, 3000);
+}
 </script>
 
 <div class="site-section bg-light" id="start-section">
@@ -41,18 +49,20 @@ setTimeout(Poll, 3000);
 
     <div class="row justify-content"><!--<div class="row justify-content-center">-->
       <div class="col-lg-7 mb-5">
-        {% if confirmed == None %}
+        {% if already_confirmed == None and confirmed == None %}
         <form method="post" action="{% url 'core:complete' order_id=order_id %}" class="p-5 bg-white" novalidate>
             {% csrf_token %}
             {% include 'core/includes/order_complete_form.html' %}
 
             <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Confirm" class="btn btn-primary mr-2 mb-2">
+                  <input type="submit" id="confirm-button" hidden value="Confirm" class="btn btn-primary mr-2 mb-2">
                 </div>
             </div>
             <p id="demo"></p>
         </form>
+        {% elif confirmed is True %}
+          <h1 class="text-success">Order confirmed</h1>
         {% else %}
           <h1 class="text-danger">Order already confirmed</h1>
         {% endif %}
