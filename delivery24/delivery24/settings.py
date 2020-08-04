@@ -28,11 +28,13 @@ DB_USER = os.getenv('DELIVERY24_DB_USER')
 DB_PASS = os.getenv('DELIVERY24_DB_PASS')
 DB_HOST = os.getenv('DELIVERY24_DB_HOST')
 DB_PORT = os.getenv('DELIVERY24_DB_PORT')
+GMAIL_USER = os.getenv('DELIVERY24_GMAIL_USER')
+GMAIL_PASS = os.getenv('DELIVERY24_GMAIL_PASS')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # 'localhost', '127.0.0.1', '[::1]'
 
 
 # Application definition
@@ -153,15 +155,17 @@ LOGOUT_URL = reverse_lazy('accounts:logout')
 
 PASSWORD_RESET_TIMEOUT_DAYS = 1
 
-# TODO: enable
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = '***@gmail.com'
-# EMAIL_HOST_PASSWORD = '***'
-# EMAIL_PORT = 587
-
-# TODO: remove
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Email send
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_USE_TLS = True
+    EMAIL_USE_SSL = False
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = GMAIL_USER
+    EMAIL_HOST_PASSWORD = GMAIL_PASS
+    EMAIL_PORT = 587
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesBackend',
