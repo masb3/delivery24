@@ -14,13 +14,20 @@ function Poll() {
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML = this.responseText;
+      let resp = JSON.parse(this.responseText);
+      document.getElementById("work_wait").hidden = true;
+
+      document.getElementById("work_driver").innerHTML = "Driver: " + resp.first_name + " " +
+                                resp.driver_last_name + " " + resp.driver_phone + " " + resp.driver_email;
+      document.getElementById("work_car").innerHTML = "Car: " + resp.car_model;
+      document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;" + " " + resp.payment;
+
       document.getElementById("confirm-button").hidden = false;
       polling = false;
       console.log(this.responseText);
     }
     else {
-        document.getElementById("demo").innerHTML = this.responseText;
+        document.getElementById("work_wait").innerHTML = this.responseText;
         console.log(this.responseText);
     }
     console.log(this.status)
@@ -54,12 +61,18 @@ if(isOrderId) {
             {% csrf_token %}
             {% include 'core/includes/order_complete_form.html' %}
 
+
+            <p id="work_wait"></p>
+            <p id="work_driver"></p>
+            <p id="work_car"></p>
+            <p id="work_price"></p>
+
             <div class="row form-group">
                 <div class="col-md-12">
                   <input type="submit" id="confirm-button" hidden value="Confirm" class="btn btn-primary mr-2 mb-2">
                 </div>
             </div>
-            <p id="demo"></p>
+
         </form>
         {% elif confirmed is True %}
           <h1 class="text-success">Order confirmed</h1>
