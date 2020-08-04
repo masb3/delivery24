@@ -20,7 +20,7 @@ function Poll() {
       document.getElementById("work_driver").innerHTML = "Driver: " + resp.first_name + " " +
                                 resp.driver_last_name + " " + resp.driver_phone + " " + resp.driver_email;
       document.getElementById("work_car").innerHTML = "Car: " + resp.car_model;
-      document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;" + " " + resp.payment;
+      document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;";
 
       document.getElementById("confirm-button").hidden = false;
       polling = false;

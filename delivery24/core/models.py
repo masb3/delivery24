@@ -45,6 +45,10 @@ class Work(models.Model):
 
 
 class Order(models.Model):
+    PAYMENT_METHOD = [
+        (1, _('Cash')),
+        #(2, _('Bank')),
+    ]
     order_id = models.SlugField(unique=True, max_length=ORDER_ID_LEN)
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
@@ -58,6 +62,7 @@ class Order(models.Model):
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
+    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
     verified = models.BooleanField(default=False)
     verification_code = models.CharField(unique=True, null=True, max_length=VERIFF_CODE_LEN,
                                          validators=[MinLengthValidator(VERIFF_CODE_LEN)])

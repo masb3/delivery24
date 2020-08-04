@@ -3,6 +3,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+from django.db.models import Q
+
 
 from .tokens import job_confirm_token
 from core.models import Order, Work
@@ -15,11 +17,18 @@ def find_suitable_drivers(order: Order, request) -> list:
     print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
     print('------------')
 
-    drivers = User.objects.filter(is_admin=False,
-                                  is_active=True,
-                                  email_confirmed=True,
-                                  movers_num__gte=order.movers_num,
-                                  )
+    # drivers = User.objects.filter(is_admin=False,
+    #                               is_active=True,
+    #                               email_confirmed=True,
+    #                               movers_num__gte=order.movers_num,
+    #                               payment=order.payment,
+    #                               )
+    drivers = User.objects.filter(Q(is_admin=False) &
+                                  Q(is_active=True) &
+                                  Q(email_confirmed=True) &
+                                  Q(movers_num__gte=order.movers_num) &
+                                  (Q(payment=order.payment) | Q(payment=3)))
+
     suitable_drivers_list = []
     for driver in drivers:
         if driver.work_set.all():  # Drivers with work

@@ -92,7 +92,6 @@ class WaitDriver(View):
             driver_last_name = driver.first_name
             driver_phone = driver.phone
             car_model = driver.car_model
-            payment = driver.payment
             price = order.work.price
 
             resp = JsonResponse({'driver_first_name': f'{driver_first_name}',
@@ -100,7 +99,6 @@ class WaitDriver(View):
                                  'driver_email': f'{driver_email}',
                                  'driver_phone': f'{driver_phone}',
                                  'car_model': f'{car_model}',
-                                 'payment': f'{payment}',
                                  'price': f'{price}', })
         else:
             resp = HttpResponse(b"Please wait ...")

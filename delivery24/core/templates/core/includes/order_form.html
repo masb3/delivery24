@@ -128,6 +128,19 @@
 
               <div class="row form-group">
                 <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.payment.auto_id }}">{{ order_form.payment.label }}</label>
+                  {{ order_form.payment }}
+                  {% if order_form.payment.help_text %}
+                    <small style="color: grey">{{ order_form.payment.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.payment.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
                   <label class="text-black" for="{{ order_form.message.auto_id }}">{{ order_form.message.label }}</label>
                   {{ order_form.message }}
                   {% if order_form.message.help_text %}
