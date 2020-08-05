@@ -1,8 +1,8 @@
 {% autoescape off %}
-Hi {{ user.first_name }} {{ user.last_name }},
+Hi {{ first_name }} {{ last_name }},
 
 Please click on the link below to confirm new job:
 
-http://{{ domain }}{% url 'core:newjob' order_id=order uidb64=uid token=token %}
+http://{{ domain }}{% url 'core:newjob' order_id=order_id uidb64=uid token=token %}
 
 {% endautoescape %}

@@ -1,17 +1,16 @@
-from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 from django.db.models import Q
 
 
 from .tokens import job_confirm_token
-from core.models import Order, Work
+from core.models import Order
 from accounts.models import User
+from core.tasks import send_drivers_newjob_email_task
 
 
-def find_suitable_drivers(order: Order, request) -> list:
+def find_suitable_drivers(order: Order, request):
     # TODO: remove log
     print('------------')
     print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
@@ -66,17 +65,17 @@ def notify_drivers_email(drivers: list, order, request):
     subject = 'delivery24.ee New Job'
     current_site = get_current_site(request)
     for driver in drivers:
-        message = render_to_string('core/new_job_notify_email.html', {
-            'user': driver,
-            'domain': current_site.domain,
-            'order': order.order_id,
-            'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
-            'token': job_confirm_token.make_token(driver, order),
-        })
         to_email = driver.email
-        email = EmailMessage(subject, message, to=[to_email])
-        email.content_subtype = "html"
-        email.send()
+        message = {'subject': subject,
+                   'first_name': driver.first_name,
+                   'last_name': driver.last_name,
+                   'domain': current_site.domain,
+                   'order_id': order.order_id,
+                   'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
+                   'token': job_confirm_token.make_token(driver, order),
+                   }
+
+        send_drivers_newjob_email_task.delay(to_email, **message)
 
 # work = Work()
 # work.driver = driver
