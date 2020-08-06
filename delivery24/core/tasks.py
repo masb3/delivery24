@@ -1,11 +1,11 @@
+from time import sleep
 from celery import shared_task
 
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 
 from delivery24.celery import app
-
-from time import sleep
+from core.models import Order, Work
 
 
 @shared_task
@@ -21,6 +21,15 @@ def send_drivers_newjob_email_task(to_email, **kwargs):
     email = EmailMessage(kwargs['subject'], message, to=[to_email])
     email.content_subtype = "html"
     email.send()
+
+
+@shared_task
+def work_confirmation_timeout_task(order_id, timeout):
+    """ Waits until customer confirms proposed work (price, driver, car) """
+    sleep(timeout)
+    order = Order.objects.get(order_id=order_id)
+    if not order.work.order_confirmed:
+        Work.objects.filter(pk=order.work.id).delete()
 
 
 @shared_task

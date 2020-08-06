@@ -13,6 +13,8 @@ from accounts.models import User
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
 from .services.order import find_suitable_drivers, is_driver_available
 from .services.tokens import job_confirm_token
+from .tasks import work_confirmation_timeout_task
+from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S
 
 
 class IndexView(View):
@@ -152,6 +154,9 @@ class NewJob(View):
                 work.save()
                 order.work = work
                 order.save()
+
+                #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work
+                work_confirmation_timeout_task.delay(order_id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S)
 
             return render(request, self.template_name, context={'completed': True})
 
