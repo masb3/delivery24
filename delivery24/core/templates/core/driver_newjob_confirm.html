@@ -17,7 +17,10 @@
     <div class="row justify-content-center">
       <div class="col-lg-7 mb-5">
 
-        {% if completed == None %}
+        {% if driver_has_work_at_same_time %}
+          <h1 class="text-danger">You already have work at same time</h1>
+
+        {% elif completed == None %}
         <form method="post" action="{% url 'core:newjob' order_id uidb64 token %}" class="p-5 bg-white" novalidate>
             {% csrf_token %}
             <!--{% include 'core/includes/order_complete_form.html' %}-->

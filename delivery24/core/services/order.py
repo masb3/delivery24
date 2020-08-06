@@ -42,6 +42,7 @@ def find_suitable_drivers(order: Order, request):
                          (order.delivery_end < driver_work.delivery_start and
                           order.delivery_end < driver_work.delivery_end))):
                     driver_ok = False
+                    break
             if driver_ok:
                 suitable_drivers_list.append(driver)
         else:  # Drivers without work
