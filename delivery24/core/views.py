@@ -11,7 +11,7 @@ from core.models import Order, Work
 from accounts.models import User
 
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
-from .services.order import find_suitable_drivers
+from .services.order import find_suitable_drivers, is_driver_available
 from .services.tokens import job_confirm_token
 
 
@@ -137,23 +137,9 @@ class NewJob(View):
         order = get_object_or_404(Order, order_id=order_id)
         if user is not None and job_confirm_token.check_token(user, order, token):
             if order.work is None:
-                driver_works = user.work_set.all()
-                if driver_works:
-                    # For use case when two new orders with same delivery start/end and driver attempts to confirms both
-                    driver_ok = True
-                    for driver_work in driver_works:
-                        if not (((order.delivery_start > driver_work.delivery_start and
-                                  order.delivery_start > driver_work.delivery_end) and
-                                 (order.delivery_end > driver_work.delivery_start and
-                                  order.delivery_end > driver_work.delivery_end)) or
-                                ((order.delivery_start < driver_work.delivery_start and
-                                  order.delivery_start < driver_work.delivery_end) and
-                                 (order.delivery_end < driver_work.delivery_start and
-                                  order.delivery_end < driver_work.delivery_end))):
-                            driver_ok = False
-                            break
-                    if not driver_ok:
-                        return render(request, self.template_name, context={'driver_has_work_at_same_time': True})
+                # For use case when two new orders with same delivery start/end and driver attempts to confirms both
+                if not is_driver_available(user, order):
+                    return render(request, self.template_name, context={'driver_has_work_at_same_time': True})
 
                 work = Work(driver=user,
                             deliver_from=order.address_from,
