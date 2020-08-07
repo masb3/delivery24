@@ -36,6 +36,15 @@ def work_confirmation_timeout_task(order_id, timeout):
 
 
 @shared_task
+def driver_find_timeout_task(order_id, timeout):
+    sleep(timeout)
+    order = Order.objects.get(order_id=order_id)
+    if order.work is None:
+        order.no_free_drivers = True
+        order.save()
+
+
+@shared_task
 def add(x, y):
     sleep(10)
     print(x+y)

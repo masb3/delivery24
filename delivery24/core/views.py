@@ -13,8 +13,8 @@ from accounts.models import User
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
 from .services.order import find_suitable_drivers, is_driver_available
 from .services.tokens import job_confirm_token
-from .tasks import work_confirmation_timeout_task
-from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S
+from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
+from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S, DRIVER_FIND_TIMEOUT_S
 
 
 class IndexView(View):
@@ -78,17 +78,19 @@ class OrderCompleteView(View):
             form = self.form_class(instance=order)
             if order.drivers_notified is False:
                 find_suitable_drivers(order, request)
+                driver_find_timeout_task.delay(order_id, DRIVER_FIND_TIMEOUT_S)
             return render(request, self.template_name, {'order_form': form, 'order_id': order_id})
         else:
             return render(request, self.template_name, {'already_confirmed': True})
 
     def post(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-
         if not order.verified:
             order.verification_code = get_veriff_code()
             order.save()
             return redirect('core:veriff')
+        elif order.no_free_drivers:
+            return redirect('core:order')
         else:
             order.work.order_confirmed = True
             order.work.save()
@@ -98,7 +100,11 @@ class OrderCompleteView(View):
 class WaitDriver(View):
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-        if order.work_id:
+
+        if order.no_free_drivers:
+            resp = JsonResponse({'no_free_drivers': True})
+
+        elif order.work_id:
             driver = order.work.driver
             driver_email = driver.email
             driver_first_name = driver.first_name

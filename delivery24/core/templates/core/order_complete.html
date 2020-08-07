@@ -15,22 +15,28 @@ function Poll() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       let resp = JSON.parse(this.responseText);
-      document.getElementById("work_wait").hidden = true;
+      if (resp.no_free_drivers) {
+          document.getElementById("work_wait").classList.add('text-danger');
+          document.getElementById("work_wait").innerHTML = "No free drivers available." + " " +
+                                                           "Press button to try slightly change delivery date";
+          document.getElementById("confirm-button").value = "Try again";
+          document.getElementById("confirm-button").hidden = false;
+      }
+      else {
+          document.getElementById("work_wait").hidden = true;
 
-      document.getElementById("work_driver").innerHTML = "Driver: " + resp.first_name + " " +
-                                resp.driver_last_name + " " + resp.driver_phone + " " + resp.driver_email;
-      document.getElementById("work_car").innerHTML = "Car: " + resp.car_model;
-      document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;";
+          document.getElementById("work_driver").innerHTML = "Driver: " + resp.first_name + " " +
+                                    resp.driver_last_name + " " + resp.driver_phone + " " + resp.driver_email;
+          document.getElementById("work_car").innerHTML = "Car: " + resp.car_model;
+          document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;";
 
-      document.getElementById("confirm-button").hidden = false;
+          document.getElementById("confirm-button").hidden = false;
+      }
       polling = false;
-      console.log(this.responseText);
     }
     else {
         document.getElementById("work_wait").innerHTML = this.responseText;
-        console.log(this.responseText);
     }
-    console.log(this.status)
   };
 
     xhttp.open("GET", "waitdriver/", true);
@@ -41,6 +47,7 @@ function Poll() {
     }
 }
 const isOrderId = JSON.parse(document.getElementById('order_id_js').textContent);
+
 if(isOrderId) {
     setTimeout(Poll, 3000);
 }
@@ -56,11 +63,11 @@ if(isOrderId) {
 
     <div class="row justify-content"><!--<div class="row justify-content-center">-->
       <div class="col-lg-7 mb-5">
+
         {% if already_confirmed == None and confirmed == None %}
         <form method="post" action="{% url 'core:complete' order_id=order_id %}" class="p-5 bg-white" novalidate>
             {% csrf_token %}
             {% include 'core/includes/order_complete_form.html' %}
-
 
             <p id="work_wait"></p>
             <p id="work_driver"></p>

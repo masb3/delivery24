@@ -75,6 +75,7 @@ class Order(models.Model):
                              related_name='works',
                              related_query_name='work')
     drivers_notified = models.BooleanField(default=False)
+    no_free_drivers = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if not self.order_id:  # new object creating
