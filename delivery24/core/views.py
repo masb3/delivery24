@@ -69,6 +69,11 @@ class OrderCompleteView(View):
 
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
+        if not order.verified:
+            order.verification_code = get_veriff_code()
+            order.save()
+            return redirect('core:veriff')
+
         if order.work is None or order.work.order_confirmed is False:
             form = self.form_class(instance=order)
             if order.drivers_notified is False:
@@ -79,9 +84,15 @@ class OrderCompleteView(View):
 
     def post(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-        order.work.order_confirmed = True
-        order.work.save()
-        return render(request, self.template_name, {'confirmed': True})
+
+        if not order.verified:
+            order.verification_code = get_veriff_code()
+            order.save()
+            return redirect('core:veriff')
+        else:
+            order.work.order_confirmed = True
+            order.work.save()
+            return render(request, self.template_name, {'confirmed': True})
 
 
 class WaitDriver(View):

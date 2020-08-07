@@ -29,6 +29,9 @@ def work_confirmation_timeout_task(order_id, timeout):
     sleep(timeout)
     order = Order.objects.get(order_id=order_id)
     if not order.work.order_confirmed:
+        order.verified = False
+        order.drivers_notified = False
+        order.save()
         Work.objects.filter(pk=order.work.id).delete()
 
 
