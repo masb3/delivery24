@@ -35,6 +35,7 @@ class OrderView(View):
         if form.is_valid():
             order = form.save(commit=False)
             order.verification_code = get_veriff_code()
+            order.verification_code_sent = True
             order.save()
             return redirect('core:veriff')
         else:
@@ -70,8 +71,10 @@ class OrderCompleteView(View):
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
         if not order.verified:
-            order.verification_code = get_veriff_code()
-            order.save()
+            if not order.verification_code_sent:
+                order.verification_code = get_veriff_code()
+                order.verification_code_sent = True
+                order.save()
             return redirect('core:veriff')
 
         if order.work is None or order.work.order_confirmed is False:
@@ -86,8 +89,10 @@ class OrderCompleteView(View):
     def post(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
         if not order.verified:
-            order.verification_code = get_veriff_code()
-            order.save()
+            if not order.verification_code_sent:
+                order.verification_code = get_veriff_code()
+                order.verification_code_sent = True
+                order.save()
             return redirect('core:veriff')
         elif order.no_free_drivers:
             return redirect('core:order')

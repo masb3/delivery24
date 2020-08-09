@@ -66,6 +66,7 @@ class Order(models.Model):
     verified = models.BooleanField(default=False)
     verification_code = models.CharField(unique=True, null=True, max_length=VERIFF_CODE_LEN,
                                          validators=[MinLengthValidator(VERIFF_CODE_LEN)])
+    verification_code_sent = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     work = models.ForeignKey(Work,
