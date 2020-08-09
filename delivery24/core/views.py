@@ -11,7 +11,7 @@ from core.models import Order, Work
 from accounts.models import User
 
 from .services.veriff_code import get_veriff_code, confirm_veriff_code
-from .services.order import find_suitable_drivers, is_driver_available
+from .services.order import find_suitable_drivers, is_driver_available, send_order_veriff_code_email
 from .services.tokens import job_confirm_token
 from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
 from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S, DRIVER_FIND_TIMEOUT_S
@@ -37,6 +37,7 @@ class OrderView(View):
             order.verification_code = get_veriff_code()
             order.verification_code_sent = True
             order.save()
+            send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
         else:
             return render(request, self.template_name, {'order_form': form})
@@ -75,6 +76,7 @@ class OrderCompleteView(View):
                 order.verification_code = get_veriff_code()
                 order.verification_code_sent = True
                 order.save()
+                send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
 
         if order.work is None or order.work.order_confirmed is False:
@@ -93,6 +95,7 @@ class OrderCompleteView(View):
                 order.verification_code = get_veriff_code()
                 order.verification_code_sent = True
                 order.save()
+                send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
         elif order.no_free_drivers:
             return redirect('core:order')

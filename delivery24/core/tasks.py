@@ -24,6 +24,20 @@ def send_drivers_newjob_email_task(to_email, **kwargs):
 
 
 @shared_task
+def send_order_veriff_code_email_task(to_email, **kwargs):
+    message = render_to_string('core/order_veriff_code_send_email.html', {
+        'first_name': kwargs['first_name'],
+        'last_name': kwargs['last_name'],
+        'domain': kwargs['domain'],
+        'order_id': kwargs['order_id'],
+        'veriff_code': kwargs['veriff_code'],
+    })
+    email = EmailMessage(kwargs['subject'], message, to=[to_email])
+    email.content_subtype = "html"
+    email.send()
+
+
+@shared_task
 def work_confirmation_timeout_task(order_id, timeout):
     """ Waits until customer confirms proposed work (price, driver, car) """
     sleep(timeout)

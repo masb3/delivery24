@@ -1,0 +1,8 @@
+{% autoescape off %}
+Hi {{ first_name }} {{ last_name }},
+
+Your verification code is {{ veriff_code }}
+
+http://{{ domain }}{% url 'core:complete' order_id=order_id %}
+
+{% endautoescape %}
