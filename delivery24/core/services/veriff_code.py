@@ -24,3 +24,9 @@ def confirm_veriff_code(veriff_code: str) -> Order:
     order.verification_code = None
     order.save()
     return order
+
+
+def order_veriff_code_set(order):
+    order.verification_code = get_veriff_code()
+    order.save()
+

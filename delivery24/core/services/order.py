@@ -7,6 +7,7 @@ from .tokens import job_confirm_token
 from core.models import Order
 from accounts.models import User
 from core.tasks import send_drivers_newjob_email_task, send_order_veriff_code_email_task
+from core.services.veriff_code import get_veriff_code
 
 
 def find_suitable_drivers(order: Order, request):

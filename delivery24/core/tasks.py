@@ -35,6 +35,9 @@ def send_order_veriff_code_email_task(to_email, **kwargs):
     email = EmailMessage(kwargs['subject'], message, to=[to_email])
     email.content_subtype = "html"
     email.send()
+    order = Order.objects.get(order_id=kwargs['order_id'])
+    order.verification_code_sent = True
+    order.save()
 
 
 @shared_task

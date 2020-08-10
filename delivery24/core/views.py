@@ -10,7 +10,7 @@ from core.forms import OrderForm, OrderVeriffForm, OrderCompleteForm
 from core.models import Order, Work
 from accounts.models import User
 
-from .services.veriff_code import get_veriff_code, confirm_veriff_code
+from .services.veriff_code import confirm_veriff_code, order_veriff_code_set
 from .services.order import find_suitable_drivers, is_driver_available, send_order_veriff_code_email
 from .services.tokens import job_confirm_token
 from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
@@ -34,9 +34,7 @@ class OrderView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.verification_code = get_veriff_code()
-            order.verification_code_sent = True
-            order.save()
+            order_veriff_code_set(order)
             send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
         else:
@@ -73,9 +71,7 @@ class OrderCompleteView(View):
         order = get_object_or_404(Order, order_id=order_id)
         if not order.verified:
             if not order.verification_code_sent:
-                order.verification_code = get_veriff_code()
-                order.verification_code_sent = True
-                order.save()
+                order_veriff_code_set(order)
                 send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
 
@@ -92,9 +88,7 @@ class OrderCompleteView(View):
         order = get_object_or_404(Order, order_id=order_id)
         if not order.verified:
             if not order.verification_code_sent:
-                order.verification_code = get_veriff_code()
-                order.verification_code_sent = True
-                order.save()
+                order_veriff_code_set(order)
                 send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
         elif order.no_free_drivers:
