@@ -108,19 +108,12 @@ class WaitDriver(View):
 
         elif order.work_id:
             driver = order.work.driver
-            driver_email = driver.email
-            driver_first_name = driver.first_name
-            driver_last_name = driver.first_name
-            driver_phone = driver.phone
-            car_model = driver.car_model
-            price = order.work.price
-
-            resp = JsonResponse({'driver_first_name': f'{driver_first_name}',
-                                 'driver_last_name': f'{driver_last_name}',
-                                 'driver_email': f'{driver_email}',
-                                 'driver_phone': f'{driver_phone}',
-                                 'car_model': f'{car_model}',
-                                 'price': f'{price}', })
+            resp = JsonResponse({'driver_first_name': f'{driver.first_name}',
+                                 'driver_last_name': f'{driver.last_name}',
+                                 'driver_email': f'{driver.email}',
+                                 'driver_phone': f'{driver.phone}',
+                                 'car_model': f'{driver.car_model}',
+                                 'price': f'{order.work.price}', })
         else:
             resp = HttpResponse(b"Please wait ...")
             resp.status_code = 202
