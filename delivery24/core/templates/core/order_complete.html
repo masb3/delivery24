@@ -1,7 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Order Complete{% endblock title %}
+{% block title %}{% trans "Order Complete" %}{% endblock title %}
 
 {% block content %}
 
@@ -57,7 +58,7 @@ if(isOrderId) {
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title mb-3"><br>Order Complete</h2>
+        <h2 class="section-title mb-3"><br>{% trans "Order Complete" %}</h2>
       </div>
     </div>
 
@@ -76,15 +77,15 @@ if(isOrderId) {
 
             <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" id="confirm-button" hidden value="Confirm" class="btn btn-primary mr-2 mb-2">
+                  <input type="submit" id="confirm-button" hidden value="{% trans 'Confirm' %}" class="btn btn-primary mr-2 mb-2">
                 </div>
             </div>
 
         </form>
         {% elif confirmed is True %}
-          <h1 class="text-success">Order confirmed</h1>
+          <h1 class="text-success">{% trans "Order confirmed" %}</h1>
         {% else %}
-          <h1 class="text-danger">Order already confirmed</h1>
+          <h1 class="text-danger">{% trans "Order already confirmed" %}</h1>
         {% endif %}
       </div>
     </div>

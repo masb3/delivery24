@@ -1,7 +1,8 @@
 from random import random, randrange
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound, JsonResponse, HttpResponse
+from django.http import HttpResponseNotFound, JsonResponse, HttpResponse, HttpResponseRedirect
+from django.utils import translation
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
@@ -15,6 +16,7 @@ from .services.order import find_suitable_drivers, is_driver_available, send_ord
 from .services.tokens import job_confirm_token
 from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
 from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S, DRIVER_FIND_TIMEOUT_S
+from delivery24 import settings
 
 
 class IndexView(View):
@@ -24,6 +26,24 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'order_form': form})
+
+
+def change_language(request):
+    response = HttpResponseRedirect('/')
+    if request.method == 'POST':
+        language = request.POST.get('language')
+        if language:
+            if language != settings.LANGUAGE_CODE and [lang for lang in settings.LANGUAGES if lang[0] == language]:
+                redirect_path = f'/{language}/'
+            elif language == settings.LANGUAGE_CODE:
+                redirect_path = '/'
+            else:
+                return response
+            from django.utils import translation
+            translation.activate(language)
+            response = HttpResponseRedirect(redirect_path)
+            #response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+    return response
 
 
 class OrderView(View):

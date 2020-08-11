@@ -1,4 +1,6 @@
-{% load static %}<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +42,7 @@
   <div id="overlayer"></div>
   <div class="loader">
     <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
+      <span class="sr-only">{% trans "Loading..." %}</span>
     </div>
   </div>
 
@@ -69,11 +71,11 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
-                <li><a href="{% url 'core:index' %}" class="nav-link">Home</a></li>
-                <li><a href="{% url 'core:features' %}" class="nav-link">Features</a></li>
-                <li><a href="{% url 'core:order' %}" class="nav-link"><span class="badge badge-pill badge-success">GET STARTED</span></a></li>
+                <li><a href="{% url 'core:index' %}" class="nav-link">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'core:features' %}" class="nav-link">{% trans "Features" %}</a></li>
+                <li><a href="{% url 'core:order' %}" class="nav-link"><span class="badge badge-pill badge-success">{% trans "GET STARTED" %}</span></a></li>
                 <li class="has-children">
-                  <a href="{% url 'core:partner' %}" class="nav-link">Become a Partner</a>
+                  <a href="{% url 'core:partner' %}" class="nav-link">{% trans "Become a Partner" %}</a>
                   <ul class="dropdown arrow-top">
                     <li><a href="#" target="_blank" class="nav-link"><span class="text-primary">More Free Templates</span></a></li>
                     <li><a href="#our-team-section" class="nav-link">Our Team</a></li>
@@ -87,8 +89,8 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="{% url 'core:blog' %}" class="nav-link">Blog</a></li>
-                <li><a href="{% url 'core:contact' %}" class="nav-link">Contact</a></li>
+                <li><a href="{% url 'core:blog' %}" class="nav-link">{% trans "Blog" %}</a></li>
+                <li><a href="{% url 'core:contact' %}" class="nav-link">{% trans "Contact" %}</a></li>
               </ul>
             </nav>
           </div>

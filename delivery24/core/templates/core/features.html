@@ -1,7 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Features{% endblock title %}
+{% block title %}{% trans "Features" %}{% endblock title %}
 
 {% block content %}
 
@@ -10,7 +11,7 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title mb-3"><br>Features</h2>
+        <h2 class="section-title mb-3"><br>{% trans "Features" %}</h2>
       </div>
     </div>
 

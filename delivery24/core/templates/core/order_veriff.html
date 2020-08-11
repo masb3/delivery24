@@ -1,7 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Order Confirm{% endblock title %}
+{% block title %}{% trans "Order Confirm" %}{% endblock title %}
 
 {% block content %}
 
@@ -10,7 +11,7 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title mb-3"><br>Order Verification</h2>
+        <h2 class="section-title mb-3"><br>{% trans "Order Verification" %}</h2>
       </div>
     </div>
 
@@ -35,7 +36,7 @@
 
             <div class="row form-group">
                 <div class="col-md-12">
-                  <input type="submit" value="Verify" class="btn btn-primary mr-2 mb-2">
+                  <input type="submit" value="{% trans 'Verify' %}" class="btn btn-primary mr-2 mb-2">
                 </div>
             </div>
         </form>

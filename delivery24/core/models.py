@@ -56,8 +56,8 @@ class Order(models.Model):
     phone = PhoneNumberField(_('phone'), help_text=_('Contact phone number'))
     address_from = models.CharField(_('address from'), max_length=128)
     address_to = models.CharField(_('address to'), max_length=128)
-    delivery_start = models.DateTimeField(_('delivery start date-time'))
-    delivery_end = models.DateTimeField(_('delivery end date-time'))
+    delivery_start = models.DateTimeField(_('delivery start'))
+    delivery_end = models.DateTimeField(_('delivery end'))
     movers_num = models.IntegerField(_('number of required movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
