@@ -64,11 +64,11 @@
       <div class="container">
         <div class="row align-items-center">
           
-          <div class="col-6 col-md-3 col-xl-4  d-block">
+          <div class="col-6 col-md-3 col-xl-3  d-block">
             <h1 class="mb-0 site-logo"><a href="{% url 'core:index' %}" class="text-black h2 mb-0">DELIVERY24<span class="text-primary">.</span> </a></h1>
           </div>
 
-          <div class="col-12 col-md-9 col-xl-8 main-menu">
+          <div class="col-12 col-md-9 col-xl-9 main-menu">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
@@ -92,6 +92,25 @@
                 </li>
                 <li><a href="#blog-section" class="nav-link">{% trans "Blog" %}</a></li>
                 <li><a href="#contact-section" class="nav-link">{% trans "Contact" %}</a></li>
+
+                <!-- LANGUAGE SELECT -->
+                <li class="has-children">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% if 'en-us' == LANGUAGE_CODE %}
+                    <a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a>
+                    <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a></li>
+                  {% elif 'ru' == LANGUAGE_CODE %}
+                    <a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a>
+                    <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a></li>
+                  {% else %}
+                    <a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a>
+                    <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a></li>
+                  {% endif %}
+                <!-- LANGUAGE SELECT END -->
+
               </ul>
             </nav>
           </div>
@@ -104,19 +123,7 @@
 
 
     <!-- LANGUAGE SELECT -->
-    <br><br><br><br><br>
-    <form action="{% url 'change_language' %}" method="post">
-        {% csrf_token %}
-        <select name="language">
-            {% get_available_languages as LANGUAGES %}
-            {% for language in LANGUAGES %}
-            <option value="{{ language.0 }}" {% if language.0 == LANGUAGE_CODE %} selected{% endif %}>
-                {{ language.0|language_name_local }} ({{ language.0 }})
-            </option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="Change language">
-    </form>
+
     <!-- LANGUAGE SELECT END -->
 
 

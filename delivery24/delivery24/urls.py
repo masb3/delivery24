@@ -16,13 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
-from core.views import change_language
+from core import views
 
 
 urlpatterns = [
-    path('change_language/',
-         change_language,
-         name='change_language')
+    path('set_language_from_url/<user_language>/', views.set_language_from_url, name='set_language_from_url'),
 ]
 
 urlpatterns += i18n_patterns(
