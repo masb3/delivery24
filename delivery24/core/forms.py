@@ -50,16 +50,16 @@ class OrderForm(ModelForm):
             tallinn_time_now = timezone.now() + datetime.timedelta(hours=3)  # Tallinn time UTC+3
 
             if input_delivery_start < (tallinn_time_now + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_START_MIN_H)):
-                msg = _(f'Must be at least {self.DELIVERY_TIMEDELTA_START_MIN_H} hour from current time')
+                msg = _('Must be at least {} hour from current time').format(self.DELIVERY_TIMEDELTA_START_MIN_H)
                 self.add_error('delivery_start', msg)
             elif input_delivery_start > (tallinn_time_now + datetime.timedelta(days=self.DELIVERY_TIMEDELTA_START_MAX_D)):
-                msg = _(f'Must be less than {self.DELIVERY_TIMEDELTA_START_MAX_D} days from current date')
+                msg = _('Must be less than {} days from current date').format(self.DELIVERY_TIMEDELTA_START_MAX_D)
                 self.add_error('delivery_start', msg)
             elif input_delivery_end < (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MIN_H)):
-                msg = _(f'Must be at least {self.DELIVERY_TIMEDELTA_MIN_H} hour after delivery start')
+                msg = _('Must be at least {} hour after delivery start').format(self.DELIVERY_TIMEDELTA_MIN_H)
                 self.add_error('delivery_end', msg)
             elif input_delivery_end > (input_delivery_start + datetime.timedelta(hours=self.DELIVERY_TIMEDELTA_MAX_H)):
-                msg = _(f'Must be less than {self.DELIVERY_TIMEDELTA_MAX_H} hours after delivery start')
+                msg = _('Must be less than {} hours after delivery start').format(self.DELIVERY_TIMEDELTA_MAX_H)
                 self.add_error('delivery_end', msg)
 
 

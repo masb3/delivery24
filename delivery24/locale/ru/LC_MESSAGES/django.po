@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-13 00:08+0300\n"
+"POT-Creation-Date: 2020-08-13 00:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,34 +82,20 @@ msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
 
 #: core/forms.py:53
-#, python-brace-format
-msgid ""
-"Must be at least {self.DELIVERY_TIMEDELTA_START_MIN_H} hour from current time"
-msgstr ""
-"Должно быть минимум {self.DELIVERY_TIMEDELTA_START_MIN_H} час от текущего "
-"времени"
+msgid "Must be at least {} hour from current time"
+msgstr "Должно быть минимум {} час от текущего времени"
 
 #: core/forms.py:56
-#, python-brace-format
-msgid ""
-"Must be less than {self.DELIVERY_TIMEDELTA_START_MAX_D} days from current "
-"date"
-msgstr ""
-" Должно быть менее {self.DELIVERY_TIMEDELTA_START_MAX_D} дней от текущей даты"
+msgid "Must be less than {} days from current date"
+msgstr "Должно быть менее {} дней от текущей даты"
 
 #: core/forms.py:59
-#, python-brace-format
-msgid ""
-"Must be at least {self.DELIVERY_TIMEDELTA_MIN_H} hour after delivery start"
-msgstr ""
-"Должно быть минимум {self.DELIVERY_TIMEDELTA_MIN_H} час после начала доставки"
+msgid "Must be at least {} hour after delivery start"
+msgstr "Должно быть минимум {} час после начала доставки"
 
 #: core/forms.py:62
-#, python-brace-format
-msgid ""
-"Must be less than {self.DELIVERY_TIMEDELTA_MAX_H} hours after delivery start"
-msgstr ""
-"Должно быть менее {self.DELIVERY_TIMEDELTA_MAX_H} часов после начала доставки"
+msgid "Must be less than {} hours after delivery start"
+msgstr "Должно быть менее {} часов после начала доставки"
 
 #: core/forms.py:76
 msgid "Invalid code"
@@ -346,6 +332,13 @@ msgstr "Неверный личный код"
 #: core/utils.py:51
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
+
+#~ msgid ""
+#~ "Must be less than {self.DELIVERY_TIMEDELTA_START_MAX_D} days from current "
+#~ "date"
+#~ msgstr ""
+#~ " Должно быть менее {self.DELIVERY_TIMEDELTA_START_MAX_D} дней от текущей "
+#~ "даты"
 
 #~ msgid "Delivery Start"
 #~ msgstr "Начало доставки"
