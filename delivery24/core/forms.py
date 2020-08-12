@@ -18,9 +18,9 @@ class OrderForm(ModelForm):
     DELIVERY_TIMEDELTA_START_MIN_H = 1  # hours
     DELIVERY_TIMEDELTA_START_MAX_D = 7  # days
 
-    delivery_start = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+    delivery_start = DateTimeField(label=_('Delivery start'), input_formats=['%d/%m/%Y %H:%M'],
                                    widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
-    delivery_end = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+    delivery_end = DateTimeField(label=_('Delivery end'), input_formats=['%d/%m/%Y %H:%M'],
                                  widget=DateWidget(attrs={'class': 'form-control rounded-0'}))
 
     class Meta:
