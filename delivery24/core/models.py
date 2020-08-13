@@ -53,14 +53,15 @@ class Order(models.Model):
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
     email = models.EmailField(_('email'), max_length=254)
-    phone = PhoneNumberField(_('phone'), help_text=_('Contact phone number'))
-    address_from = models.CharField(_('address from'), max_length=128)
-    address_to = models.CharField(_('address to'), max_length=128)
-    delivery_start = models.DateTimeField(_('delivery start'))
-    delivery_end = models.DateTimeField(_('delivery end'))
+    phone = PhoneNumberField(_('phone'))
+    address_from = models.CharField(_('address from'), max_length=128, help_text=_('Delivery start address'))
+    address_to = models.CharField(_('address to'), max_length=128, help_text=_('Delivery end address'))
+    delivery_start = models.DateTimeField(_('delivery start'), help_text=_('Delivery start time'))
+    delivery_end = models.DateTimeField(_('delivery end'), help_text=_('Delivery end time'))
     movers_num = models.IntegerField(_('number of required movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
-                                     default=0)
+                                     default=0,
+                                     help_text=_('Number of required movers'))
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
     verified = models.BooleanField(default=False)

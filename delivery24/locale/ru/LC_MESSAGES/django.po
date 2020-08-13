@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-13 00:51+0300\n"
+"POT-Creation-Date: 2020-08-13 23:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr "Фамилия"
 msgid "isikukood"
 msgstr "Личный код"
 
-#: accounts/models.py:32 core/models.py:56
+#: accounts/models.py:32
 msgid "Contact phone number"
 msgstr "Номер телефона"
 
@@ -52,7 +52,7 @@ msgstr "Грузоподъёмность"
 msgid "car number"
 msgstr "Номер машины"
 
-#: accounts/models.py:38 core/models.py:65
+#: accounts/models.py:38 core/models.py:66
 msgid "payment method"
 msgstr "Способ оплаты"
 
@@ -113,27 +113,47 @@ msgstr "телефон"
 msgid "address from"
 msgstr "Откуда"
 
+#: core/models.py:57
+msgid "Delivery start address"
+msgstr "Начальный адрес"
+
 #: core/models.py:58
 msgid "address to"
 msgstr "Куда"
 
+#: core/models.py:58
+msgid "Delivery end address"
+msgstr "Конечный адрес"
+
 #: core/models.py:59
 msgid "delivery start"
+msgstr "Начало доставки"
+
+#: core/models.py:59
+msgid "Delivery start time"
 msgstr "Начало доставки"
 
 #: core/models.py:60
 msgid "delivery end"
 msgstr "Окончание доставки"
 
+#: core/models.py:60
+msgid "Delivery end time"
+msgstr "Примерное время окончания доставки"
+
 #: core/models.py:61
 msgid "number of required movers"
 msgstr "Количество требуемых грузчиков"
 
 #: core/models.py:64
+msgid "Number of required movers"
+msgstr "Количество требуемых грузчиков"
+
+#: core/models.py:65
 msgid "message"
 msgstr "Сообщение"
 
-#: core/models.py:64
+#: core/models.py:65
 msgid "additional information"
 msgstr "Дополнительная информация"
 
@@ -236,11 +256,11 @@ msgstr "Закажи услугу грузоперевозки за 3 минут
 
 #: core/templates/core/index.html:140
 msgid "Fastest way to find moving service with best price"
-msgstr "Наибыстрый способ заказать грузоперевозку по лучшей цене"
+msgstr "Быстрый способ заказать перевозку по лучшей цене"
 
 #: core/templates/core/index.html:141
 msgid "No phone calls asking for schedule and price"
-msgstr "Больше никаких звонков что-бы узнать цену и доступное время"
+msgstr "Никаких звонков что-бы узнать цену и доступное время"
 
 #: core/templates/core/index.html:142
 msgid "Place your order and get response in minutes"
@@ -333,15 +353,3 @@ msgstr "Неверный личный код"
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
 
-#~ msgid ""
-#~ "Must be less than {self.DELIVERY_TIMEDELTA_START_MAX_D} days from current "
-#~ "date"
-#~ msgstr ""
-#~ " Должно быть менее {self.DELIVERY_TIMEDELTA_START_MAX_D} дней от текущей "
-#~ "даты"
-
-#~ msgid "Delivery Start"
-#~ msgstr "Начало доставки"
-
-#~ msgid "Delivery End"
-#~ msgstr "Окончание доставки"
