@@ -7,8 +7,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
-from django.contrib.auth.views import LoginView, PasswordResetView
-from .forms import SignUpForm, CustomLoginForm
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
+from .forms import SignUpForm, CustomLoginForm, CustomPasswordChangeForm
 from .models import User
 
 from delivery24 import settings
@@ -44,6 +44,12 @@ class CustomPasswordResetView(PasswordResetView):
             return redirect(settings.LOGIN_REDIRECT_URL)
         else:
             return super(CustomPasswordResetView, self).post(request, *args, **kwargs)
+
+
+class CustomPasswordChangeView(PasswordChangeView):
+    template_name = 'accounts/changepwd.html'
+    form_class = CustomPasswordChangeForm
+    success_url = reverse_lazy('core:index')
 
 
 def signup(request):

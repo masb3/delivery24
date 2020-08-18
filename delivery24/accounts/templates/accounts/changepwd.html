@@ -1,20 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Change Password</title>
-</head>
-<body>
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
 
-{% if user.is_authenticated %}
-    <form method="post" novalidate class="justify-content-center">
-        {% csrf_token %}
-        {% include 'accounts/form.html' %}
-    </form>
-{% else %}
-    <h1>You are not logged in.</h1>
-    <a class="btn btn-primary" href="{% url 'accounts:login' %}" role="button">Login</a>
-{% endif %}
+{% block title %}{% trans "Driver Change Password" %}{% endblock title %}
 
-</body>
-</html>
+{% block content %}
+
+
+<div class="site-section bg-light" id="start-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3"><br>{% trans "Driver Change Password" %}</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-7 mb-5">
+
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'accounts:changepwd' %}" class="p-5 bg-white" novalidate>
+            {% csrf_token %}
+            {% include 'accounts/includes/driver_changepwd_form.html' %}
+
+            <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="{% trans 'Confirm' %}" class="btn btn-primary mr-2 mb-2">
+                </div>
+            </div>
+        </form>
+        {% else %}
+        <h1>You are not logged in.</h1>
+        <a class="btn btn-primary" href="{% url 'accounts:login' %}" role="button">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 00:16+0300\n"
+"POT-Creation-Date: 2020-08-19 00:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,31 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: delivery24/accounts/forms.py:8
+#: delivery24/accounts/forms.py:9
 msgid "User Email"
 msgstr "Е-мэйл"
 
-#: delivery24/accounts/forms.py:11
+#: delivery24/accounts/forms.py:12
 msgid "Password"
 msgstr "Пароль"
+
+#: delivery24/accounts/forms.py:49
+#, fuzzy
+#| msgid "Password"
+msgid "Old password"
+msgstr "Пароль"
+
+#: delivery24/accounts/forms.py:57
+#, fuzzy
+#| msgid "Password"
+msgid "New password"
+msgstr "Пароль"
+
+#: delivery24/accounts/forms.py:63
+#, fuzzy
+#| msgid "New Job Confirm"
+msgid "New password confirmation"
+msgstr "Подтверждение новой работы"
 
 #: delivery24/accounts/models.py:15 delivery24/core/models.py:49
 msgid "Cash"
@@ -84,19 +102,25 @@ msgstr "пользователь"
 msgid "users"
 msgstr "пользователи"
 
-#: delivery24/accounts/templates/accounts/login.html:5
-#: delivery24/accounts/templates/accounts/login.html:14
-msgid "Driver Login"
-msgstr "Логин Водителя"
+#: delivery24/accounts/templates/accounts/changepwd.html:5
+#: delivery24/accounts/templates/accounts/changepwd.html:14
+msgid "Driver Change Password"
+msgstr "Смена Пароля Водителя"
 
+#: delivery24/accounts/templates/accounts/changepwd.html:28
 #: delivery24/accounts/templates/accounts/login.html:27
 #: delivery24/core/templates/core/driver_newjob_confirm.html:31
 #: delivery24/core/templates/core/order_complete.html:80
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: delivery24/accounts/templates/accounts/signup.html:4
-#: delivery24/accounts/templates/accounts/signup.html:13
+#: delivery24/accounts/templates/accounts/login.html:5
+#: delivery24/accounts/templates/accounts/login.html:14
+msgid "Driver Login"
+msgstr "Логин Водителя"
+
+#: delivery24/accounts/templates/accounts/signup.html:5
+#: delivery24/accounts/templates/accounts/signup.html:14
 msgid "Driver Signup"
 msgstr "Регистрация Водителя"
 

@@ -1,4 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.contrib.auth import password_validation
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm
 from django.forms import TextInput, Select, PasswordInput, CharField
 from django.utils.translation import ugettext_lazy as _
 from .models import User
@@ -41,3 +42,25 @@ class SignUpForm(UserCreationForm):
         super(SignUpForm, self).__init__(*args, **kwargs)
         self.fields['password1'].widget = PasswordInput(attrs={'class': 'form-control rounded-0'})
         self.fields['password2'].widget = PasswordInput(attrs={'class': 'form-control rounded-0'})
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    old_password = CharField(
+        label=_("Old password"),
+        strip=False,
+        widget=PasswordInput(attrs={'autocomplete': 'current-password',
+                                    'autofocus': True,
+                                    'class': 'form-control rounded-0'}),
+    )
+
+    new_password1 = CharField(
+        label=_("New password"),
+        widget=PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control rounded-0'}),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = CharField(
+        label=_("New password confirmation"),
+        strip=False,
+        widget=PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control rounded-0'}),
+    )
