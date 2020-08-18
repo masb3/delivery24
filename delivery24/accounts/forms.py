@@ -1,6 +1,17 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.forms import TextInput, Select, PasswordInput
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.forms import TextInput, Select, PasswordInput, CharField
+from django.utils.translation import ugettext_lazy as _
 from .models import User
+
+
+class CustomLoginForm(AuthenticationForm):
+    username = UsernameField(label=_('User Email'),
+                             widget=TextInput(attrs={'autofocus': True, 'class': 'form-control rounded-0'}))
+    password = CharField(
+        label=_('Password'),
+        strip=False,
+        widget=PasswordInput(attrs={'autocomplete': 'current-password', 'class': 'form-control rounded-0'}),
+    )
 
 
 class SignUpForm(UserCreationForm):

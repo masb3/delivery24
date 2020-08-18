@@ -1,0 +1,27 @@
+{% load i18n %}
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ form.username.auto_id }}">{{ form.username.label }}</label>
+                  {{ form.username }}
+                  {% if form.username.help_text %}
+                    <small style="color: grey">{{ form.username.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.username.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ form.password.auto_id }}">{{ form.password.label }}</label>
+                  {{ form.password }}
+                  {% if form.password.help_text %}
+                    <small style="color: grey">{{ form.password.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.password.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>

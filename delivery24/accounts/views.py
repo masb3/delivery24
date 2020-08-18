@@ -8,15 +8,19 @@ from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.contrib.auth.views import LoginView, PasswordResetView
-from .forms import SignUpForm
+from .forms import SignUpForm, CustomLoginForm
 from .models import User
 
 from delivery24 import settings
 
 
 class CustomLoginView(LoginView):
+    template_name = 'accounts/login.html'
+    form_class = CustomLoginForm
+
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
+            # TODO: redirect to /accounts/profile/
             return redirect(settings.LOGIN_REDIRECT_URL)
         else:
             return super(CustomLoginView, self).get(request, *args, **kwargs)
