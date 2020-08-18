@@ -8,7 +8,7 @@ from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView
-from .forms import SignUpForm, CustomLoginForm, CustomPasswordChangeForm
+from .forms import SignUpForm, CustomLoginForm, CustomPasswordChangeForm, CustomPasswordResetForm
 from .models import User
 
 from delivery24 import settings
@@ -33,6 +33,12 @@ class CustomLoginView(LoginView):
 
 
 class CustomPasswordResetView(PasswordResetView):
+    success_url = reverse_lazy('accounts:password_reset_done')
+    template_name = 'accounts/password_reset_form.html'
+    email_template_name = 'accounts/password_reset_email.html'
+    subject_template_name = 'accounts/password_reset_subject.txt'
+    form_class = CustomPasswordResetForm
+
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect(settings.LOGIN_REDIRECT_URL)

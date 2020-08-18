@@ -5,11 +5,7 @@ from django.contrib.auth.views import PasswordResetDoneView, \
 from . import views
 
 urlpatterns = [
-    path('', views.CustomPasswordResetView.as_view(success_url=reverse_lazy('accounts:password_reset_done'),
-                                                   template_name='accounts/password_reset_form.html',
-                                                   email_template_name='accounts/password_reset_email.html',
-                                                   subject_template_name='accounts/password_reset_subject.txt'),
-         name='password_reset'),
+    path('', views.CustomPasswordResetView.as_view(), name='password_reset'),
 
     path('done/', PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),
          name='password_reset_done'),

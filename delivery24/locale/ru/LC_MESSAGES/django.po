@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 00:44+0300\n"
+"POT-Creation-Date: 2020-08-19 01:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,37 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: delivery24/accounts/forms.py:9
+#: delivery24/accounts/forms.py:10
 msgid "User Email"
 msgstr "Е-мэйл"
 
-#: delivery24/accounts/forms.py:12
+#: delivery24/accounts/forms.py:13
 msgid "Password"
 msgstr "Пароль"
 
-#: delivery24/accounts/forms.py:49
+#: delivery24/accounts/forms.py:50
 #, fuzzy
 #| msgid "Password"
 msgid "Old password"
 msgstr "Пароль"
 
-#: delivery24/accounts/forms.py:57
+#: delivery24/accounts/forms.py:58
 #, fuzzy
 #| msgid "Password"
 msgid "New password"
 msgstr "Пароль"
 
-#: delivery24/accounts/forms.py:63
+#: delivery24/accounts/forms.py:64
 #, fuzzy
 #| msgid "New Job Confirm"
 msgid "New password confirmation"
 msgstr "Подтверждение новой работы"
+
+#: delivery24/accounts/forms.py:72
+#: delivery24/core/templates/core/contact.html:36
+#: delivery24/core/templates/core/index.html:333
+msgid "Email"
+msgstr "Е-мэйл"
 
 #: delivery24/accounts/models.py:15 delivery24/core/models.py:49
 msgid "Cash"
@@ -119,6 +125,18 @@ msgstr "Подтвердить"
 msgid "Driver Login"
 msgstr "Логин Водителя"
 
+#: delivery24/accounts/templates/accounts/password_reset_form.html:5
+msgid "Forgot password"
+msgstr "Забыл Пароль"
+
+#: delivery24/accounts/templates/accounts/password_reset_form.html:14
+msgid "Reset password"
+msgstr "Восстановить Пароль"
+
+#: delivery24/accounts/templates/accounts/password_reset_form.html:27
+msgid "Submit"
+msgstr "Подтвердить"
+
 #: delivery24/accounts/templates/accounts/signup.html:5
 #: delivery24/accounts/templates/accounts/signup.html:14
 msgid "Driver Signup"
@@ -160,7 +178,7 @@ msgstr "Неверный код"
 
 #: delivery24/core/models.py:55
 msgid "email"
-msgstr "е-мэйл"
+msgstr "Е-мэйл"
 
 #: delivery24/core/models.py:56
 msgid "phone"
@@ -274,11 +292,6 @@ msgstr "Имя"
 #: delivery24/core/templates/core/index.html:326
 msgid "Last Name"
 msgstr "Фамилия"
-
-#: delivery24/core/templates/core/contact.html:36
-#: delivery24/core/templates/core/index.html:333
-msgid "Email"
-msgstr "е-мэйл"
 
 #: delivery24/core/templates/core/contact.html:44
 #: delivery24/core/templates/core/index.html:340
