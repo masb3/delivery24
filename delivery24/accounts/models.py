@@ -18,7 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     ]
 
     email = models.EmailField(
-        verbose_name='email address',
+        verbose_name=_('Email address'),
         max_length=255,
         unique=True,
     )
@@ -29,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                                 validators=[MinValueValidator(30000000000),
                                             MaxValueValidator(69999999999),
                                             ik_validator])
-    phone = PhoneNumberField(help_text=_('Contact phone number'))
+    phone = PhoneNumberField(_('Phone'), help_text=_('Contact phone number'))
     car_model = models.CharField(_('car model'), max_length=50)
     car_carrying = models.IntegerField(_('car carrying (kg)'),
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])

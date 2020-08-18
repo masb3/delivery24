@@ -123,9 +123,6 @@
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="{{ driver_signup_form.password1.auto_id }}">{{ driver_signup_form.password1.label }}</label>
                   {{ driver_signup_form.password1 }}
-                  {% if driver_signup_form.password1.help_text %}
-                    <small style="color: grey">{{ driver_signup_form.password1.help_text }}</small>
-                  {% endif %}
                   {% for error in driver_signup_form.password1.errors %}
                     <p style="color: red">{{ error }}</p>
                   {% endfor %}
@@ -133,9 +130,6 @@
                 <div class="col-md-6">
                   <label class="text-black" for="{{ driver_signup_form.password2.auto_id }}">{{ driver_signup_form.password2.label }}</label>
                   {{ driver_signup_form.password2 }}
-                  {% if driver_signup_form.password2.help_text %}
-                    <small style="color: grey">{{ driver_signup_form.password2.help_text }}</small>
-                  {% endif %}
                   {% for error in driver_signup_form.password2.errors %}
                     <p style="color: red">{{ error }}</p>
                   {% endfor %}

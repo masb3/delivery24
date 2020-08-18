@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-18 23:58+0300\n"
+"POT-Creation-Date: 2020-08-19 00:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,10 @@ msgstr "Пароль"
 msgid "Cash"
 msgstr "Наличные"
 
+#: delivery24/accounts/models.py:21
+msgid "Email address"
+msgstr "Е-мэйл адрес"
+
 #: delivery24/accounts/models.py:26 delivery24/core/models.py:53
 msgid "first name"
 msgstr "Имя"
@@ -43,6 +47,10 @@ msgstr "Фамилия"
 #: delivery24/accounts/models.py:28
 msgid "isikukood"
 msgstr "Личный код"
+
+#: delivery24/accounts/models.py:32
+msgid "Phone"
+msgstr "телефон"
 
 #: delivery24/accounts/models.py:32
 msgid "Contact phone number"
@@ -86,6 +94,11 @@ msgstr "Логин Водителя"
 #: delivery24/core/templates/core/order_complete.html:80
 msgid "Confirm"
 msgstr "Подтвердить"
+
+#: delivery24/accounts/templates/accounts/signup.html:4
+#: delivery24/accounts/templates/accounts/signup.html:13
+msgid "Driver Signup"
+msgstr "Регистрация Водителя"
 
 #: delivery24/core/forms.py:21
 msgid "Delivery start"

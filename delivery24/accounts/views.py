@@ -74,7 +74,7 @@ def signup(request):
                 return render(request, 'accounts/account_activation_sent.html')
         else:
             form = SignUpForm()
-        return render(request, 'accounts/form.html', {'driver_signup_form': form})
+        return render(request, 'accounts/signup.html', {'driver_signup_form': form})
     else:
         return redirect('core:index')
 
