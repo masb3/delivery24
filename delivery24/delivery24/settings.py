@@ -154,7 +154,7 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_REDIRECT_URL = reverse_lazy('core:index')
+LOGIN_REDIRECT_URL = reverse_lazy('accounts:profile')
 LOGOUT_REDIRECT_URL = reverse_lazy('core:index')
 LOGIN_URL = reverse_lazy('accounts:login')
 LOGOUT_URL = reverse_lazy('accounts:logout')

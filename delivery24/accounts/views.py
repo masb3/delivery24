@@ -18,11 +18,11 @@ from delivery24 import settings
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
     form_class = CustomLoginForm
+    redirect_authenticated_user = True
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            # TODO: redirect to /accounts/profile/
-            return redirect(settings.LOGIN_REDIRECT_URL)
+            return redirect('accounts:profile')
         else:
             return super(CustomLoginView, self).get(request, *args, **kwargs)
 
