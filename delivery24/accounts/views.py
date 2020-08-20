@@ -70,7 +70,8 @@ class ProfileView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return render(request, self.template_name)
+            user = request.user
+            return render(request, self.template_name, {'profile': user})
         else:
             return redirect('accounts:login')
 
@@ -105,7 +106,7 @@ def signup(request):
             form = SignUpForm()
         return render(request, 'accounts/signup.html', {'driver_signup_form': form})
     else:
-        return redirect('core:index')
+        return redirect('accounts:profile')
 
 
 def activate(request, uidb64, token):
@@ -120,6 +121,6 @@ def activate(request, uidb64, token):
         user.email_confirmed = True
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        return redirect(reverse_lazy('core:index'))
+        return redirect(reverse_lazy('accounts:profile'))
     else:
         return render(request, 'accounts/account_activation_invalid.html')
