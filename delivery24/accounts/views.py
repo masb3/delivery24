@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
+from django.views import View
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from .forms import SignUpForm, CustomLoginForm, CustomPasswordChangeForm, CustomPasswordResetForm, CustomSetPasswordForm
 from .models import User
@@ -62,6 +63,16 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'accounts/password_reset_confirm.html'
     form_class = CustomSetPasswordForm
     success_url = reverse_lazy('accounts:password_reset_complete')
+
+
+class ProfileView(View):
+    template_name = "accounts/profile.html"
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return render(request, self.template_name)
+        else:
+            return redirect('accounts:login')
 
 
 def signup(request):

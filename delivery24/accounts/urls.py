@@ -1,6 +1,6 @@
-from django.urls import path, reverse_lazy
+from django.urls import path
 from django.conf.urls import include
-from django.contrib.auth.views import LogoutView, PasswordChangeView
+from django.contrib.auth.views import LogoutView
 
 from . import views
 
@@ -13,6 +13,5 @@ urlpatterns = [
     path('changepwd/', views.CustomPasswordChangeView.as_view(), name='changepwd'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('reset/', include('accounts.pwd_reset_urls')),
-    # TODO: profile
-    # path('profile/', views.profile, name='profile'),
+    path('profile/', views.ProfileView.as_view(), name='profile'),
 ]
