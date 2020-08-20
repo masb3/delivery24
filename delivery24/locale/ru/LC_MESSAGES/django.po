@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-19 01:07+0300\n"
+"POT-Creation-Date: 2020-08-21 00:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,22 +29,16 @@ msgid "Password"
 msgstr "Пароль"
 
 #: delivery24/accounts/forms.py:50
-#, fuzzy
-#| msgid "Password"
 msgid "Old password"
-msgstr "Пароль"
+msgstr "Старый Пароль"
 
-#: delivery24/accounts/forms.py:58
-#, fuzzy
-#| msgid "Password"
+#: delivery24/accounts/forms.py:58 delivery24/accounts/forms.py:80
 msgid "New password"
-msgstr "Пароль"
+msgstr "Новый Пароль"
 
-#: delivery24/accounts/forms.py:64
-#, fuzzy
-#| msgid "New Job Confirm"
+#: delivery24/accounts/forms.py:64 delivery24/accounts/forms.py:86
 msgid "New password confirmation"
-msgstr "Подтверждение новой работы"
+msgstr "Подтверждение Нового Пароля"
 
 #: delivery24/accounts/forms.py:72
 #: delivery24/core/templates/core/contact.html:36
@@ -124,6 +118,68 @@ msgstr "Подтвердить"
 #: delivery24/accounts/templates/accounts/login.html:14
 msgid "Driver Login"
 msgstr "Логин Водителя"
+
+#: delivery24/accounts/templates/accounts/password_reset_complete.html:5
+#: delivery24/accounts/templates/accounts/password_reset_complete.html:14
+msgid "Password Reset Complete"
+msgstr "Восстановление Пароля Завершено"
+
+#: delivery24/accounts/templates/accounts/password_reset_complete.html:22
+#, python-format
+msgid ""
+"\n"
+"            Your password has been set. You may go ahead and <a "
+"href='%(the_url)s'> Login</a> now.\n"
+"            "
+msgstr ""
+"\n"
+"            Ваш пароль установлен. Можете продолжить и <a "
+"href='%(the_url)s'> Войти</a> сейчас.\n"
+"            "
+
+#: delivery24/accounts/templates/accounts/password_reset_confirm.html:5
+#: delivery24/accounts/templates/accounts/password_reset_confirm.html:14
+msgid "Password Reset Confirmation"
+msgstr "Новый Пароль"
+
+#: delivery24/accounts/templates/accounts/password_reset_confirm.html:28
+msgid "Change Password"
+msgstr "Сменить Пароль"
+
+#: delivery24/accounts/templates/accounts/password_reset_confirm.html:34
+msgid ""
+"\n"
+"            The password reset link was invalid, possibly because it has "
+"already been used.\n"
+"            Please request a new password reset.\n"
+"            "
+msgstr ""
+"\n"
+"            Ссылка для смены пароля не верна, возможно потому что "
+"она уже была использована.\n"
+"            Пожалуйста попробуйте еще раз запросить восстановление пароля.\n"
+"            "
+
+#: delivery24/accounts/templates/accounts/password_reset_done.html:5
+#: delivery24/accounts/templates/accounts/password_reset_done.html:14
+msgid "Password Reset Done"
+msgstr "Выполнено Восстановление Пароля"
+
+#: delivery24/accounts/templates/accounts/password_reset_done.html:21
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"Мы отправили Вам инструкцию для установки нового пароля. Вскоре Вы получите "
+"письмо, если указали верный е-мэйл."
+
+#: delivery24/accounts/templates/accounts/password_reset_done.html:24
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"Если письмо не получено, то пожалуйста убедитесь в правильности введенного е-"
+"мэйла с которым Вы регистрировались."
 
 #: delivery24/accounts/templates/accounts/password_reset_form.html:5
 msgid "Forgot password"
