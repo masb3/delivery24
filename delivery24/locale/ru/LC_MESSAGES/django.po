@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-22 01:04+0300\n"
+"POT-Creation-Date: 2020-08-22 01:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,6 +119,11 @@ msgstr "Подтвердить"
 msgid "Driver Login"
 msgstr "Логин Водителя"
 
+#: delivery24/accounts/templates/accounts/login.html:30
+#: delivery24/accounts/templates/accounts/password_reset_form.html:5
+msgid "Forgot password"
+msgstr "Забыл Пароль"
+
 #: delivery24/accounts/templates/accounts/password_reset_complete.html:5
 #: delivery24/accounts/templates/accounts/password_reset_complete.html:14
 msgid "Password Reset Complete"
@@ -180,10 +185,6 @@ msgid ""
 msgstr ""
 "Если письмо не получено, то пожалуйста убедитесь в правильности введенного е-"
 "мэйла с которым Вы регистрировались."
-
-#: delivery24/accounts/templates/accounts/password_reset_form.html:5
-msgid "Forgot password"
-msgstr "Забыл Пароль"
 
 #: delivery24/accounts/templates/accounts/password_reset_form.html:14
 msgid "Reset password"
