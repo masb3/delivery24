@@ -18,6 +18,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-7 mb-5">
         <p>{{ profile.email }}</p>
+        <a href="{% url 'accounts:changepwd' %}">{% trans "Change password" %}</a>
           <!-- ADD CONTENT HERE -->
       </div>
     </div>

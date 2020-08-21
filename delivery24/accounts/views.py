@@ -54,9 +54,10 @@ class CustomPasswordResetView(PasswordResetView):
 
 
 class CustomPasswordChangeView(PasswordChangeView):
+    login_required = True
     template_name = 'accounts/changepwd.html'
     form_class = CustomPasswordChangeForm
-    success_url = reverse_lazy('core:index')
+    success_url = reverse_lazy('accounts:profile')
 
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
