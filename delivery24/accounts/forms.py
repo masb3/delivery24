@@ -1,9 +1,14 @@
 from django.contrib.auth import password_validation
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm,
                                        PasswordResetForm, SetPasswordForm)
 from django.forms import TextInput, Select, PasswordInput, CharField, EmailField, EmailInput
 from django.utils.translation import ugettext_lazy as _
 from .models import User
+from core.tasks import reset_password_email_task
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -73,6 +78,31 @@ class CustomPasswordResetForm(PasswordResetForm):
         max_length=254,
         widget=EmailInput(attrs={'autocomplete': 'email', 'class': 'form-control rounded-0'})
     )
+
+    def save(self, domain_override=None,
+             subject_template_name='registration/password_reset_subject.txt',
+             email_template_name='registration/password_reset_email.html',
+             use_https=False, token_generator=default_token_generator,
+             from_email=None, request=None, html_email_template_name=None,
+             extra_email_context=None):
+        """
+        Generate a one-use only link for resetting password and send it to the
+        user.
+        """
+        email = self.cleaned_data["email"]
+        user = User.objects.get(email=email)
+        context = {
+            'email': email,
+            'domain': get_current_site(request).domain,
+            'site_name': get_current_site(request).name,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'user': email,
+            'token': token_generator.make_token(user),
+            'protocol': 'https' if use_https else 'http',
+        }
+
+        reset_password_email_task.delay(subject_template_name, email_template_name, to_email=email,
+                                        html_email_template_name=html_email_template_name, **context,)
 
 
 class CustomSetPasswordForm(SetPasswordForm):

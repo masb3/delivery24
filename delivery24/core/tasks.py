@@ -2,7 +2,7 @@ from time import sleep
 from celery import shared_task
 
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 from delivery24.celery import app
 from core.models import Order, Work
@@ -60,6 +60,34 @@ def driver_find_timeout_task(order_id, timeout):
     if order.work is None:
         order.no_free_drivers = True
         order.save()
+
+
+@shared_task
+def reset_password_email_task(subject_template_name, email_template_name, to_email, **kwargs):
+    subject = render_to_string(subject_template_name, {
+        'email': kwargs['email'],
+        'domain': kwargs['domain'],
+        'site_name': kwargs['site_name'],
+        'uid': kwargs['uid'],
+        'user': kwargs['user'],
+        'token': kwargs['token'],
+        'protocol': kwargs['protocol'],
+    })
+    # Email subject *must not* contain newlines
+    subject = ''.join(subject.splitlines())
+    body = render_to_string(email_template_name, {
+        'email': kwargs['email'],
+        'domain': kwargs['domain'],
+        'site_name': kwargs['site_name'],
+        'uid': kwargs['uid'],
+        'user': kwargs['user'],
+        'token': kwargs['token'],
+        'protocol': kwargs['protocol'],
+    })
+
+    email = EmailMultiAlternatives(subject, body, to=[to_email])
+    email.content_subtype = "text"
+    email.send()
 
 
 @shared_task
