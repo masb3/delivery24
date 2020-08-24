@@ -1,4 +1,4 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
@@ -7,8 +7,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
-from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView
-from .forms import SignUpForm, CustomLoginForm, CustomPasswordResetForm, CustomSetPasswordForm
+from django.contrib.auth.views import LoginView
+from .forms import SignUpForm, CustomLoginForm
 from .models import User
 
 from delivery24 import settings
@@ -30,32 +30,6 @@ class CustomLoginView(LoginView):
             return redirect(settings.LOGIN_REDIRECT_URL)
         else:
             return super(CustomLoginView, self).post(request, *args, **kwargs)
-
-
-class CustomPasswordResetView(PasswordResetView):
-    success_url = reverse_lazy('accounts:password_reset_done')
-    template_name = 'accounts/password_reset_form.html'
-    email_template_name = 'accounts/password_reset_email.html'
-    subject_template_name = 'accounts/password_reset_subject.txt'
-    form_class = CustomPasswordResetForm
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect(settings.LOGIN_REDIRECT_URL)
-        else:
-            return super(CustomPasswordResetView, self).get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return redirect(settings.LOGIN_REDIRECT_URL)
-        else:
-            return super(CustomPasswordResetView, self).post(request, *args, **kwargs)
-
-
-class CustomPasswordResetConfirmView(PasswordResetConfirmView):
-    template_name = 'accounts/password_reset_confirm.html'
-    form_class = CustomSetPasswordForm
-    success_url = reverse_lazy('accounts:password_reset_complete')
 
 
 def signup(request):
