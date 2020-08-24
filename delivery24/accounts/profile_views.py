@@ -14,6 +14,14 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'profile': request.user})
 
 
+class ProfileSettings(LoginRequiredMixin, View):
+    login_required = True
+    template_name = "accounts/profile/settings.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'profile': request.user})
+
+
 class CustomPasswordChangeView(PasswordChangeView):
     login_required = True
     template_name = 'accounts/profile/changepwd.html'
