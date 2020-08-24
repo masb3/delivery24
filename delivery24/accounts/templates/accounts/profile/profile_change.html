@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Profile Settings" %}{% endblock title %}
+{% block title %}{% trans "Change Profile" %}{% endblock title %}
 
 {% block content %}
 
@@ -11,17 +11,14 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title mb-3"><br>{% trans "Profile Settings" %}</h2>
+        <h2 class="section-title mb-3"><br>{% trans "Change Profile" %}</h2>
       </div>
     </div>
 
     <div class="row justify-content-center">
       <div class="col-lg-7 mb-5">
         <div class="col-md-12">
-          <a href="{% url 'accounts:profile_change' %}">{% trans "Change Profile" %}</a>
-        </div>
-        <div class="col-md-12">
-          <a href="{% url 'accounts:changepwd' %}">{% trans "Change password" %}</a>
+          <p>HERE GOES FORM</p>
         </div>
           <!-- ADD CONTENT HERE -->
       </div>

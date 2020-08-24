@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-25 00:46+0300\n"
+"POT-Creation-Date: 2020-08-25 00:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,12 +147,18 @@ msgstr "Работы"
 msgid "Settings"
 msgstr "Настройки"
 
+#: delivery24/accounts/templates/accounts/profile/profile_change.html:5
+#: delivery24/accounts/templates/accounts/profile/profile_change.html:14
+#: delivery24/accounts/templates/accounts/profile/settings.html:21
+msgid "Change Profile"
+msgstr "Изменить Профиль"
+
 #: delivery24/accounts/templates/accounts/profile/settings.html:5
 #: delivery24/accounts/templates/accounts/profile/settings.html:14
 msgid "Profile Settings"
 msgstr "Настройки Профиля"
 
-#: delivery24/accounts/templates/accounts/profile/settings.html:21
+#: delivery24/accounts/templates/accounts/profile/settings.html:24
 msgid "Change password"
 msgstr "Сменить Пароль"
 
