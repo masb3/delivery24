@@ -1,0 +1,159 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DELIVERY24 {% block title %}{% endblock title %}</title>
+
+    <!-- jQuery for DateTimePicker -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'core/fonts/icomoon/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/owl.theme.default.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'core/css/jquery.fancybox.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap-datepicker.css' %}">
+
+    <link rel="stylesheet" href="{% static 'core/fonts/flaticon/font/flaticon.css' %}">
+
+    <link rel="stylesheet" href="{% static 'core/css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+  <div id="overlayer"></div>
+  <div class="loader">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">{% trans "Loading..." %}</span>
+    </div>
+  </div>
+
+  <div class="site-wrap"  id="home-section">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-md-3 col-xl-3  d-block">
+            <h1 class="mb-0 site-logo"><a href="{% url 'core:index' %}" class="text-black h2 mb-0">DELIVERY24<span class="text-primary">.</span> </a></h1>
+          </div>
+
+          <div class="col-12 col-md-9 col-xl-9 main-menu">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block ml-0 pl-0">
+
+                <li><h6>{{ user.email }}</h6></li>
+                <li><a href="{% url 'accounts:profile' %}" class="nav-link">{% trans "Account" %}</a></li>
+                <li><a href="{% url 'accounts:profile' %}" class="nav-link">{% trans "Jobs" %}</a></li>
+                <li><a href="{% url 'accounts:profile' %}" class="nav-link">{% trans "Settings" %}</a></li>
+
+                <!-- LANGUAGE SELECT -->
+                <li class="has-children">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% if 'en-us' == LANGUAGE_CODE %}
+                    <a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a>
+                    <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a></li>
+                  {% elif 'ru' == LANGUAGE_CODE %}
+                    <a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a>
+                    <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a></li>
+                  {% else %}
+                    <a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a>
+                    <ul class="dropdown arrow-top">
+                    <li><a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a></li>
+                  {% endif %}
+                    </ul>
+                    </li><!-- LANGUAGE SELECT END -->
+            </nav>
+          </div>
+
+
+          <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0" ><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+
+    </header>
+  </div> <!-- .site-wrap -->
+{% block body %}
+
+
+{% block content %}
+{% endblock content %}
+
+<!-- FOOTER SECTION -->
+  <div class="footer py-5 text-center">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12">
+          <p class="mb-0">
+            <a href="#" class="p-3"><span class="icon-facebook"></span></a>
+            <a href="#" class="p-3"><span class="icon-twitter"></span></a>
+            <a href="#" class="p-3"><span class="icon-instagram"></span></a>
+            <a href="#" class="p-3"><span class="icon-linkedin"></span></a>
+            <a href="#" class="p-3"><span class="icon-pinterest"></span></a>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-0">
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- END FOOTER SECTION -->
+{% endblock body %}
+
+  <script src="{% static 'core/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'core/js/jquery-ui.js' %}"></script>
+  <script src="{% static 'core/js/popper.min.js' %}"></script>
+  <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'core/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'core/js/jquery.countdown.min.js' %}"></script>
+  <script src="{% static 'core/js/bootstrap-datepicker.min.js' %}"></script>
+  <script src="{% static 'core/js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'core/js/aos.js' %}"></script>
+  <script src="{% static 'core/js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'core/js/jquery.sticky.js' %}"></script>
+
+
+  <script src="{% static 'core/js/main.js' %}"></script>
+
+</body>
+</html>
