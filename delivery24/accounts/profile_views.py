@@ -1,7 +1,7 @@
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import PasswordChangeView
-from .forms import CustomPasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView, FormView
+from .forms import CustomPasswordChangeForm, ChangeProfileForm
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
@@ -22,12 +22,10 @@ class ProfileSettings(LoginRequiredMixin, View):
         return render(request, self.template_name, {'profile': request.user})
 
 
-class ProfileChange(LoginRequiredMixin, View):
+class ProfileChange(LoginRequiredMixin, FormView):
     login_required = True
     template_name = "accounts/profile/profile_change.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'profile': request.user})
+    form_class = ChangeProfileForm
 
 
 class CustomPasswordChangeView(PasswordChangeView):

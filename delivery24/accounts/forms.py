@@ -117,3 +117,30 @@ class CustomSetPasswordForm(SetPasswordForm):
         strip=False,
         widget=PasswordInput(attrs={'autocomplete': 'new-password', 'class': 'form-control rounded-0'}),
     )
+
+
+class ChangeProfileForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'phone', 'car_model', 'car_number',
+                  'car_carrying', 'movers_num', 'payment',)
+        widgets = {
+            'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
+            'last_name': TextInput(attrs={'class': 'form-control rounded-0'}),
+            'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
+            'car_model': TextInput(attrs={'size': 50, 'class': 'form-control rounded-0'}),
+            'car_number': TextInput(attrs={'size': 7, 'class': 'form-control rounded-0'}),
+            'car_carrying': TextInput(attrs={'type': 'number',
+                                             'min': 100,
+                                             'max': 10000,
+                                             'step': 50,
+                                             'class': 'form-control rounded-0'}),
+
+            'movers_num': Select(attrs={'class': 'form-control rounded-0'}),
+            'payment': Select(attrs={'class': 'form-control rounded-0'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ChangeProfileForm, self).__init__(*args, **kwargs)
+        self.fields.pop('password1')
+        self.fields.pop('password2')

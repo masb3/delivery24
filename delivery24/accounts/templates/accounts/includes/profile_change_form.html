@@ -1,0 +1,95 @@
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="{{ form.first_name.auto_id }}">{{ form.first_name.label }}</label>
+                  {{ form.first_name }}
+                  {% if form.first_name.help_text %}
+                    <small style="color: grey">{{ form.first_name.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.first_name.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ form.last_name.auto_id }}">{{ form.last_name.label }}</label>
+                  {{ form.last_name }}
+                  {% if form.last_name.help_text %}
+                    <small style="color: grey">{{ form.last_name.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.last_name.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ form.phone.auto_id }}">{{ form.phone.label }}</label>
+                  {{ form.phone }}
+                  {% if form.phone.help_text %}
+                    <small style="color: grey">{{ form.phone.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.phone.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="{{ form.car_model.auto_id }}">{{ form.car_model.label }}</label>
+                  {{ form.car_model }}
+                  {% if form.car_model.help_text %}
+                    <small style="color: grey">{{ form.car_model.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.car_model.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ form.car_number.auto_id }}">{{ form.car_number.label }}</label>
+                  {{ form.car_number }}
+                  {% if form.car_number.help_text %}
+                    <small style="color: grey">{{ form.car_number.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.car_number.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="{{ form.car_carrying.auto_id }}">{{ form.car_carrying.label }}</label>
+                  {{ form.car_carrying }}
+                  {% if form.car_carrying.help_text %}
+                    <small style="color: grey">{{ form.car_carrying.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.car_carrying.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="{{ form.movers_num.auto_id }}">{{ form.movers_num.label }}</label>
+                  {{ form.movers_num }}
+                  {% if form.movers_num.help_text %}
+                    <small style="color: grey">{{ form.movers_num.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.movers_num.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ form.payment.auto_id }}">{{ form.payment.label }}</label>
+                  {{ form.payment }}
+                  {% if form.payment.help_text %}
+                    <small style="color: grey">{{ form.payment.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.payment.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+

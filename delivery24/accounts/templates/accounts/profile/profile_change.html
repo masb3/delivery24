@@ -17,10 +17,16 @@
 
     <div class="row justify-content-center">
       <div class="col-lg-7 mb-5">
-        <div class="col-md-12">
-          <p>HERE GOES FORM</p>
-        </div>
-          <!-- ADD CONTENT HERE -->
+        <form method="post" action="{% url 'accounts:profile_change' %}" class="p-5 bg-white" novalidate>
+            {% csrf_token %}
+            {% include 'accounts/includes/profile_change_form.html' %}
+
+            <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="{% trans 'Confirm' %}" class="btn btn-primary mr-2 mb-2">
+                </div>
+            </div>
+        </form>
       </div>
     </div>
   </div>
