@@ -7,10 +7,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
-from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView, TemplateView
-from .forms import SignUpForm, CustomLoginForm, CustomPasswordChangeForm, CustomPasswordResetForm, CustomSetPasswordForm
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView
+from .forms import SignUpForm, CustomLoginForm, CustomPasswordResetForm, CustomSetPasswordForm
 from .models import User
 
 from delivery24 import settings
@@ -54,25 +52,10 @@ class CustomPasswordResetView(PasswordResetView):
             return super(CustomPasswordResetView, self).post(request, *args, **kwargs)
 
 
-class CustomPasswordChangeView(PasswordChangeView):
-    login_required = True
-    template_name = 'accounts/changepwd.html'
-    form_class = CustomPasswordChangeForm
-    success_url = reverse_lazy('accounts:profile')
-
-
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'accounts/password_reset_confirm.html'
     form_class = CustomSetPasswordForm
     success_url = reverse_lazy('accounts:password_reset_complete')
-
-
-class ProfileView(LoginRequiredMixin, View):
-    login_required = True
-    template_name = "accounts/profile.html"
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'profile': request.user})
 
 
 def signup(request):
