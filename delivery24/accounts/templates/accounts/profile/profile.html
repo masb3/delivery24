@@ -20,6 +20,12 @@
         <div class="col-md-12">
           <p>{{ profile.email }}</p>
         </div>
+        <div class="col-md-12">
+          <p>{% trans "Registered" %}: {{ user.created_at }}</p>
+        </div>
+        <div class="col-md-12">
+          <p>{% trans "Total income" %}: {{ total_income }} &euro;</p>
+        </div>
           <!-- ADD CONTENT HERE -->
       </div>
     </div>

@@ -11,7 +11,12 @@ class ProfileView(LoginRequiredMixin, View):
     template_name = "accounts/profile/profile.html"
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'profile': request.user})
+        jobs = request.user.work_set.all()  # TODO: completed jobs
+        total_income = 0
+        for _ in jobs:
+            total_income += _.price
+        total_income = round(total_income, 2)
+        return render(request, self.template_name, {'profile': request.user, 'total_income': total_income})
 
 
 class ProfileSettings(LoginRequiredMixin, View):

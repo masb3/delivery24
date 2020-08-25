@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-25 01:29+0300\n"
+"POT-Creation-Date: 2020-08-26 00:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,6 +130,14 @@ msgstr "Смена Пароля Водителя"
 #: delivery24/accounts/templates/accounts/profile/profile.html:14
 msgid "Driver Profile"
 msgstr "Профиль Водителя"
+
+#: delivery24/accounts/templates/accounts/profile/profile.html:24
+msgid "Registered"
+msgstr "Зарегистрирован"
+
+#: delivery24/accounts/templates/accounts/profile/profile.html:27
+msgid "Total income"
+msgstr "Общий доход"
 
 #: delivery24/accounts/templates/accounts/profile/profile_base.html:45
 #: delivery24/core/templates/core/base.html:45
