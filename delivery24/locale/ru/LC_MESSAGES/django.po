@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 02:03+0300\n"
+"POT-Creation-Date: 2020-08-26 02:07+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,8 +155,8 @@ msgid "Loading..."
 msgstr "Загрузка ..."
 
 #: delivery24/accounts/templates/accounts/profile/profile_base.html:76
-msgid "Account"
-msgstr "Счёт"
+msgid "Profile"
+msgstr "Профиль"
 
 #: delivery24/accounts/templates/accounts/profile/profile_base.html:77
 msgid "Jobs"
@@ -551,3 +551,6 @@ msgstr "Неверный личный код"
 #: delivery24/core/utils.py:51
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
+
+#~ msgid "Account"
+#~ msgstr "Счёт"
