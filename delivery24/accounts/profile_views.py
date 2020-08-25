@@ -19,6 +19,15 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {'profile': request.user, 'total_income': total_income})
 
 
+class ProfileJobs(LoginRequiredMixin, View):
+    login_required = True
+    template_name = "accounts/profile/jobs.html"
+
+    def get(self, request, *args, **kwargs):
+        completed_jobs_number = request.user.work_set.all().count()  # TODO: completed jobs
+        return render(request, self.template_name, {'completed_jobs_number': completed_jobs_number})
+
+
 class ProfileSettings(LoginRequiredMixin, View):
     login_required = True
     template_name = "accounts/profile/settings.html"
