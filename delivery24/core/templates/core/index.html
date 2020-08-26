@@ -100,18 +100,20 @@
                     <a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a>
                     <ul class="dropdown arrow-top">
                     <li><a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a></li>
+                    </ul>
                   {% elif 'ru' == LANGUAGE_CODE %}
                     <a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a>
                     <ul class="dropdown arrow-top">
                     <li><a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a></li>
+                    </ul>
                   {% else %}
                     <a href="{% url 'set_language_from_url' user_language='en-us' %}">EN</a>
                     <ul class="dropdown arrow-top">
                     <li><a href="{% url 'set_language_from_url' user_language='ru' %}">RU</a></li>
+                    </ul>
                   {% endif %}
-                <!-- LANGUAGE SELECT END -->
-
-              </ul>
+                </li>
+              </ul><!-- LANGUAGE SELECT END -->
             </nav>
           </div>
           <div class="col-6 col-md-9 d-inline-block d-lg-none ml-md-0" ><a href="#" class="site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a></div>
