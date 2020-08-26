@@ -5,6 +5,8 @@ from .forms import CustomPasswordChangeForm, ChangeProfileForm
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
+from core.models import Work
+
 
 class ProfileView(LoginRequiredMixin, View):
     login_required = True
@@ -24,8 +26,11 @@ class ProfileJobs(LoginRequiredMixin, View):
     template_name = "accounts/profile/jobs.html"
 
     def get(self, request, *args, **kwargs):
-        completed_jobs_number = request.user.work_set.all().count()  # TODO: completed jobs
-        return render(request, self.template_name, {'completed_jobs_number': completed_jobs_number})
+        completed_jobs_number = request.user.work_set.filter(status=Work.WORK_STATUS[2][0]).count()
+        future_jobs_number = request.user.work_set.filter(status__lt=Work.WORK_STATUS[2][0],
+                                                          order_confirmed=True).count()
+        return render(request, self.template_name, {'completed_jobs_number': completed_jobs_number,
+                                                    'future_jobs_number': future_jobs_number})
 
 
 class ProfileSettings(LoginRequiredMixin, View):

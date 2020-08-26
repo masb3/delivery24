@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-26 02:07+0300\n"
+"POT-Creation-Date: 2020-08-27 01:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "Подтверждение Нового Пароля"
 
 #: delivery24/accounts/forms.py:77
 #: delivery24/core/templates/core/contact.html:36
-#: delivery24/core/templates/core/index.html:333
+#: delivery24/core/templates/core/index.html:336
 msgid "Email"
 msgstr "Е-мэйл"
 
@@ -134,6 +134,10 @@ msgstr "Работы Водителя"
 #: delivery24/accounts/templates/accounts/profile/jobs.html:21
 msgid "Number of completed jobs"
 msgstr "Количество выполненых работ"
+
+#: delivery24/accounts/templates/accounts/profile/jobs.html:24
+msgid "Future jobs"
+msgstr "Предстоящии работы"
 
 #: delivery24/accounts/templates/accounts/profile/profile.html:5
 #: delivery24/accounts/templates/accounts/profile/profile.html:14
@@ -270,7 +274,7 @@ msgstr "Окончание доставки"
 
 #: delivery24/core/forms.py:41 delivery24/core/forms.py:107
 #: delivery24/core/templates/core/contact.html:52
-#: delivery24/core/templates/core/index.html:348
+#: delivery24/core/templates/core/index.html:351
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
 
@@ -369,7 +373,7 @@ msgstr "НАЧАТЬ"
 
 #: delivery24/core/templates/core/base.html:78
 #: delivery24/core/templates/core/index.html:79
-#: delivery24/core/templates/core/index.html:241
+#: delivery24/core/templates/core/index.html:244
 #: delivery24/core/templates/core/partner.html:5
 #: delivery24/core/templates/core/partner.html:14
 msgid "Become a Partner"
@@ -387,37 +391,37 @@ msgid "Contact"
 msgstr "Контакт"
 
 #: delivery24/core/templates/core/contact.html:14
-#: delivery24/core/templates/core/index.html:313
+#: delivery24/core/templates/core/index.html:316
 msgid "Contact Us"
 msgstr "Связаться"
 
 #: delivery24/core/templates/core/contact.html:21
-#: delivery24/core/templates/core/index.html:319
+#: delivery24/core/templates/core/index.html:322
 msgid "Contact Form"
 msgstr "Контактная форма"
 
 #: delivery24/core/templates/core/contact.html:24
-#: delivery24/core/templates/core/index.html:322
+#: delivery24/core/templates/core/index.html:325
 msgid "First Name"
 msgstr "Имя"
 
 #: delivery24/core/templates/core/contact.html:28
-#: delivery24/core/templates/core/index.html:326
+#: delivery24/core/templates/core/index.html:329
 msgid "Last Name"
 msgstr "Фамилия"
 
 #: delivery24/core/templates/core/contact.html:44
-#: delivery24/core/templates/core/index.html:340
+#: delivery24/core/templates/core/index.html:343
 msgid "Subject"
 msgstr "Тема"
 
 #: delivery24/core/templates/core/contact.html:51
-#: delivery24/core/templates/core/index.html:347
+#: delivery24/core/templates/core/index.html:350
 msgid "Message"
 msgstr "Сообщение"
 
 #: delivery24/core/templates/core/contact.html:58
-#: delivery24/core/templates/core/index.html:354
+#: delivery24/core/templates/core/index.html:357
 msgid "Send Message"
 msgstr "Сообщение"
 
@@ -445,32 +449,32 @@ msgstr "DELIVERY24 &mdash; Лучшие цены грузоперевозок"
 msgid "Our Team"
 msgstr "Наша команда"
 
-#: delivery24/core/templates/core/index.html:138
+#: delivery24/core/templates/core/index.html:141
 msgid "Order Moving Service in<br>3 Minutes"
 msgstr "Закажи услугу грузоперевозки за 3 минуты"
 
-#: delivery24/core/templates/core/index.html:140
+#: delivery24/core/templates/core/index.html:143
 msgid "Fastest way to find moving service with best price"
 msgstr "Быстрый способ заказать перевозку по лучшей цене"
 
-#: delivery24/core/templates/core/index.html:141
+#: delivery24/core/templates/core/index.html:144
 msgid "No phone calls asking for schedule and price"
 msgstr "Никаких звонков что-бы узнать цену и доступное время"
 
-#: delivery24/core/templates/core/index.html:142
+#: delivery24/core/templates/core/index.html:145
 msgid "Place your order and get response in minutes"
 msgstr "Оставь заявку и получи ответ сразу на сайте"
 
-#: delivery24/core/templates/core/index.html:145
-#: delivery24/core/templates/core/index.html:215
+#: delivery24/core/templates/core/index.html:148
+#: delivery24/core/templates/core/index.html:218
 msgid "Get Started"
 msgstr "НАЧАТЬ"
 
-#: delivery24/core/templates/core/index.html:160
+#: delivery24/core/templates/core/index.html:163
 msgid "Delivery24 Features"
 msgstr "Delivery24 достоинства"
 
-#: delivery24/core/templates/core/index.html:161
+#: delivery24/core/templates/core/index.html:164
 msgid ""
 "We know how it is time consuming to find moving service that<br>matches your "
 "schedule and price. We made it easier for You. Fast response with better "
@@ -480,39 +484,39 @@ msgstr ""
 "подходит по цене и времени. Мы сделали этот процесс простым для Вас. Быстрый "
 "ответ с наилучшей ценой."
 
-#: delivery24/core/templates/core/index.html:172
+#: delivery24/core/templates/core/index.html:175
 msgid "Place Your Order"
 msgstr "Простой способ сделать заказ"
 
-#: delivery24/core/templates/core/index.html:173
+#: delivery24/core/templates/core/index.html:176
 msgid "Fill in simple form with date, addresses and payment method."
 msgstr "Заполни простую форму с датой, адресом и способом оплаты."
 
-#: delivery24/core/templates/core/index.html:174
-#: delivery24/core/templates/core/index.html:187
-#: delivery24/core/templates/core/index.html:200
+#: delivery24/core/templates/core/index.html:177
+#: delivery24/core/templates/core/index.html:190
+#: delivery24/core/templates/core/index.html:203
 msgid "Learn More"
 msgstr "Узнать больше"
 
-#: delivery24/core/templates/core/index.html:185
+#: delivery24/core/templates/core/index.html:188
 msgid "Best price offer in minutes"
 msgstr "Быстрый ответ с лучшим предложением"
 
-#: delivery24/core/templates/core/index.html:186
+#: delivery24/core/templates/core/index.html:189
 msgid ""
 "You will receive best offer based on your order. Confirm if the price suits "
 "you."
 msgstr "Просто нажми подтвердить если цена подходит Вам."
 
-#: delivery24/core/templates/core/index.html:198
+#: delivery24/core/templates/core/index.html:201
 msgid "Pay online or by cash"
 msgstr "Выбери удобный способ оплаты"
 
-#: delivery24/core/templates/core/index.html:199
+#: delivery24/core/templates/core/index.html:202
 msgid "You have an option to pay safely online or by cash when job is done."
 msgstr "Оплата online или наличными после окончания работы."
 
-#: delivery24/core/templates/core/index.html:226
+#: delivery24/core/templates/core/index.html:229
 #: delivery24/core/templates/core/order.html:5
 #: delivery24/core/templates/core/order.html:14
 #: delivery24/core/templates/core/order.html:27
