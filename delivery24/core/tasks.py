@@ -1,10 +1,14 @@
+import datetime
+
 from time import sleep
 from celery import shared_task
 
+from django.utils import timezone
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 from delivery24.celery import app
+from .proj_conf import PERIODIC_SET_WORK_DONE_S
 from core.models import Order, Work
 
 
@@ -88,6 +92,26 @@ def reset_password_email_task(subject_template_name, email_template_name, to_ema
     email = EmailMultiAlternatives(subject, body, to=[to_email])
     email.content_subtype = "text"
     email.send()
+
+
+@app.on_after_finalize.connect
+def setup_periodic_tasks(sender, **kwargs):
+    beat_time = PERIODIC_SET_WORK_DONE_S
+    sender.add_periodic_task(beat_time, set_work_done.s(), name='periodically set work done')
+
+
+@app.task
+def set_work_done():
+    time_now_delta = timezone.now() + datetime.timedelta(hours=0)  # Tallinn time UTC+3
+    works = Work.objects.filter(status__lt=Work.WORK_STATUS[2][0], delivery_end__lt=time_now_delta)
+
+    for work in works:
+        if work.order_confirmed:
+            work.status = Work.WORK_STATUS[2][0]  # Done
+        else:
+            work.status = Work.WORK_STATUS[3][0]  # Canceled
+        work.save()
+        print(work.status)
 
 
 @shared_task
