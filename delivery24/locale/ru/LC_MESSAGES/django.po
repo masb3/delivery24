@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-27 01:23+0300\n"
+"POT-Creation-Date: 2020-08-28 00:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,181 +20,224 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: delivery24/accounts/forms.py:15
+#: accounts/forms.py:15
 msgid "User Email"
 msgstr "Е-мэйл"
 
-#: delivery24/accounts/forms.py:18
+#: accounts/forms.py:18
 msgid "Password"
 msgstr "Пароль"
 
-#: delivery24/accounts/forms.py:55
+#: accounts/forms.py:55
 msgid "Old password"
 msgstr "Старый Пароль"
 
-#: delivery24/accounts/forms.py:63 delivery24/accounts/forms.py:110
+#: accounts/forms.py:63 accounts/forms.py:110
 msgid "New password"
 msgstr "Новый Пароль"
 
-#: delivery24/accounts/forms.py:69 delivery24/accounts/forms.py:116
+#: accounts/forms.py:69 accounts/forms.py:116
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
-#: delivery24/accounts/forms.py:77
-#: delivery24/core/templates/core/contact.html:36
-#: delivery24/core/templates/core/index.html:336
+#: accounts/forms.py:77 core/templates/core/contact.html:36
+#: core/templates/core/index.html:336
 msgid "Email"
 msgstr "Е-мэйл"
 
-#: delivery24/accounts/models.py:15 delivery24/core/models.py:49
+#: accounts/models.py:15 core/models.py:49
 msgid "Cash"
 msgstr "Наличные"
 
-#: delivery24/accounts/models.py:21
+#: accounts/models.py:21
 msgid "Email address"
 msgstr "Е-мэйл адрес"
 
-#: delivery24/accounts/models.py:26 delivery24/core/models.py:53
+#: accounts/models.py:26 core/models.py:53
 msgid "first name"
 msgstr "Имя"
 
-#: delivery24/accounts/models.py:27 delivery24/core/models.py:54
+#: accounts/models.py:27 core/models.py:54
 msgid "last name"
 msgstr "Фамилия"
 
-#: delivery24/accounts/models.py:28
+#: accounts/models.py:28
 msgid "isikukood"
 msgstr "Личный код"
 
-#: delivery24/accounts/models.py:32
+#: accounts/models.py:32
 msgid "Phone"
 msgstr "телефон"
 
-#: delivery24/accounts/models.py:32
+#: accounts/models.py:32
 msgid "Contact phone number"
 msgstr "Номер телефона"
 
-#: delivery24/accounts/models.py:33
+#: accounts/models.py:33
 msgid "car model"
 msgstr "Марка машины"
 
-#: delivery24/accounts/models.py:34
+#: accounts/models.py:34
 msgid "car carrying (kg)"
 msgstr "Грузоподъёмность"
 
-#: delivery24/accounts/models.py:36
+#: accounts/models.py:36
 msgid "car number"
 msgstr "Номер машины"
 
-#: delivery24/accounts/models.py:38 delivery24/core/models.py:66
+#: accounts/models.py:38 core/models.py:66
 msgid "payment method"
 msgstr "Способ оплаты"
 
-#: delivery24/accounts/models.py:39
+#: accounts/models.py:39
 msgid "number of available movers"
 msgstr "Количество доступных грузчиков"
 
-#: delivery24/accounts/models.py:55
+#: accounts/models.py:55
 msgid "user"
 msgstr "пользователь"
 
-#: delivery24/accounts/models.py:56
+#: accounts/models.py:56
 msgid "users"
 msgstr "пользователи"
 
-#: delivery24/accounts/templates/accounts/login.html:5
-#: delivery24/accounts/templates/accounts/login.html:14
+#: accounts/templates/accounts/login.html:5
+#: accounts/templates/accounts/login.html:14
 msgid "Driver Login"
 msgstr "Логин Водителя"
 
-#: delivery24/accounts/templates/accounts/login.html:27
-#: delivery24/accounts/templates/accounts/profile/changepwd.html:28
-#: delivery24/accounts/templates/accounts/profile/profile_change.html:26
-#: delivery24/accounts/templates/accounts/signup.html:27
-#: delivery24/core/templates/core/driver_newjob_confirm.html:31
-#: delivery24/core/templates/core/order_complete.html:80
+#: accounts/templates/accounts/login.html:27
+#: accounts/templates/accounts/profile/changepwd.html:28
+#: accounts/templates/accounts/profile/profile_change.html:26
+#: accounts/templates/accounts/signup.html:27
+#: core/templates/core/driver_newjob_confirm.html:31
+#: core/templates/core/order_complete.html:80
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: delivery24/accounts/templates/accounts/login.html:30
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_form.html:5
+#: accounts/templates/accounts/login.html:30
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:5
 msgid "Forgot password"
 msgstr "Забыл Пароль"
 
-#: delivery24/accounts/templates/accounts/profile/changepwd.html:5
-#: delivery24/accounts/templates/accounts/profile/changepwd.html:14
+#: accounts/templates/accounts/profile/changepwd.html:5
+#: accounts/templates/accounts/profile/changepwd.html:14
 msgid "Driver Change Password"
 msgstr "Смена Пароля Водителя"
 
-#: delivery24/accounts/templates/accounts/profile/jobs.html:5
-#: delivery24/accounts/templates/accounts/profile/jobs.html:14
+#: accounts/templates/accounts/profile/completed_jobs_list.html:5
+#: accounts/templates/accounts/profile/completed_jobs_list.html:14
+msgid "Completed Jobs"
+msgstr "Выполненые Работы"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:24
+#: accounts/templates/accounts/profile/future_jobs_list.html:24
+msgid "Date"
+msgstr "Дата"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:25
+#: accounts/templates/accounts/profile/future_jobs_list.html:25
+msgid "Address"
+msgstr "Адрес"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:26
+#: accounts/templates/accounts/profile/future_jobs_list.html:26
+msgid "Price"
+msgstr "Цена"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:39
+#: accounts/templates/accounts/profile/future_jobs_list.html:39
+msgid "previous"
+msgstr "назад"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:43
+#: accounts/templates/accounts/profile/future_jobs_list.html:43
+msgid "Page"
+msgstr "Страница"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:43
+#: accounts/templates/accounts/profile/future_jobs_list.html:43
+msgid "of"
+msgstr "из"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:47
+#: accounts/templates/accounts/profile/future_jobs_list.html:47
+msgid "next"
+msgstr "далее"
+
+#: accounts/templates/accounts/profile/future_jobs_list.html:5
+#: accounts/templates/accounts/profile/future_jobs_list.html:14
+msgid "Future Jobs"
+msgstr "Предстоящии работы"
+
+#: accounts/templates/accounts/profile/jobs.html:5
+#: accounts/templates/accounts/profile/jobs.html:14
 msgid "Driver Jobs"
 msgstr "Работы Водителя"
 
-#: delivery24/accounts/templates/accounts/profile/jobs.html:21
+#: accounts/templates/accounts/profile/jobs.html:21
 msgid "Number of completed jobs"
 msgstr "Количество выполненых работ"
 
-#: delivery24/accounts/templates/accounts/profile/jobs.html:24
+#: accounts/templates/accounts/profile/jobs.html:24
 msgid "Future jobs"
 msgstr "Предстоящии работы"
 
-#: delivery24/accounts/templates/accounts/profile/profile.html:5
-#: delivery24/accounts/templates/accounts/profile/profile.html:14
+#: accounts/templates/accounts/profile/profile.html:5
+#: accounts/templates/accounts/profile/profile.html:14
 msgid "Driver Profile"
 msgstr "Профиль Водителя"
 
-#: delivery24/accounts/templates/accounts/profile/profile.html:24
+#: accounts/templates/accounts/profile/profile.html:24
 msgid "Registered"
 msgstr "Зарегистрирован"
 
-#: delivery24/accounts/templates/accounts/profile/profile.html:27
+#: accounts/templates/accounts/profile/profile.html:27
 msgid "Total income"
 msgstr "Общий доход"
 
-#: delivery24/accounts/templates/accounts/profile/profile_base.html:45
-#: delivery24/core/templates/core/base.html:45
-#: delivery24/core/templates/core/index.html:45
+#: accounts/templates/accounts/profile/profile_base.html:45
+#: core/templates/core/base.html:45 core/templates/core/index.html:45
 msgid "Loading..."
 msgstr "Загрузка ..."
 
-#: delivery24/accounts/templates/accounts/profile/profile_base.html:76
+#: accounts/templates/accounts/profile/profile_base.html:76
 msgid "Profile"
 msgstr "Профиль"
 
-#: delivery24/accounts/templates/accounts/profile/profile_base.html:77
+#: accounts/templates/accounts/profile/profile_base.html:77
 msgid "Jobs"
 msgstr "Работы"
 
-#: delivery24/accounts/templates/accounts/profile/profile_base.html:78
+#: accounts/templates/accounts/profile/profile_base.html:78
 msgid "Settings"
 msgstr "Настройки"
 
-#: delivery24/accounts/templates/accounts/profile/profile_change.html:5
-#: delivery24/accounts/templates/accounts/profile/profile_change.html:14
-#: delivery24/accounts/templates/accounts/profile/settings.html:21
+#: accounts/templates/accounts/profile/profile_change.html:5
+#: accounts/templates/accounts/profile/profile_change.html:14
+#: accounts/templates/accounts/profile/settings.html:21
 msgid "Change Profile"
 msgstr "Изменить Профиль"
 
-#: delivery24/accounts/templates/accounts/profile/settings.html:5
-#: delivery24/accounts/templates/accounts/profile/settings.html:14
+#: accounts/templates/accounts/profile/settings.html:5
+#: accounts/templates/accounts/profile/settings.html:14
 msgid "Profile Settings"
 msgstr "Настройки Профиля"
 
-#: delivery24/accounts/templates/accounts/profile/settings.html:24
+#: accounts/templates/accounts/profile/settings.html:24
 msgid "Change password"
 msgstr "Сменить Пароль"
 
-#: delivery24/accounts/templates/accounts/profile/settings.html:27
+#: accounts/templates/accounts/profile/settings.html:27
 msgid "Logout"
 msgstr "Выйти"
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_complete.html:5
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_complete.html:14
+#: accounts/templates/accounts/pwd_reset/password_reset_complete.html:5
+#: accounts/templates/accounts/pwd_reset/password_reset_complete.html:14
 msgid "Password Reset Complete"
 msgstr "Восстановление Пароля Завершено"
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_complete.html:22
+#: accounts/templates/accounts/pwd_reset/password_reset_complete.html:22
 #, python-format
 msgid ""
 "\n"
@@ -207,16 +250,16 @@ msgstr ""
 "href='%(the_url)s'> Войти</a> сейчас.\n"
 "            "
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_confirm.html:5
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_confirm.html:14
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:5
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:14
 msgid "Password Reset Confirmation"
 msgstr "Новый Пароль"
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_confirm.html:28
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:28
 msgid "Change Password"
 msgstr "Сменить Пароль"
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_confirm.html:34
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:34
 msgid ""
 "\n"
 "            The password reset link was invalid, possibly because it has "
@@ -230,12 +273,12 @@ msgstr ""
 "            Пожалуйста попробуйте еще раз запросить восстановление пароля.\n"
 "            "
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_done.html:5
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_done.html:14
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:5
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:14
 msgid "Password Reset Done"
 msgstr "Выполнено Восстановление Пароля"
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_done.html:21
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:21
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
@@ -243,7 +286,7 @@ msgstr ""
 "Мы отправили Вам инструкцию для установки нового пароля. Вскоре Вы получите "
 "письмо, если указали верный е-мэйл."
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_done.html:24
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:24
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
@@ -251,230 +294,213 @@ msgstr ""
 "Если письмо не получено, то пожалуйста убедитесь в правильности введенного е-"
 "мэйла с которым Вы регистрировались."
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_form.html:14
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:14
 msgid "Reset password"
 msgstr "Восстановить Пароль"
 
-#: delivery24/accounts/templates/accounts/pwd_reset/password_reset_form.html:27
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:27
 msgid "Submit"
 msgstr "Подтвердить"
 
-#: delivery24/accounts/templates/accounts/signup.html:5
-#: delivery24/accounts/templates/accounts/signup.html:14
+#: accounts/templates/accounts/signup.html:5
+#: accounts/templates/accounts/signup.html:14
 msgid "Driver Signup"
 msgstr "Регистрация Водителя"
 
-#: delivery24/core/forms.py:21
+#: core/forms.py:21
 msgid "Delivery start"
 msgstr "Начало доставки"
 
-#: delivery24/core/forms.py:23
+#: core/forms.py:23
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: delivery24/core/forms.py:41 delivery24/core/forms.py:107
-#: delivery24/core/templates/core/contact.html:52
-#: delivery24/core/templates/core/index.html:351
+#: core/forms.py:41 core/forms.py:107 core/templates/core/contact.html:52
+#: core/templates/core/index.html:351
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
 
-#: delivery24/core/forms.py:53
+#: core/forms.py:53
 msgid "Must be at least {} hour from current time"
 msgstr "Должно быть минимум {} час от текущего времени"
 
-#: delivery24/core/forms.py:56
+#: core/forms.py:56
 msgid "Must be less than {} days from current date"
 msgstr "Должно быть менее {} дней от текущей даты"
 
-#: delivery24/core/forms.py:59
+#: core/forms.py:59
 msgid "Must be at least {} hour after delivery start"
 msgstr "Должно быть минимум {} час после начала доставки"
 
-#: delivery24/core/forms.py:62
+#: core/forms.py:62
 msgid "Must be less than {} hours after delivery start"
 msgstr "Должно быть менее {} часов после начала доставки"
 
-#: delivery24/core/forms.py:76
+#: core/forms.py:76
 msgid "Invalid code"
 msgstr "Неверный код"
 
-#: delivery24/core/models.py:55
+#: core/models.py:55
 msgid "email"
 msgstr "Е-мэйл"
 
-#: delivery24/core/models.py:56
+#: core/models.py:56
 msgid "phone"
 msgstr "телефон"
 
-#: delivery24/core/models.py:57
+#: core/models.py:57
 msgid "address from"
 msgstr "Откуда"
 
-#: delivery24/core/models.py:57
+#: core/models.py:57
 msgid "Delivery start address"
 msgstr "Начальный адрес"
 
-#: delivery24/core/models.py:58
+#: core/models.py:58
 msgid "address to"
 msgstr "Куда"
 
-#: delivery24/core/models.py:58
+#: core/models.py:58
 msgid "Delivery end address"
 msgstr "Конечный адрес"
 
-#: delivery24/core/models.py:59
+#: core/models.py:59
 msgid "delivery start"
 msgstr "Начало доставки"
 
-#: delivery24/core/models.py:59
+#: core/models.py:59
 msgid "Delivery start time"
 msgstr "Начало доставки"
 
-#: delivery24/core/models.py:60
+#: core/models.py:60
 msgid "delivery end"
 msgstr "Окончание доставки"
 
-#: delivery24/core/models.py:60
+#: core/models.py:60
 msgid "Delivery end time"
 msgstr "Примерное время окончания доставки"
 
-#: delivery24/core/models.py:61
+#: core/models.py:61
 msgid "number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: delivery24/core/models.py:64
+#: core/models.py:64
 msgid "Number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: delivery24/core/models.py:65
+#: core/models.py:65
 msgid "message"
 msgstr "Сообщение"
 
-#: delivery24/core/models.py:65
+#: core/models.py:65
 msgid "additional information"
 msgstr "Дополнительная информация"
 
-#: delivery24/core/templates/core/base.html:74
-#: delivery24/core/templates/core/index.html:75
+#: core/templates/core/base.html:74 core/templates/core/index.html:75
 msgid "Home"
 msgstr "Главная"
 
-#: delivery24/core/templates/core/base.html:75
-#: delivery24/core/templates/core/features.html:5
-#: delivery24/core/templates/core/features.html:14
-#: delivery24/core/templates/core/index.html:76
+#: core/templates/core/base.html:75 core/templates/core/features.html:5
+#: core/templates/core/features.html:14 core/templates/core/index.html:76
 msgid "Features"
 msgstr "Особенности"
 
-#: delivery24/core/templates/core/base.html:76
-#: delivery24/core/templates/core/index.html:77
+#: core/templates/core/base.html:76 core/templates/core/index.html:77
 msgid "GET STARTED"
 msgstr "НАЧАТЬ"
 
-#: delivery24/core/templates/core/base.html:78
-#: delivery24/core/templates/core/index.html:79
-#: delivery24/core/templates/core/index.html:244
-#: delivery24/core/templates/core/partner.html:5
-#: delivery24/core/templates/core/partner.html:14
+#: core/templates/core/base.html:78 core/templates/core/index.html:79
+#: core/templates/core/index.html:244 core/templates/core/partner.html:5
+#: core/templates/core/partner.html:14
 msgid "Become a Partner"
 msgstr "Стань партнёром"
 
-#: delivery24/core/templates/core/base.html:92
-#: delivery24/core/templates/core/index.html:93
+#: core/templates/core/base.html:92 core/templates/core/index.html:93
 msgid "Blog"
 msgstr "Блог"
 
-#: delivery24/core/templates/core/base.html:93
-#: delivery24/core/templates/core/contact.html:5
-#: delivery24/core/templates/core/index.html:94
+#: core/templates/core/base.html:93 core/templates/core/contact.html:5
+#: core/templates/core/index.html:94
 msgid "Contact"
 msgstr "Контакт"
 
-#: delivery24/core/templates/core/contact.html:14
-#: delivery24/core/templates/core/index.html:316
+#: core/templates/core/contact.html:14 core/templates/core/index.html:316
 msgid "Contact Us"
 msgstr "Связаться"
 
-#: delivery24/core/templates/core/contact.html:21
-#: delivery24/core/templates/core/index.html:322
+#: core/templates/core/contact.html:21 core/templates/core/index.html:322
 msgid "Contact Form"
 msgstr "Контактная форма"
 
-#: delivery24/core/templates/core/contact.html:24
-#: delivery24/core/templates/core/index.html:325
+#: core/templates/core/contact.html:24 core/templates/core/index.html:325
 msgid "First Name"
 msgstr "Имя"
 
-#: delivery24/core/templates/core/contact.html:28
-#: delivery24/core/templates/core/index.html:329
+#: core/templates/core/contact.html:28 core/templates/core/index.html:329
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: delivery24/core/templates/core/contact.html:44
-#: delivery24/core/templates/core/index.html:343
+#: core/templates/core/contact.html:44 core/templates/core/index.html:343
 msgid "Subject"
 msgstr "Тема"
 
-#: delivery24/core/templates/core/contact.html:51
-#: delivery24/core/templates/core/index.html:350
+#: core/templates/core/contact.html:51 core/templates/core/index.html:350
 msgid "Message"
 msgstr "Сообщение"
 
-#: delivery24/core/templates/core/contact.html:58
-#: delivery24/core/templates/core/index.html:357
+#: core/templates/core/contact.html:58 core/templates/core/index.html:357
 msgid "Send Message"
 msgstr "Сообщение"
 
-#: delivery24/core/templates/core/driver_newjob_confirm.html:5
+#: core/templates/core/driver_newjob_confirm.html:5
 msgid "New Job Confirm"
 msgstr "Подтверждение новой работы"
 
-#: delivery24/core/templates/core/driver_newjob_confirm.html:14
+#: core/templates/core/driver_newjob_confirm.html:14
 msgid "Confirm New Job"
 msgstr "Подтвердить новую работу"
 
-#: delivery24/core/templates/core/driver_newjob_confirm.html:22
+#: core/templates/core/driver_newjob_confirm.html:22
 msgid "You already have work at same time"
 msgstr "У Вас уже есть работа в это время"
 
-#: delivery24/core/templates/core/driver_newjob_confirm.html:36
+#: core/templates/core/driver_newjob_confirm.html:36
 msgid "Completed"
 msgstr "Завершено"
 
-#: delivery24/core/templates/core/index.html:6
+#: core/templates/core/index.html:6
 msgid "DELIVERY24 &mdash; Best Price Moving"
 msgstr "DELIVERY24 &mdash; Лучшие цены грузоперевозок"
 
-#: delivery24/core/templates/core/index.html:82
+#: core/templates/core/index.html:82
 msgid "Our Team"
 msgstr "Наша команда"
 
-#: delivery24/core/templates/core/index.html:141
+#: core/templates/core/index.html:141
 msgid "Order Moving Service in<br>3 Minutes"
 msgstr "Закажи услугу грузоперевозки за 3 минуты"
 
-#: delivery24/core/templates/core/index.html:143
+#: core/templates/core/index.html:143
 msgid "Fastest way to find moving service with best price"
 msgstr "Быстрый способ заказать перевозку по лучшей цене"
 
-#: delivery24/core/templates/core/index.html:144
+#: core/templates/core/index.html:144
 msgid "No phone calls asking for schedule and price"
 msgstr "Никаких звонков что-бы узнать цену и доступное время"
 
-#: delivery24/core/templates/core/index.html:145
+#: core/templates/core/index.html:145
 msgid "Place your order and get response in minutes"
 msgstr "Оставь заявку и получи ответ сразу на сайте"
 
-#: delivery24/core/templates/core/index.html:148
-#: delivery24/core/templates/core/index.html:218
+#: core/templates/core/index.html:148 core/templates/core/index.html:218
 msgid "Get Started"
 msgstr "НАЧАТЬ"
 
-#: delivery24/core/templates/core/index.html:163
+#: core/templates/core/index.html:163
 msgid "Delivery24 Features"
 msgstr "Delivery24 достоинства"
 
-#: delivery24/core/templates/core/index.html:164
+#: core/templates/core/index.html:164
 msgid ""
 "We know how it is time consuming to find moving service that<br>matches your "
 "schedule and price. We made it easier for You. Fast response with better "
@@ -484,75 +510,72 @@ msgstr ""
 "подходит по цене и времени. Мы сделали этот процесс простым для Вас. Быстрый "
 "ответ с наилучшей ценой."
 
-#: delivery24/core/templates/core/index.html:175
+#: core/templates/core/index.html:175
 msgid "Place Your Order"
 msgstr "Простой способ сделать заказ"
 
-#: delivery24/core/templates/core/index.html:176
+#: core/templates/core/index.html:176
 msgid "Fill in simple form with date, addresses and payment method."
 msgstr "Заполни простую форму с датой, адресом и способом оплаты."
 
-#: delivery24/core/templates/core/index.html:177
-#: delivery24/core/templates/core/index.html:190
-#: delivery24/core/templates/core/index.html:203
+#: core/templates/core/index.html:177 core/templates/core/index.html:190
+#: core/templates/core/index.html:203
 msgid "Learn More"
 msgstr "Узнать больше"
 
-#: delivery24/core/templates/core/index.html:188
+#: core/templates/core/index.html:188
 msgid "Best price offer in minutes"
 msgstr "Быстрый ответ с лучшим предложением"
 
-#: delivery24/core/templates/core/index.html:189
+#: core/templates/core/index.html:189
 msgid ""
 "You will receive best offer based on your order. Confirm if the price suits "
 "you."
 msgstr "Просто нажми подтвердить если цена подходит Вам."
 
-#: delivery24/core/templates/core/index.html:201
+#: core/templates/core/index.html:201
 msgid "Pay online or by cash"
 msgstr "Выбери удобный способ оплаты"
 
-#: delivery24/core/templates/core/index.html:202
+#: core/templates/core/index.html:202
 msgid "You have an option to pay safely online or by cash when job is done."
 msgstr "Оплата online или наличными после окончания работы."
 
-#: delivery24/core/templates/core/index.html:229
-#: delivery24/core/templates/core/order.html:5
-#: delivery24/core/templates/core/order.html:14
-#: delivery24/core/templates/core/order.html:27
+#: core/templates/core/index.html:229 core/templates/core/order.html:5
+#: core/templates/core/order.html:14 core/templates/core/order.html:27
 msgid "Order"
 msgstr "Заказ"
 
-#: delivery24/core/templates/core/order_complete.html:5
-#: delivery24/core/templates/core/order_complete.html:61
+#: core/templates/core/order_complete.html:5
+#: core/templates/core/order_complete.html:61
 msgid "Order Complete"
 msgstr "Окончание заказа"
 
-#: delivery24/core/templates/core/order_complete.html:86
+#: core/templates/core/order_complete.html:86
 msgid "Order confirmed"
 msgstr "Заказ подтверждён"
 
-#: delivery24/core/templates/core/order_complete.html:88
+#: core/templates/core/order_complete.html:88
 msgid "Order already confirmed"
 msgstr "Заказ уже подтверждён"
 
-#: delivery24/core/templates/core/order_veriff.html:5
+#: core/templates/core/order_veriff.html:5
 msgid "Order Confirm"
 msgstr "Подтвердить заказ"
 
-#: delivery24/core/templates/core/order_veriff.html:14
+#: core/templates/core/order_veriff.html:14
 msgid "Order Verification"
 msgstr "Верификация заказа"
 
-#: delivery24/core/templates/core/order_veriff.html:39
+#: core/templates/core/order_veriff.html:39
 msgid "Verify"
 msgstr "Подтверди"
 
-#: delivery24/core/utils.py:30
+#: core/utils.py:30
 msgid "Isikukood is incorrect"
 msgstr "Неверный личный код"
 
-#: delivery24/core/utils.py:51
+#: core/utils.py:51
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
 

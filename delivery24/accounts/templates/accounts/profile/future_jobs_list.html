@@ -1,0 +1,58 @@
+{% extends 'accounts/profile/profile_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Future Jobs" %}{% endblock title %}
+
+{% block content %}
+
+
+<div class="site-section bg-light" id="start-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3"><br>{% trans "Future Jobs" %}</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-7 mb-5">
+        <div class="col-md-12">
+          <ul>
+            {% for work in object_list %}
+              <li>
+                  <label class="text-black">{% trans "Date" %}:</label> {{ work.delivery_start }} - {{ work.delivery_end }}<br>
+                  <label class="text-black">{% trans "Address" %}:</label> {{ work.deliver_from }} - {{ work.deliver_to }}<br>
+                  <label class="text-black">{% trans "Price" %}:</label> {{ work.price|floatformat:"0" }} &euro;
+              </li>
+            {% empty %}
+                <li>No jobs yet.</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!-- PAGINATION START -->
+        <div class="pagination">
+          <span class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1">&laquo;</a>
+                  <a href="?page={{ page_obj.previous_page_number }}">{% trans "previous" %}</a>
+              {% endif %}
+
+              <span class="current">
+                {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}.
+              </span>
+
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+              {% endif %}
+          </span>
+      </div><!-- PAGINATION END -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

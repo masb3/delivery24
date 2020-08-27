@@ -1,4 +1,5 @@
 from django.views import View
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView, FormView
 from .forms import CustomPasswordChangeForm, ChangeProfileForm
@@ -83,3 +84,25 @@ class CustomPasswordChangeView(PasswordChangeView):
     template_name = 'accounts/profile/changepwd.html'
     form_class = CustomPasswordChangeForm
     success_url = reverse_lazy('accounts:profile')
+
+
+class CompletedJobsListView(LoginRequiredMixin, ListView):
+    login_required = True
+    model = Work
+    paginate_by = 2
+    template_name = 'accounts/profile/completed_jobs_list.html'
+
+    def get_queryset(self):
+        queryset = super(CompletedJobsListView, self).get_queryset()
+        return queryset.filter(driver=self.request.user.pk, status__gte=Work.WORK_STATUS[2][0])
+
+
+class FutureJobsListView(LoginRequiredMixin, ListView):
+    login_required = True
+    model = Work
+    paginate_by = 2
+    template_name = 'accounts/profile/future_jobs_list.html'
+
+    def get_queryset(self):
+        queryset = super(FutureJobsListView, self).get_queryset()
+        return queryset.filter(driver=self.request.user.pk, status__lte=Work.WORK_STATUS[1][0])

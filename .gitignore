@@ -3,3 +3,4 @@ delivery24/delivery24/__pycache__/
 *.pyc
 /social
 /delivery24/celerybeat-schedule
+/commands
