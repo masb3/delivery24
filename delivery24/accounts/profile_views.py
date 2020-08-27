@@ -89,7 +89,7 @@ class CustomPasswordChangeView(PasswordChangeView):
 class CompletedJobsListView(LoginRequiredMixin, ListView):
     login_required = True
     model = Work
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'accounts/profile/completed_jobs_list.html'
 
     def get_queryset(self):
@@ -100,7 +100,7 @@ class CompletedJobsListView(LoginRequiredMixin, ListView):
 class FutureJobsListView(LoginRequiredMixin, ListView):
     login_required = True
     model = Work
-    paginate_by = 2
+    paginate_by = 10
     template_name = 'accounts/profile/future_jobs_list.html'
 
     def get_queryset(self):
