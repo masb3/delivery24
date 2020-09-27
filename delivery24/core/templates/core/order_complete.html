@@ -31,6 +31,8 @@ function Poll() {
           document.getElementById("work_car").innerHTML = "Car: " + resp.car_model;
           document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;";
 
+          document.getElementById("work_id").value = resp.work_id;
+
           document.getElementById("confirm-button").hidden = false;
       }
       polling = false;
@@ -74,6 +76,8 @@ if(isOrderId) {
             <p id="work_driver"></p>
             <p id="work_car"></p>
             <p id="work_price"></p>
+
+            <input type="hidden" id="work_id" name="work_id" value="">
 
             <div class="row form-group">
                 <div class="col-md-12">

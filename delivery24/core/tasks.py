@@ -49,21 +49,29 @@ def work_confirmation_timeout_task(order_id, timeout):
     """ Waits until customer confirms proposed work (price, driver, car) """
     sleep(timeout)
     order = Order.objects.get(order_id=order_id)
-    if not order.work.order_confirmed:
+    if not order.work_set.all().filter(order_confirmed=True):
         order.verified = False
         order.verification_code_sent = False
         order.drivers_notified = False
         order.save()
-        Work.objects.filter(pk=order.work.id).delete()
+        order.work_set.all().delete()
+
+    else:
+        # Delete works that were not accepted for this order
+        works = order.work_set.all()
+        for work in works:
+            if work.order_confirmed is False:
+                work.delete()
 
 
 @shared_task
 def driver_find_timeout_task(order_id, timeout):
     sleep(timeout)
     order = Order.objects.get(order_id=order_id)
-    if order.work is None:
+    order.collecting_works = False
+    if order.work_set.all().count() == 0:
         order.no_free_drivers = True
-        order.save()
+    order.save()
 
 
 @shared_task

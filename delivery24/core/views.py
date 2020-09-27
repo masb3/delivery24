@@ -94,7 +94,7 @@ class OrderCompleteView(View):
                 send_order_veriff_code_email(order, request)
             return redirect('core:veriff')
 
-        if order.work is None or order.work.order_confirmed is False:
+        if order.work_set.all().count == 0 or order.work_set.all().filter(order_confirmed=True).count() == 0:
             form = self.form_class(instance=order)
             if order.drivers_notified is False:
                 find_suitable_drivers(order, request)
@@ -113,8 +113,10 @@ class OrderCompleteView(View):
         elif order.no_free_drivers:
             return redirect('core:order')
         else:
-            order.work.order_confirmed = True
-            order.work.save()
+            work_id = request.POST['work_id']
+            work = order.work_set.get(id=work_id)
+            work.order_confirmed = True
+            work.save()
             return render(request, self.template_name, {'confirmed': True})
 
 
@@ -125,14 +127,21 @@ class WaitDriver(View):
         if order.no_free_drivers:
             resp = JsonResponse({'no_free_drivers': True})
 
-        elif order.work_id:
-            driver = order.work.driver
+        elif order.work_set.all().count() > 0 and order.collecting_works is False:
+            # Choose cheapest work, rework to let customer choose by himself TODO: DEL-131
+            works = order.work_set.all().order_by('created')
+            work_min = works[0]
+            for work in works[1:]:
+                if work.price < work_min.price:
+                    work_min = work
+            driver = work_min.driver
             resp = JsonResponse({'driver_first_name': f'{driver.first_name}',
                                  'driver_last_name': f'{driver.last_name}',
                                  'driver_email': f'{driver.email}',
                                  'driver_phone': f'{driver.phone}',
                                  'car_model': f'{driver.car_model}',
-                                 'price': f'{order.work.price}', })
+                                 'price': f'{work_min.price}',
+                                 'work_id': f'{work_min.id}', })
         else:
             resp = HttpResponse(b"Please wait ...")
             resp.status_code = 202
@@ -152,7 +161,7 @@ class NewJob(View):
 
         order = get_object_or_404(Order, order_id=order_id)
         if user is not None and job_confirm_token.check_token(user, order, token):
-            if order.work is not None:
+            if order.work_set.all().filter(order_confirmed=True).exists():
                 return render(request, self.template_name, context={'completed': True})
             else:
                 return render(request, self.template_name,
@@ -169,25 +178,24 @@ class NewJob(View):
 
         order = get_object_or_404(Order, order_id=order_id)
         if user is not None and job_confirm_token.check_token(user, order, token):
-            if order.work is None:
-                # For use case when two new orders with same delivery start/end and driver attempts to confirms both
-                if not is_driver_available(user, order):
-                    return render(request, self.template_name, context={'driver_has_work_at_same_time': True})
+            # For use case when two new orders with same delivery start/end and driver attempts to confirms both
+            if not is_driver_available(user, order):
+                return render(request, self.template_name, context={'driver_has_work_at_same_time': True})
 
-                work = Work(driver=user,
-                            deliver_from=order.address_from,
-                            deliver_to=order.address_to,
-                            delivery_start=order.delivery_start,
-                            delivery_end=order.delivery_end,
-                            price=randrange(30, 150.0) + random(),  # TODO
-                            status=1,  # TODO
-                            )
-                work.save()
-                order.work = work
-                order.save()
+            work = Work(driver=user,
+                        deliver_from=order.address_from,
+                        deliver_to=order.address_to,
+                        delivery_start=order.delivery_start,
+                        delivery_end=order.delivery_end,
+                        price=randrange(30, 150.0) + random(),  # TODO
+                        status=1,  # TODO
+                        order=order,
+                        )
+            work.save()
 
-                #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work
-                work_confirmation_timeout_task.delay(order_id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S)
+            #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work
+            # +DRIVER_FIND_TIMEOUT_S is needed because wait until Order.collecting_works == False
+            work_confirmation_timeout_task.delay(order_id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
 
             return render(request, self.template_name, context={'completed': True})
 
