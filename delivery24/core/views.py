@@ -16,6 +16,7 @@ from .services.order import find_suitable_drivers, is_driver_available, send_ord
 from .services.tokens import job_confirm_token
 from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
 from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S, DRIVER_FIND_TIMEOUT_S
+from .utils import get_price
 from delivery24 import settings
 
 
@@ -182,22 +183,27 @@ class NewJob(View):
             if not is_driver_available(user, order):
                 return render(request, self.template_name, context={'driver_has_work_at_same_time': True})
 
-            work = Work(driver=user,
-                        deliver_from=order.address_from,
-                        deliver_to=order.address_to,
-                        delivery_start=order.delivery_start,
-                        delivery_end=order.delivery_end,
-                        price=randrange(30, 150.0) + random(),  # TODO
-                        status=1,  # TODO
-                        order=order,
-                        )
-            work.save()
+            price = get_price(request.POST['price'])
+            if price is None:
+                return render(request, self.template_name,
+                              context={'order_id': order_id, 'uidb64': uidb64, 'token': token, 'price_error': True})
+            else:
+                work = Work(driver=user,
+                            deliver_from=order.address_from,
+                            deliver_to=order.address_to,
+                            delivery_start=order.delivery_start,
+                            delivery_end=order.delivery_end,
+                            price=price,
+                            status=1,  # TODO
+                            order=order,
+                            )
+                work.save()
 
-            #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work
-            # +DRIVER_FIND_TIMEOUT_S is needed because wait until Order.collecting_works == False
-            work_confirmation_timeout_task.delay(order_id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
+                #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work
+                # +DRIVER_FIND_TIMEOUT_S is needed because wait until Order.collecting_works == False
+                work_confirmation_timeout_task.delay(order_id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
 
-            return render(request, self.template_name, context={'completed': True})
+                return render(request, self.template_name, context={'completed': True})
 
         return HttpResponseNotFound('<h1>Page not found</h1>')
 

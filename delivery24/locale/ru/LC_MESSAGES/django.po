@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-28 00:12+0300\n"
+"POT-Creation-Date: 2020-09-28 22:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "Подтверждение Нового Пароля"
 msgid "Email"
 msgstr "Е-мэйл"
 
-#: accounts/models.py:15 core/models.py:49
+#: accounts/models.py:15 core/models.py:23
 msgid "Cash"
 msgstr "Наличные"
 
@@ -53,11 +53,11 @@ msgstr "Наличные"
 msgid "Email address"
 msgstr "Е-мэйл адрес"
 
-#: accounts/models.py:26 core/models.py:53
+#: accounts/models.py:26 core/models.py:27
 msgid "first name"
 msgstr "Имя"
 
-#: accounts/models.py:27 core/models.py:54
+#: accounts/models.py:27 core/models.py:28
 msgid "last name"
 msgstr "Фамилия"
 
@@ -85,7 +85,7 @@ msgstr "Грузоподъёмность"
 msgid "car number"
 msgstr "Номер машины"
 
-#: accounts/models.py:38 core/models.py:66
+#: accounts/models.py:38 core/models.py:40
 msgid "payment method"
 msgstr "Способ оплаты"
 
@@ -110,8 +110,8 @@ msgstr "Логин Водителя"
 #: accounts/templates/accounts/profile/changepwd.html:28
 #: accounts/templates/accounts/profile/profile_change.html:26
 #: accounts/templates/accounts/signup.html:27
-#: core/templates/core/driver_newjob_confirm.html:31
-#: core/templates/core/order_complete.html:80
+#: core/templates/core/driver_newjob_confirm.html:41
+#: core/templates/core/order_complete.html:84
 msgid "Confirm"
 msgstr "Подтвердить"
 
@@ -201,15 +201,15 @@ msgstr "Общий доход"
 msgid "Loading..."
 msgstr "Загрузка ..."
 
-#: accounts/templates/accounts/profile/profile_base.html:76
+#: accounts/templates/accounts/profile/profile_base.html:74
 msgid "Profile"
 msgstr "Профиль"
 
-#: accounts/templates/accounts/profile/profile_base.html:77
+#: accounts/templates/accounts/profile/profile_base.html:75
 msgid "Jobs"
 msgstr "Работы"
 
-#: accounts/templates/accounts/profile/profile_base.html:78
+#: accounts/templates/accounts/profile/profile_base.html:76
 msgid "Settings"
 msgstr "Настройки"
 
@@ -340,59 +340,59 @@ msgstr "Должно быть менее {} часов после начала �
 msgid "Invalid code"
 msgstr "Неверный код"
 
-#: core/models.py:55
+#: core/models.py:29
 msgid "email"
 msgstr "Е-мэйл"
 
-#: core/models.py:56
+#: core/models.py:30
 msgid "phone"
 msgstr "телефон"
 
-#: core/models.py:57
+#: core/models.py:31
 msgid "address from"
 msgstr "Откуда"
 
-#: core/models.py:57
+#: core/models.py:31
 msgid "Delivery start address"
 msgstr "Начальный адрес"
 
-#: core/models.py:58
+#: core/models.py:32
 msgid "address to"
 msgstr "Куда"
 
-#: core/models.py:58
+#: core/models.py:32
 msgid "Delivery end address"
 msgstr "Конечный адрес"
 
-#: core/models.py:59
+#: core/models.py:33
 msgid "delivery start"
 msgstr "Начало доставки"
 
-#: core/models.py:59
+#: core/models.py:33
 msgid "Delivery start time"
 msgstr "Начало доставки"
 
-#: core/models.py:60
+#: core/models.py:34
 msgid "delivery end"
 msgstr "Окончание доставки"
 
-#: core/models.py:60
+#: core/models.py:34
 msgid "Delivery end time"
 msgstr "Примерное время окончания доставки"
 
-#: core/models.py:61
+#: core/models.py:35
 msgid "number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: core/models.py:64
+#: core/models.py:38
 msgid "Number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: core/models.py:65
+#: core/models.py:39
 msgid "message"
 msgstr "Сообщение"
 
-#: core/models.py:65
+#: core/models.py:39
 msgid "additional information"
 msgstr "Дополнительная информация"
 
@@ -464,7 +464,15 @@ msgstr "Подтвердить новую работу"
 msgid "You already have work at same time"
 msgstr "У Вас уже есть работа в это время"
 
-#: core/templates/core/driver_newjob_confirm.html:36
+#: core/templates/core/driver_newjob_confirm.html:31
+msgid "Enter price"
+msgstr "Введите цену"
+
+#: core/templates/core/driver_newjob_confirm.html:34
+msgid "Invalid price. Should be integer greater than zero"
+msgstr "Неверная цена. Должно быть целое число больше нуля"
+
+#: core/templates/core/driver_newjob_confirm.html:46
 msgid "Completed"
 msgstr "Завершено"
 
@@ -547,15 +555,15 @@ msgid "Order"
 msgstr "Заказ"
 
 #: core/templates/core/order_complete.html:5
-#: core/templates/core/order_complete.html:61
+#: core/templates/core/order_complete.html:63
 msgid "Order Complete"
 msgstr "Окончание заказа"
 
-#: core/templates/core/order_complete.html:86
+#: core/templates/core/order_complete.html:90
 msgid "Order confirmed"
 msgstr "Заказ подтверждён"
 
-#: core/templates/core/order_complete.html:88
+#: core/templates/core/order_complete.html:92
 msgid "Order already confirmed"
 msgstr "Заказ уже подтверждён"
 

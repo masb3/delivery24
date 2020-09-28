@@ -53,5 +53,20 @@ def car_number_validator(num: str):
         )
 
 
+def get_price(str_price):
+    """
+    Converts entered price to int
+    :param str_price:
+    :return: Price on success, otherwise None
+    """
+    try:
+        price = int(str_price)
+        if price <= 0:
+            return None
+        return price
+    except ValueError:
+        return None
+
+
 if __name__ == '__main__':
     pass

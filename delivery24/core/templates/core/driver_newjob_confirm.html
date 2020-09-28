@@ -27,7 +27,17 @@
             <!--{% include 'core/includes/order_complete_form.html' %}-->
 
             <div class="row form-group">
-                <div class="col-md-12">
+                <div class="col-md-6">
+                  <label class="text-black" for="id_price">{% trans 'Enter price' %}</label>
+                  <input type="text" name="price" class="form-control rounded-0" placeholder="" maxlength="7" required id="id_price">
+                  {% if price_error %}
+                    <p style="color: red">{% trans 'Invalid price. Should be integer greater than zero' %}</p>
+                  {% endif %}
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-6">
                   <input type="submit" value="{% trans 'Confirm' %}" class="btn btn-primary mr-2 mb-2">
                 </div>
             </div>
