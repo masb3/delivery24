@@ -161,7 +161,7 @@ class NewJob(View):
 
         order = get_object_or_404(Order, order_id=order_id)
         if user is not None and job_confirm_token.check_token(user, order, token):
-            if order.work_set.all().filter(order_confirmed=True).exists():
+            if order.work_set.filter(driver_id=user.id).exists():
                 return render(request, self.template_name, context={'completed': True})
             else:
                 return render(request, self.template_name,
