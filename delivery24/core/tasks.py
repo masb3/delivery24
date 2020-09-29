@@ -1,7 +1,6 @@
 import datetime
 
 from time import sleep
-from celery import shared_task
 
 from django.utils import timezone
 from django.template.loader import render_to_string
@@ -12,7 +11,7 @@ from .proj_conf import PERIODIC_SET_WORK_DONE_S
 from core.models import Order, Work
 
 
-@shared_task
+@app.task
 def send_drivers_newjob_email_task(to_email, **kwargs):
     message = render_to_string('core/new_job_notify_email.html', {
         'first_name': kwargs['first_name'],
@@ -27,7 +26,7 @@ def send_drivers_newjob_email_task(to_email, **kwargs):
     email.send()
 
 
-@shared_task
+@app.task
 def send_order_veriff_code_email_task(to_email, **kwargs):
     message = render_to_string('core/order_veriff_code_send_email.html', {
         'first_name': kwargs['first_name'],
@@ -44,7 +43,7 @@ def send_order_veriff_code_email_task(to_email, **kwargs):
     order.save()
 
 
-@shared_task
+@app.task
 def work_confirmation_timeout_task(order_id, timeout):
     """ Waits until customer confirms proposed work (price, driver, car) """
     sleep(timeout)
@@ -64,7 +63,7 @@ def work_confirmation_timeout_task(order_id, timeout):
                 work.delete()
 
 
-@shared_task
+@app.task
 def driver_find_timeout_task(order_id, timeout):
     sleep(timeout)
     order = Order.objects.get(order_id=order_id)
@@ -74,7 +73,7 @@ def driver_find_timeout_task(order_id, timeout):
     order.save()
 
 
-@shared_task
+@app.task
 def reset_password_email_task(subject_template_name, email_template_name, to_email, **kwargs):
     subject = render_to_string(subject_template_name, {
         'email': kwargs['email'],
@@ -120,15 +119,3 @@ def set_work_done():
             work.status = Work.WORK_STATUS[3][0]  # Canceled
         work.save()
         print(work.status)
-
-
-@shared_task
-def add(x, y):
-    sleep(10)
-    print(x+y)
-
-
-@app.task
-def hello_world():
-    sleep(10)
-    print('hello celery')
