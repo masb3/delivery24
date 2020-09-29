@@ -128,7 +128,7 @@ class WaitDriver(View):
         if order.no_free_drivers:
             resp = JsonResponse({'no_free_drivers': True})
 
-        elif order.work_set.all().count() > 0 and order.collecting_works is False:
+        elif order.work_set.all().exists() and order.collecting_works is False:
             # Choose cheapest work, rework to let customer choose by himself TODO: DEL-131
             works = order.work_set.all().order_by('created')
             work_min = works[0]
