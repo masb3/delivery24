@@ -108,6 +108,24 @@ class OrderCompleteView(View):
         if 'change_order' in request.POST:
             form = self.prefilled_form_class(request.POST)
             if form.is_valid():
+                new_email = form.cleaned_data.get('email')
+                new_phone = form.cleaned_data.get('phone')
+                if new_email != order.email or new_phone != order.phone:
+                    order.email = new_email
+                    order.phone = new_phone
+                    order.verification_code_sent = False
+                    order.verified = False
+
+                order.first_name = form.cleaned_data.get('first_name')
+                order.last_name = form.cleaned_data.get('last_name')
+                order.address_from = form.cleaned_data.get('address_from')
+                order.address_to = form.cleaned_data.get('address_to')
+                order.delivery_start = form.cleaned_data.get('delivery_start')
+                order.delivery_end = form.cleaned_data.get('delivery_end')
+                order.movers_num = form.cleaned_data.get('movers_num')
+                order.message = form.cleaned_data.get('message')
+                order.payment = form.cleaned_data.get('payment')
+
                 order.no_free_drivers = False
                 order.drivers_notified = False
                 order.collecting_works = True
