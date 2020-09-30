@@ -49,8 +49,7 @@ class JobConfirmTokenGenerator(PasswordResetTokenGenerator):
 
     def _make_hash_value(self, user, order, timestamp):
         return (
-            str(user.pk) + str(timestamp) +
-            str(order.work_set.all().filter(order_confirmed=True).exists())
+                str(user.pk) + str(timestamp) + str(order.updated_at)
         )
 
 job_confirm_token = JobConfirmTokenGenerator()
