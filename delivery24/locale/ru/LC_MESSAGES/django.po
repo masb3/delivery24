@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-28 22:39+0300\n"
+"POT-Creation-Date: 2020-09-30 22:18+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,7 +111,7 @@ msgstr "Логин Водителя"
 #: accounts/templates/accounts/profile/profile_change.html:26
 #: accounts/templates/accounts/signup.html:27
 #: core/templates/core/driver_newjob_confirm.html:41
-#: core/templates/core/order_complete.html:84
+#: core/templates/core/order_complete.html:110
 msgid "Confirm"
 msgstr "Подтвердить"
 
@@ -551,19 +551,25 @@ msgstr "Оплата online или наличными после окончан�
 
 #: core/templates/core/index.html:229 core/templates/core/order.html:5
 #: core/templates/core/order.html:14 core/templates/core/order.html:27
+#: core/templates/core/order_complete.html:89
 msgid "Order"
 msgstr "Заказ"
 
-#: core/templates/core/order_complete.html:5
-#: core/templates/core/order_complete.html:63
+#: core/templates/core/order_complete.html:7
+#: core/templates/core/order_complete.html:72
+msgid "Change Order"
+msgstr "Изменить заказ"
+
+#: core/templates/core/order_complete.html:9
+#: core/templates/core/order_complete.html:74
 msgid "Order Complete"
 msgstr "Окончание заказа"
 
-#: core/templates/core/order_complete.html:90
+#: core/templates/core/order_complete.html:116
 msgid "Order confirmed"
 msgstr "Заказ подтверждён"
 
-#: core/templates/core/order_complete.html:92
+#: core/templates/core/order_complete.html:118
 msgid "Order already confirmed"
 msgstr "Заказ уже подтверждён"
 

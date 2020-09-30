@@ -2,7 +2,13 @@
 {% load static %}
 {% load i18n %}
 
-{% block title %}{% trans "Order Complete" %}{% endblock title %}
+{% block title %}
+{% if change_order %}
+    {% trans "Change Order" %}
+{% else %}
+    {% trans "Order Complete" %}
+{% endif %}
+{% endblock title %}
 
 {% block content %}
 
@@ -60,36 +66,57 @@ if(isOrderId) {
   <div class="container">
     <div class="row mb-5">
       <div class="col-12 text-center">
-        <h2 class="section-title mb-3"><br>{% trans "Order Complete" %}</h2>
+        <h2 class="section-title mb-3">
+            <br>
+            {% if change_order %}
+                {% trans "Change Order" %}
+            {% else %}
+                {% trans "Order Complete" %}
+            {% endif %}
+        </h2>
       </div>
     </div>
 
-    <div class="row justify-content"><!--<div class="row justify-content-center">-->
+    <div class="row justify-content-center"><!--<div class="row justify-content">-->
       <div class="col-lg-7 mb-5">
-
-        {% if already_confirmed == None and confirmed == None %}
-        <form method="post" action="{% url 'core:complete' order_id=order_id %}" class="p-5 bg-white" novalidate>
-            {% csrf_token %}
-            {% include 'core/includes/order_complete_form.html' %}
-
-            <p id="work_wait"></p>
-            <p id="work_driver"></p>
-            <p id="work_car"></p>
-            <p id="work_price"></p>
-
-            <input type="hidden" id="work_id" name="work_id" value="">
-
-            <div class="row form-group">
-                <div class="col-md-12">
-                  <input type="submit" id="confirm-button" hidden value="{% trans 'Confirm' %}" class="btn btn-primary mr-2 mb-2">
+        {% if change_order %}
+            <form method="post" action="{% url 'core:complete' order_id=order_id %}" class="p-5 bg-white" novalidate>
+                {% csrf_token %}
+                {% include 'core/includes/order_form.html' %}
+                <div class="row form-group">
+                    <div class="col-md-12">
+                      <input type="hidden" name="change_order" value='True'>
+                      <input type="submit" value="{% trans 'Order' %}" class="btn btn-primary mr-2 mb-2">
+                    </div>
                 </div>
-            </div>
+            </form>
 
-        </form>
-        {% elif confirmed is True %}
-          <h1 class="text-success">{% trans "Order confirmed" %}</h1>
         {% else %}
-          <h1 class="text-danger">{% trans "Order already confirmed" %}</h1>
+
+            {% if already_confirmed == None and confirmed == None %}
+            <form method="post" action="{% url 'core:complete' order_id=order_id %}" class="p-5 bg-white" novalidate>
+                {% csrf_token %}
+                {% include 'core/includes/order_complete_form.html' %}
+
+                <p id="work_wait"></p>
+                <p id="work_driver"></p>
+                <p id="work_car"></p>
+                <p id="work_price"></p>
+
+                <input type="hidden" id="work_id" name="work_id" value="">
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                      <input type="submit" id="confirm-button" hidden value="{% trans 'Confirm' %}" class="btn btn-primary mr-2 mb-2">
+                    </div>
+                </div>
+
+            </form>
+            {% elif confirmed is True %}
+              <h1 class="text-success">{% trans "Order confirmed" %}</h1>
+            {% else %}
+              <h1 class="text-danger">{% trans "Order already confirmed" %}</h1>
+            {% endif %}
         {% endif %}
       </div>
     </div>

@@ -1,5 +1,3 @@
-from random import random, randrange
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.utils import translation
@@ -86,6 +84,7 @@ class OrderVeriffView(View):
 class OrderCompleteView(View):
     template_name = "core/order_complete.html"
     form_class = OrderCompleteForm
+    prefilled_form_class = OrderForm
 
     def get(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
@@ -106,19 +105,36 @@ class OrderCompleteView(View):
 
     def post(self, request, order_id, *args, **kwargs):
         order = get_object_or_404(Order, order_id=order_id)
-        if not order.verified:
-            if not order.verification_code_sent:
-                order_veriff_code_set(order)
-                send_order_veriff_code_email(order, request)
-            return redirect('core:veriff')
-        elif order.no_free_drivers:
-            return redirect('core:order')
+        if 'change_order' in request.POST:
+            form = self.prefilled_form_class(request.POST)
+            if form.is_valid():
+                order.no_free_drivers = False
+                order.drivers_notified = False
+                order.save()
+                return redirect('core:complete', order_id=order.order_id)
+            else:
+                return render(request, self.template_name, {'order_form': form,
+                                                            'order_id': order_id,
+                                                            'change_order': True})
         else:
-            work_id = request.POST['work_id']
-            work = order.work_set.get(id=work_id)
-            work.order_confirmed = True
-            work.save()
-            return render(request, self.template_name, {'confirmed': True})
+            if not order.verified:
+                if not order.verification_code_sent:
+                    order_veriff_code_set(order)
+                    send_order_veriff_code_email(order, request)
+                return redirect('core:veriff')
+            elif order.no_free_drivers:
+                form = self.prefilled_form_class(instance=order)
+                form.initial['delivery_start'] = None
+                form.initial['delivery_end'] = None
+                return render(request, self.template_name, {'order_form': form,
+                                                            'order_id': order_id,
+                                                            'change_order': True})
+            else:
+                work_id = request.POST['work_id']
+                work = order.work_set.get(id=work_id)
+                work.order_confirmed = True
+                work.save()
+                return render(request, self.template_name, {'confirmed': True})
 
 
 class WaitDriver(View):
