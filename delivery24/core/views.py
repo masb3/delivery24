@@ -110,6 +110,7 @@ class OrderCompleteView(View):
             if form.is_valid():
                 order.no_free_drivers = False
                 order.drivers_notified = False
+                order.collecting_works = True
                 order.save()
                 return redirect('core:complete', order_id=order.order_id)
             else:
