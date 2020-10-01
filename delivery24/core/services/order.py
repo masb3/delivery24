@@ -5,6 +5,7 @@ from django.db.models import Q
 
 from .tokens import job_confirm_token
 from core.models import Order
+from core.forms import OrderForm
 from accounts.models import User
 from core.tasks import send_drivers_newjob_email_task, send_order_veriff_code_email_task
 from core.services.veriff_code import get_veriff_code
@@ -86,3 +87,28 @@ def send_order_veriff_code_email(order, request):
                }
 
     send_order_veriff_code_email_task.delay(to_email, **message)
+
+
+def change_order_prefill_form(order: Order, form: OrderForm):
+    new_email = form.cleaned_data.get('email')
+    new_phone = form.cleaned_data.get('phone')
+    if new_email != order.email or new_phone != order.phone:
+        order.email = new_email
+        order.phone = new_phone
+        order.verification_code_sent = False
+        order.verified = False
+
+    order.first_name = form.cleaned_data.get('first_name')
+    order.last_name = form.cleaned_data.get('last_name')
+    order.address_from = form.cleaned_data.get('address_from')
+    order.address_to = form.cleaned_data.get('address_to')
+    order.delivery_start = form.cleaned_data.get('delivery_start')
+    order.delivery_end = form.cleaned_data.get('delivery_end')
+    order.movers_num = form.cleaned_data.get('movers_num')
+    order.message = form.cleaned_data.get('message')
+    order.payment = form.cleaned_data.get('payment')
+
+    order.no_free_drivers = False
+    order.drivers_notified = False
+    order.collecting_works = True
+    order.save()

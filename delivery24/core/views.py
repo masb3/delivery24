@@ -10,7 +10,8 @@ from core.models import Order, Work
 from accounts.models import User
 
 from .services.veriff_code import confirm_veriff_code, order_veriff_code_set
-from .services.order import find_suitable_drivers, is_driver_available, send_order_veriff_code_email
+from .services.order import find_suitable_drivers, is_driver_available, send_order_veriff_code_email, \
+    change_order_prefill_form
 from .services.tokens import job_confirm_token
 from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
 from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S, DRIVER_FIND_TIMEOUT_S
@@ -108,28 +109,7 @@ class OrderCompleteView(View):
         if 'change_order' in request.POST:
             form = self.prefilled_form_class(request.POST)
             if form.is_valid():
-                new_email = form.cleaned_data.get('email')
-                new_phone = form.cleaned_data.get('phone')
-                if new_email != order.email or new_phone != order.phone:
-                    order.email = new_email
-                    order.phone = new_phone
-                    order.verification_code_sent = False
-                    order.verified = False
-
-                order.first_name = form.cleaned_data.get('first_name')
-                order.last_name = form.cleaned_data.get('last_name')
-                order.address_from = form.cleaned_data.get('address_from')
-                order.address_to = form.cleaned_data.get('address_to')
-                order.delivery_start = form.cleaned_data.get('delivery_start')
-                order.delivery_end = form.cleaned_data.get('delivery_end')
-                order.movers_num = form.cleaned_data.get('movers_num')
-                order.message = form.cleaned_data.get('message')
-                order.payment = form.cleaned_data.get('payment')
-
-                order.no_free_drivers = False
-                order.drivers_notified = False
-                order.collecting_works = True
-                order.save()
+                change_order_prefill_form(order, form)
                 return redirect('core:complete', order_id=order.order_id)
             else:
                 return render(request, self.template_name, {'order_form': form,
