@@ -39,7 +39,7 @@ class Order(models.Model):
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
     verified = models.BooleanField(default=False)
-    verification_code = models.CharField(unique=True, null=True, max_length=VERIFF_CODE_LEN,
+    verification_code = models.CharField(_('Verification code'), unique=True, null=True, max_length=VERIFF_CODE_LEN,
                                          validators=[MinLengthValidator(VERIFF_CODE_LEN)])
     verification_code_sent = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
