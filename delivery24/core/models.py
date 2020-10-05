@@ -34,8 +34,7 @@ class Order(models.Model):
     delivery_end = models.DateTimeField(_('delivery end'), help_text=_('Delivery end time'))
     movers_num = models.IntegerField(_('number of required movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
-                                     default=0,
-                                     help_text=_('Number of required movers'))
+                                     default=0)
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
     verified = models.BooleanField(default=False)

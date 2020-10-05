@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 13:34+0300\n"
+"POT-Creation-Date: 2020-10-05 20:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgstr "Грузоподъёмность"
 msgid "car number"
 msgstr "Номер машины"
 
-#: accounts/models.py:38 core/models.py:40
+#: accounts/models.py:38 core/models.py:39
 msgid "payment method"
 msgstr "Способ оплаты"
 
@@ -336,7 +336,7 @@ msgstr "Должно быть минимум {} час после начала �
 msgid "Must be less than {} hours after delivery start"
 msgstr "Должно быть менее {} часов после начала доставки"
 
-#: core/forms.py:70 core/models.py:42
+#: core/forms.py:70 core/models.py:41
 msgid "Verification code"
 msgstr "Код подтверждения"
 
@@ -389,14 +389,10 @@ msgid "number of required movers"
 msgstr "Количество требуемых грузчиков"
 
 #: core/models.py:38
-msgid "Number of required movers"
-msgstr "Количество требуемых грузчиков"
-
-#: core/models.py:39
 msgid "message"
 msgstr "Сообщение"
 
-#: core/models.py:39
+#: core/models.py:38
 msgid "additional information"
 msgstr "Дополнительная информация"
 
@@ -596,6 +592,9 @@ msgstr "Неверный личный код"
 #: core/utils.py:51
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
+
+#~ msgid "Number of required movers"
+#~ msgstr "Количество требуемых грузчиков"
 
 #~ msgid "Account"
 #~ msgstr "Счёт"
