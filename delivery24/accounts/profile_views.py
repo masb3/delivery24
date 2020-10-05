@@ -59,6 +59,7 @@ class ProfileChange(LoginRequiredMixin, FormView):
         initial['car_carrying'] = self.request.user.car_carrying
         initial['movers_num'] = self.request.user.movers_num
         initial['payment'] = self.request.user.payment
+        initial['preferred_language'] = self.request.user.preferred_language
 
         return initial
 
@@ -71,6 +72,7 @@ class ProfileChange(LoginRequiredMixin, FormView):
         self.request.user.car_carrying = form.cleaned_data.get('car_carrying')
         self.request.user.movers_num = form.cleaned_data.get('movers_num')
         self.request.user.payment = form.cleaned_data.get('payment')
+        self.request.user.preferred_language = form.cleaned_data.get('preferred_language')
 
         self.request.user.save()
         return super().form_valid(form)
