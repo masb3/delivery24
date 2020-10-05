@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 22:00+0300\n"
+"POT-Creation-Date: 2020-10-05 23:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,11 +307,11 @@ msgstr "Подтвердить"
 msgid "Driver Signup"
 msgstr "Регистрация Водителя"
 
-#: core/forms.py:21
+#: core/forms.py:21 core/forms.py:83
 msgid "Delivery start"
 msgstr "Начало доставки"
 
-#: core/forms.py:23
+#: core/forms.py:23 core/forms.py:87
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
@@ -400,7 +400,7 @@ msgstr "Сообщение"
 msgid "additional information"
 msgstr "Дополнительная информация"
 
-#: core/services/order.py:81
+#: core/services/order.py:84
 msgid "delivery24.ee Order verification code"
 msgstr "delivery24.ee Код подтверждения заказа"
 
@@ -616,6 +616,10 @@ msgstr "Неверный личный код"
 #: core/utils.py:51
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
+
+#: core/views.py:169 core/views.py:170
+msgid "Please wait ..."
+msgstr "Пожалуйста подождите ..."
 
 #~ msgid "Number of required movers"
 #~ msgstr "Количество требуемых грузчиков"

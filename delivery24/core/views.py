@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.utils import translation
+from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
@@ -165,7 +166,7 @@ class WaitDriver(View):
                                  'price': f'{work_min.price}',
                                  'work_id': f'{work_min.id}', })
         else:
-            resp = HttpResponse(b"Please wait ...")
+            resp = HttpResponse(_('Please wait ...').encode())  # Need to encode to bytes
             resp.status_code = 202
         return resp
 

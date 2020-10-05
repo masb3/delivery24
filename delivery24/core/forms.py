@@ -80,11 +80,11 @@ class OrderVeriffForm(Form):
 
 
 class OrderCompleteForm(ModelForm):
-    delivery_start = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+    delivery_start = DateTimeField(label=_('Delivery start'), input_formats=['%d/%m/%Y %H:%M'],
                                    widget=DateWidget(attrs={'class': 'form-control rounded-0',
                                                             'readonly': 'readonly',
                                                             'disabled': 'disabled'}))
-    delivery_end = DateTimeField(input_formats=['%d/%m/%Y %H:%M'],
+    delivery_end = DateTimeField(label=_('Delivery end'), input_formats=['%d/%m/%Y %H:%M'],
                                  widget=DateWidget(attrs={'class': 'form-control rounded-0',
                                                           'readonly': 'readonly',
                                                           'disabled': 'disabled'}))
