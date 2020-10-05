@@ -55,6 +55,7 @@ class OrderView(View):
             order = form.save(commit=False)
             order_veriff_code_set(order)
             send_order_veriff_code_email(order, request)
+            request.session['order_email'] = order.email
             return redirect('core:veriff')
         else:
             return render(request, self.template_name, {'order_form': form})
@@ -79,7 +80,12 @@ class OrderVeriffView(View):
 
     def get(self, request, *args, **kwargs):
         form = self.form_class()
-        return render(request, self.template_name, {'veriff_form': form})
+        if 'order_email' in request.session:
+            order_email = request.session['order_email']
+            del request.session['order_email']
+        else:
+            order_email = ''
+        return render(request, self.template_name, {'veriff_form': form, 'order_email': order_email})
 
 
 class OrderCompleteView(View):

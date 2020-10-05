@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 20:32+0300\n"
+"POT-Creation-Date: 2020-10-05 20:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -315,7 +315,7 @@ msgstr "Начало доставки"
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:41 core/forms.py:108 core/templates/core/contact.html:52
+#: core/forms.py:41 core/forms.py:109 core/templates/core/contact.html:52
 #: core/templates/core/index.html:351
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
@@ -340,7 +340,11 @@ msgstr "Должно быть менее {} часов после начала �
 msgid "Verification code"
 msgstr "Код подтверждения"
 
-#: core/forms.py:77
+#: core/forms.py:71 core/models.py:43
+msgid "Verification code is sent to your email"
+msgstr "Код подтверждения отправлен на Ваш е-мэйл"
+
+#: core/forms.py:78
 msgid "Invalid code"
 msgstr "Неверный код"
 
