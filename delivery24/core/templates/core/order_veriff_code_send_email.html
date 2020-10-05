@@ -1,8 +1,12 @@
+{% load i18n %}
 {% autoescape off %}
-Hi {{ first_name }} {{ last_name }},
+{% trans "Hi" %} {{ first_name }} {{ last_name }},<br>
 
-Your verification code is {{ veriff_code }}
+{% trans "Order verification code is" %} <b>{{ veriff_code }}</b><br>
 
-http://{{ domain }}{% url 'core:complete' order_id=order_id %}
+http://{{ domain }}{% url 'core:complete' order_id=order_id %}<br><br>
+
+{% trans "Sincerely" %},<br>
+{% trans "Team" %} delivery24.ee
 
 {% endautoescape %}

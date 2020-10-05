@@ -1,6 +1,8 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from django.utils.translation import ugettext_lazy as _
+from django.template.loader import render_to_string
 from django.db.models import Q
 
 from .tokens import job_confirm_token
@@ -8,7 +10,6 @@ from core.models import Order
 from core.forms import OrderForm
 from accounts.models import User
 from core.tasks import send_drivers_newjob_email_task, send_order_veriff_code_email_task
-from core.services.veriff_code import get_veriff_code
 
 
 def find_suitable_drivers(order: Order, request):
@@ -75,18 +76,18 @@ def is_driver_available(driver: User, order: Order) -> bool:
 
 
 def send_order_veriff_code_email(order, request):
-    subject = 'delivery24.ee Order verification code'
+    subject = _('delivery24.ee Order verification code')
     current_site = get_current_site(request)
     to_email = order.email
-    message = {'subject': subject,
-               'first_name': order.first_name,
-               'last_name': order.last_name,
-               'domain': current_site.domain,
-               'order_id': order.order_id,
-               'veriff_code': order.verification_code,
-               }
+    message = render_to_string('core/order_veriff_code_send_email.html', {
+        'first_name': order.first_name,
+        'last_name': order.last_name,
+        'domain': current_site.domain,
+        'order_id': order.order_id,
+        'veriff_code': order.verification_code,
+    })
 
-    send_order_veriff_code_email_task.delay(to_email, **message)
+    send_order_veriff_code_email_task.delay(to_email, message, subject=subject, order_id=order.order_id)
 
 
 def change_order_prefill_form(order: Order, form: OrderForm):

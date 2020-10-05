@@ -68,7 +68,7 @@ class OrderVeriffForm(Form):
         widget=TextInput(attrs={'class': 'form-control rounded-0'})
     )
     verification_code.label = _('Verification code')
-    verification_code.help_text = _('Verification code is sent to your email')
+    verification_code.help_text = _('Code is sent to your email')
 
     def clean_verification_code(self):
         input_veriff_code = self.cleaned_data.get('verification_code')

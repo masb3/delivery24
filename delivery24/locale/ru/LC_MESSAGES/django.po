@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 20:41+0300\n"
+"POT-Creation-Date: 2020-10-05 22:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,9 +340,9 @@ msgstr "Должно быть менее {} часов после начала �
 msgid "Verification code"
 msgstr "Код подтверждения"
 
-#: core/forms.py:71 core/models.py:43
-msgid "Verification code is sent to your email"
-msgstr "Код подтверждения отправлен на Ваш е-мэйл"
+#: core/forms.py:71
+msgid "Code is sent to your email"
+msgstr "Код отправлен на Ваш е-мэйл"
 
 #: core/forms.py:78
 msgid "Invalid code"
@@ -399,6 +399,10 @@ msgstr "Сообщение"
 #: core/models.py:38
 msgid "additional information"
 msgstr "Дополнительная информация"
+
+#: core/services/order.py:81
+msgid "delivery24.ee Order verification code"
+msgstr "delivery24.ee Код подтверждения заказа"
 
 #: core/templates/core/base.html:74 core/templates/core/index.html:75
 msgid "Home"
@@ -583,11 +587,27 @@ msgstr "Подтвердить заказ"
 
 #: core/templates/core/order_veriff.html:14
 msgid "Order Verification"
-msgstr "Верификация заказа"
+msgstr "Подтверждение заказа"
 
 #: core/templates/core/order_veriff.html:39
 msgid "Verify"
 msgstr "Подтверди"
+
+#: core/templates/core/order_veriff_code_send_email.html:3
+msgid "Hi"
+msgstr "Привет"
+
+#: core/templates/core/order_veriff_code_send_email.html:5
+msgid "Order verification code is"
+msgstr "Код подтверждения заказа"
+
+#: core/templates/core/order_veriff_code_send_email.html:9
+msgid "Sincerely"
+msgstr "С Уважением"
+
+#: core/templates/core/order_veriff_code_send_email.html:10
+msgid "Team"
+msgstr "Команда"
 
 #: core/utils.py:30
 msgid "Isikukood is incorrect"

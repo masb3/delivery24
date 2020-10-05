@@ -27,18 +27,11 @@ def send_drivers_newjob_email_task(to_email, **kwargs):
 
 
 @app.task
-def send_order_veriff_code_email_task(to_email, **kwargs):
-    message = render_to_string('core/order_veriff_code_send_email.html', {
-        'first_name': kwargs['first_name'],
-        'last_name': kwargs['last_name'],
-        'domain': kwargs['domain'],
-        'order_id': kwargs['order_id'],
-        'veriff_code': kwargs['veriff_code'],
-    })
-    email = EmailMessage(kwargs['subject'], message, to=[to_email])
+def send_order_veriff_code_email_task(to_email, message, subject, order_id):
+    email = EmailMessage(subject, message, to=[to_email])
     email.content_subtype = "html"
     email.send()
-    order = Order.objects.get(order_id=kwargs['order_id'])
+    order = Order.objects.get(order_id=order_id)
     order.verification_code_sent = True
     order.save()
 
