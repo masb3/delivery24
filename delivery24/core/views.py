@@ -173,6 +173,7 @@ class WaitDriver(View):
 class NewJob(View):
     """ Driver takes new job here """
     template_name = 'core/driver_newjob_confirm.html'
+    show_order_form = OrderCompleteForm
 
     def get(self, request, order_id, uidb64, token, *args, **kwargs):
         try:
@@ -186,8 +187,9 @@ class NewJob(View):
             if order.work_set.filter(driver_id=user.id).exists():
                 return render(request, self.template_name, context={'completed': True})
             else:
+                form = self.show_order_form(instance=order)
                 return render(request, self.template_name,
-                              context={'order_id': order_id, 'uidb64': uidb64, 'token': token})
+                              context={'order_form': form, 'order_id': order_id, 'uidb64': uidb64, 'token': token})
 
         return HttpResponseNotFound('<h1>Page not found</h1>')
 
@@ -206,8 +208,13 @@ class NewJob(View):
 
             price = get_price(request.POST['price'])
             if price is None:
+                form = self.show_order_form(instance=order)
                 return render(request, self.template_name,
-                              context={'order_id': order_id, 'uidb64': uidb64, 'token': token, 'price_error': True})
+                              context={'order_form': form,
+                                       'order_id': order_id,
+                                       'uidb64': uidb64,
+                                       'token': token,
+                                       'price_error': True})
             else:
                 work = Work(driver=user,
                             deliver_from=order.address_from,

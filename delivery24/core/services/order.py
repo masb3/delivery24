@@ -47,16 +47,21 @@ def notify_drivers_email(drivers: list, order, request):
     current_site = get_current_site(request)
     for driver in drivers:
         to_email = driver.email
-        message = {'subject': subject,
-                   'first_name': driver.first_name,
-                   'last_name': driver.last_name,
-                   'domain': current_site.domain,
-                   'order_id': order.order_id,
-                   'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
-                   'token': job_confirm_token.make_token(driver, order),
-                   }
+        message = render_to_string('core/new_job_notify_email.html', {
+            'first_name': driver.first_name,
+            'last_name': driver.last_name,
+            'domain': current_site.domain,  # TODO: this should be based on driver preferred lang
+            'order_id': order.order_id,
+            'address_from': order.address_from,
+            'address_to': order.address_from,
+            'delivery_start': order.delivery_start,
+            'delivery_end': order.delivery_end,
+            'movers_num': order.movers_num,
+            'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
+            'token': job_confirm_token.make_token(driver, order),
+        })
 
-        send_drivers_newjob_email_task.delay(to_email, **message)
+        send_drivers_newjob_email_task.delay(to_email, message, subject)
 
 
 def is_driver_available(driver: User, order: Order) -> bool:

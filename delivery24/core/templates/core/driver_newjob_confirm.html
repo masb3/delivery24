@@ -24,7 +24,7 @@
         {% elif completed == None %}
         <form method="post" action="{% url 'core:newjob' order_id uidb64 token %}" class="p-5 bg-white" novalidate>
             {% csrf_token %}
-            <!--{% include 'core/includes/order_complete_form.html' %}-->
+            {% include 'core/includes/order_complete_form.html' %}
 
             <div class="row form-group">
                 <div class="col-md-6">
