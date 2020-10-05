@@ -68,6 +68,7 @@
                     <p style="color: red">{{ error }}</p>
                   {% endfor %}
                 </div>
+
                 <div class="col-md-6">
                   <label class="text-black" for="{{ form.movers_num.auto_id }}">{{ form.movers_num.label }}</label>
                   {{ form.movers_num }}
@@ -88,6 +89,19 @@
                     <small style="color: grey">{{ form.payment.help_text }}</small>
                   {% endif %}
                   {% for error in form.payment.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ form.preferred_language.auto_id }}">{{ form.preferred_language.label }}</label>
+                  {{ form.preferred_language }}
+                  {% if form.preferred_language.help_text %}
+                    <small style="color: grey">{{ form.preferred_language.help_text }}</small>
+                  {% endif %}
+                  {% for error in form.preferred_language.errors %}
                     <p style="color: red">{{ error }}</p>
                   {% endfor %}
                 </div>

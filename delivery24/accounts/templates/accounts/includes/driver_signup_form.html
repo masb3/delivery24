@@ -120,6 +120,19 @@
               </div>
 
               <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ driver_signup_form.preferred_language.auto_id }}">{{ driver_signup_form.preferred_language.label }}</label>
+                  {{ driver_signup_form.preferred_language }}
+                  {% if driver_signup_form.preferred_language.help_text %}
+                    <small style="color: grey">{{ driver_signup_form.preferred_language.help_text }}</small>
+                  {% endif %}
+                  {% for error in driver_signup_form.preferred_language.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="{{ driver_signup_form.password1.auto_id }}">{{ driver_signup_form.password1.label }}</label>
                   {{ driver_signup_form.password1 }}

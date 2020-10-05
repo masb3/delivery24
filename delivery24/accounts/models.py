@@ -17,6 +17,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         #(3, 'Both'),
     ]
 
+    PREFERRED_LANGUAGE = [
+        (1, _('English')),
+        (2, _('Russian')),
+        (3, _('Estonian')),
+    ]
+
     email = models.EmailField(
         verbose_name=_('Email address'),
         max_length=255,
@@ -39,6 +45,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     movers_num = models.IntegerField(_('number of available movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
+    preferred_language = models.IntegerField(_('Preferred language'),
+                                             choices=PREFERRED_LANGUAGE,
+                                             default=PREFERRED_LANGUAGE[0][0],
+                                             help_text=_('Preferred language to use delivery24'))
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True)

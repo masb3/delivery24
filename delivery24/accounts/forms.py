@@ -25,7 +25,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'phone', 'ik', 'car_model',
-                  'car_number', 'car_carrying', 'movers_num', 'payment')
+                  'car_number', 'car_carrying', 'movers_num', 'payment', 'preferred_language',)
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
             'last_name': TextInput(attrs={'class': 'form-control rounded-0'}),
@@ -42,6 +42,7 @@ class SignUpForm(UserCreationForm):
 
             'movers_num': Select(attrs={'class': 'form-control rounded-0'}),
             'payment': Select(attrs={'class': 'form-control rounded-0'}),
+            'preferred_language': Select(attrs={'class': 'form-control rounded-0'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -123,7 +124,7 @@ class ChangeProfileForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'phone', 'car_model', 'car_number',
-                  'car_carrying', 'movers_num', 'payment',)
+                  'car_carrying', 'movers_num', 'payment', 'preferred_language',)
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
             'last_name': TextInput(attrs={'class': 'form-control rounded-0'}),
@@ -138,6 +139,7 @@ class ChangeProfileForm(UserCreationForm):
 
             'movers_num': Select(attrs={'class': 'form-control rounded-0'}),
             'payment': Select(attrs={'class': 'form-control rounded-0'}),
+            'preferred_language': Select(attrs={'class': 'form-control rounded-0'}),
         }
 
     def __init__(self, *args, **kwargs):
