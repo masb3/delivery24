@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 23:41+0300\n"
+"POT-Creation-Date: 2020-10-06 00:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -420,7 +420,11 @@ msgstr "Сообщение"
 msgid "additional information"
 msgstr "Дополнительная информация"
 
-#: core/services/order.py:84
+#: core/services/order.py:47
+msgid "delivery24.ee New Job"
+msgstr "delivery24.ee Новая Работа"
+
+#: core/services/order.py:93
 msgid "delivery24.ee Order verification code"
 msgstr "delivery24.ee Код подтверждения заказа"
 
@@ -583,6 +587,49 @@ msgstr "Оплата online или наличными после окончан�
 msgid "Order"
 msgstr "Заказ"
 
+#: core/templates/core/new_job_notify_email.html:3
+#: core/templates/core/order_veriff_code_send_email.html:3
+msgid "Hi"
+msgstr "Привет"
+
+#: core/templates/core/new_job_notify_email.html:5
+msgid "New job details"
+msgstr "Детали новой работы"
+
+#: core/templates/core/new_job_notify_email.html:6
+msgid "From address"
+msgstr "Начальный адрес"
+
+#: core/templates/core/new_job_notify_email.html:7
+msgid "To address"
+msgstr "Конечный адрес"
+
+#: core/templates/core/new_job_notify_email.html:8
+msgid "Start date"
+msgstr "Время начала"
+
+#: core/templates/core/new_job_notify_email.html:9
+msgid "End date"
+msgstr "Время окончания"
+
+#: core/templates/core/new_job_notify_email.html:10
+msgid "Number of required movers"
+msgstr "Количество требуемых грузчиков"
+
+#: core/templates/core/new_job_notify_email.html:12
+msgid "Please click on the link below to confirm new job"
+msgstr "Пожалуйста пройдите по ссылке для подтверждения работы"
+
+#: core/templates/core/new_job_notify_email.html:16
+#: core/templates/core/order_veriff_code_send_email.html:9
+msgid "Sincerely"
+msgstr "С Уважением"
+
+#: core/templates/core/new_job_notify_email.html:17
+#: core/templates/core/order_veriff_code_send_email.html:10
+msgid "Team"
+msgstr "Команда"
+
 #: core/templates/core/order_complete.html:7
 #: core/templates/core/order_complete.html:72
 msgid "Change Order"
@@ -613,21 +660,9 @@ msgstr "Подтверждение заказа"
 msgid "Verify"
 msgstr "Подтверди"
 
-#: core/templates/core/order_veriff_code_send_email.html:3
-msgid "Hi"
-msgstr "Привет"
-
 #: core/templates/core/order_veriff_code_send_email.html:5
 msgid "Order verification code is"
 msgstr "Код подтверждения заказа"
-
-#: core/templates/core/order_veriff_code_send_email.html:9
-msgid "Sincerely"
-msgstr "С Уважением"
-
-#: core/templates/core/order_veriff_code_send_email.html:10
-msgid "Team"
-msgstr "Команда"
 
 #: core/utils.py:30
 msgid "Isikukood is incorrect"
@@ -640,9 +675,6 @@ msgstr "Неверный номер машины"
 #: core/views.py:169
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
-
-#~ msgid "Number of required movers"
-#~ msgstr "Количество требуемых грузчиков"
 
 #~ msgid "Account"
 #~ msgstr "Счёт"

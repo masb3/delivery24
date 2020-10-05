@@ -1,18 +1,19 @@
+{% load i18n %}
 {% autoescape off %}
-Hi {{ first_name }} {{ last_name }},<br>
+{% trans "Hi" %} {{ first_name }} {{ last_name }},<br>
 
-New job details:<br>
-<b>From address</b>: {{ address_from }}<br>
-<b>To address</b>: {{ address_to }}<br>
-<b>Start date</b>: {{ delivery_start }}<br>
-<b>End date</b>: {{ delivery_end }}<br>
-<b>Number of required movers</b>: {{ movers_num }}<br><br>
+{% trans "New job details" %}:<br>
+<b>{% trans "From address" %}</b>: {{ address_from }}<br>
+<b>{% trans "To address" %}</b>: {{ address_to }}<br>
+<b>{% trans "Start date" %}</b>: {{ delivery_start }}<br>
+<b>{% trans "End date" %}</b>: {{ delivery_end }}<br>
+<b>{% trans "Number of required movers" %}</b>: {{ movers_num }}<br><br>
 
-Please click on the link below to confirm new job:<br>
+{% trans "Please click on the link below to confirm new job" %}:<br>
 
 http://{{ domain }}{% url 'core:newjob' order_id=order_id uidb64=uid token=token %}<br><br>
 
-Sincerely,<br>
-Team delivery24.ee
+{% trans "Sincerely" %},<br>
+{% trans "Team" %} delivery24.ee
 
 {% endautoescape %}

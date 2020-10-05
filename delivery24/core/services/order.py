@@ -1,6 +1,7 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.db.models import Q
@@ -43,17 +44,24 @@ def find_suitable_drivers(order: Order, request):
 
 
 def notify_drivers_email(drivers: list, order, request):
-    subject = 'delivery24.ee New Job'
+    subject = _('delivery24.ee New Job')
     current_site = get_current_site(request)
+    current_lang = translation.get_language()
     for driver in drivers:
+        if driver.preferred_language == 1:
+            translation.activate('en-us')
+        elif driver.preferred_language == 2:
+            translation.activate('ru')
+        else:
+            pass  # TODO estonian
         to_email = driver.email
         message = render_to_string('core/new_job_notify_email.html', {
             'first_name': driver.first_name,
             'last_name': driver.last_name,
-            'domain': current_site.domain,  # TODO: this should be based on driver preferred lang
+            'domain': current_site.domain,
             'order_id': order.order_id,
             'address_from': order.address_from,
-            'address_to': order.address_from,
+            'address_to': order.address_to,
             'delivery_start': order.delivery_start,
             'delivery_end': order.delivery_end,
             'movers_num': order.movers_num,
@@ -62,6 +70,7 @@ def notify_drivers_email(drivers: list, order, request):
         })
 
         send_drivers_newjob_email_task.delay(to_email, message, subject)
+    translation.activate(current_lang)
 
 
 def is_driver_available(driver: User, order: Order) -> bool:
