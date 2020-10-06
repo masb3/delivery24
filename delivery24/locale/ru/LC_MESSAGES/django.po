@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 00:12+0300\n"
+"POT-Creation-Date: 2020-10-06 20:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,6 +162,7 @@ msgstr "Адрес"
 
 #: accounts/templates/accounts/profile/completed_jobs_list.html:26
 #: accounts/templates/accounts/profile/future_jobs_list.html:26
+#: core/templates/core/order_complete.html:38
 msgid "Price"
 msgstr "Цена"
 
@@ -639,6 +640,26 @@ msgstr "Изменить заказ"
 #: core/templates/core/order_complete.html:74
 msgid "Order Complete"
 msgstr "Окончание заказа"
+
+#: core/templates/core/order_complete.html:27
+msgid "No free drivers available."
+msgstr "Нет свободных водителей."
+
+#: core/templates/core/order_complete.html:28
+msgid "Press button to try slightly change delivery date"
+msgstr "Нажмите повторить, что-бы изменить дату"
+
+#: core/templates/core/order_complete.html:29
+msgid "Try again"
+msgstr "Повторить"
+
+#: core/templates/core/order_complete.html:35
+msgid "Driver"
+msgstr "Водитель"
+
+#: core/templates/core/order_complete.html:37
+msgid "Car"
+msgstr "Машина"
 
 #: core/templates/core/order_complete.html:116
 msgid "Order confirmed"

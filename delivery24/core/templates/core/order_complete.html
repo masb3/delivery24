@@ -24,18 +24,18 @@ function Poll() {
       let resp = JSON.parse(this.responseText);
       if (resp.no_free_drivers) {
           document.getElementById("work_wait").classList.add('text-danger');
-          document.getElementById("work_wait").innerHTML = "No free drivers available." + " " +
-                                                           "Press button to try slightly change delivery date";
-          document.getElementById("confirm-button").value = "Try again";
+          document.getElementById("work_wait").innerHTML = "{% trans 'No free drivers available.' %}" + " " +
+                                                           "{% trans 'Press button to try slightly change delivery date' %}";
+          document.getElementById("confirm-button").value = "{% trans 'Try again' %}";
           document.getElementById("confirm-button").hidden = false;
       }
       else {
           document.getElementById("work_wait").hidden = true;
 
-          document.getElementById("work_driver").innerHTML = "Driver: " + resp.driver_first_name + " " +
+          document.getElementById("work_driver").innerHTML = "{% trans 'Driver' %}: " + resp.driver_first_name + " " +
                                     resp.driver_last_name + " " + resp.driver_phone + " " + resp.driver_email;
-          document.getElementById("work_car").innerHTML = "Car: " + resp.car_model;
-          document.getElementById("work_price").innerHTML = "Price: " + Math.floor(resp.price) + "&euro;";
+          document.getElementById("work_car").innerHTML = "{% trans 'Car' %}: " + resp.car_model;
+          document.getElementById("work_price").innerHTML = "{% trans 'Price' %}: " + Math.floor(resp.price) + "&euro;";
 
           document.getElementById("work_id").value = resp.work_id;
 
