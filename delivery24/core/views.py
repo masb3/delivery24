@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseNotFound, JsonResponse, HttpResponse, HttpResponseRedirect
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
@@ -30,13 +31,25 @@ class IndexView(View):
 
 
 def set_language_from_url(request, user_language):
-    response = HttpResponseRedirect('/')
+    response = HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    current_site_str = str(get_current_site(request))
 
-    if request.method == 'GET':
+    if request.method == 'GET' and \
+            (current_site_str + '/' + user_language + '/') not in request.META.get('HTTP_REFERER'):
         if user_language != settings.LANGUAGE_CODE and [lang for lang in settings.LANGUAGES if lang[0] == user_language]:
-            redirect_path = f'/{user_language}/'
+            full = request.META.get('HTTP_REFERER')
+            end_index = full.index(current_site_str) + len(current_site_str)
+            end_path = full[end_index:]
+            redirect_path = f'/{user_language}' + end_path
+
         elif user_language == settings.LANGUAGE_CODE:
-            redirect_path = '/'
+            full = request.META.get('HTTP_REFERER')
+            if current_site_str + '/ru/' in full:
+                end_index = full.index(current_site_str + '/ru/') + len(current_site_str + '/ru/')
+                end_path = full[end_index:]
+                redirect_path = '/' + end_path
+            else:
+                redirect_path = full
         else:
             return response
 
