@@ -178,6 +178,7 @@ class WaitDriver(View):
                                  'car_model': f'{driver.car_model}',
                                  'price': f'{work_min.price}',
                                  'work_id': f'{work_min.id}', })
+            # TODO: timeout to confirm DEL-149
         else:
             resp = HttpResponse(_('Please wait ...').encode())  # Need to encode to bytes
             resp.status_code = 202
