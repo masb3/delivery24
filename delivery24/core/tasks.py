@@ -9,6 +9,7 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from delivery24.celery import app
 from .proj_conf import PERIODIC_SET_WORK_DONE_S
 from core.models import Order, Work
+from accounts.models import User
 
 
 @app.task
@@ -29,23 +30,45 @@ def send_order_veriff_code_email_task(to_email, message, subject, order_id):
 
 
 @app.task
-def work_confirmation_timeout_task(order_id, timeout):
-    """ Waits until customer confirms proposed work (price, driver, car) """
+def send_driver_offer_accepted_email_task(driver_id):
+    # TODO
+    print('++++++++++++ ACCEPTED ++++++++++++++')
+    print(User.objects.get(id=driver_id))
+
+
+@app.task
+def send_driver_offer_not_accepted_email_task(driver_id):
+    # TODO
+    print('++++++++++++ NOT ACCEPTED ++++++++++++++')
+    print(User.objects.get(id=driver_id))
+
+
+@app.task
+def work_confirmation_timeout_task(work_id, timeout):
+    """
+    Waits until customer confirms proposed work (price, driver, car).
+    Notify driver about accepted / not accepted offer
+    """
     sleep(timeout)
-    order = Order.objects.get(order_id=order_id)
-    if not order.work_set.all().filter(order_confirmed=True):
-        order.verified = False
-        order.verification_code_sent = False
-        order.drivers_notified = False
-        order.save()
-        order.work_set.all().delete()
+    work = Work.objects.get(id=work_id)
+    if work.order_confirmed:
+        send_driver_offer_accepted_email_task.delay(work.driver.id)
+
+
+
+        # offers = order.work_set.all()
+        # for offer in offers:
+        #     send_driver_offer_not_accepted_email_task.delay(offer.driver.id)
+        #
+        # order.verified = False
+        # order.verification_code_sent = False
+        # order.drivers_notified = False
+        # order.save()
+        # order.work_set.all().delete()
 
     else:
-        # Delete works that were not accepted for this order
-        works = order.work_set.all()
-        for work in works:
-            if work.order_confirmed is False:
-                work.delete()
+        send_driver_offer_not_accepted_email_task.delay(work.driver.id)
+        # TODO work.delete() ??
 
 
 @app.task

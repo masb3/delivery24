@@ -241,9 +241,10 @@ class NewJob(View):
                             )
                 work.save()
 
-                #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work
+                #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work,
+                #  notify drivers whose offer not accepted and notify driver whose offer was accepted
                 # +DRIVER_FIND_TIMEOUT_S is needed because wait until Order.collecting_works == False
-                work_confirmation_timeout_task.delay(order_id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
+                work_confirmation_timeout_task.delay(work.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
 
                 return render(request, self.template_name, context={'completed': True})
 
