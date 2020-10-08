@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 20:44+0300\n"
+"POT-Creation-Date: 2020-10-08 21:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -505,9 +505,10 @@ msgstr "Введите цену"
 msgid "Invalid price. Should be integer greater than zero"
 msgstr "Неверная цена. Должно быть целое число больше нуля"
 
-#: core/templates/core/driver_newjob_confirm.html:46
-msgid "Completed"
-msgstr "Завершено"
+#: core/templates/core/driver_newjob_confirm.html:48
+msgid ""
+"Completed. You will receive notification soon as customer confirms your offer"
+msgstr "Завершено. Скоро Вы получите сообщение о подтверждении заказчиком"
 
 #: core/templates/core/index.html:6
 msgid "DELIVERY24 &mdash; Best Price Moving"
@@ -693,9 +694,12 @@ msgstr "Неверный личный код"
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
 
-#: core/views.py:169
+#: core/views.py:182
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
+
+#~ msgid "Completed"
+#~ msgstr "Завершено"
 
 #~ msgid "Account"
 #~ msgstr "Счёт"

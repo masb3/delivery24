@@ -43,7 +43,11 @@
             </div>
         </form>
         {% else %}
-          <h1 class="text-success">{% trans "Completed" %}</h1>
+        <div class="row form-group">
+            <div class="col-md-16">
+                <h1 class="text-success">{% trans "Completed. You will receive notification soon as customer confirms your offer" %}</h1>
+            </div>
+        </div>
         {% endif %}
       </div>
     </div>
