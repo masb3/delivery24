@@ -44,9 +44,21 @@ def send_driver_offer_not_accepted_email_task(driver_id):
 
 
 @app.task
-def work_confirmation_timeout_task(work_id, timeout):
+def customer_work_confirmation_timeout_task(work_id, timeout):
+    sleep(timeout)
+    work = Work.objects.get(id=work_id)
+    if not work.order_confirmed:
+        work.order.verified = False
+        work.order.verification_code_sent = False
+        work.order.drivers_notified = False
+        work.order.save()
+        print('+++++++++++ CUSTOMER CONFIRM WORK TIMEOUT ++++++++++++++++')  # TODO: remove log
+
+
+@app.task
+def driver_work_confirmation_timeout_task(work_id, timeout):
     """
-    Waits until customer confirms proposed work (price, driver, car).
+    Driver waits until customer confirms proposed work (price, driver, car).
     Notify driver about accepted / not accepted offer
     """
     sleep(timeout)

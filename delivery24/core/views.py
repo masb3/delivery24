@@ -15,7 +15,8 @@ from .services.veriff_code import confirm_veriff_code, order_veriff_code_set
 from .services.order import find_suitable_drivers, is_driver_available, send_order_veriff_code_email, \
     change_order_prefill_form
 from .services.tokens import job_confirm_token
-from .tasks import work_confirmation_timeout_task, driver_find_timeout_task
+from .tasks import driver_work_confirmation_timeout_task, driver_find_timeout_task, \
+    customer_work_confirmation_timeout_task
 from .proj_conf import CUSTOMER_CONFIRM_WORK_TIMEOUT_S, DRIVER_FIND_TIMEOUT_S
 from .utils import get_price
 from delivery24 import settings
@@ -178,7 +179,8 @@ class WaitDriver(View):
                                  'car_model': f'{driver.car_model}',
                                  'price': f'{work_min.price}',
                                  'work_id': f'{work_min.id}', })
-            # TODO: timeout to confirm DEL-149
+
+            customer_work_confirmation_timeout_task.delay(work_min.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S)
         else:
             resp = HttpResponse(_('Please wait ...').encode())  # Need to encode to bytes
             resp.status_code = 202
@@ -245,7 +247,7 @@ class NewJob(View):
                 #  Now driver is reserved for specific start/end date, release reservation if customer not confirm work,
                 #  notify drivers whose offer not accepted and notify driver whose offer was accepted
                 # +DRIVER_FIND_TIMEOUT_S is needed because wait until Order.collecting_works == False
-                work_confirmation_timeout_task.delay(work.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
+                driver_work_confirmation_timeout_task.delay(work.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S + DRIVER_FIND_TIMEOUT_S)
 
                 return render(request, self.template_name, context={'completed': True})
 
