@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 from delivery24.celery import app
-from .proj_conf import PERIODIC_SET_WORK_DONE_S
+from .proj_conf import PERIODIC_SET_WORK_DONE_S, CUSTOMER_CONFIRM_WORK_TIMEOUT_S
 from core.models import Order, Work
 from accounts.models import User
 
@@ -51,36 +51,14 @@ def customer_work_confirmation_timeout_task(work_id, timeout):
         work.order.verified = False
         work.order.verification_code_sent = False
         work.order.drivers_notified = False
+        work.order.collecting_works = True
         work.order.save()
+
         print('+++++++++++ CUSTOMER CONFIRM WORK TIMEOUT ++++++++++++++++')  # TODO: remove log
-
-
-@app.task
-def driver_work_confirmation_timeout_task(work_id, timeout):
-    """
-    Driver waits until customer confirms proposed work (price, driver, car).
-    Notify driver about accepted / not accepted offer
-    """
-    sleep(timeout)
-    work = Work.objects.get(id=work_id)
-    if work.order_confirmed:
-        send_driver_offer_accepted_email_task.delay(work.driver.id)
-
-
-
-        # offers = order.work_set.all()
-        # for offer in offers:
-        #     send_driver_offer_not_accepted_email_task.delay(offer.driver.id)
-        #
-        # order.verified = False
-        # order.verification_code_sent = False
-        # order.drivers_notified = False
-        # order.save()
-        # order.work_set.all().delete()
-
-    else:
         send_driver_offer_not_accepted_email_task.delay(work.driver.id)
-        # TODO work.delete() ??
+        work.delete()
+    else:
+        send_driver_offer_accepted_email_task.delay(work.driver.id)
 
 
 @app.task
@@ -90,6 +68,19 @@ def driver_find_timeout_task(order_id, timeout):
     order.collecting_works = False
     if order.work_set.all().count() == 0:
         order.no_free_drivers = True
+    else:
+        # Choose cheapest work, rework to let customer choose by himself TODO: DEL-153
+        offers = order.work_set.all().order_by('created')
+        offer_min = offers[0]
+        for offer in offers[1:]:
+            if offer.price < offer_min.price:
+                send_driver_offer_not_accepted_email_task.delay(offer_min.driver.id)
+                offer_min.delete()
+                offer_min = offer
+            else:
+                send_driver_offer_not_accepted_email_task.delay(offer.driver.id)
+                offer.delete()
+        customer_work_confirmation_timeout_task.delay(offer_min.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S)
     order.save()
 
 
