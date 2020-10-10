@@ -3,6 +3,8 @@ import datetime
 from time import sleep
 
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+from django.utils import translation
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
@@ -30,17 +32,70 @@ def send_order_veriff_code_email_task(to_email, message, subject, order_id):
 
 
 @app.task
-def send_driver_offer_accepted_email_task(driver_id):
-    # TODO
-    print('++++++++++++ ACCEPTED ++++++++++++++')
-    print(User.objects.get(id=driver_id))
+def send_driver_offer_accepted_email_task(work_id):
+    current_lang = translation.get_language()
+    work = Work.objects.get(id=work_id)
+    print('++++++++++++ ACCEPTED ++++++++++++++')  # TODO remove log
+    print(User.objects.get(id=work.driver.id))
+
+    if work.driver.preferred_language == 1:
+        translation.activate('en-us')
+    elif work.driver.preferred_language == 2:
+        translation.activate('ru')
+    else:
+        pass  # TODO estonian
+
+    subject = _('delivery24.ee New Job Accepted')
+    message = render_to_string('core/new_job_accepted_email.html', {
+        'first_name': work.driver.first_name,
+        'last_name': work.driver.last_name,
+        'address_from': work.order.address_from,
+        'address_to': work.order.address_to,
+        'delivery_start': work.order.delivery_start,
+        'delivery_end': work.order.delivery_end,
+        'movers_num': work.order.movers_num,
+        'price': work.price,
+    })
+
+    email = EmailMessage(subject, message, to=[work.driver.email])
+    email.content_subtype = "html"
+    email.send()
+
+    translation.activate(current_lang)
 
 
 @app.task
-def send_driver_offer_not_accepted_email_task(driver_id):
-    # TODO
-    print('++++++++++++ NOT ACCEPTED ++++++++++++++')
-    print(User.objects.get(id=driver_id))
+def send_driver_offer_not_accepted_email_task(work_id):
+    current_lang = translation.get_language()
+    work = Work.objects.get(id=work_id)
+    print('++++++++++++ NOT ACCEPTED ++++++++++++++')  # TODO remove log
+    print(User.objects.get(id=work.driver.id))
+
+    if work.driver.preferred_language == 1:
+        translation.activate('en-us')
+    elif work.driver.preferred_language == 2:
+        translation.activate('ru')
+    else:
+        pass  # TODO estonian
+
+    subject = _('delivery24.ee New Job Canceled')
+    message = render_to_string('core/new_job_not_accepted_email.html', {
+        'first_name': work.driver.first_name,
+        'last_name': work.driver.last_name,
+        'address_from': work.order.address_from,
+        'address_to': work.order.address_to,
+        'delivery_start': work.order.delivery_start,
+        'delivery_end': work.order.delivery_end,
+        'movers_num': work.order.movers_num,
+        'price': work.price,
+    })
+
+    email = EmailMessage(subject, message, to=[work.driver.email])
+    email.content_subtype = "html"
+    email.send()
+
+    work.delete()
+    translation.activate(current_lang)
 
 
 @app.task
@@ -55,10 +110,9 @@ def customer_work_confirmation_timeout_task(work_id, timeout):
         work.order.save()
 
         print('+++++++++++ CUSTOMER CONFIRM WORK TIMEOUT ++++++++++++++++')  # TODO: remove log
-        send_driver_offer_not_accepted_email_task.delay(work.driver.id)
-        work.delete()
+        send_driver_offer_not_accepted_email_task.delay(work.id)
     else:
-        send_driver_offer_accepted_email_task.delay(work.driver.id)
+        send_driver_offer_accepted_email_task.delay(work.id)
 
 
 @app.task
@@ -74,12 +128,10 @@ def driver_find_timeout_task(order_id, timeout):
         offer_min = offers[0]
         for offer in offers[1:]:
             if offer.price < offer_min.price:
-                send_driver_offer_not_accepted_email_task.delay(offer_min.driver.id)
-                offer_min.delete()
+                send_driver_offer_not_accepted_email_task.delay(offer_min.id)
                 offer_min = offer
             else:
-                send_driver_offer_not_accepted_email_task.delay(offer.driver.id)
-                offer.delete()
+                send_driver_offer_not_accepted_email_task.delay(offer.id)
         customer_work_confirmation_timeout_task.delay(offer_min.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S)
     order.save()
 

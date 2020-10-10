@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 21:08+0300\n"
+"POT-Creation-Date: 2020-10-10 11:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,6 +162,8 @@ msgstr "Адрес"
 
 #: accounts/templates/accounts/profile/completed_jobs_list.html:26
 #: accounts/templates/accounts/profile/future_jobs_list.html:26
+#: core/templates/core/new_job_accepted_email.html:11
+#: core/templates/core/new_job_not_accepted_email.html:11
 #: core/templates/core/order_complete.html:38
 msgid "Price"
 msgstr "Цена"
@@ -429,6 +431,14 @@ msgstr "delivery24.ee Новая Работа"
 msgid "delivery24.ee Order verification code"
 msgstr "delivery24.ee Код подтверждения заказа"
 
+#: core/tasks.py:48
+msgid "delivery24.ee New Job Accepted"
+msgstr "delivery24.ee Новая Работа Одобрена"
+
+#: core/tasks.py:81
+msgid "delivery24.ee New Job Canceled"
+msgstr "delivery24.ee Новая Работа Отменена"
+
 #: core/templates/core/base.html:74 core/templates/core/index.html:75
 msgid "Home"
 msgstr "Главная"
@@ -589,48 +599,72 @@ msgstr "Оплата online или наличными после окончан�
 msgid "Order"
 msgstr "Заказ"
 
+#: core/templates/core/new_job_accepted_email.html:3
+#: core/templates/core/new_job_not_accepted_email.html:3
 #: core/templates/core/new_job_notify_email.html:3
 #: core/templates/core/order_veriff_code_send_email.html:3
 msgid "Hi"
 msgstr "Привет"
 
-#: core/templates/core/new_job_notify_email.html:5
-msgid "New job details"
-msgstr "Детали новой работы"
+#: core/templates/core/new_job_accepted_email.html:5
+msgid "New job accepted"
+msgstr "Новая работа одобрена"
 
+#: core/templates/core/new_job_accepted_email.html:6
+#: core/templates/core/new_job_not_accepted_email.html:6
 #: core/templates/core/new_job_notify_email.html:6
 msgid "From address"
 msgstr "Начальный адрес"
 
+#: core/templates/core/new_job_accepted_email.html:7
+#: core/templates/core/new_job_not_accepted_email.html:7
 #: core/templates/core/new_job_notify_email.html:7
 msgid "To address"
 msgstr "Конечный адрес"
 
+#: core/templates/core/new_job_accepted_email.html:8
+#: core/templates/core/new_job_not_accepted_email.html:8
 #: core/templates/core/new_job_notify_email.html:8
 msgid "Start date"
 msgstr "Время начала"
 
+#: core/templates/core/new_job_accepted_email.html:9
+#: core/templates/core/new_job_not_accepted_email.html:9
 #: core/templates/core/new_job_notify_email.html:9
 msgid "End date"
 msgstr "Время окончания"
 
+#: core/templates/core/new_job_accepted_email.html:10
+#: core/templates/core/new_job_not_accepted_email.html:10
 #: core/templates/core/new_job_notify_email.html:10
 msgid "Number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: core/templates/core/new_job_notify_email.html:12
-msgid "Please click on the link below to confirm new job"
-msgstr "Пожалуйста пройдите по ссылке для подтверждения работы"
-
+#: core/templates/core/new_job_accepted_email.html:14
+#: core/templates/core/new_job_not_accepted_email.html:14
 #: core/templates/core/new_job_notify_email.html:16
 #: core/templates/core/order_veriff_code_send_email.html:9
 msgid "Sincerely"
 msgstr "С Уважением"
 
+#: core/templates/core/new_job_accepted_email.html:15
+#: core/templates/core/new_job_not_accepted_email.html:15
 #: core/templates/core/new_job_notify_email.html:17
 #: core/templates/core/order_veriff_code_send_email.html:10
 msgid "Team"
 msgstr "Команда"
+
+#: core/templates/core/new_job_not_accepted_email.html:5
+msgid "Job Canceled"
+msgstr "Работа Отменена"
+
+#: core/templates/core/new_job_notify_email.html:5
+msgid "New job details"
+msgstr "Детали новой работы"
+
+#: core/templates/core/new_job_notify_email.html:12
+msgid "Please click on the link below to confirm new job"
+msgstr "Пожалуйста пройдите по ссылке для подтверждения работы"
 
 #: core/templates/core/order_complete.html:7
 #: core/templates/core/order_complete.html:72
@@ -694,7 +728,7 @@ msgstr "Неверный личный код"
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
 
-#: core/views.py:182
+#: core/views.py:177
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
 

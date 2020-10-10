@@ -1,0 +1,17 @@
+{% load i18n %}
+{% autoescape off %}
+{% trans "Hi" %} {{ first_name }} {{ last_name }},<br>
+
+{% trans "Job Canceled" %}:<br>
+<b>{% trans "From address" %}</b>: {{ address_from }}<br>
+<b>{% trans "To address" %}</b>: {{ address_to }}<br>
+<b>{% trans "Start date" %}</b>: {{ delivery_start }}<br>
+<b>{% trans "End date" %}</b>: {{ delivery_end }}<br>
+<b>{% trans "Number of required movers" %}</b>: {{ movers_num }}<br>
+<b>{% trans "Price" %}</b>: {{ price }}<br><br>
+
+
+{% trans "Sincerely" %},<br>
+{% trans "Team" %} delivery24.ee
+
+{% endautoescape %}
