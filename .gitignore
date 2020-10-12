@@ -4,3 +4,4 @@ delivery24/delivery24/__pycache__/
 /social
 /delivery24/celerybeat-schedule
 /commands
+/delivery24/debug.log
