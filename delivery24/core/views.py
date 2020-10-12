@@ -1,3 +1,5 @@
+import logging
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseNotFound, JsonResponse, HttpResponse, HttpResponseRedirect
@@ -21,11 +23,15 @@ from .utils import get_price
 from delivery24 import settings
 
 
+logger = logging.getLogger(__name__)
+
+
 class IndexView(View):
     template_name = "core/index.html"
     form_class = OrderForm
 
     def get(self, request, *args, **kwargs):
+        logger.debug('+*+*+*+*+*+*+*+*++**+**+*+*')
         form = self.form_class()
         return render(request, self.template_name, {'order_form': form})
 

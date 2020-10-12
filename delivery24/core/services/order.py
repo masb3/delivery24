@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
@@ -13,11 +15,11 @@ from accounts.models import User
 from core.tasks import send_drivers_newjob_email_task, send_order_veriff_code_email_task
 
 
+logger = logging.getLogger(__name__)
+
+
 def find_suitable_drivers(order: Order, request):
-    # TODO: remove log
-    print('------------')
-    print('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
-    print('------------')
+    logger.debug('order_start = {}, order_end = {}'.format(order.delivery_start, order.delivery_end))
 
     drivers = User.objects.filter(Q(is_admin=False) &
                                   Q(is_active=True) &
@@ -30,12 +32,9 @@ def find_suitable_drivers(order: Order, request):
         if is_driver_available(driver, order):
             suitable_drivers_list.append(driver)
 
-    # TODO: remove
-    print('///////////////////')
-    print('Suitable drivers')
+    logger.debug('Suitable drivers')
     for driver in suitable_drivers_list:
-        print(driver)
-    print('///////////////////')
+        logger.debug(driver)
 
     order.drivers_notified = True  # must be set before notify_drivers_email(), otherwise token hash will not match
     order.save()

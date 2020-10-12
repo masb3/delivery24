@@ -1,4 +1,5 @@
 import datetime
+import logging
 
 from time import sleep
 
@@ -12,6 +13,9 @@ from delivery24.celery import app
 from .proj_conf import PERIODIC_SET_WORK_DONE_S, CUSTOMER_CONFIRM_WORK_TIMEOUT_S
 from core.models import Order, Work
 from accounts.models import User
+
+
+logger = logging.getLogger('celery')
 
 
 @app.task
@@ -35,8 +39,8 @@ def send_order_veriff_code_email_task(to_email, message, subject, order_id):
 def send_driver_offer_accepted_email_task(work_id):
     current_lang = translation.get_language()
     work = Work.objects.get(id=work_id)
-    print('++++++++++++ ACCEPTED ++++++++++++++')  # TODO remove log
-    print(User.objects.get(id=work.driver.id))
+    logger.info('++++++++++++ ACCEPTED ++++++++++++++')
+    logger.info(User.objects.get(id=work.driver.id))
 
     if work.driver.preferred_language == 1:
         translation.activate('en-us')
@@ -68,8 +72,8 @@ def send_driver_offer_accepted_email_task(work_id):
 def send_driver_offer_not_accepted_email_task(work_id):
     current_lang = translation.get_language()
     work = Work.objects.get(id=work_id)
-    print('++++++++++++ NOT ACCEPTED ++++++++++++++')  # TODO remove log
-    print(User.objects.get(id=work.driver.id))
+    logger.info('++++++++++++ NOT ACCEPTED ++++++++++++++')
+    logger.info(User.objects.get(id=work.driver.id))
 
     if work.driver.preferred_language == 1:
         translation.activate('en-us')
@@ -109,7 +113,7 @@ def customer_work_confirmation_timeout_task(work_id, timeout):
         work.order.collecting_works = True
         work.order.save()
 
-        print('+++++++++++ CUSTOMER CONFIRM WORK TIMEOUT ++++++++++++++++')  # TODO: remove log
+        logger.info('+++++++++++ CUSTOMER CONFIRM WORK TIMEOUT ++++++++++++++++')
         send_driver_offer_not_accepted_email_task.delay(work.id)
     else:
         send_driver_offer_accepted_email_task.delay(work.id)
@@ -181,4 +185,4 @@ def set_work_done():
         else:
             work.status = Work.WORK_STATUS[3][0]  # Canceled
         work.save()
-        print(work.status)
+        logger.info(work.status)
