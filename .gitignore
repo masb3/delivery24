@@ -5,7 +5,6 @@ delivery24/delivery24/__pycache__/
 /delivery24/celerybeat-schedule
 /commands
 /delivery24/debug.log
-/design/
 /aws/
 /venv/
 /delivery24/accounts/migrations/
