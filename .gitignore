@@ -10,3 +10,4 @@ delivery24/delivery24/__pycache__/
 /delivery24/accounts/migrations/
 /delivery24/core/migrations/
 /design/
+/delivery24/.env

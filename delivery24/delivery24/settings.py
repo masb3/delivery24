@@ -14,6 +14,7 @@ import os
 import datetime
 
 from django.urls import reverse_lazy
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,19 +23,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-SECRET_KEY = os.getenv('DELIVERY24_DJANGO_SECRET_KEY')
-DB_NAME = os.getenv('DELIVERY24_DB_NAME')
-DB_USER = os.getenv('DELIVERY24_DB_USER')
-DB_PASS = os.getenv('DELIVERY24_DB_PASS')
-DB_HOST = os.getenv('DELIVERY24_DB_HOST')
-DB_PORT = os.getenv('DELIVERY24_DB_PORT')
-GMAIL_USER = os.getenv('DELIVERY24_GMAIL_USER')
-GMAIL_PASS = os.getenv('DELIVERY24_GMAIL_PASS')
+SECRET_KEY = config('DELIVERY24_DJANGO_SECRET_KEY')
+DB_NAME = config('DELIVERY24_DB_NAME')
+DB_USER = config('DELIVERY24_DB_USER')
+DB_PASS = config('DELIVERY24_DB_PASS')
+DB_HOST = config('DELIVERY24_DB_HOST')
+DB_PORT = config('DELIVERY24_DB_PORT')
+GMAIL_USER = config('DELIVERY24_GMAIL_USER')
+GMAIL_PASS = config('DELIVERY24_GMAIL_PASS')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []  # 'localhost', '127.0.0.1', '[::1]'
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())  # 'localhost', '127.0.0.1', '[::1]'
 
 
 # Application definition
