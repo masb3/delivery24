@@ -59,7 +59,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    # required fields will be used when using command createsuperuser
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'ik', 'phone', 'car_model', 'car_carrying', 'car_number', 'payment',
+                       'movers_num', 'preferred_language']
 
     class Meta:
         verbose_name = _('user', )
