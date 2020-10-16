@@ -10,3 +10,5 @@ delivery24/delivery24/__pycache__/
 /design/
 /delivery24/.env
 *.log
+.*
+!/.gitignore
