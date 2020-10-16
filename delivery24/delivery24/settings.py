@@ -35,6 +35,7 @@ EMAIL_HOST = config('DELIVERY24_EMAIL_HOST', default='')
 EMAIL_PORT = config('DELIVERY24_EMAIL_PORT', default=587, cast=int)
 EMAIL_USE_TLS = config('DELIVERY24_EMAIL_USE_TLS', default=True, cast=bool)
 EMAIL_BACKEND = config('DELIVERY24_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_FROM = config('DELIVERY24_EMAIL_FROM', default='')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -178,6 +179,7 @@ else:
     EMAIL_HOST_PASSWORD = EMAIL_PASS
     EMAIL_PORT = EMAIL_PORT
     EMAIL_BACKEND = EMAIL_BACKEND
+    DEFAULT_FROM_EMAIL = EMAIL_FROM
 
 AUTHENTICATION_BACKENDS = [
     'axes.backends.AxesBackend',
