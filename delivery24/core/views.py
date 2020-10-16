@@ -31,7 +31,6 @@ class IndexView(View):
     form_class = OrderForm
 
     def get(self, request, *args, **kwargs):
-        logger.debug('+*+*+*+*+*+*+*+*++**+**+*+*')
         form = self.form_class()
         return render(request, self.template_name, {'order_form': form})
 
