@@ -57,7 +57,7 @@ def signup(request):
                 email = EmailMessage(subject, message, to=[to_email])
                 email.content_subtype = "html"
                 email.send()
-                return render(request, 'accounts/account_activation_sent.html')
+                return render(request, 'accounts/account_activation_sent.html', {'email': to_email})
         else:
             form = SignUpForm()
         return render(request, 'accounts/signup.html', {'driver_signup_form': form})
