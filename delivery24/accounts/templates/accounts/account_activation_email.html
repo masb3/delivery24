@@ -1,7 +1,12 @@
 {% autoescape off %}
-Hi {{ user.username }},
+{% load i18n %}
+{% trans "Hi" %} {{ user.username }},
 
-Please click on the link below to confirm your registration:
+{% trans "Please click on the link below to confirm your registration" %}:
 
-http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}
+http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}<br><br>
+
+{% trans "Sincerely" %},<br>
+{% trans "Team" %} delivery24.ee
+
 {% endautoescape %}

@@ -2,6 +2,7 @@ import re
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.utils import translation
 
 
 def ik_validator(ik: int):
@@ -66,6 +67,15 @@ def get_price(str_price):
         return price
     except ValueError:
         return None
+
+
+def set_language(lang):
+    if 1 == lang:
+        translation.activate('en-us')
+    elif 2 == lang:
+        translation.activate('ru')
+    else:
+        pass  # TODO estonian
 
 
 if __name__ == '__main__':

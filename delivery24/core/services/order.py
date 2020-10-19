@@ -11,6 +11,7 @@ from django.db.models import Q
 from .tokens import job_confirm_token
 from core.models import Order
 from core.forms import OrderForm
+from core.utils import set_language
 from accounts.models import User
 from core.tasks import send_drivers_newjob_email_task, send_order_veriff_code_email_task
 
@@ -47,12 +48,7 @@ def notify_drivers_email(drivers: list, order, request):
     current_site = get_current_site(request)
     current_lang = translation.get_language()
     for driver in drivers:
-        if driver.preferred_language == 1:
-            translation.activate('en-us')
-        elif driver.preferred_language == 2:
-            translation.activate('ru')
-        else:
-            pass  # TODO estonian
+        set_language(driver.preferred_language)
         to_email = driver.email
         message = render_to_string('core/new_job_notify_email.html', {
             'first_name': driver.first_name,

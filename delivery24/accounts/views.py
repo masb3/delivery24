@@ -1,15 +1,13 @@
 from django.contrib.auth import login
 from django.shortcuts import render, redirect
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.template.loader import render_to_string
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from .tokens import account_activation_token
 from django.urls import reverse_lazy
-from django.core.mail import EmailMessage
 from django.contrib.auth.views import LoginView
 from .forms import SignUpForm, CustomLoginForm
 from .models import User
+from .services.signup_utils import save_new_driver
 
 from delivery24 import settings
 
@@ -37,27 +35,9 @@ def signup(request):
         if request.method == 'POST':
             form = SignUpForm(request.POST)
             if form.is_valid():
-                user = form.save(commit=False)
-                user.is_active = False
-                user.car_number = form.cleaned_data.get('car_number').replace(' ', '').upper()
-                user.save()
-                current_site = get_current_site(request)
-                subject = 'Activate Your delivery24.ee Account'
-                message = render_to_string('accounts/account_activation_email.html', {
-                    'user': user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                    'token': account_activation_token.make_token(user),
-                })
-                # Below uses send_email defined in model
-                # user.email_user(subject, message)
-
-                # Below sets content type html
-                to_email = form.cleaned_data.get('email')
-                email = EmailMessage(subject, message, to=[to_email])
-                email.content_subtype = "html"
-                email.send()
-                return render(request, 'accounts/account_activation_sent.html', {'email': to_email})
+                save_new_driver(request, form)
+                return render(request, 'accounts/account_activation_sent.html',
+                              {'email': form.cleaned_data.get('email')})
         else:
             form = SignUpForm()
         return render(request, 'accounts/signup.html', {'driver_signup_form': form})

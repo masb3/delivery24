@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-19 23:08+0300\n"
+"POT-Creation-Date: 2020-10-20 00:26+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,6 +124,40 @@ msgstr "пользователь"
 #: accounts/models.py:68
 msgid "users"
 msgstr "пользователи"
+
+#: accounts/services/signup_utils.py:25
+msgid "Activate Your delivery24.ee Account"
+msgstr "Активация аккаунта delivery24.ee"
+
+#: accounts/templates/accounts/account_activation_email.html:3
+#: core/templates/core/new_job_accepted_email.html:3
+#: core/templates/core/new_job_not_accepted_email.html:3
+#: core/templates/core/new_job_notify_email.html:3
+#: core/templates/core/order_veriff_code_send_email.html:3
+msgid "Hi"
+msgstr "Привет"
+
+#: accounts/templates/accounts/account_activation_email.html:5
+msgid "Please click on the link below to confirm your registration"
+msgstr "Пожалуйста пройдите по ссылке для активации аккаунта"
+
+#: accounts/templates/accounts/account_activation_email.html:9
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:9
+#: core/templates/core/new_job_accepted_email.html:14
+#: core/templates/core/new_job_not_accepted_email.html:14
+#: core/templates/core/new_job_notify_email.html:16
+#: core/templates/core/order_veriff_code_send_email.html:9
+msgid "Sincerely"
+msgstr "С Уважением"
+
+#: accounts/templates/accounts/account_activation_email.html:10
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:10
+#: core/templates/core/new_job_accepted_email.html:15
+#: core/templates/core/new_job_not_accepted_email.html:15
+#: core/templates/core/new_job_notify_email.html:17
+#: core/templates/core/order_veriff_code_send_email.html:10
+msgid "Team"
+msgstr "Команда"
 
 #: accounts/templates/accounts/account_activation_sent.html:5
 #: accounts/templates/accounts/account_activation_sent.html:13
@@ -334,6 +368,20 @@ msgstr ""
 "Если письмо не получено, то пожалуйста убедитесь в правильности введенного е-"
 "мэйла с которым Вы регистрировались."
 
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:3
+msgid "To initiate the password reset process for your"
+msgstr "Для сброра пароля для Вашего"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:3
+msgid "Account, click the link below"
+msgstr "аккаунта, нажмите на ссылку"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:7
+msgid ""
+"If clicking the link above doesn't work, please copy and paste the URL in a "
+"new browser window instead."
+msgstr "Если нажать на ссылку не получается, то скопируйте и вставьте в окно браузера."
+
 #: accounts/templates/accounts/pwd_reset/password_reset_form.html:14
 msgid "Reset password"
 msgstr "Восстановить Пароль"
@@ -440,19 +488,19 @@ msgstr "Сообщение"
 msgid "additional information"
 msgstr "Дополнительная информация"
 
-#: core/services/order.py:46
+#: core/services/order.py:47
 msgid "delivery24.ee New Job"
 msgstr "delivery24.ee Новая Работа"
 
-#: core/services/order.py:92
+#: core/services/order.py:88
 msgid "delivery24.ee Order verification code"
 msgstr "delivery24.ee Код подтверждения заказа"
 
-#: core/tasks.py:52
+#: core/tasks.py:55
 msgid "delivery24.ee New Job Accepted"
 msgstr "delivery24.ee Новая Работа Одобрена"
 
-#: core/tasks.py:85
+#: core/tasks.py:83
 msgid "delivery24.ee New Job Canceled"
 msgstr "delivery24.ee Новая Работа Отменена"
 
@@ -616,13 +664,6 @@ msgstr "Оплата online или наличными после окончан�
 msgid "Order"
 msgstr "Заказ"
 
-#: core/templates/core/new_job_accepted_email.html:3
-#: core/templates/core/new_job_not_accepted_email.html:3
-#: core/templates/core/new_job_notify_email.html:3
-#: core/templates/core/order_veriff_code_send_email.html:3
-msgid "Hi"
-msgstr "Привет"
-
 #: core/templates/core/new_job_accepted_email.html:5
 msgid "New job accepted"
 msgstr "Новая работа одобрена"
@@ -656,20 +697,6 @@ msgstr "Время окончания"
 #: core/templates/core/new_job_notify_email.html:10
 msgid "Number of required movers"
 msgstr "Количество требуемых грузчиков"
-
-#: core/templates/core/new_job_accepted_email.html:14
-#: core/templates/core/new_job_not_accepted_email.html:14
-#: core/templates/core/new_job_notify_email.html:16
-#: core/templates/core/order_veriff_code_send_email.html:9
-msgid "Sincerely"
-msgstr "С Уважением"
-
-#: core/templates/core/new_job_accepted_email.html:15
-#: core/templates/core/new_job_not_accepted_email.html:15
-#: core/templates/core/new_job_notify_email.html:17
-#: core/templates/core/order_veriff_code_send_email.html:10
-msgid "Team"
-msgstr "Команда"
 
 #: core/templates/core/new_job_not_accepted_email.html:5
 msgid "Job Canceled"
@@ -737,11 +764,11 @@ msgstr "Подтверди"
 msgid "Order verification code is"
 msgstr "Код подтверждения заказа"
 
-#: core/utils.py:30
+#: core/utils.py:31
 msgid "Isikukood is incorrect"
 msgstr "Неверный личный код"
 
-#: core/utils.py:51
+#: core/utils.py:52
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
 

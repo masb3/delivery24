@@ -12,10 +12,18 @@ from django.core.mail import EmailMessage, EmailMultiAlternatives
 from delivery24.celery import app
 from .proj_conf import PERIODIC_SET_WORK_DONE_S, CUSTOMER_CONFIRM_WORK_TIMEOUT_S
 from core.models import Order, Work
+from core.utils import set_language
 from accounts.models import User
 
 
 logger = logging.getLogger('celery')
+
+
+@app.task
+def send_driver_signup_account_activate_email_task(to_email, message, subject):
+    email = EmailMessage(subject, message, to=[to_email])
+    email.content_subtype = "html"
+    email.send()
 
 
 @app.task
@@ -42,12 +50,7 @@ def send_driver_offer_accepted_email_task(work_id):
     logger.info('++++++++++++ ACCEPTED ++++++++++++++')
     logger.info(User.objects.get(id=work.driver.id))
 
-    if work.driver.preferred_language == 1:
-        translation.activate('en-us')
-    elif work.driver.preferred_language == 2:
-        translation.activate('ru')
-    else:
-        pass  # TODO estonian
+    set_language(work.driver.preferred_language)
 
     subject = _('delivery24.ee New Job Accepted')
     message = render_to_string('core/new_job_accepted_email.html', {
@@ -75,12 +78,7 @@ def send_driver_offer_not_accepted_email_task(work_id):
     logger.info('++++++++++++ NOT ACCEPTED ++++++++++++++')
     logger.info(User.objects.get(id=work.driver.id))
 
-    if work.driver.preferred_language == 1:
-        translation.activate('en-us')
-    elif work.driver.preferred_language == 2:
-        translation.activate('ru')
-    else:
-        pass  # TODO estonian
+    set_language(work.driver.preferred_language)
 
     subject = _('delivery24.ee New Job Canceled')
     message = render_to_string('core/new_job_not_accepted_email.html', {
