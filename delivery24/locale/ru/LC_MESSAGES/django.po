@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-20 00:52+0300\n"
+"POT-Creation-Date: 2020-10-20 01:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,11 +32,11 @@ msgstr "Пароль"
 msgid "Old password"
 msgstr "Старый Пароль"
 
-#: accounts/forms.py:66 accounts/forms.py:131
+#: accounts/forms.py:66 accounts/forms.py:119
 msgid "New password"
 msgstr "Новый Пароль"
 
-#: accounts/forms.py:72 accounts/forms.py:137
+#: accounts/forms.py:72 accounts/forms.py:125
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
@@ -49,7 +49,7 @@ msgstr "Е-мэйл"
 msgid "Password reset"
 msgstr "Сброс пароля"
 
-#: accounts/forms.py:125
+#: accounts/forms.py:113
 msgid "Invalid email"
 msgstr "Неверный е-мэйл"
 
@@ -163,6 +163,13 @@ msgstr "С Уважением"
 msgid "Team"
 msgstr "Команда"
 
+#: accounts/templates/accounts/account_activation_invalid.html:5
+#: accounts/templates/accounts/account_activation_invalid.html:21
+
+msgid "Account activation failed"
+msgstr "Ошибка активации аккаунта"
+
+#: accounts/templates/accounts/account_activation_invalid.html:13
 #: accounts/templates/accounts/account_activation_sent.html:5
 #: accounts/templates/accounts/account_activation_sent.html:13
 msgid "Account activation"
@@ -781,6 +788,11 @@ msgstr "Неверный номер машины"
 #: core/views.py:182
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
+
+#, fuzzy
+#~| msgid "Account activation"
+#~ msgid "Invalid account activation"
+#~ msgstr "Активация аккаунта"
 
 #~ msgid "Completed"
 #~ msgstr "Завершено"

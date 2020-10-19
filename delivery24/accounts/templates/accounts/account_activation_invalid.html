@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h3>Account activation invalid</h3>
-</body>
-</html>
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Account activation failed" %}{% endblock title %}
+
+{% block content %}
+
+<div class="site-section bg-light" id="start-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3"><br>{% trans "Account activation" %}</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-7 mb-5">
+        <div class="row form-group">
+            <div class="col-md-16">
+              <h1 class="text-danger">{% trans "Account activation failed" %}</h1>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
