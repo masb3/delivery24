@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-20 01:08+0300\n"
+"POT-Creation-Date: 2020-10-20 01:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -165,7 +165,6 @@ msgstr "Команда"
 
 #: accounts/templates/accounts/account_activation_invalid.html:5
 #: accounts/templates/accounts/account_activation_invalid.html:21
-
 msgid "Account activation failed"
 msgstr "Ошибка активации аккаунта"
 
@@ -178,6 +177,20 @@ msgstr "Активация аккаунта"
 #: accounts/templates/accounts/account_activation_sent.html:21
 msgid "Activation link is sent to your email"
 msgstr "Ссылка для активации отправлена на Ваш е-мэйл"
+
+#: accounts/templates/accounts/account_lockout.html:5
+#: accounts/templates/accounts/account_lockout.html:13
+msgid "Account is locked"
+msgstr "Аккаунт заблокирован"
+
+#: accounts/templates/accounts/account_lockout.html:21
+msgid ""
+"Account is temporary locked: too many login attempts. Please try again later."
+msgstr "Аккаунт временно заблокирован: слишком много попыток входа. Пожалуйста попробуйте позже."
+
+#: accounts/templates/accounts/account_lockout.html:24
+msgid "Login"
+msgstr "Логин"
 
 #: accounts/templates/accounts/login.html:5
 #: accounts/templates/accounts/login.html:14
