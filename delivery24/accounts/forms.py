@@ -2,12 +2,14 @@ from django.contrib.auth import password_validation
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
+from django.template.loader import render_to_string
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm,
                                        PasswordResetForm, SetPasswordForm)
 from django.forms import TextInput, Select, PasswordInput, CharField, EmailField, EmailInput
 from django.utils.translation import ugettext_lazy as _
 from .models import User
+from core.utils import set_language
 from core.tasks import reset_password_email_task
 
 
@@ -81,8 +83,8 @@ class CustomPasswordResetForm(PasswordResetForm):
     )
 
     def save(self, domain_override=None,
-             subject_template_name='registration/password_reset_subject.txt',
-             email_template_name='registration/password_reset_email.html',
+             subject_template_name=None,
+             email_template_name=None,
              use_https=False, token_generator=default_token_generator,
              from_email=None, request=None, html_email_template_name=None,
              extra_email_context=None):
@@ -92,7 +94,9 @@ class CustomPasswordResetForm(PasswordResetForm):
         """
         email = self.cleaned_data["email"]
         user = User.objects.get(email=email)
-        context = {
+        set_language(user.preferred_language)
+        subject = _("Password reset")
+        message = render_to_string(email_template_name, {
             'email': email,
             'domain': get_current_site(request).domain,
             'site_name': get_current_site(request).name,
@@ -100,10 +104,8 @@ class CustomPasswordResetForm(PasswordResetForm):
             'user': email,
             'token': token_generator.make_token(user),
             'protocol': 'https' if use_https else 'http',
-        }
-
-        reset_password_email_task.delay(subject_template_name, email_template_name, to_email=email,
-                                        html_email_template_name=html_email_template_name, **context,)
+        })
+        reset_password_email_task.delay(subject, message, to_email=email)
 
     def is_valid(self):
         if super(CustomPasswordResetForm, self).is_valid():

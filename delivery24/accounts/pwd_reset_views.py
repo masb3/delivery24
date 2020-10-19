@@ -10,7 +10,7 @@ class CustomPasswordResetView(PasswordResetView):
     success_url = reverse_lazy('accounts:password_reset_done')
     template_name = 'accounts/pwd_reset/password_reset_form.html'
     email_template_name = 'accounts/pwd_reset/password_reset_email.html'
-    subject_template_name = 'accounts/pwd_reset/password_reset_subject.txt'
+    subject_template_name = None
     form_class = CustomPasswordResetForm
 
     def get(self, request, *args, **kwargs):
