@@ -105,6 +105,12 @@ class CustomPasswordResetForm(PasswordResetForm):
         reset_password_email_task.delay(subject_template_name, email_template_name, to_email=email,
                                         html_email_template_name=html_email_template_name, **context,)
 
+    def is_valid(self):
+        if super(CustomPasswordResetForm, self).is_valid():
+            if not User.objects.filter(email=self.cleaned_data['email']).exists():
+                self.add_error('email', _('Invalid email'))
+        return super(CustomPasswordResetForm, self).is_valid()
+    
 
 class CustomSetPasswordForm(SetPasswordForm):
     new_password1 = CharField(

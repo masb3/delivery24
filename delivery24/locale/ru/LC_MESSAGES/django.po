@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-17 22:01+0300\n"
+"POT-Creation-Date: 2020-10-19 23:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,11 +32,11 @@ msgstr "Пароль"
 msgid "Old password"
 msgstr "Старый Пароль"
 
-#: accounts/forms.py:64 accounts/forms.py:111
+#: accounts/forms.py:64 accounts/forms.py:117
 msgid "New password"
 msgstr "Новый Пароль"
 
-#: accounts/forms.py:70 accounts/forms.py:117
+#: accounts/forms.py:70 accounts/forms.py:123
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
@@ -44,6 +44,10 @@ msgstr "Подтверждение Нового Пароля"
 #: core/templates/core/index.html:337
 msgid "Email"
 msgstr "Е-мэйл"
+
+#: accounts/forms.py:111
+msgid "Invalid email"
+msgstr "Неверный е-мэйл"
 
 #: accounts/models.py:15 core/models.py:23
 msgid "Cash"
@@ -334,7 +338,7 @@ msgstr ""
 msgid "Reset password"
 msgstr "Восстановить Пароль"
 
-#: accounts/templates/accounts/pwd_reset/password_reset_form.html:27
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:38
 msgid "Submit"
 msgstr "Подтвердить"
 
