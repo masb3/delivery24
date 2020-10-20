@@ -7,10 +7,11 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage, EmailMultiAlternatives
+from django.core.mail import EmailMessage
 
 from delivery24.celery import app
-from .proj_conf import PERIODIC_SET_WORK_DONE_S, CUSTOMER_CONFIRM_WORK_TIMEOUT_S
+from .proj_conf import PERIODIC_SET_WORK_DONE_S, CUSTOMER_CONFIRM_WORK_TIMEOUT_S, \
+    PERIODIC_DELETE_UNCONFIRMED_SIGNUP_S, USER_SIGNUP_CONFIRM_TIMEOUT_S
 from core.models import Order, Work
 from core.utils import set_language
 from accounts.models import User
@@ -147,8 +148,9 @@ def reset_password_email_task(subject, message, to_email):
 
 @app.on_after_finalize.connect
 def setup_periodic_tasks(sender, **kwargs):
-    beat_time = PERIODIC_SET_WORK_DONE_S
-    sender.add_periodic_task(beat_time, set_work_done.s(), name='periodically set work done')
+    sender.add_periodic_task(PERIODIC_SET_WORK_DONE_S, set_work_done.s(), name='periodically set work done')
+    sender.add_periodic_task(PERIODIC_DELETE_UNCONFIRMED_SIGNUP_S,
+                             delete_unconfirmed_user_signup.s(), name='periodically clear unconfirmed user signup')
 
 
 @app.task
@@ -163,3 +165,12 @@ def set_work_done():
             work.status = Work.WORK_STATUS[3][0]  # Canceled
         work.save()
         logger.info(work.status)
+
+
+@app.task
+def delete_unconfirmed_user_signup():
+    time_now_delta = timezone.now() - datetime.timedelta(seconds=USER_SIGNUP_CONFIRM_TIMEOUT_S)
+    users = User.objects.filter(is_active=False, email_confirmed=False, is_admin=False, created_at__lt=time_now_delta)
+    for user in users:
+        logger.info('delete unconfirmed signup {}'.format(user))
+        user.delete()
