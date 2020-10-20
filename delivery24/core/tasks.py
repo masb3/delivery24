@@ -140,8 +140,8 @@ def driver_find_timeout_task(order_id, timeout):
 
 @app.task
 def reset_password_email_task(subject, message, to_email):
-    email = EmailMultiAlternatives(subject, message, to=[to_email])
-    email.content_subtype = "text"
+    email = EmailMessage(subject, message, to=[to_email])
+    email.content_subtype = "html"
     email.send()
 
 
