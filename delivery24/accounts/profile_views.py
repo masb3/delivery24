@@ -14,7 +14,7 @@ class ProfileView(LoginRequiredMixin, View):
     template_name = "accounts/profile/profile.html"
 
     def get(self, request, *args, **kwargs):
-        jobs = request.user.work_set.all()  # TODO: completed jobs
+        jobs = request.user.work_set.filter(status=Work.WORK_STATUS[2][0])  # Completed jobs
         total_income = 0
         for _ in jobs:
             total_income += _.price
