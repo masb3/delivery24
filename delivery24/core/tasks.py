@@ -21,14 +21,7 @@ logger = logging.getLogger('celery')
 
 
 @app.task
-def send_driver_signup_account_activate_email_task(to_email, message, subject):
-    email = EmailMessage(subject, message, to=[to_email])
-    email.content_subtype = "html"
-    email.send()
-
-
-@app.task
-def send_drivers_newjob_email_task(to_email, message, subject):
+def send_email_task(subject, message, to_email):
     email = EmailMessage(subject, message, to=[to_email])
     email.content_subtype = "html"
     email.send()
@@ -36,9 +29,7 @@ def send_drivers_newjob_email_task(to_email, message, subject):
 
 @app.task
 def send_order_veriff_code_email_task(to_email, message, subject, order_id):
-    email = EmailMessage(subject, message, to=[to_email])
-    email.content_subtype = "html"
-    email.send()
+    send_email_task(subject, message, to_email)
     order = Order.objects.get(order_id=order_id)
     order.verification_code_sent = True
     order.save()
@@ -48,6 +39,7 @@ def send_order_veriff_code_email_task(to_email, message, subject, order_id):
 def send_driver_offer_accepted_email_task(work_id):
     current_lang = translation.get_language()
     work = Work.objects.get(id=work_id)
+
     logger.info('++++++++++++ ACCEPTED ++++++++++++++')
     logger.info(User.objects.get(id=work.driver.id))
 
@@ -64,10 +56,7 @@ def send_driver_offer_accepted_email_task(work_id):
         'movers_num': work.order.movers_num,
         'price': work.price,
     })
-
-    email = EmailMessage(subject, message, to=[work.driver.email])
-    email.content_subtype = "html"
-    email.send()
+    send_email_task(subject, message, work.driver.email)
 
     translation.activate(current_lang)
 
@@ -92,10 +81,7 @@ def send_driver_offer_not_accepted_email_task(work_id):
         'movers_num': work.order.movers_num,
         'price': work.price,
     })
-
-    email = EmailMessage(subject, message, to=[work.driver.email])
-    email.content_subtype = "html"
-    email.send()
+    send_email_task(subject, message, work.driver.email)
 
     work.delete()
     translation.activate(current_lang)
@@ -137,13 +123,6 @@ def driver_find_timeout_task(order_id, timeout):
                 send_driver_offer_not_accepted_email_task.delay(offer.id)
         customer_work_confirmation_timeout_task.delay(offer_min.id, CUSTOMER_CONFIRM_WORK_TIMEOUT_S)
     order.save()
-
-
-@app.task
-def reset_password_email_task(subject, message, to_email):
-    email = EmailMessage(subject, message, to=[to_email])
-    email.content_subtype = "html"
-    email.send()
 
 
 @app.on_after_finalize.connect

@@ -8,7 +8,7 @@ from accounts.forms import SignUpForm
 from accounts.models import User
 from core.utils import set_language
 from accounts.tokens import account_activation_token
-from core.tasks import send_driver_signup_account_activate_email_task
+from core.tasks import send_email_task
 
 
 def save_new_driver(request, form: SignUpForm):
@@ -30,5 +30,5 @@ def send_driver_activate_email(request, user: User):
         'token': account_activation_token.make_token(user),
     })
     to_email = User.objects.get(id=user.pk).email
-    send_driver_signup_account_activate_email_task.delay(to_email, message, subject)
+    send_email_task.delay(subject, message, to_email)
 

@@ -13,7 +13,7 @@ from core.models import Order
 from core.forms import OrderForm
 from core.utils import set_language
 from accounts.models import User
-from core.tasks import send_drivers_newjob_email_task, send_order_veriff_code_email_task
+from core.tasks import send_order_veriff_code_email_task, send_email_task
 
 
 logger = logging.getLogger(__name__)
@@ -64,7 +64,7 @@ def notify_drivers_email(drivers: list, order, request):
             'token': job_confirm_token.make_token(driver, order),
         })
 
-        send_drivers_newjob_email_task.delay(to_email, message, subject)
+        send_email_task.delay(subject, message, to_email)
     translation.activate(current_lang)
 
 

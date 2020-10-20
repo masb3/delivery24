@@ -10,7 +10,7 @@ from django.forms import TextInput, Select, PasswordInput, CharField, EmailField
 from django.utils.translation import ugettext_lazy as _
 from .models import User
 from core.utils import set_language
-from core.tasks import reset_password_email_task
+from core.tasks import send_email_task
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -105,7 +105,7 @@ class CustomPasswordResetForm(PasswordResetForm):
             'token': token_generator.make_token(user),
             'protocol': 'https' if use_https else 'http',
         })
-        reset_password_email_task.delay(subject, message, to_email=email)
+        send_email_task.delay(subject, message, to_email=email)
 
     def is_valid(self):
         if super(CustomPasswordResetForm, self).is_valid():
