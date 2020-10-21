@@ -12,6 +12,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 VERIFF_CODE_LEN = 4
 ORDER_ID_LEN = 8
 
+PAYMENT_METHOD_CASH = 0
+PAYMENT_METHOD_BANK = 1
+PAYMENT_METHOD_BOTH = 2
+
 
 def gen_unique_order_id():
     return ''.join(secrets.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits)
@@ -20,8 +24,9 @@ def gen_unique_order_id():
 
 class Order(models.Model):
     PAYMENT_METHOD = [
-        (1, _('Cash')),
-        #(2, _('Bank')),
+        (PAYMENT_METHOD_CASH, _('Cash')),
+        # (PAYMENT_METHOD_BANK, _('Bank')),
+        # (PAYMENT_METHOD_BOTH, _('Cash/Bank')),
     ]
     order_id = models.SlugField(unique=True, max_length=ORDER_ID_LEN)
     first_name = models.CharField(_('first name'), max_length=100)
@@ -36,7 +41,7 @@ class Order(models.Model):
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
-    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
+    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD_BOTH)
     verified = models.BooleanField(default=False)
     verification_code = models.CharField(_('Verification code'), unique=True, null=True, max_length=VERIFF_CODE_LEN,
                                          validators=[MinLengthValidator(VERIFF_CODE_LEN)])

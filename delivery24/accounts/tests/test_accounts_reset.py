@@ -49,7 +49,7 @@ class TestResetPassword:
         # Test sent email
         assert len(mailoutbox) == 1
         mail = mailoutbox[0]
-        subject = 'delivery24.ee password reset'
+        subject = 'Password reset'
         assert mail.subject == subject
         assert mail.to == [user.email]
 

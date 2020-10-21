@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.db.models import Q
 
 from .tokens import job_confirm_token
-from core.models import Order
+from core.models import Order, Work, PAYMENT_METHOD_BOTH
 from core.forms import OrderForm
 from core.utils import set_language
 from accounts.models import User
@@ -26,7 +26,7 @@ def find_suitable_drivers(order: Order, request):
                                   Q(is_active=True) &
                                   Q(email_confirmed=True) &
                                   Q(movers_num__gte=order.movers_num) &
-                                  (Q(payment=order.payment) | Q(payment=3)))
+                                  (Q(payment=order.payment) | Q(payment=PAYMENT_METHOD_BOTH)))
 
     suitable_drivers_list = []
     for driver in drivers:
@@ -44,7 +44,7 @@ def find_suitable_drivers(order: Order, request):
 
 
 def notify_drivers_email(drivers: list, order, request):
-    subject = _('delivery24.ee New Job')
+    subject = _('New Job')
     current_site = get_current_site(request)
     current_lang = translation.get_language()
     for driver in drivers:
@@ -60,6 +60,7 @@ def notify_drivers_email(drivers: list, order, request):
             'delivery_start': order.delivery_start,
             'delivery_end': order.delivery_end,
             'movers_num': order.movers_num,
+            'payment_method': Order.PAYMENT_METHOD[order.payment][1],
             'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
             'token': job_confirm_token.make_token(driver, order),
         })
@@ -85,7 +86,7 @@ def is_driver_available(driver: User, order: Order) -> bool:
 
 
 def send_order_veriff_code_email(order, request):
-    subject = _('delivery24.ee Order verification code')
+    subject = _('Order verification code')
     current_site = get_current_site(request)
     to_email = order.email
     message = render_to_string('core/order_veriff_code_send_email.html', {
@@ -122,3 +123,23 @@ def change_order_prefill_form(order: Order, form: OrderForm):
     order.drivers_notified = False
     order.collecting_works = True
     order.save()
+
+
+def confirmed_order_customer_email(work_id: Work.id):
+    work = Work.objects.get(id=work_id)
+    subject = _('Order confirmed')
+    to_email = work.order.email
+    message = render_to_string('core/order_complete_customer_email.html', {
+        'first_name': work.order.first_name,
+        'last_name': work.order.last_name,
+        'address_from': work.order.address_from,
+        'address_to': work.order.address_to,
+        'delivery_start': work.order.delivery_start,
+        'delivery_end': work.order.delivery_end,
+        'movers_num': work.order.movers_num,
+        'price': work.price,
+        'payment_method': Order.PAYMENT_METHOD[work.order.payment][1],
+        'driver_name': str(work.driver.first_name) + ' ' + str(work.driver.last_name),
+        'driver_phone': work.driver.phone,
+    })
+    send_email_task(subject, message, to_email)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-20 01:13+0300\n"
+"POT-Creation-Date: 2020-10-21 22:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,7 +53,7 @@ msgstr "Сброс пароля"
 msgid "Invalid email"
 msgstr "Неверный е-мэйл"
 
-#: accounts/models.py:15 core/models.py:23
+#: accounts/models.py:15 core/models.py:27
 msgid "Cash"
 msgstr "Наличные"
 
@@ -73,11 +73,11 @@ msgstr ""
 msgid "Email address"
 msgstr "Е-мэйл адрес"
 
-#: accounts/models.py:32 core/models.py:27
+#: accounts/models.py:32 core/models.py:32
 msgid "first name"
 msgstr "Имя"
 
-#: accounts/models.py:33 core/models.py:28
+#: accounts/models.py:33 core/models.py:33
 msgid "last name"
 msgstr "Фамилия"
 
@@ -85,7 +85,8 @@ msgstr "Фамилия"
 msgid "isikukood"
 msgstr "Личный код"
 
-#: accounts/models.py:38
+#: accounts/models.py:38 core/templates/core/new_job_accepted_email.html:15
+#: core/templates/core/order_complete_customer_email.html:16
 msgid "Phone"
 msgstr "телефон"
 
@@ -105,7 +106,7 @@ msgstr "Грузоподъёмность"
 msgid "car number"
 msgstr "Номер машины"
 
-#: accounts/models.py:44 core/models.py:39
+#: accounts/models.py:44 core/models.py:44
 msgid "payment method"
 msgstr "Способ оплаты"
 
@@ -137,6 +138,7 @@ msgstr "Активация аккаунта delivery24.ee"
 #: core/templates/core/new_job_accepted_email.html:3
 #: core/templates/core/new_job_not_accepted_email.html:3
 #: core/templates/core/new_job_notify_email.html:3
+#: core/templates/core/order_complete_customer_email.html:4
 #: core/templates/core/order_veriff_code_send_email.html:3
 msgid "Hi"
 msgstr "Привет"
@@ -146,19 +148,21 @@ msgid "Please click on the link below to confirm your registration"
 msgstr "Пожалуйста пройдите по ссылке для активации аккаунта"
 
 #: accounts/templates/accounts/account_activation_email.html:9
-#: accounts/templates/accounts/pwd_reset/password_reset_email.html:9
-#: core/templates/core/new_job_accepted_email.html:14
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:10
+#: core/templates/core/new_job_accepted_email.html:19
 #: core/templates/core/new_job_not_accepted_email.html:14
-#: core/templates/core/new_job_notify_email.html:16
+#: core/templates/core/new_job_notify_email.html:17
+#: core/templates/core/order_complete_customer_email.html:20
 #: core/templates/core/order_veriff_code_send_email.html:9
 msgid "Sincerely"
 msgstr "С Уважением"
 
 #: accounts/templates/accounts/account_activation_email.html:10
-#: accounts/templates/accounts/pwd_reset/password_reset_email.html:10
-#: core/templates/core/new_job_accepted_email.html:15
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:11
+#: core/templates/core/new_job_accepted_email.html:20
 #: core/templates/core/new_job_not_accepted_email.html:15
-#: core/templates/core/new_job_notify_email.html:17
+#: core/templates/core/new_job_notify_email.html:18
+#: core/templates/core/order_complete_customer_email.html:21
 #: core/templates/core/order_veriff_code_send_email.html:10
 msgid "Team"
 msgstr "Команда"
@@ -186,9 +190,11 @@ msgstr "Аккаунт заблокирован"
 #: accounts/templates/accounts/account_lockout.html:21
 msgid ""
 "Account is temporary locked: too many login attempts. Please try again later."
-msgstr "Аккаунт временно заблокирован: слишком много попыток входа. Пожалуйста попробуйте позже."
+msgstr ""
+"Аккаунт временно заблокирован: слишком много попыток входа. Пожалуйста "
+"попробуйте позже."
 
-#: accounts/templates/accounts/account_lockout.html:24
+#: accounts/templates/accounts/account_lockout.html:25
 msgid "Login"
 msgstr "Логин"
 
@@ -240,6 +246,7 @@ msgstr "Адрес"
 #: core/templates/core/new_job_accepted_email.html:11
 #: core/templates/core/new_job_not_accepted_email.html:11
 #: core/templates/core/order_complete.html:38
+#: core/templates/core/order_complete_customer_email.html:12
 msgid "Price"
 msgstr "Цена"
 
@@ -450,7 +457,7 @@ msgstr "Должно быть минимум {} час после начала �
 msgid "Must be less than {} hours after delivery start"
 msgstr "Должно быть менее {} часов после начала доставки"
 
-#: core/forms.py:70 core/models.py:41
+#: core/forms.py:70 core/models.py:46
 msgid "Verification code"
 msgstr "Код подтверждения"
 
@@ -463,72 +470,80 @@ msgid "Invalid code"
 msgstr "Неверный код"
 
 #: core/models.py:29
+msgid "Cash/Bank"
+msgstr "Наличные/Банк"
+
+#: core/models.py:34
 msgid "email"
 msgstr "Е-мэйл"
 
-#: core/models.py:30
+#: core/models.py:35
 msgid "phone"
 msgstr "телефон"
 
-#: core/models.py:31
+#: core/models.py:36
 msgid "address from"
 msgstr "Откуда"
 
-#: core/models.py:31
+#: core/models.py:36
 msgid "Delivery start address"
 msgstr "Начальный адрес"
 
-#: core/models.py:32
+#: core/models.py:37
 msgid "address to"
 msgstr "Куда"
 
-#: core/models.py:32
+#: core/models.py:37
 msgid "Delivery end address"
 msgstr "Конечный адрес"
 
-#: core/models.py:33
+#: core/models.py:38
 msgid "delivery start"
 msgstr "Начало доставки"
 
-#: core/models.py:33
+#: core/models.py:38
 msgid "Delivery start time"
 msgstr "Начало доставки"
 
-#: core/models.py:34
+#: core/models.py:39
 msgid "delivery end"
 msgstr "Окончание доставки"
 
-#: core/models.py:34
+#: core/models.py:39
 msgid "Delivery end time"
 msgstr "Примерное время окончания доставки"
 
-#: core/models.py:35
+#: core/models.py:40
 msgid "number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: core/models.py:38
+#: core/models.py:43
 msgid "message"
 msgstr "Сообщение"
 
-#: core/models.py:38
+#: core/models.py:43
 msgid "additional information"
 msgstr "Дополнительная информация"
 
 #: core/services/order.py:47
-msgid "delivery24.ee New Job"
-msgstr "delivery24.ee Новая Работа"
+msgid "New Job"
+msgstr "Новая работа"
 
-#: core/services/order.py:88
-msgid "delivery24.ee Order verification code"
-msgstr "delivery24.ee Код подтверждения заказа"
+#: core/services/order.py:89
+msgid "Order verification code"
+msgstr "Код подтверждения заказа"
 
-#: core/tasks.py:55
-msgid "delivery24.ee New Job Accepted"
-msgstr "delivery24.ee Новая Работа Одобрена"
+#: core/services/order.py:130 core/templates/core/order_complete.html:116
+msgid "Order confirmed"
+msgstr "Заказ подтверждён"
 
-#: core/tasks.py:83
-msgid "delivery24.ee New Job Canceled"
-msgstr "delivery24.ee Новая Работа Отменена"
+#: core/tasks.py:48
+msgid "New Job Accepted"
+msgstr "Новая работа одобрена"
+
+#: core/tasks.py:76
+msgid "New Job Canceled"
+msgstr "Работа Отменена"
 
 #: core/templates/core/base.html:76 core/templates/core/index.html:76
 msgid "Home"
@@ -697,32 +712,52 @@ msgstr "Новая работа одобрена"
 #: core/templates/core/new_job_accepted_email.html:6
 #: core/templates/core/new_job_not_accepted_email.html:6
 #: core/templates/core/new_job_notify_email.html:6
+#: core/templates/core/order_complete_customer_email.html:7
 msgid "From address"
 msgstr "Начальный адрес"
 
 #: core/templates/core/new_job_accepted_email.html:7
 #: core/templates/core/new_job_not_accepted_email.html:7
 #: core/templates/core/new_job_notify_email.html:7
+#: core/templates/core/order_complete_customer_email.html:8
 msgid "To address"
 msgstr "Конечный адрес"
 
 #: core/templates/core/new_job_accepted_email.html:8
 #: core/templates/core/new_job_not_accepted_email.html:8
 #: core/templates/core/new_job_notify_email.html:8
+#: core/templates/core/order_complete_customer_email.html:9
 msgid "Start date"
 msgstr "Время начала"
 
 #: core/templates/core/new_job_accepted_email.html:9
 #: core/templates/core/new_job_not_accepted_email.html:9
 #: core/templates/core/new_job_notify_email.html:9
+#: core/templates/core/order_complete_customer_email.html:10
 msgid "End date"
 msgstr "Время окончания"
 
 #: core/templates/core/new_job_accepted_email.html:10
 #: core/templates/core/new_job_not_accepted_email.html:10
 #: core/templates/core/new_job_notify_email.html:10
+#: core/templates/core/order_complete_customer_email.html:11
 msgid "Number of required movers"
 msgstr "Количество требуемых грузчиков"
+
+#: core/templates/core/new_job_accepted_email.html:12
+#: core/templates/core/new_job_notify_email.html:11
+#: core/templates/core/order_complete_customer_email.html:13
+msgid "Payment method"
+msgstr "Способ оплаты"
+
+#: core/templates/core/new_job_accepted_email.html:13
+msgid "Customer details"
+msgstr "Детали заказчика"
+
+#: core/templates/core/new_job_accepted_email.html:14
+#: core/templates/core/order_complete_customer_email.html:15
+msgid "Name"
+msgstr "Имя"
 
 #: core/templates/core/new_job_not_accepted_email.html:5
 msgid "Job Canceled"
@@ -732,7 +767,7 @@ msgstr "Работа Отменена"
 msgid "New job details"
 msgstr "Детали новой работы"
 
-#: core/templates/core/new_job_notify_email.html:12
+#: core/templates/core/new_job_notify_email.html:13
 msgid "Please click on the link below to confirm new job"
 msgstr "Пожалуйста пройдите по ссылке для подтверждения работы"
 
@@ -766,13 +801,17 @@ msgstr "Водитель"
 msgid "Car"
 msgstr "Машина"
 
-#: core/templates/core/order_complete.html:116
-msgid "Order confirmed"
-msgstr "Заказ подтверждён"
-
 #: core/templates/core/order_complete.html:118
 msgid "Order already confirmed"
 msgstr "Заказ уже подтверждён"
+
+#: core/templates/core/order_complete_customer_email.html:6
+msgid "Confirmed order details"
+msgstr "Детали подтвержденного заказа"
+
+#: core/templates/core/order_complete_customer_email.html:14
+msgid "Driver details"
+msgstr "Профиль водителя"
 
 #: core/templates/core/order_veriff.html:5
 msgid "Order Confirm"
@@ -798,9 +837,21 @@ msgstr "Неверный личный код"
 msgid "Car number is incorrect"
 msgstr "Неверный номер машины"
 
-#: core/views.py:182
+#: core/views.py:183
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
+
+#~ msgid "delivery24.ee New Job"
+#~ msgstr "delivery24.ee Новая Работа"
+
+#~ msgid "delivery24.ee Order verification code"
+#~ msgstr "delivery24.ee Код подтверждения заказа"
+
+#~ msgid "delivery24.ee New Job Accepted"
+#~ msgstr "delivery24.ee Новая Работа Одобрена"
+
+#~ msgid "delivery24.ee New Job Canceled"
+#~ msgstr "delivery24.ee Новая Работа Отменена"
 
 #, fuzzy
 #~| msgid "Account activation"

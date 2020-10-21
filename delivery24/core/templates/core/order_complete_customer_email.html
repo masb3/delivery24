@@ -1,18 +1,21 @@
 {% load i18n %}
+{% load static %}
 {% autoescape off %}
 {% trans "Hi" %} {{ first_name }} {{ last_name }},<br>
 
-{% trans "New job details" %}:<br>
+{% trans "Confirmed order details" %}:<br>
 <b>{% trans "From address" %}</b>: {{ address_from }}<br>
 <b>{% trans "To address" %}</b>: {{ address_to }}<br>
 <b>{% trans "Start date" %}</b>: {{ delivery_start }}<br>
 <b>{% trans "End date" %}</b>: {{ delivery_end }}<br>
 <b>{% trans "Number of required movers" %}</b>: {{ movers_num }}<br>
-<b>{% trans "Payment method" %}</b>: {{ payment_method }}<br><br>
+<b>{% trans "Price" %}</b>: {{ price }}<br>
+<b>{% trans "Payment method" %}</b>: {{ payment_method }}<br>
+<b>{% trans "Driver details" %}</b>:
+<li><b>{% trans "Name" %}</b>: {{ driver_name }}</li>
+<li><b>{% trans "Phone" %}</b>: {{ driver_phone }}</li>
+<br><br>
 
-{% trans "Please click on the link below to confirm new job" %}:<br>
-
-http://{{ domain }}{% url 'core:newjob' order_id=order_id uidb64=uid token=token %}<br><br>
 
 {% trans "Sincerely" %},<br>
 {% trans "Team" %} delivery24.ee

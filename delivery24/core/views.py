@@ -15,7 +15,7 @@ from accounts.models import User
 
 from .services.veriff_code import confirm_veriff_code, order_veriff_code_set
 from .services.order import find_suitable_drivers, is_driver_available, send_order_veriff_code_email, \
-    change_order_prefill_form
+    change_order_prefill_form, confirmed_order_customer_email
 from .services.tokens import job_confirm_token
 from .tasks import driver_find_timeout_task
 from .proj_conf import DRIVER_FIND_TIMEOUT_S
@@ -158,6 +158,7 @@ class OrderCompleteView(View):
                 work = order.work_set.get(id=work_id)
                 work.order_confirmed = True
                 work.save()
+                confirmed_order_customer_email(work.id)
                 return render(request, self.template_name, {'confirmed': True})
 
 

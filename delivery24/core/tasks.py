@@ -45,7 +45,7 @@ def send_driver_offer_accepted_email_task(work_id):
 
     set_language(work.driver.preferred_language)
 
-    subject = _('delivery24.ee New Job Accepted')
+    subject = _('New Job Accepted')
     message = render_to_string('core/new_job_accepted_email.html', {
         'first_name': work.driver.first_name,
         'last_name': work.driver.last_name,
@@ -55,6 +55,9 @@ def send_driver_offer_accepted_email_task(work_id):
         'delivery_end': work.order.delivery_end,
         'movers_num': work.order.movers_num,
         'price': work.price,
+        'payment_method': Order.PAYMENT_METHOD[work.order.payment][1],
+        'customer_name': str(work.order.first_name) + ' ' + str(work.order.last_name),
+        'customer_phone': work.order.phone,
     })
     send_email_task(subject, message, work.driver.email)
 
@@ -70,7 +73,7 @@ def send_driver_offer_not_accepted_email_task(work_id):
 
     set_language(work.driver.preferred_language)
 
-    subject = _('delivery24.ee New Job Canceled')
+    subject = _('New Job Canceled')
     message = render_to_string('core/new_job_not_accepted_email.html', {
         'first_name': work.driver.first_name,
         'last_name': work.driver.last_name,

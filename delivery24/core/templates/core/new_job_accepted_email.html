@@ -8,7 +8,12 @@
 <b>{% trans "Start date" %}</b>: {{ delivery_start }}<br>
 <b>{% trans "End date" %}</b>: {{ delivery_end }}<br>
 <b>{% trans "Number of required movers" %}</b>: {{ movers_num }}<br>
-<b>{% trans "Price" %}</b>: {{ price }}<br><br>
+<b>{% trans "Price" %}</b>: {{ price }}<br>
+<b>{% trans "Payment method" %}</b>: {{ payment_method }}<br>
+<b>{% trans "Customer details" %}</b>:
+<li><b>{% trans "Name" %}</b>: {{ customer_name }}</li>
+<li><b>{% trans "Phone" %}</b>: {{ customer_phone }}</li>
+<br><br>
 
 
 {% trans "Sincerely" %},<br>
