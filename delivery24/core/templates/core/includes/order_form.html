@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
               <div class="row form-group">
                 <div class="col-md-6 mb-3 mb-md-0">
                   <label class="text-black" for="{{ order_form.first_name.auto_id }}">{{ order_form.first_name.label }}</label>
@@ -122,6 +123,23 @@
                     <small style="color: grey">{{ order_form.movers_num.help_text }}</small>
                   {% endif %}
                   {% for error in order_form.movers_num.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="{{ order_form.car_type.auto_id }}">{{ order_form.car_type.label }}</label>
+                  <div id="car_type">
+                      <input type="radio" name="car_type" id="id_car_type_0" value="1" /><label for="id_car_type_0"><img src="{% static 'core/images/cars_pics/S_mod.png' %}" alt="Car Type S" /></label>
+                      <input type="radio" name="car_type" id="id_car_type_1" value="2" /><label for="id_car_type_1"><img src="{% static 'core/images/cars_pics/M_mod.png' %}" alt="Car Type M" /></label>
+                      <input type="radio" name="car_type" id="id_car_type_2" value="3" /><label for="id_car_type_2"><img src="{% static 'core/images/cars_pics/L_mod.png' %}" alt="Car Type L" /></label>
+                  </div>
+                  {% if order_form.car_type.help_text %}
+                    <small style="color: grey">{{ order_form.car_type.help_text }}</small>
+                  {% endif %}
+                  {% for error in order_form.car_type.errors %}
                     <p style="color: red">{{ error }}</p>
                   {% endfor %}
                 </div>

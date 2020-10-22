@@ -23,6 +23,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         (3, _('Estonian')),
     ]
 
+    CAR_TYPE = [
+        (1, _('S')),
+        (2, _('M')),
+        (3, _('L')),
+    ]
+
     email = models.EmailField(
         verbose_name=_('Email address'),
         max_length=255,
@@ -37,6 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                                             ik_validator])
     phone = PhoneNumberField(_('Phone'), help_text=_('Contact phone number'))
     car_model = models.CharField(_('car model'), max_length=50)
+    car_type = models.IntegerField(_('car type'), choices=CAR_TYPE, default=3)
     car_carrying = models.IntegerField(_('car carrying (kg)'),
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])
     car_number = models.CharField(_('car number'), max_length=7,

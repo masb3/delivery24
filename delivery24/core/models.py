@@ -28,6 +28,13 @@ class Order(models.Model):
         # (PAYMENT_METHOD_BANK, _('Bank')),
         # (PAYMENT_METHOD_BOTH, _('Cash/Bank')),
     ]
+
+    CAR_TYPE = [
+        (1, _('S')),
+        (2, _('M')),
+        (3, _('L')),
+    ]
+
     order_id = models.SlugField(unique=True, max_length=ORDER_ID_LEN)
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
@@ -40,6 +47,7 @@ class Order(models.Model):
     movers_num = models.IntegerField(_('number of required movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
+    car_type = models.IntegerField(_('car type'), choices=CAR_TYPE, default=3)
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
     payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD_BOTH)
     verified = models.BooleanField(default=False)

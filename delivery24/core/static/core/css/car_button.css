@@ -1,0 +1,24 @@
+.input_hidden {
+    position: absolute;
+    left: -9999px;
+}
+
+.selected {
+    background-color: #ccc;
+}
+
+#sites label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+#sites label:hover {
+    background-color: #efefef;
+}
+
+#sites label img {
+    padding: 3px;
+    
+}
+

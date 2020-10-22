@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm, UsernameField, PasswordChangeForm,
                                        PasswordResetForm, SetPasswordForm)
-from django.forms import TextInput, Select, PasswordInput, CharField, EmailField, EmailInput
+from django.forms import TextInput, Select, PasswordInput, CharField, EmailField, EmailInput, ChoiceField, RadioSelect
 from django.utils.translation import ugettext_lazy as _
 from .models import User
 from core.utils import set_language
@@ -26,7 +26,7 @@ class CustomLoginForm(AuthenticationForm):
 class SignUpForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'phone', 'ik', 'car_model',
+        fields = ('first_name', 'last_name', 'email', 'phone', 'ik', 'car_model', 'car_type',
                   'car_number', 'car_carrying', 'movers_num', 'payment', 'preferred_language',)
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
@@ -35,6 +35,7 @@ class SignUpForm(UserCreationForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'ik': TextInput(attrs={'class': 'form-control rounded-0', 'placeholder': ''}),
             'car_model': TextInput(attrs={'size': 50, 'class': 'form-control rounded-0'}),
+            'car_type': RadioSelect(choices=User.CAR_TYPE),
             'car_number': TextInput(attrs={'size': 7, 'class': 'form-control rounded-0'}),
             'car_carrying': TextInput(attrs={'type': 'number',
                                              'min': 100,
@@ -131,13 +132,14 @@ class CustomSetPasswordForm(SetPasswordForm):
 class ChangeProfileForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'phone', 'car_model', 'car_number',
+        fields = ('first_name', 'last_name', 'phone', 'car_model', 'car_number', 'car_type',
                   'car_carrying', 'movers_num', 'payment', 'preferred_language',)
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control rounded-0'}),
             'last_name': TextInput(attrs={'class': 'form-control rounded-0'}),
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'car_model': TextInput(attrs={'size': 50, 'class': 'form-control rounded-0'}),
+            'car_type': RadioSelect(choices=User.CAR_TYPE),
             'car_number': TextInput(attrs={'size': 7, 'class': 'form-control rounded-0'}),
             'car_carrying': TextInput(attrs={'type': 'number',
                                              'min': 100,
