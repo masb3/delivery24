@@ -142,4 +142,29 @@ def confirmed_order_customer_email(work_id: Work.id):
         'driver_name': str(work.driver.first_name) + ' ' + str(work.driver.last_name),
         'driver_phone': work.driver.phone,
     })
-    send_email_task(subject, message, to_email)
+    send_email_task.delay(subject, message, to_email)
+
+
+def confirmed_order_driver_email(work_id: Work.id):
+    current_lang = translation.get_language()
+    work = Work.objects.get(id=work_id)
+
+    set_language(work.driver.preferred_language)
+
+    subject = _('New Job Accepted')
+    message = render_to_string('core/new_job_accepted_email.html', {
+        'first_name': work.driver.first_name,
+        'last_name': work.driver.last_name,
+        'address_from': work.order.address_from,
+        'address_to': work.order.address_to,
+        'delivery_start': work.order.delivery_start,
+        'delivery_end': work.order.delivery_end,
+        'movers_num': work.order.movers_num,
+        'price': work.price,
+        'payment_method': Order.PAYMENT_METHOD[work.order.payment][1],
+        'customer_name': str(work.order.first_name) + ' ' + str(work.order.last_name),
+        'customer_phone': work.order.phone,
+    })
+    send_email_task.delay(subject, message, work.driver.email)
+
+    translation.activate(current_lang)

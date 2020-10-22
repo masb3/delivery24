@@ -29,39 +29,10 @@ def send_email_task(subject, message, to_email):
 
 @app.task
 def send_order_veriff_code_email_task(to_email, message, subject, order_id):
-    send_email_task(subject, message, to_email)
+    send_email_task.delay(subject, message, to_email)
     order = Order.objects.get(order_id=order_id)
     order.verification_code_sent = True
     order.save()
-
-
-@app.task
-def send_driver_offer_accepted_email_task(work_id):
-    current_lang = translation.get_language()
-    work = Work.objects.get(id=work_id)
-
-    logger.info('++++++++++++ ACCEPTED ++++++++++++++')
-    logger.info(User.objects.get(id=work.driver.id))
-
-    set_language(work.driver.preferred_language)
-
-    subject = _('New Job Accepted')
-    message = render_to_string('core/new_job_accepted_email.html', {
-        'first_name': work.driver.first_name,
-        'last_name': work.driver.last_name,
-        'address_from': work.order.address_from,
-        'address_to': work.order.address_to,
-        'delivery_start': work.order.delivery_start,
-        'delivery_end': work.order.delivery_end,
-        'movers_num': work.order.movers_num,
-        'price': work.price,
-        'payment_method': Order.PAYMENT_METHOD[work.order.payment][1],
-        'customer_name': str(work.order.first_name) + ' ' + str(work.order.last_name),
-        'customer_phone': work.order.phone,
-    })
-    send_email_task(subject, message, work.driver.email)
-
-    translation.activate(current_lang)
 
 
 @app.task
@@ -84,7 +55,7 @@ def send_driver_offer_not_accepted_email_task(work_id):
         'movers_num': work.order.movers_num,
         'price': work.price,
     })
-    send_email_task(subject, message, work.driver.email)
+    send_email_task.delay(subject, message, work.driver.email)
 
     work.delete()
     translation.activate(current_lang)
@@ -103,8 +74,6 @@ def customer_work_confirmation_timeout_task(work_id, timeout):
 
         logger.info('+++++++++++ CUSTOMER CONFIRM WORK TIMEOUT ++++++++++++++++')
         send_driver_offer_not_accepted_email_task.delay(work.id)
-    else:
-        send_driver_offer_accepted_email_task.delay(work.id)
 
 
 @app.task
