@@ -8,34 +8,16 @@ from django.core.validators import MinLengthValidator
 from django.utils.translation import ugettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 
-
-VERIFF_CODE_LEN = 4
-ORDER_ID_LEN = 8
-
-PAYMENT_METHOD_CASH = 0
-PAYMENT_METHOD_BANK = 1
-PAYMENT_METHOD_BOTH = 2
+import core.proj_conf as conf
 
 
 def gen_unique_order_id():
     return ''.join(secrets.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits)
-                   for _ in range(ORDER_ID_LEN))
+                   for _ in range(conf.ORDER_ID_LEN))
 
 
 class Order(models.Model):
-    PAYMENT_METHOD = [
-        (PAYMENT_METHOD_CASH, _('Cash')),
-        # (PAYMENT_METHOD_BANK, _('Bank')),
-        # (PAYMENT_METHOD_BOTH, _('Cash/Bank')),
-    ]
-
-    CAR_TYPE = [
-        (1, _('S')),
-        (2, _('M')),
-        (3, _('L')),
-    ]
-
-    order_id = models.SlugField(unique=True, max_length=ORDER_ID_LEN)
+    order_id = models.SlugField(unique=True, max_length=conf.ORDER_ID_LEN)
     first_name = models.CharField(_('first name'), max_length=100)
     last_name = models.CharField(_('last name'), max_length=100)
     email = models.EmailField(_('email'), max_length=254)
@@ -47,12 +29,12 @@ class Order(models.Model):
     movers_num = models.IntegerField(_('number of required movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
-    car_type = models.IntegerField(_('car type'), choices=CAR_TYPE, default=3)
+    car_type = models.IntegerField(_('car type'), choices=conf.CAR_TYPE, default=3)
     message = models.TextField(_('message'), help_text=_('additional information'), blank=True)
-    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD_BOTH)
+    payment = models.IntegerField(_('payment method'), choices=conf.PAYMENT_METHOD, default=conf.PAYMENT_METHOD_BOTH)
     verified = models.BooleanField(default=False)
-    verification_code = models.CharField(_('Verification code'), unique=True, null=True, max_length=VERIFF_CODE_LEN,
-                                         validators=[MinLengthValidator(VERIFF_CODE_LEN)])
+    verification_code = models.CharField(_('Verification code'), unique=True, null=True, max_length=conf.VERIFF_CODE_LEN,
+                                         validators=[MinLengthValidator(conf.VERIFF_CODE_LEN)])
     verification_code_sent = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -75,12 +57,6 @@ class Order(models.Model):
 
 
 class Work(models.Model):
-    WORK_STATUS = [
-        (1, 'Not started'),
-        (2, 'In progress'),
-        (3, 'Done'),
-        (4, 'Canceled'),
-    ]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     driver = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.SET_NULL,
@@ -92,7 +68,7 @@ class Work(models.Model):
     delivery_end = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     price = models.FloatField()
-    status = models.IntegerField(choices=WORK_STATUS)
+    status = models.IntegerField(choices=conf.WORK_STATUS)
     order_confirmed = models.BooleanField(default=False)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
 

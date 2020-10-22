@@ -8,6 +8,9 @@ from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm, Use
                                        PasswordResetForm, SetPasswordForm)
 from django.forms import TextInput, Select, PasswordInput, CharField, EmailField, EmailInput, ChoiceField, RadioSelect
 from django.utils.translation import ugettext_lazy as _
+
+import core.proj_conf as conf
+
 from .models import User
 from core.utils import set_language
 from core.tasks import send_email_task
@@ -35,7 +38,7 @@ class SignUpForm(UserCreationForm):
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'ik': TextInput(attrs={'class': 'form-control rounded-0', 'placeholder': ''}),
             'car_model': TextInput(attrs={'size': 50, 'class': 'form-control rounded-0'}),
-            'car_type': RadioSelect(choices=User.CAR_TYPE),
+            'car_type': RadioSelect(choices=conf.CAR_TYPE),
             'car_number': TextInput(attrs={'size': 7, 'class': 'form-control rounded-0'}),
             'car_carrying': TextInput(attrs={'type': 'number',
                                              'min': 100,
@@ -139,7 +142,7 @@ class ChangeProfileForm(UserCreationForm):
             'last_name': TextInput(attrs={'class': 'form-control rounded-0'}),
             'phone': TextInput(attrs={'class': 'form-control rounded-0'}),
             'car_model': TextInput(attrs={'size': 50, 'class': 'form-control rounded-0'}),
-            'car_type': RadioSelect(choices=User.CAR_TYPE),
+            'car_type': RadioSelect(choices=conf.CAR_TYPE),
             'car_number': TextInput(attrs={'size': 7, 'class': 'form-control rounded-0'}),
             'car_carrying': TextInput(attrs={'type': 'number',
                                              'min': 100,

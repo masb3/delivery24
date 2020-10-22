@@ -6,6 +6,8 @@ from .forms import CustomPasswordChangeForm, ChangeProfileForm
 from django.urls import reverse_lazy
 from django.shortcuts import render
 
+import core.proj_conf as conf
+
 from core.models import Work
 
 
@@ -14,7 +16,7 @@ class ProfileView(LoginRequiredMixin, View):
     template_name = "accounts/profile/profile.html"
 
     def get(self, request, *args, **kwargs):
-        jobs = request.user.work_set.filter(status=Work.WORK_STATUS[2][0], order_confirmed=True)  # Completed jobs
+        jobs = request.user.work_set.filter(status=conf.WORK_STATUS[2][0], order_confirmed=True)  # Completed jobs
         total_income = 0
         for _ in jobs:
             total_income += _.price
@@ -27,9 +29,9 @@ class ProfileJobs(LoginRequiredMixin, View):
     template_name = "accounts/profile/jobs.html"
 
     def get(self, request, *args, **kwargs):
-        completed_jobs_number = request.user.work_set.filter(status=Work.WORK_STATUS[2][0],
+        completed_jobs_number = request.user.work_set.filter(status=conf.WORK_STATUS[2][0],
                                                              order_confirmed=True).count()
-        future_jobs_number = request.user.work_set.filter(status__lt=Work.WORK_STATUS[2][0],
+        future_jobs_number = request.user.work_set.filter(status__lt=conf.WORK_STATUS[2][0],
                                                           order_confirmed=True).count()
         return render(request, self.template_name, {'completed_jobs_number': completed_jobs_number,
                                                     'future_jobs_number': future_jobs_number})
@@ -97,7 +99,7 @@ class CompletedJobsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super(CompletedJobsListView, self).get_queryset()
-        return queryset.filter(driver=self.request.user.pk, status=Work.WORK_STATUS[2][0], order_confirmed=True)
+        return queryset.filter(driver=self.request.user.pk, status=conf.WORK_STATUS[2][0], order_confirmed=True)
 
 
 class FutureJobsListView(LoginRequiredMixin, ListView):
@@ -108,4 +110,4 @@ class FutureJobsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super(FutureJobsListView, self).get_queryset()
-        return queryset.filter(driver=self.request.user.pk, status__lt=Work.WORK_STATUS[2][0], order_confirmed=True)
+        return queryset.filter(driver=self.request.user.pk, status__lt=conf.WORK_STATUS[2][0], order_confirmed=True)

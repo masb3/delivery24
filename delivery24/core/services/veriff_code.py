@@ -1,12 +1,13 @@
 import secrets
 import string
 
-from core.models import Order, VERIFF_CODE_LEN
+from core.models import Order
+import core.proj_conf as conf
 
 
 def gen_unique_veriff_code() -> str:
     return ''.join(secrets.choice(string.digits)
-                   for _ in range(VERIFF_CODE_LEN))
+                   for _ in range(conf.VERIFF_CODE_LEN))
 
 
 def get_veriff_code() -> str:

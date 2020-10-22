@@ -1,6 +1,6 @@
 {% autoescape off %}
 {% load i18n %}
-{% trans "Hi" %} {{ user.username }},
+{% trans "Hi" %} {{ user.first_name }} {{ user.last_name }},
 
 {% trans "Please click on the link below to confirm your registration" %}:
 

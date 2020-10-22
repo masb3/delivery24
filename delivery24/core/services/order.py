@@ -8,8 +8,10 @@ from django.utils.translation import ugettext_lazy as _
 from django.template.loader import render_to_string
 from django.db.models import Q
 
+import core.proj_conf as conf
+
 from .tokens import job_confirm_token
-from core.models import Order, Work, PAYMENT_METHOD_BOTH
+from core.models import Order, Work
 from core.forms import OrderForm
 from core.utils import set_language
 from accounts.models import User
@@ -26,7 +28,7 @@ def find_suitable_drivers(order: Order, request):
                                   Q(is_active=True) &
                                   Q(email_confirmed=True) &
                                   Q(movers_num__gte=order.movers_num) &
-                                  (Q(payment=order.payment) | Q(payment=PAYMENT_METHOD_BOTH)))
+                                  (Q(payment=order.payment) | Q(payment=conf.PAYMENT_METHOD_BOTH)))
 
     suitable_drivers_list = []
     for driver in drivers:
@@ -60,7 +62,7 @@ def notify_drivers_email(drivers: list, order, request):
             'delivery_start': order.delivery_start,
             'delivery_end': order.delivery_end,
             'movers_num': order.movers_num,
-            'payment_method': Order.PAYMENT_METHOD[order.payment][1],
+            'payment_method': conf.PAYMENT_METHOD[order.payment][1],
             'uid': urlsafe_base64_encode(force_bytes(driver.pk)),
             'token': job_confirm_token.make_token(driver, order),
         })
@@ -138,7 +140,7 @@ def confirmed_order_customer_email(work_id: Work.id):
         'delivery_end': work.order.delivery_end,
         'movers_num': work.order.movers_num,
         'price': work.price,
-        'payment_method': Order.PAYMENT_METHOD[work.order.payment][1],
+        'payment_method': conf.PAYMENT_METHOD[work.order.payment][1],
         'driver_name': str(work.driver.first_name) + ' ' + str(work.driver.last_name),
         'driver_phone': work.driver.phone,
     })
@@ -161,7 +163,7 @@ def confirmed_order_driver_email(work_id: Work.id):
         'delivery_end': work.order.delivery_end,
         'movers_num': work.order.movers_num,
         'price': work.price,
-        'payment_method': Order.PAYMENT_METHOD[work.order.payment][1],
+        'payment_method': conf.PAYMENT_METHOD[work.order.payment][1],
         'customer_name': str(work.order.first_name) + ' ' + str(work.order.last_name),
         'customer_phone': work.order.phone,
     })

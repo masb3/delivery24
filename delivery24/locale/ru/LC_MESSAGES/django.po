@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 01:00+0300\n"
+"POT-Creation-Date: 2020-10-23 02:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,129 +20,101 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: accounts/forms.py:17
+#: accounts/forms.py:20
 msgid "User Email"
 msgstr "Е-мэйл"
 
-#: accounts/forms.py:20
+#: accounts/forms.py:23
 msgid "Password"
 msgstr "Пароль"
 
-#: accounts/forms.py:59
+#: accounts/forms.py:62
 msgid "Old password"
 msgstr "Старый Пароль"
 
-#: accounts/forms.py:67 accounts/forms.py:120
+#: accounts/forms.py:70 accounts/forms.py:123
 msgid "New password"
 msgstr "Новый Пароль"
 
-#: accounts/forms.py:73 accounts/forms.py:126
+#: accounts/forms.py:76 accounts/forms.py:129
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
-#: accounts/forms.py:81 core/templates/core/contact.html:36
-#: core/templates/core/index.html:347
+#: accounts/forms.py:84 core/templates/core/contact.html:36
+#: core/templates/core/index.html:349
 msgid "Email"
 msgstr "Е-мэйл"
 
-#: accounts/forms.py:99
+#: accounts/forms.py:102
 msgid "Password reset"
 msgstr "Сброс пароля"
 
-#: accounts/forms.py:114
+#: accounts/forms.py:117
 msgid "Invalid email"
 msgstr "Неверный е-мэйл"
 
-#: accounts/models.py:15 core/models.py:27
-msgid "Cash"
-msgstr "Наличные"
-
-#: accounts/models.py:21
-msgid "English"
-msgstr ""
-
-#: accounts/models.py:22
-msgid "Russian"
-msgstr ""
-
-#: accounts/models.py:23
-msgid "Estonian"
-msgstr ""
-
-#: accounts/models.py:27 core/models.py:33
-msgid "S"
-msgstr ""
-
-#: accounts/models.py:28 core/models.py:34
-msgid "M"
-msgstr ""
-
-#: accounts/models.py:29 core/models.py:35
-msgid "L"
-msgstr ""
-
-#: accounts/models.py:33
+#: accounts/models.py:16
 msgid "Email address"
 msgstr "Е-мэйл адрес"
 
-#: accounts/models.py:38 core/models.py:39
+#: accounts/models.py:21 core/models.py:21
 msgid "first name"
 msgstr "Имя"
 
-#: accounts/models.py:39 core/models.py:40
+#: accounts/models.py:22 core/models.py:22
 msgid "last name"
 msgstr "Фамилия"
 
-#: accounts/models.py:40
+#: accounts/models.py:23
 msgid "isikukood"
 msgstr "Личный код"
 
-#: accounts/models.py:44 core/templates/core/new_job_accepted_email.html:15
+#: accounts/models.py:27 core/templates/core/new_job_accepted_email.html:15
 #: core/templates/core/order_complete_customer_email.html:16
 msgid "Phone"
 msgstr "телефон"
 
-#: accounts/models.py:44
+#: accounts/models.py:27
 msgid "Contact phone number"
 msgstr "Номер телефона"
 
-#: accounts/models.py:45
+#: accounts/models.py:28
 msgid "car model"
 msgstr "Марка машины"
 
-#: accounts/models.py:46 core/models.py:50
+#: accounts/models.py:29 core/models.py:32
 msgid "car type"
 msgstr "Тип машины"
 
-#: accounts/models.py:47
+#: accounts/models.py:30
 msgid "car carrying (kg)"
 msgstr "Грузоподъёмность"
 
-#: accounts/models.py:49
+#: accounts/models.py:32
 msgid "car number"
 msgstr "Номер машины"
 
-#: accounts/models.py:51 core/models.py:52
+#: accounts/models.py:34 core/models.py:34
 msgid "payment method"
 msgstr "Способ оплаты"
 
-#: accounts/models.py:52
+#: accounts/models.py:35
 msgid "number of available movers"
 msgstr "Количество доступных грузчиков"
 
-#: accounts/models.py:55
+#: accounts/models.py:38
 msgid "Preferred language"
 msgstr "Язык"
 
-#: accounts/models.py:58
+#: accounts/models.py:41
 msgid "Preferred language to use delivery24"
 msgstr "Предпочтительный язык использования delivery24"
 
-#: accounts/models.py:74
+#: accounts/models.py:57
 msgid "user"
 msgstr "пользователь"
 
-#: accounts/models.py:75
+#: accounts/models.py:58
 msgid "users"
 msgstr "пользователи"
 
@@ -318,7 +290,7 @@ msgid "Total income"
 msgstr "Общий доход"
 
 #: accounts/templates/accounts/profile/profile_base.html:45
-#: core/templates/core/base.html:59 core/templates/core/index.html:56
+#: core/templates/core/base.html:59 core/templates/core/index.html:58
 msgid "Loading..."
 msgstr "Загрузка ..."
 
@@ -444,172 +416,208 @@ msgstr "Подтвердить"
 msgid "Driver Signup"
 msgstr "Регистрация Водителя"
 
-#: core/forms.py:22 core/forms.py:85
+#: core/forms.py:24 core/forms.py:87
 msgid "Delivery start"
 msgstr "Начало доставки"
 
-#: core/forms.py:24 core/forms.py:89
+#: core/forms.py:26 core/forms.py:91
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:43 core/forms.py:111 core/templates/core/contact.html:52
-#: core/templates/core/index.html:362
+#: core/forms.py:45 core/forms.py:113 core/templates/core/contact.html:52
+#: core/templates/core/index.html:364
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
 
-#: core/forms.py:55
+#: core/forms.py:57
 msgid "Must be at least {} hour from current time"
 msgstr "Должно быть минимум {} час от текущего времени"
 
-#: core/forms.py:58
+#: core/forms.py:60
 msgid "Must be less than {} days from current date"
 msgstr "Должно быть менее {} дней от текущей даты"
 
-#: core/forms.py:61
+#: core/forms.py:63
 msgid "Must be at least {} hour after delivery start"
 msgstr "Должно быть минимум {} час после начала доставки"
 
-#: core/forms.py:64
+#: core/forms.py:66
 msgid "Must be less than {} hours after delivery start"
 msgstr "Должно быть менее {} часов после начала доставки"
 
-#: core/forms.py:72 core/models.py:54
+#: core/forms.py:74 core/models.py:36
 msgid "Verification code"
 msgstr "Код подтверждения"
 
-#: core/forms.py:73
+#: core/forms.py:75
 msgid "Code is sent to your email"
 msgstr "Код отправлен на Ваш е-мэйл"
 
-#: core/forms.py:80
+#: core/forms.py:82
 msgid "Invalid code"
 msgstr "Неверный код"
 
-#: core/models.py:41
+#: core/models.py:23
 msgid "email"
 msgstr "Е-мэйл"
 
-#: core/models.py:42
+#: core/models.py:24
 msgid "phone"
 msgstr "телефон"
 
-#: core/models.py:43
+#: core/models.py:25
 msgid "address from"
 msgstr "Откуда"
 
-#: core/models.py:43
+#: core/models.py:25
 msgid "Delivery start address"
 msgstr "Начальный адрес"
 
-#: core/models.py:44
+#: core/models.py:26
 msgid "address to"
 msgstr "Куда"
 
-#: core/models.py:44
+#: core/models.py:26
 msgid "Delivery end address"
 msgstr "Конечный адрес"
 
-#: core/models.py:45
+#: core/models.py:27
 msgid "delivery start"
 msgstr "Начало доставки"
 
-#: core/models.py:45
+#: core/models.py:27
 msgid "Delivery start time"
 msgstr "Начало доставки"
 
-#: core/models.py:46
+#: core/models.py:28
 msgid "delivery end"
 msgstr "Окончание доставки"
 
-#: core/models.py:46
+#: core/models.py:28
 msgid "Delivery end time"
 msgstr "Примерное время окончания доставки"
 
-#: core/models.py:47
+#: core/models.py:29
 msgid "number of required movers"
 msgstr "Количество требуемых грузчиков"
 
-#: core/models.py:51
+#: core/models.py:33
 msgid "message"
 msgstr "Сообщение"
 
-#: core/models.py:51
+#: core/models.py:33
 msgid "additional information"
 msgstr "Дополнительная информация"
 
-#: core/services/order.py:47
+#: core/proj_conf.py:29
+msgid "Cash"
+msgstr "Наличные"
+
+#: core/proj_conf.py:30
+msgid "Bank"
+msgstr "Банк"
+
+#: core/proj_conf.py:31
+msgid "Both"
+msgstr "Наличные/Банк"
+
+#: core/proj_conf.py:35
+msgid "English"
+msgstr ""
+
+#: core/proj_conf.py:36
+msgid "Russian"
+msgstr ""
+
+#: core/proj_conf.py:37
+msgid "Estonian"
+msgstr ""
+
+#: core/proj_conf.py:41
+msgid "S"
+msgstr ""
+
+#: core/proj_conf.py:42
+msgid "M"
+msgstr ""
+
+#: core/proj_conf.py:43
+msgid "L"
+msgstr ""
+
+#: core/services/order.py:49
 msgid "New Job"
 msgstr "Новая работа"
 
-#: core/services/order.py:89
+#: core/services/order.py:91
 msgid "Order verification code"
 msgstr "Код подтверждения заказа"
 
-#: core/services/order.py:130 core/templates/core/order_complete.html:116
+#: core/services/order.py:132 core/templates/core/order_complete.html:116
 msgid "Order confirmed"
 msgstr "Заказ подтверждён"
 
-#: core/services/order.py:154
+#: core/services/order.py:156
 msgid "New Job Accepted"
 msgstr "Новая работа одобрена"
 
-#: core/tasks.py:47
+#: core/tasks.py:49
 msgid "New Job Canceled"
 msgstr "Работа Отменена"
 
-#: core/templates/core/base.html:88 core/templates/core/index.html:86
+#: core/templates/core/base.html:88 core/templates/core/index.html:88
 msgid "Home"
 msgstr "Главная"
 
 #: core/templates/core/base.html:89 core/templates/core/features.html:5
-#: core/templates/core/features.html:14 core/templates/core/index.html:87
+#: core/templates/core/features.html:14 core/templates/core/index.html:89
 msgid "Features"
 msgstr "Особенности"
 
-#: core/templates/core/base.html:90 core/templates/core/index.html:88
+#: core/templates/core/base.html:90 core/templates/core/index.html:90
 msgid "GET STARTED"
 msgstr "НАЧАТЬ"
 
-#: core/templates/core/base.html:92 core/templates/core/index.html:90
-#: core/templates/core/index.html:255 core/templates/core/partner.html:5
+#: core/templates/core/base.html:92 core/templates/core/index.html:92
+#: core/templates/core/index.html:257 core/templates/core/partner.html:5
 #: core/templates/core/partner.html:14
 msgid "Become a Partner"
 msgstr "Стань партнёром"
 
-#: core/templates/core/base.html:106 core/templates/core/index.html:104
+#: core/templates/core/base.html:106 core/templates/core/index.html:106
 msgid "Blog"
 msgstr "Блог"
 
 #: core/templates/core/base.html:107 core/templates/core/contact.html:5
-#: core/templates/core/index.html:105
+#: core/templates/core/index.html:107
 msgid "Contact"
 msgstr "Контакт"
 
-#: core/templates/core/contact.html:14 core/templates/core/index.html:327
+#: core/templates/core/contact.html:14 core/templates/core/index.html:329
 msgid "Contact Us"
 msgstr "Связаться"
 
-#: core/templates/core/contact.html:21 core/templates/core/index.html:333
+#: core/templates/core/contact.html:21 core/templates/core/index.html:335
 msgid "Contact Form"
 msgstr "Контактная форма"
 
-#: core/templates/core/contact.html:24 core/templates/core/index.html:336
+#: core/templates/core/contact.html:24 core/templates/core/index.html:338
 msgid "First Name"
 msgstr "Имя"
 
-#: core/templates/core/contact.html:28 core/templates/core/index.html:340
+#: core/templates/core/contact.html:28 core/templates/core/index.html:342
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: core/templates/core/contact.html:44 core/templates/core/index.html:354
+#: core/templates/core/contact.html:44 core/templates/core/index.html:356
 msgid "Subject"
 msgstr "Тема"
 
-#: core/templates/core/contact.html:51 core/templates/core/index.html:361
+#: core/templates/core/contact.html:51 core/templates/core/index.html:363
 msgid "Message"
 msgstr "Сообщение"
 
-#: core/templates/core/contact.html:58 core/templates/core/index.html:368
+#: core/templates/core/contact.html:58 core/templates/core/index.html:370
 msgid "Send Message"
 msgstr "Сообщение"
 
@@ -642,35 +650,35 @@ msgstr "Завершено. Скоро Вы получите сообщение 
 msgid "DELIVERY24 &mdash; Best Price Moving"
 msgstr "DELIVERY24 &mdash; Лучшие цены грузоперевозок"
 
-#: core/templates/core/index.html:93
+#: core/templates/core/index.html:95
 msgid "Our Team"
 msgstr "Наша команда"
 
-#: core/templates/core/index.html:152
+#: core/templates/core/index.html:154
 msgid "Order Moving Service in<br>3 Minutes"
 msgstr "Закажи услугу грузоперевозки за 3 минуты"
 
-#: core/templates/core/index.html:154
+#: core/templates/core/index.html:156
 msgid "Fastest way to find moving service with best price"
 msgstr "Быстрый способ заказать перевозку по лучшей цене"
 
-#: core/templates/core/index.html:155
+#: core/templates/core/index.html:157
 msgid "No phone calls asking for schedule and price"
 msgstr "Никаких звонков что-бы узнать цену и доступное время"
 
-#: core/templates/core/index.html:156
+#: core/templates/core/index.html:158
 msgid "Place your order and get response in minutes"
 msgstr "Оставь заявку и получи ответ сразу на сайте"
 
-#: core/templates/core/index.html:159 core/templates/core/index.html:229
+#: core/templates/core/index.html:161 core/templates/core/index.html:231
 msgid "Get Started"
 msgstr "НАЧАТЬ"
 
-#: core/templates/core/index.html:174
+#: core/templates/core/index.html:176
 msgid "Delivery24 Features"
 msgstr "Delivery24 достоинства"
 
-#: core/templates/core/index.html:175
+#: core/templates/core/index.html:177
 msgid ""
 "We know how it is time consuming to find moving service that<br>matches your "
 "schedule and price. We made it easier for You. Fast response with better "
@@ -680,38 +688,38 @@ msgstr ""
 "подходит по цене и времени. Мы сделали этот процесс простым для Вас. Быстрый "
 "ответ с наилучшей ценой."
 
-#: core/templates/core/index.html:186
+#: core/templates/core/index.html:188
 msgid "Place Your Order"
 msgstr "Простой способ сделать заказ"
 
-#: core/templates/core/index.html:187
+#: core/templates/core/index.html:189
 msgid "Fill in simple form with date, addresses and payment method."
 msgstr "Заполни простую форму с датой, адресом и способом оплаты."
 
-#: core/templates/core/index.html:188 core/templates/core/index.html:201
-#: core/templates/core/index.html:214
+#: core/templates/core/index.html:190 core/templates/core/index.html:203
+#: core/templates/core/index.html:216
 msgid "Learn More"
 msgstr "Узнать больше"
 
-#: core/templates/core/index.html:199
+#: core/templates/core/index.html:201
 msgid "Best price offer in minutes"
 msgstr "Быстрый ответ с лучшим предложением"
 
-#: core/templates/core/index.html:200
+#: core/templates/core/index.html:202
 msgid ""
 "You will receive best offer based on your order. Confirm if the price suits "
 "you."
 msgstr "Просто нажми подтвердить если цена подходит Вам."
 
-#: core/templates/core/index.html:212
+#: core/templates/core/index.html:214
 msgid "Pay online or by cash"
 msgstr "Выбери удобный способ оплаты"
 
-#: core/templates/core/index.html:213
+#: core/templates/core/index.html:215
 msgid "You have an option to pay safely online or by cash when job is done."
 msgstr "Оплата online или наличными после окончания работы."
 
-#: core/templates/core/index.html:240 core/templates/core/order.html:5
+#: core/templates/core/index.html:242 core/templates/core/order.html:5
 #: core/templates/core/order.html:14 core/templates/core/order.html:27
 #: core/templates/core/order_complete.html:89
 msgid "Order"
@@ -852,9 +860,6 @@ msgstr "Неверный номер машины"
 #: core/views.py:184
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
-
-#~ msgid "Cash/Bank"
-#~ msgstr "Наличные/Банк"
 
 #~ msgid "delivery24.ee New Job"
 #~ msgstr "delivery24.ee Новая Работа"

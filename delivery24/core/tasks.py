@@ -9,6 +9,8 @@ from django.utils import translation
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 
+import core.proj_conf as conf
+
 from delivery24.celery import app
 from .proj_conf import PERIODIC_SET_WORK_DONE_S, CUSTOMER_CONFIRM_WORK_TIMEOUT_S, \
     PERIODIC_DELETE_UNCONFIRMED_SIGNUP_S, USER_SIGNUP_CONFIRM_TIMEOUT_S
@@ -107,13 +109,13 @@ def setup_periodic_tasks(sender, **kwargs):
 @app.task
 def set_work_done():
     time_now_delta = timezone.now() + datetime.timedelta(hours=0)  # Tallinn time UTC+3
-    works = Work.objects.filter(status__lt=Work.WORK_STATUS[2][0], delivery_end__lt=time_now_delta)
+    works = Work.objects.filter(status__lt=conf.WORK_STATUS[2][0], delivery_end__lt=time_now_delta)
 
     for work in works:
         if work.order_confirmed:
-            work.status = Work.WORK_STATUS[2][0]  # Done
+            work.status = conf.WORK_STATUS[2][0]  # Done
         else:
-            work.status = Work.WORK_STATUS[3][0]  # Canceled
+            work.status = conf.WORK_STATUS[3][0]  # Canceled
         work.save()
         logger.info(work.status)
 

@@ -6,6 +6,8 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
+import core.proj_conf as conf
+
 from .models import Order
 
 
@@ -36,7 +38,7 @@ class OrderForm(ModelForm):
             'address_from': TextInput(attrs={'class': 'form-control rounded-0'}),
             'address_to': TextInput(attrs={'class': 'form-control rounded-0'}),
             'movers_num': Select(attrs={'class': 'form-control rounded-0'}),
-            'car_type': RadioSelect(choices=Order.CAR_TYPE),
+            'car_type': RadioSelect(choices=conf.CAR_TYPE),
             'payment': Select(attrs={'class': 'form-control rounded-0'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',
                                        'cols': 30, 'rows': 7,

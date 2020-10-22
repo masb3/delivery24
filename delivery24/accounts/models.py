@@ -8,27 +8,10 @@ from .user_manager import UserManager
 from phonenumber_field.modelfields import PhoneNumberField
 
 from core.utils import ik_validator, car_number_validator
+import core.proj_conf as conf
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    PAYMENT_METHOD = [
-        (1, _('Cash')),
-        #(2, 'Bank'),
-        #(3, 'Both'),
-    ]
-
-    PREFERRED_LANGUAGE = [
-        (1, _('English')),
-        (2, _('Russian')),
-        (3, _('Estonian')),
-    ]
-
-    CAR_TYPE = [
-        (1, _('S')),
-        (2, _('M')),
-        (3, _('L')),
-    ]
-
     email = models.EmailField(
         verbose_name=_('Email address'),
         max_length=255,
@@ -43,18 +26,18 @@ class User(AbstractBaseUser, PermissionsMixin):
                                             ik_validator])
     phone = PhoneNumberField(_('Phone'), help_text=_('Contact phone number'))
     car_model = models.CharField(_('car model'), max_length=50)
-    car_type = models.IntegerField(_('car type'), choices=CAR_TYPE, default=3)
+    car_type = models.IntegerField(_('car type'), choices=conf.CAR_TYPE, default=3)
     car_carrying = models.IntegerField(_('car carrying (kg)'),
                                        validators=[MinValueValidator(100), MaxValueValidator(10000)])
     car_number = models.CharField(_('car number'), max_length=7,
                                   validators=[MinLengthValidator(5), MaxLengthValidator(7), car_number_validator])
-    payment = models.IntegerField(_('payment method'), choices=PAYMENT_METHOD, default=PAYMENT_METHOD[0][0])
+    payment = models.IntegerField(_('payment method'), choices=conf.PAYMENT_METHOD, default=conf.PAYMENT_METHOD[0][0])
     movers_num = models.IntegerField(_('number of available movers'),
                                      choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4')],
                                      default=0)
     preferred_language = models.IntegerField(_('Preferred language'),
-                                             choices=PREFERRED_LANGUAGE,
-                                             default=PREFERRED_LANGUAGE[0][0],
+                                             choices=conf.PREFERRED_LANGUAGE,
+                                             default=conf.PREFERRED_LANGUAGE[0][0],
                                              help_text=_('Preferred language to use delivery24'))
 
     created_at = models.DateTimeField(auto_now_add=True)
