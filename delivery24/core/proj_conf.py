@@ -38,9 +38,9 @@ PREFERRED_LANGUAGE = [
 ]
 
 CAR_TYPE = [
-    (1, _('S')),
-    (2, _('M')),
-    (3, _('L')),
+    (0, _('S')),
+    (1, _('M')),
+    (2, _('L')),
 ]
 
 WORK_STATUS = [

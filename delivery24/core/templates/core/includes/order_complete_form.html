@@ -83,12 +83,12 @@
                 <div class="col-md-12">
                   <label class="text-black" for="{{ order_form.car_type.auto_id }}">{{ order_form.car_type.label }}</label>
                   <div id="car_type">
-                    {% if 1 == order_form.car_type.value %}
-                      <input type="radio" name="car_type" id="id_car_type_0" value="1" /><label for="id_car_type_0"><img src="{% static 'core/images/cars_pics/S_mod.png' %}" alt="Car Type S" /></label>
+                    {% if 0 == order_form.car_type.value %}
+                      <input type="radio" name="car_type" id="id_car_type_0" value="0" /><label for="id_car_type_0"><img src="{% static 'core/images/cars_pics/S_mod.png' %}" alt="Car Type S" /></label>
+                    {% elif 1 == order_form.car_type.value %}
+                      <input type="radio" name="car_type" id="id_car_type_1" value="1" /><label for="id_car_type_1"><img src="{% static 'core/images/cars_pics/M_mod.png' %}" alt="Car Type M" /></label>
                     {% elif 2 == order_form.car_type.value %}
-                      <input type="radio" name="car_type" id="id_car_type_1" value="2" /><label for="id_car_type_1"><img src="{% static 'core/images/cars_pics/M_mod.png' %}" alt="Car Type M" /></label>
-                    {% elif 3 == order_form.car_type.value %}
-                      <input type="radio" name="car_type" id="id_car_type_2" value="3" /><label for="id_car_type_2"><img src="{% static 'core/images/cars_pics/L_mod.png' %}" alt="Car Type L" /></label>
+                      <input type="radio" name="car_type" id="id_car_type_2" value="2" /><label for="id_car_type_2"><img src="{% static 'core/images/cars_pics/L_mod.png' %}" alt="Car Type L" /></label>
                     {% else %}
                     {% endif %}
                   </div>

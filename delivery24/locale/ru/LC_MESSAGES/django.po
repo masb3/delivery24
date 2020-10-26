@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 02:06+0300\n"
+"POT-Creation-Date: 2020-10-26 21:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "isikukood"
 msgstr "Личный код"
 
 #: accounts/models.py:27 core/templates/core/new_job_accepted_email.html:15
-#: core/templates/core/order_complete_customer_email.html:16
+#: core/templates/core/order_complete_customer_email.html:17
 msgid "Phone"
 msgstr "телефон"
 
@@ -140,7 +140,7 @@ msgstr "Пожалуйста пройдите по ссылке для акти�
 #: core/templates/core/new_job_accepted_email.html:19
 #: core/templates/core/new_job_not_accepted_email.html:14
 #: core/templates/core/new_job_notify_email.html:17
-#: core/templates/core/order_complete_customer_email.html:20
+#: core/templates/core/order_complete_customer_email.html:21
 #: core/templates/core/order_veriff_code_send_email.html:9
 msgid "Sincerely"
 msgstr "С Уважением"
@@ -150,7 +150,7 @@ msgstr "С Уважением"
 #: core/templates/core/new_job_accepted_email.html:20
 #: core/templates/core/new_job_not_accepted_email.html:15
 #: core/templates/core/new_job_notify_email.html:18
-#: core/templates/core/order_complete_customer_email.html:21
+#: core/templates/core/order_complete_customer_email.html:22
 #: core/templates/core/order_veriff_code_send_email.html:10
 msgid "Team"
 msgstr "Команда"
@@ -424,7 +424,7 @@ msgstr "Начало доставки"
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:45 core/forms.py:113 core/templates/core/contact.html:52
+#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:52
 #: core/templates/core/index.html:364
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
@@ -513,14 +513,6 @@ msgstr "Дополнительная информация"
 msgid "Cash"
 msgstr "Наличные"
 
-#: core/proj_conf.py:30
-msgid "Bank"
-msgstr "Банк"
-
-#: core/proj_conf.py:31
-msgid "Both"
-msgstr "Наличные/Банк"
-
 #: core/proj_conf.py:35
 msgid "English"
 msgstr ""
@@ -553,11 +545,11 @@ msgstr "Новая работа"
 msgid "Order verification code"
 msgstr "Код подтверждения заказа"
 
-#: core/services/order.py:132 core/templates/core/order_complete.html:116
+#: core/services/order.py:133 core/templates/core/order_complete.html:116
 msgid "Order confirmed"
 msgstr "Заказ подтверждён"
 
-#: core/services/order.py:156
+#: core/services/order.py:158
 msgid "New Job Accepted"
 msgstr "Новая работа одобрена"
 
@@ -775,7 +767,7 @@ msgid "Customer details"
 msgstr "Детали заказчика"
 
 #: core/templates/core/new_job_accepted_email.html:14
-#: core/templates/core/order_complete_customer_email.html:15
+#: core/templates/core/order_complete_customer_email.html:16
 msgid "Name"
 msgstr "Имя"
 
@@ -830,6 +822,10 @@ msgid "Confirmed order details"
 msgstr "Детали подтвержденного заказа"
 
 #: core/templates/core/order_complete_customer_email.html:14
+msgid "Car type"
+msgstr "Тип машины"
+
+#: core/templates/core/order_complete_customer_email.html:15
 msgid "Driver details"
 msgstr "Профиль водителя"
 
@@ -860,6 +856,12 @@ msgstr "Неверный номер машины"
 #: core/views.py:184
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
+
+#~ msgid "Bank"
+#~ msgstr "Банк"
+
+#~ msgid "Both"
+#~ msgstr "Наличные/Банк"
 
 #~ msgid "delivery24.ee New Job"
 #~ msgstr "delivery24.ee Новая Работа"

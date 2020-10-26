@@ -28,6 +28,7 @@ def find_suitable_drivers(order: Order, request):
                                   Q(is_active=True) &
                                   Q(email_confirmed=True) &
                                   Q(movers_num__gte=order.movers_num) &
+                                  Q(car_type=order.car_type) &
                                   (Q(payment=order.payment) | Q(payment=conf.PAYMENT_METHOD_BOTH)))
 
     suitable_drivers_list = []
@@ -142,6 +143,7 @@ def confirmed_order_customer_email(work_id: Work.id):
         'movers_num': work.order.movers_num,
         'price': work.price,
         'payment_method': conf.PAYMENT_METHOD[work.order.payment][1],
+        'car_type': conf.CAR_TYPE[work.order.car_type][1],
         'driver_name': str(work.driver.first_name) + ' ' + str(work.driver.last_name),
         'driver_phone': work.driver.phone,
     })
