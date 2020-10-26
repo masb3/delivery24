@@ -106,6 +106,7 @@ class OrderCompleteForm(ModelForm):
             'address_to': TextInput(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly'}),
             'movers_num': Select(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly',
                                         'disabled': 'disabled'}),
+            'car_type': RadioSelect(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly', 'disabled': 'disabled'}),
             'payment': Select(attrs={'class': 'form-control rounded-0', 'readonly': 'readonly',
                                      'disabled': 'disabled'}),
             'message': Textarea(attrs={'class': 'form-control rounded-0',

@@ -118,6 +118,7 @@ def change_order_prefill_form(order: Order, form: OrderForm):
     order.delivery_start = form.cleaned_data.get('delivery_start')
     order.delivery_end = form.cleaned_data.get('delivery_end')
     order.movers_num = form.cleaned_data.get('movers_num')
+    order.car_type = form.cleaned_data.get('car_type')
     order.message = form.cleaned_data.get('message')
     order.payment = form.cleaned_data.get('payment')
 
