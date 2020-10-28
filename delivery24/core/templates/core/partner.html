@@ -2,7 +2,18 @@
 {% load static %}
 {% load i18n %}
 
+{% block meta_description %}
+    <meta name="description" content="{% trans 'Want to get a job in Tallinn, Estonia? Become a loader, deliveryman or driver' %}">
+{% endblock meta_description %}
+
 {% block title %}{% trans "Become a Partner" %}{% endblock title %}
+
+{% block lang_alternate %}
+    <link rel="alternate" hreflang="en" href="https://delivery24.ee/partner/" />
+    <link rel="alternate" hreflang="ru" href="https://delivery24.ee/ru/partner/" />
+    <link rel="alternate" hreflang="et" href="https://delivery24.ee/et/partner/" />
+    <link rel="alternate" hreflang="x-default" href="https://delivery24.ee/partner/" />
+{% endblock lang_alternate %}
 
 {% block content %}
 

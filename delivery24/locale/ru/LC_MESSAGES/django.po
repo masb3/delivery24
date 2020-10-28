@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 23:27+0200\n"
+"POT-Creation-Date: 2020-10-28 23:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr "Новый Пароль"
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
-#: accounts/forms.py:84 core/templates/core/contact.html:40
+#: accounts/forms.py:84 core/templates/core/contact.html:47
 #: core/templates/core/index.html:356
 msgid "Email"
 msgstr "Е-мэйл"
@@ -432,7 +432,7 @@ msgstr "Начало доставки"
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:56
+#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:63
 #: core/templates/core/index.html:371
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
@@ -579,8 +579,8 @@ msgid "GET STARTED"
 msgstr "НАЧАТЬ"
 
 #: core/templates/core/base.html:95 core/templates/core/index.html:99
-#: core/templates/core/index.html:264 core/templates/core/partner.html:5
-#: core/templates/core/partner.html:14
+#: core/templates/core/index.html:264 core/templates/core/partner.html:9
+#: core/templates/core/partner.html:18
 msgid "Become a Partner"
 msgstr "Стань партнёром"
 
@@ -600,31 +600,31 @@ msgstr ""
 "Оставь сообщение если есть вопросы или желаешь работать, сотрудничать с "
 "delivery24.ee"
 
-#: core/templates/core/contact.html:18 core/templates/core/index.html:336
+#: core/templates/core/contact.html:25 core/templates/core/index.html:336
 msgid "Contact Us"
 msgstr "Связаться"
 
-#: core/templates/core/contact.html:25 core/templates/core/index.html:342
+#: core/templates/core/contact.html:32 core/templates/core/index.html:342
 msgid "Contact Form"
 msgstr "Контактная форма"
 
-#: core/templates/core/contact.html:28 core/templates/core/index.html:345
+#: core/templates/core/contact.html:35 core/templates/core/index.html:345
 msgid "First Name"
 msgstr "Имя"
 
-#: core/templates/core/contact.html:32 core/templates/core/index.html:349
+#: core/templates/core/contact.html:39 core/templates/core/index.html:349
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: core/templates/core/contact.html:48 core/templates/core/index.html:363
+#: core/templates/core/contact.html:55 core/templates/core/index.html:363
 msgid "Subject"
 msgstr "Тема"
 
-#: core/templates/core/contact.html:55 core/templates/core/index.html:370
+#: core/templates/core/contact.html:62 core/templates/core/index.html:370
 msgid "Message"
 msgstr "Сообщение"
 
-#: core/templates/core/contact.html:62 core/templates/core/index.html:377
+#: core/templates/core/contact.html:69 core/templates/core/index.html:377
 msgid "Send Message"
 msgstr "Сообщение"
 
@@ -877,6 +877,10 @@ msgstr "Подтверди"
 #: core/templates/core/order_veriff_code_send_email.html:5
 msgid "Order verification code is"
 msgstr "Код подтверждения заказа"
+
+#: core/templates/core/partner.html:6
+msgid "Want to get a job in Tallinn, Estonia? Become a loader, deliveryman or driver"
+msgstr "Желаешь получить работу в Таллинне, Эстонии? Стань грузчиком, доставщиком или водителем"
 
 #: core/utils.py:31
 msgid "Isikukood is incorrect"
