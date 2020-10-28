@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-26 21:22+0200\n"
+"POT-Creation-Date: 2020-10-28 23:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,8 +40,8 @@ msgstr "Новый Пароль"
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
-#: accounts/forms.py:84 core/templates/core/contact.html:36
-#: core/templates/core/index.html:349
+#: accounts/forms.py:84 core/templates/core/contact.html:40
+#: core/templates/core/index.html:356
 msgid "Email"
 msgstr "Е-мэйл"
 
@@ -186,26 +186,30 @@ msgstr ""
 msgid "Login"
 msgstr "Логин"
 
-#: accounts/templates/accounts/login.html:5
-#: accounts/templates/accounts/login.html:14
+#: accounts/templates/accounts/login.html:6
+msgid "Login to view your profile, completed and future jobs, income"
+msgstr "Войди что-бы увидеть свой профиль, завершенные и будущие работы, доход"
+
+#: accounts/templates/accounts/login.html:9
+#: accounts/templates/accounts/login.html:25
 msgid "Driver Login"
 msgstr "Логин Водителя"
 
-#: accounts/templates/accounts/login.html:27
+#: accounts/templates/accounts/login.html:38
 #: accounts/templates/accounts/profile/changepwd.html:28
 #: accounts/templates/accounts/profile/profile_change.html:26
-#: accounts/templates/accounts/signup.html:27
+#: accounts/templates/accounts/signup.html:38
 #: core/templates/core/driver_newjob_confirm.html:41
 #: core/templates/core/order_complete.html:110
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: accounts/templates/accounts/login.html:30
+#: accounts/templates/accounts/login.html:41
 #: accounts/templates/accounts/pwd_reset/password_reset_form.html:5
 msgid "Forgot password"
 msgstr "Забыл Пароль"
 
-#: accounts/templates/accounts/login.html:33
+#: accounts/templates/accounts/login.html:44
 msgid "Signup"
 msgstr "Регистрация"
 
@@ -289,20 +293,20 @@ msgstr "Зарегистрирован"
 msgid "Total income"
 msgstr "Общий доход"
 
-#: accounts/templates/accounts/profile/profile_base.html:45
-#: core/templates/core/base.html:59 core/templates/core/index.html:58
+#: accounts/templates/accounts/profile/profile_base.html:49
+#: core/templates/core/base.html:62 core/templates/core/index.html:65
 msgid "Loading..."
 msgstr "Загрузка ..."
 
-#: accounts/templates/accounts/profile/profile_base.html:74
+#: accounts/templates/accounts/profile/profile_base.html:78
 msgid "Profile"
 msgstr "Профиль"
 
-#: accounts/templates/accounts/profile/profile_base.html:75
+#: accounts/templates/accounts/profile/profile_base.html:79
 msgid "Jobs"
 msgstr "Работы"
 
-#: accounts/templates/accounts/profile/profile_base.html:76
+#: accounts/templates/accounts/profile/profile_base.html:80
 msgid "Settings"
 msgstr "Настройки"
 
@@ -411,8 +415,12 @@ msgstr "Восстановить Пароль"
 msgid "Submit"
 msgstr "Подтвердить"
 
-#: accounts/templates/accounts/signup.html:5
-#: accounts/templates/accounts/signup.html:14
+#: accounts/templates/accounts/signup.html:6
+msgid "Get job in Tallinn"
+msgstr "Получи работу в Таллинне"
+
+#: accounts/templates/accounts/signup.html:9
+#: accounts/templates/accounts/signup.html:25
 msgid "Driver Signup"
 msgstr "Регистрация Водителя"
 
@@ -424,8 +432,8 @@ msgstr "Начало доставки"
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:52
-#: core/templates/core/index.html:364
+#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:56
+#: core/templates/core/index.html:371
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
 
@@ -537,19 +545,19 @@ msgstr ""
 msgid "L"
 msgstr ""
 
-#: core/services/order.py:49
+#: core/services/order.py:50
 msgid "New Job"
 msgstr "Новая работа"
 
-#: core/services/order.py:91
+#: core/services/order.py:92
 msgid "Order verification code"
 msgstr "Код подтверждения заказа"
 
-#: core/services/order.py:133 core/templates/core/order_complete.html:116
+#: core/services/order.py:134 core/templates/core/order_complete.html:116
 msgid "Order confirmed"
 msgstr "Заказ подтверждён"
 
-#: core/services/order.py:158
+#: core/services/order.py:159
 msgid "New Job Accepted"
 msgstr "Новая работа одобрена"
 
@@ -557,59 +565,66 @@ msgstr "Новая работа одобрена"
 msgid "New Job Canceled"
 msgstr "Работа Отменена"
 
-#: core/templates/core/base.html:88 core/templates/core/index.html:88
+#: core/templates/core/base.html:91 core/templates/core/index.html:95
 msgid "Home"
 msgstr "Главная"
 
-#: core/templates/core/base.html:89 core/templates/core/features.html:5
-#: core/templates/core/features.html:14 core/templates/core/index.html:89
+#: core/templates/core/base.html:92 core/templates/core/features.html:9
+#: core/templates/core/features.html:25 core/templates/core/index.html:96
 msgid "Features"
 msgstr "Особенности"
 
-#: core/templates/core/base.html:90 core/templates/core/index.html:90
+#: core/templates/core/base.html:93 core/templates/core/index.html:97
 msgid "GET STARTED"
 msgstr "НАЧАТЬ"
 
-#: core/templates/core/base.html:92 core/templates/core/index.html:92
-#: core/templates/core/index.html:257 core/templates/core/partner.html:5
+#: core/templates/core/base.html:95 core/templates/core/index.html:99
+#: core/templates/core/index.html:264 core/templates/core/partner.html:5
 #: core/templates/core/partner.html:14
 msgid "Become a Partner"
 msgstr "Стань партнёром"
 
-#: core/templates/core/base.html:106 core/templates/core/index.html:106
+#: core/templates/core/base.html:109 core/templates/core/index.html:113
 msgid "Blog"
 msgstr "Блог"
 
-#: core/templates/core/base.html:107 core/templates/core/contact.html:5
-#: core/templates/core/index.html:107
+#: core/templates/core/base.html:110 core/templates/core/contact.html:9
+#: core/templates/core/index.html:114
 msgid "Contact"
 msgstr "Контакт"
 
-#: core/templates/core/contact.html:14 core/templates/core/index.html:329
+#: core/templates/core/contact.html:6
+msgid ""
+"Leave a message if you have any questions or want to work with delivery24.ee"
+msgstr ""
+"Оставь сообщение если есть вопросы или желаешь работать, сотрудничать с "
+"delivery24.ee"
+
+#: core/templates/core/contact.html:18 core/templates/core/index.html:336
 msgid "Contact Us"
 msgstr "Связаться"
 
-#: core/templates/core/contact.html:21 core/templates/core/index.html:335
+#: core/templates/core/contact.html:25 core/templates/core/index.html:342
 msgid "Contact Form"
 msgstr "Контактная форма"
 
-#: core/templates/core/contact.html:24 core/templates/core/index.html:338
+#: core/templates/core/contact.html:28 core/templates/core/index.html:345
 msgid "First Name"
 msgstr "Имя"
 
-#: core/templates/core/contact.html:28 core/templates/core/index.html:342
+#: core/templates/core/contact.html:32 core/templates/core/index.html:349
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: core/templates/core/contact.html:44 core/templates/core/index.html:356
+#: core/templates/core/contact.html:48 core/templates/core/index.html:363
 msgid "Subject"
 msgstr "Тема"
 
-#: core/templates/core/contact.html:51 core/templates/core/index.html:363
+#: core/templates/core/contact.html:55 core/templates/core/index.html:370
 msgid "Message"
 msgstr "Сообщение"
 
-#: core/templates/core/contact.html:58 core/templates/core/index.html:370
+#: core/templates/core/contact.html:62 core/templates/core/index.html:377
 msgid "Send Message"
 msgstr "Сообщение"
 
@@ -638,39 +653,53 @@ msgid ""
 "Completed. You will receive notification soon as customer confirms your offer"
 msgstr "Завершено. Скоро Вы получите сообщение о подтверждении заказчиком"
 
+#: core/templates/core/features.html:6
+msgid ""
+"Delivery24 is a marketplace of delivery and moving companies in Tallinn, "
+"Estonia"
+msgstr ""
+"Delivery24 это место, где собраны все компании и частные лица "
+"предоставляющие услуги грузоперевозки и доставки в Таллинне, Эстония"
+
 #: core/templates/core/index.html:16
 msgid "DELIVERY24 &mdash; Best Price Moving"
 msgstr "DELIVERY24 &mdash; Лучшие цены грузоперевозок"
 
-#: core/templates/core/index.html:95
+#: core/templates/core/index.html:24
+msgid "Moving service in Tallinn. Best price offers in one place"
+msgstr ""
+"Услуги грузоперевозок, переездов и доставка в Таллинне. Лучшие предложения в "
+"одном месте"
+
+#: core/templates/core/index.html:102
 msgid "Our Team"
 msgstr "Наша команда"
 
-#: core/templates/core/index.html:154
+#: core/templates/core/index.html:161
 msgid "Order Moving Service in<br>3 Minutes"
 msgstr "Закажи услугу грузоперевозки за 3 минуты"
 
-#: core/templates/core/index.html:156
+#: core/templates/core/index.html:163
 msgid "Fastest way to find moving service with best price"
 msgstr "Быстрый способ заказать перевозку по лучшей цене"
 
-#: core/templates/core/index.html:157
+#: core/templates/core/index.html:164
 msgid "No phone calls asking for schedule and price"
 msgstr "Никаких звонков что-бы узнать цену и доступное время"
 
-#: core/templates/core/index.html:158
+#: core/templates/core/index.html:165
 msgid "Place your order and get response in minutes"
 msgstr "Оставь заявку и получи ответ сразу на сайте"
 
-#: core/templates/core/index.html:161 core/templates/core/index.html:231
+#: core/templates/core/index.html:168 core/templates/core/index.html:238
 msgid "Get Started"
 msgstr "НАЧАТЬ"
 
-#: core/templates/core/index.html:176
+#: core/templates/core/index.html:183
 msgid "Delivery24 Features"
 msgstr "Delivery24 достоинства"
 
-#: core/templates/core/index.html:177
+#: core/templates/core/index.html:184
 msgid ""
 "We know how it is time consuming to find moving service that<br>matches your "
 "schedule and price. We made it easier for You. Fast response with better "
@@ -680,39 +709,39 @@ msgstr ""
 "подходит по цене и времени. Мы сделали этот процесс простым для Вас. Быстрый "
 "ответ с наилучшей ценой."
 
-#: core/templates/core/index.html:188
+#: core/templates/core/index.html:195
 msgid "Place Your Order"
 msgstr "Простой способ сделать заказ"
 
-#: core/templates/core/index.html:189
+#: core/templates/core/index.html:196
 msgid "Fill in simple form with date, addresses and payment method."
 msgstr "Заполни простую форму с датой, адресом и способом оплаты."
 
-#: core/templates/core/index.html:190 core/templates/core/index.html:203
-#: core/templates/core/index.html:216
+#: core/templates/core/index.html:197 core/templates/core/index.html:210
+#: core/templates/core/index.html:223
 msgid "Learn More"
 msgstr "Узнать больше"
 
-#: core/templates/core/index.html:201
+#: core/templates/core/index.html:208
 msgid "Best price offer in minutes"
 msgstr "Быстрый ответ с лучшим предложением"
 
-#: core/templates/core/index.html:202
+#: core/templates/core/index.html:209
 msgid ""
 "You will receive best offer based on your order. Confirm if the price suits "
 "you."
 msgstr "Просто нажми подтвердить если цена подходит Вам."
 
-#: core/templates/core/index.html:214
+#: core/templates/core/index.html:221
 msgid "Pay online or by cash"
 msgstr "Выбери удобный способ оплаты"
 
-#: core/templates/core/index.html:215
+#: core/templates/core/index.html:222
 msgid "You have an option to pay safely online or by cash when job is done."
 msgstr "Оплата online или наличными после окончания работы."
 
-#: core/templates/core/index.html:242 core/templates/core/order.html:5
-#: core/templates/core/order.html:14 core/templates/core/order.html:27
+#: core/templates/core/index.html:249 core/templates/core/order.html:9
+#: core/templates/core/order.html:25 core/templates/core/order.html:38
 #: core/templates/core/order_complete.html:89
 msgid "Order"
 msgstr "Заказ"
@@ -782,6 +811,10 @@ msgstr "Детали новой работы"
 #: core/templates/core/new_job_notify_email.html:13
 msgid "Please click on the link below to confirm new job"
 msgstr "Пожалуйста пройдите по ссылке для подтверждения работы"
+
+#: core/templates/core/order.html:6
+msgid "Order moving service in Tallinn."
+msgstr "Закажи услугу грузоперевозки в Таллинне."
 
 #: core/templates/core/order_complete.html:7
 #: core/templates/core/order_complete.html:72

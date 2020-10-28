@@ -14,8 +14,11 @@
     </script>
 
     <meta charset="UTF-8">
+    {% block meta_description %}{% endblock meta_description %}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>DELIVERY24 {% block title %}{% endblock title %}</title>
+
+    {% block lang_alternate %}{% endblock lang_alternate %}
 
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}?v=1"/>
 

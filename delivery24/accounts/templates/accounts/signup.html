@@ -2,7 +2,18 @@
 {% load static %}
 {% load i18n %}
 
+{% block meta_description %}
+    <meta name="description" content="{% trans 'Get job in Tallinn' %}">
+{% endblock meta_description %}
+
 {% block title %}{% trans "Driver Signup" %}{% endblock title %}
+
+{% block lang_alternate %}
+    <link rel="alternate" hreflang="en" href="https://delivery24.ee/accounts/signup" />
+    <link rel="alternate" hreflang="ru" href="https://delivery24.ee/ru/accounts/signup" />
+    <link rel="alternate" hreflang="et" href="https://delivery24.ee/et/accounts/signup" />
+    <link rel="alternate" hreflang="x-default" href="https://delivery24.ee/accounts/signup" />
+{% endblock lang_alternate %}
 
 {% block content %}
 
