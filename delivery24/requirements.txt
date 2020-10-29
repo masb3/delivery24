@@ -4,7 +4,7 @@ attrs==19.3.0
 Babel==2.8.0
 billiard==3.6.3.0
 celery==4.4.7
-Django==3.0.6
+Django==3.0.7
 django-appconf==1.0.4
 django-axes==5.3.2
 django-ipware==2.1.0
