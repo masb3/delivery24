@@ -276,4 +276,16 @@ class FeaturesView(View):
 
 
 def page_not_found_view(request, exception):
-    return render(request, "core/404.html", {})
+    return render(request, "core/errors/404.html", {})
+
+
+def bad_request_view(request, exception):
+    return render(request, "core/errors/400.html", {})
+
+
+def server_error_view(request, exception):
+    return render(request, "core/errors/500.html", {})
+
+
+def http_forbidden_view(request, exception):
+    return render(request, "core/errors/403.html", {})

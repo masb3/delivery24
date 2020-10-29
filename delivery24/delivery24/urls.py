@@ -31,3 +31,6 @@ urlpatterns += i18n_patterns(
 )
 
 handler404 = 'core.views.page_not_found_view'
+handler400 = 'core.views.bad_request_view'
+handler500 = 'core.views.server_error_view'
+handler403 = 'core.views.http_forbidden_view'

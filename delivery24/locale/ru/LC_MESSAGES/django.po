@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-29 23:34+0200\n"
+"POT-Creation-Date: 2020-10-29 23:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -565,14 +565,6 @@ msgstr "Новая работа одобрена"
 msgid "New Job Canceled"
 msgstr "Работа Отменена"
 
-#: core/templates/core/404.html:8 core/templates/core/404.html:19
-msgid "Page not found"
-msgstr "Страница не найдена"
-
-#: core/templates/core/404.html:25
-msgid "Oops..something went wrong. The page can't be found ;("
-msgstr "Уупс..что-то пошло не так. Запрашиваемая страница не найдена ;("
-
 #: core/templates/core/base.html:91 core/templates/core/index.html:95
 msgid "Home"
 msgstr "Главная"
@@ -660,6 +652,35 @@ msgstr "Неверная цена. Должно быть целое число �
 msgid ""
 "Completed. You will receive notification soon as customer confirms your offer"
 msgstr "Завершено. Скоро Вы получите сообщение о подтверждении заказчиком"
+
+#: core/templates/core/errors/400.html:8 core/templates/core/errors/400.html:19
+msgid "Bad request"
+msgstr "Неверный запрос"
+
+#: core/templates/core/errors/400.html:25
+#: core/templates/core/errors/403.html:25
+msgid "Oops..something went wrong ;("
+msgstr "Уупс..что-то пошло не так ;("
+
+#: core/templates/core/errors/403.html:8 core/templates/core/errors/403.html:19
+msgid "HTTP Forbidden"
+msgstr "HTTP запрещен"
+
+#: core/templates/core/errors/404.html:8 core/templates/core/errors/404.html:19
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: core/templates/core/errors/404.html:25
+msgid "Oops..something went wrong. The page can't be found ;("
+msgstr "Уупс..что-то пошло не так. Запрашиваемая страница не найдена ;("
+
+#: core/templates/core/errors/500.html:8 core/templates/core/errors/500.html:19
+msgid "Server error"
+msgstr "Ошибка сервера"
+
+#: core/templates/core/errors/500.html:25
+msgid "Oops..something went wrong ;( It is not you, but me"
+msgstr "Уупс..что-то пошло не так ;( Это не ты, это я"
 
 #: core/templates/core/features.html:6
 msgid ""
