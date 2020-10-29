@@ -283,7 +283,7 @@ def bad_request_view(request, exception):
     return render(request, "core/errors/400.html", {})
 
 
-def server_error_view(request, exception):
+def server_error_view(request):
     return render(request, "core/errors/500.html", {})
 
 
