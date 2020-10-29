@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-28 23:41+0200\n"
+"POT-Creation-Date: 2020-10-29 23:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -565,6 +565,14 @@ msgstr "Новая работа одобрена"
 msgid "New Job Canceled"
 msgstr "Работа Отменена"
 
+#: core/templates/core/404.html:8 core/templates/core/404.html:19
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: core/templates/core/404.html:25
+msgid "Oops..something went wrong. The page can't be found ;("
+msgstr "Уупс..что-то пошло не так. Запрашиваемая страница не найдена ;("
+
 #: core/templates/core/base.html:91 core/templates/core/index.html:95
 msgid "Home"
 msgstr "Главная"
@@ -580,7 +588,7 @@ msgstr "НАЧАТЬ"
 
 #: core/templates/core/base.html:95 core/templates/core/index.html:99
 #: core/templates/core/index.html:264 core/templates/core/partner.html:9
-#: core/templates/core/partner.html:18
+#: core/templates/core/partner.html:25
 msgid "Become a Partner"
 msgstr "Стань партнёром"
 
@@ -879,8 +887,11 @@ msgid "Order verification code is"
 msgstr "Код подтверждения заказа"
 
 #: core/templates/core/partner.html:6
-msgid "Want to get a job in Tallinn, Estonia? Become a loader, deliveryman or driver"
-msgstr "Желаешь получить работу в Таллинне, Эстонии? Стань грузчиком, доставщиком или водителем"
+msgid ""
+"Want to get a job in Tallinn, Estonia? Become a loader, deliveryman or driver"
+msgstr ""
+"Желаешь получить работу в Таллинне, Эстонии? Стань грузчиком, доставщиком "
+"или водителем"
 
 #: core/utils.py:31
 msgid "Isikukood is incorrect"
