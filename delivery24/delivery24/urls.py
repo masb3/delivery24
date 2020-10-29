@@ -29,3 +29,5 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     prefix_default_language=False
 )
+
+handler404 = 'core.views.page_not_found_view'

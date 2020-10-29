@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block meta_description %}
+{% endblock meta_description %}
+
+{% block title %}{% trans "Page not found" %}{% endblock title %}
+
+{% block lang_alternate %}
+{% endblock lang_alternate %}
+
+{% block content %}
+
+<div class="site-section bg-light" id="start-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title mb-3"><br>{% trans "Page not found" %}</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-7 mb-5">
+          <h1>Oops..something went wrong. Go to main <a href="{% url 'core:index' %}">page</a></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
