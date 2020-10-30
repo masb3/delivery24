@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-30 22:52+0200\n"
+"POT-Creation-Date: 2020-10-30 23:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr "Новый Пароль"
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
-#: accounts/forms.py:84 core/templates/core/contact.html:46
+#: accounts/forms.py:84 core/templates/core/contact.html:47
 #: core/templates/core/index.html:356
 msgid "Email"
 msgstr "Е-мэйл"
@@ -432,7 +432,7 @@ msgstr "Начало доставки"
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:61
+#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:62
 #: core/templates/core/index.html:371
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
@@ -604,25 +604,29 @@ msgstr ""
 msgid "Contact Us"
 msgstr "Связаться"
 
-#: core/templates/core/contact.html:35 core/templates/core/index.html:345
+#: core/templates/core/contact.html:36 core/templates/core/index.html:345
 msgid "First Name"
 msgstr "Имя"
 
-#: core/templates/core/contact.html:39 core/templates/core/index.html:349
+#: core/templates/core/contact.html:40 core/templates/core/index.html:349
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: core/templates/core/contact.html:53 core/templates/core/index.html:363
+#: core/templates/core/contact.html:54 core/templates/core/index.html:363
 msgid "Subject"
 msgstr "Тема"
 
-#: core/templates/core/contact.html:60 core/templates/core/index.html:370
+#: core/templates/core/contact.html:61 core/templates/core/index.html:370
 msgid "Message"
 msgstr "Сообщение"
 
-#: core/templates/core/contact.html:67 core/templates/core/index.html:377
+#: core/templates/core/contact.html:68 core/templates/core/index.html:377
 msgid "Send Message"
 msgstr "Сообщение"
+
+#: core/templates/core/contact.html:73
+msgid "Message received"
+msgstr "Сообщение получено"
 
 #: core/templates/core/driver_newjob_confirm.html:5
 msgid "New Job Confirm"
