@@ -263,9 +263,10 @@ class ContactView(View):
     def post(self, request, *args, **kwargs):
         to_email = settings.CONTACT_TO_EMAIL
         subject = 'CONTACT FORM'
-        message = "fname: {}\nlname: {}\nemail: {}\nsubject: {}\nmessage: {}".\
-            format(request.POST['fname'], request.POST['lname'], request.POST['email'],
-                   request.POST['subject'], request.POST['message'])
+        message = "<html> <b>fname:</b> {}<br><b>lname:</b> {}<br><b>email:</b> {}<br>" \
+                  "<b>subject:</b> {}<br><b>message:</b> {}</html>".format(request.POST['fname'], request.POST['lname'],
+                                                                           request.POST['email'], request.POST['subject'],
+                                                                           request.POST['message'])
         send_email_task.delay(subject, message, to_email)
         return render(request, self.template_name, context={'message_received': True})
 
