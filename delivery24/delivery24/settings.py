@@ -36,6 +36,8 @@ EMAIL_PORT = config('DELIVERY24_EMAIL_PORT', default=587, cast=int)
 EMAIL_USE_TLS = config('DELIVERY24_EMAIL_USE_TLS', default=True, cast=bool)
 EMAIL_BACKEND = config('DELIVERY24_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
 EMAIL_FROM = config('DELIVERY24_EMAIL_FROM', default='')
+CONTACT_TO_EMAIL = config('DELIVERY24_CONTACT_TO_EMAIL', default='')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)

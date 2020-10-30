@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-29 23:46+0200\n"
+"POT-Creation-Date: 2020-10-30 22:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr "Новый Пароль"
 msgid "New password confirmation"
 msgstr "Подтверждение Нового Пароля"
 
-#: accounts/forms.py:84 core/templates/core/contact.html:47
+#: accounts/forms.py:84 core/templates/core/contact.html:46
 #: core/templates/core/index.html:356
 msgid "Email"
 msgstr "Е-мэйл"
@@ -432,7 +432,7 @@ msgstr "Начало доставки"
 msgid "Delivery end"
 msgstr "Окончание доставки"
 
-#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:63
+#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:61
 #: core/templates/core/index.html:371
 msgid "Leave your message here..."
 msgstr "Оставь сообщение ..."
@@ -604,10 +604,6 @@ msgstr ""
 msgid "Contact Us"
 msgstr "Связаться"
 
-#: core/templates/core/contact.html:32 core/templates/core/index.html:342
-msgid "Contact Form"
-msgstr "Контактная форма"
-
 #: core/templates/core/contact.html:35 core/templates/core/index.html:345
 msgid "First Name"
 msgstr "Имя"
@@ -616,15 +612,15 @@ msgstr "Имя"
 msgid "Last Name"
 msgstr "Фамилия"
 
-#: core/templates/core/contact.html:55 core/templates/core/index.html:363
+#: core/templates/core/contact.html:53 core/templates/core/index.html:363
 msgid "Subject"
 msgstr "Тема"
 
-#: core/templates/core/contact.html:62 core/templates/core/index.html:370
+#: core/templates/core/contact.html:60 core/templates/core/index.html:370
 msgid "Message"
 msgstr "Сообщение"
 
-#: core/templates/core/contact.html:69 core/templates/core/index.html:377
+#: core/templates/core/contact.html:67 core/templates/core/index.html:377
 msgid "Send Message"
 msgstr "Сообщение"
 
@@ -925,6 +921,9 @@ msgstr "Неверный номер машины"
 #: core/views.py:184
 msgid "Please wait ..."
 msgstr "Пожалуйста подождите ..."
+
+#~ msgid "Contact Form"
+#~ msgstr "Контактная форма"
 
 #~ msgid "Bank"
 #~ msgstr "Банк"
