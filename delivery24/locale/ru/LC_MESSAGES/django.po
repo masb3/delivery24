@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-31 22:06+0200\n"
+"POT-Creation-Date: 2020-10-31 22:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -941,6 +941,60 @@ msgstr ""
 "Желаешь получить работу в Таллинне, Эстонии? Стань грузчиком, доставщиком "
 "или водителем"
 
+#: core/templates/core/partner.html:32
+msgid "1. Register"
+msgstr "1. Зарегистрируйся"
+
+#: core/templates/core/partner.html:33
+msgid "Provide your data and confirm"
+msgstr "Заполни форму и подтверди"
+
+#: core/templates/core/partner.html:33
+msgid "registration"
+msgstr "регистрацию"
+
+#: core/templates/core/partner.html:35
+msgid "2. Receive orders"
+msgstr "2. Получай заказы"
+
+#: core/templates/core/partner.html:36
+msgid "New order details will be sent to your Telegram"
+msgstr "Детали нового заказа придут к Вам в Telegram"
+
+#: core/templates/core/partner.html:38
+msgid "3. Confirm order"
+msgstr "3. Подтверди заказ"
+
+#: core/templates/core/partner.html:39
+msgid ""
+"Confirm new order by providing your price, ignore if you not interested in "
+"this order"
+msgstr "Подтверди новый заказ указав свою цену за работу, проигнорируй если данный заказ не интересен"
+
+#: core/templates/core/partner.html:41
+msgid "4. Complete delivery"
+msgstr "4. Заверши работу"
+
+#: core/templates/core/partner.html:42
+msgid "Track bookings and assignments in your"
+msgstr "Отслеживай будущие работы в своем"
+
+#: core/templates/core/partner.html:42
+msgid "profile"
+msgstr "профиле"
+
+#: core/templates/core/partner.html:44
+msgid "5. Get payments"
+msgstr "5. Получи оплату"
+
+#: core/templates/core/partner.html:45
+msgid "Get money on your bank account or in cash right after job done"
+msgstr "Получи деньги на банковский счет или наличными сразу по завершении работы"
+
+#: core/templates/core/partner.html:48
+msgid "SIGNUP"
+msgstr "РЕГИСТРАЦИЯ"
+
 #: core/utils.py:31
 msgid "Isikukood is incorrect"
 msgstr "Неверный личный код"
@@ -981,9 +1035,6 @@ msgstr "Пожалуйста подождите ..."
 #~| msgid "Account activation"
 #~ msgid "Invalid account activation"
 #~ msgstr "Активация аккаунта"
-
-#~ msgid "Completed"
-#~ msgstr "Завершено"
 
 #~ msgid "Account"
 #~ msgstr "Счёт"

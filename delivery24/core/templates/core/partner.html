@@ -28,7 +28,24 @@
 
     <div class="row justify-content-center">
       <div class="col-lg-7 mb-5">
-          <!-- PLACEHOLDER FOR CONTENT -->
+          <div class="text-black">
+              <h4><b>{% trans "1. Register" %}</b></h4>
+              <p>{% trans "Provide your data and confirm" %} <a href ="{% url 'accounts:signup' %}">{% trans "registration" %}</a></p>
+
+              <h4><b>{% trans "2. Receive orders" %}</b></h4>
+              <p>{% trans "New order details will be sent to your Telegram" %}</p>
+
+              <h4><b>{% trans "3. Confirm order" %}</b></h4>
+              <p>{% trans "Confirm new order by providing your price, ignore if you not interested in this order" %}</p>
+
+              <h4><b>{% trans "4. Complete delivery" %}</b></h4>
+              <p>{% trans "Track bookings and assignments in your" %} <a href="{% url 'accounts:login' %}">{% trans "profile" %}</a></p>
+
+              <h4><b>{% trans "5. Get payments" %}</b></h4>
+              <p>{% trans "Get money on your bank account or in cash right after job done" %}</p>
+          </div>
+
+          <h3><b><a href="{% url 'accounts:signup' %}" class="text-success">{% trans "SIGNUP" %}</a></b></h3>
       </div>
     </div>
   </div>
