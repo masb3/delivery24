@@ -99,14 +99,7 @@
                   <a href="#partner-section" class="nav-link">{% trans "Become a Partner" %}</a>
                   <ul class="dropdown arrow-top">
                     <li><a href="{% url 'accounts:login' %}" class="nav-link"><span class="text-primary">{% trans "Login" %}</span></a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                        <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
+                    <li><a href="{% url 'core:partner' %}" class="nav-link">{% trans "Learn more" %}</a></li>
                   </ul>
                 </li>
                 <li><a href="#blog-section" class="nav-link" hidden>{% trans "Blog" %}</a></li>
@@ -268,14 +261,14 @@
             <img src="{% static 'core/images/partner_section_img1.svg' %}" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-5 ml-auto pl-lg-5">
-            <h2 class="text-black mb-4 h3 font-weight-bold">Make money on your own schedule</h2>
-            <p class="mb-4">Join DELIVERY24.EE and start making money providing moving service in Tallinn.</p>
+            <h2 class="text-black mb-4 h3 font-weight-bold">{% trans "Make more money with us" %}</h2>
+            <p class="mb-4">{% trans "Join DELIVERY24.EE and start making money providing moving service in Tallinn." %}</p>
             <ul class="ul-check mb-5 list-unstyled success">
-              <li>We offer you best matching orders</li>
-              <li>You set price and get payment right after job done</li>
-              <li>No fees</li>
+              <li>{% trans "We offer you best matching orders" %}</li>
+              <li>{% trans "You set price and get payment right after job done" %}</li>
+              <li>{% trans "No hidden fees" %}</li>
             </ul>
-            <p><a href="{% url 'core:partner' %}" class="btn btn-primary">Learn More</a></p>
+            <p><a href="{% url 'core:partner' %}" class="btn btn-primary">{% trans "Learn more" %}</a></p>
           </div>
         </div>
       </div>

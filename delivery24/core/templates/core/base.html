@@ -95,14 +95,7 @@
                   <a href="{% url 'core:partner' %}" class="nav-link">{% trans "Become a Partner" %}</a>
                   <ul class="dropdown arrow-top">
                     <li><a href="{% url 'accounts:login' %}" class="nav-link"><span class="text-primary">{% trans "Login" %}</span></a></li>
-                    <li class="has-children">
-                      <a href="#">More Links</a>
-                        <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
+                    <li><a href="{% url 'core:partner' %}" class="nav-link">{% trans "Learn more" %}</a></li>
                   </ul>
                 </li>
                 <li><a href="{% url 'core:blog' %}" class="nav-link" hidden>{% trans "Blog" %}</a></li>
