@@ -1,0 +1,986 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-01 22:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/forms.py:20
+msgid "User Email"
+msgstr "Kasutaja e-post"
+
+#: accounts/forms.py:23
+msgid "Password"
+msgstr "Salasõna"
+
+#: accounts/forms.py:62
+msgid "Old password"
+msgstr "Vana salasõna"
+
+#: accounts/forms.py:70 accounts/forms.py:123
+msgid "New password"
+msgstr "Uus salasõna"
+
+#: accounts/forms.py:76 accounts/forms.py:129
+msgid "New password confirmation"
+msgstr "Uue salasõna kinnitamine"
+
+#: accounts/forms.py:84 core/templates/core/contact.html:47
+#: core/templates/core/index.html:348
+msgid "Email"
+msgstr "E-post"
+
+#: accounts/forms.py:102
+msgid "Password reset"
+msgstr "Unustasid salasõna?"
+
+#: accounts/forms.py:117
+msgid "Invalid email"
+msgstr "Vale e-post"
+
+#: accounts/models.py:16
+msgid "Email address"
+msgstr "E-post"
+
+#: accounts/models.py:21 core/models.py:21
+msgid "first name"
+msgstr "eesnimi"
+
+#: accounts/models.py:22 core/models.py:22
+msgid "last name"
+msgstr "perekonnanimi"
+
+#: accounts/models.py:23
+msgid "isikukood"
+msgstr "isikukood"
+
+#: accounts/models.py:27 core/templates/core/new_job_accepted_email.html:15
+#: core/templates/core/order_complete_customer_email.html:17
+msgid "Phone"
+msgstr "Telefon"
+
+#: accounts/models.py:27
+msgid "Contact phone number"
+msgstr "Telefoni number"
+
+#: accounts/models.py:28
+msgid "car model"
+msgstr ""
+
+#: accounts/models.py:29 core/models.py:32
+msgid "car type"
+msgstr "auto tüüp"
+
+#: accounts/models.py:30
+msgid "car carrying (kg)"
+msgstr "tõstevõime (kg)"
+
+#: accounts/models.py:32
+msgid "car number"
+msgstr "auto number"
+
+#: accounts/models.py:34 core/models.py:34
+msgid "payment method"
+msgstr "makseviis"
+
+#: accounts/models.py:35
+msgid "number of available movers"
+msgstr "saadaolevate kolijate arv"
+
+#: accounts/models.py:38
+msgid "Preferred language"
+msgstr "Eelistatud keel"
+
+#: accounts/models.py:41
+msgid "Preferred language to use delivery24"
+msgstr "Eelistatud keel delivery24 kasutamiseks"
+
+#: accounts/models.py:57
+msgid "user"
+msgstr "user"
+
+#: accounts/models.py:58
+msgid "users"
+msgstr "users"
+
+#: accounts/services/signup_utils.py:25
+msgid "Activate Your delivery24.ee Account"
+msgstr "Aktiveerige oma delivery24.ee konto"
+
+#: accounts/templates/accounts/account_activation_email.html:3
+#: core/templates/core/new_job_accepted_email.html:3
+#: core/templates/core/new_job_not_accepted_email.html:3
+#: core/templates/core/new_job_notify_email.html:3
+#: core/templates/core/order_complete_customer_email.html:4
+#: core/templates/core/order_veriff_code_send_email.html:3
+msgid "Hi"
+msgstr "Tere"
+
+#: accounts/templates/accounts/account_activation_email.html:5
+msgid "Please click on the link below to confirm your registration"
+msgstr "Registreerimise kinnitamiseks vajutage alloleval lingil"
+
+#: accounts/templates/accounts/account_activation_email.html:9
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:10
+#: core/templates/core/new_job_accepted_email.html:19
+#: core/templates/core/new_job_not_accepted_email.html:14
+#: core/templates/core/new_job_notify_email.html:17
+#: core/templates/core/order_complete_customer_email.html:21
+#: core/templates/core/order_veriff_code_send_email.html:9
+msgid "Sincerely"
+msgstr "Lugupidamisega"
+
+#: accounts/templates/accounts/account_activation_email.html:10
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:11
+#: core/templates/core/new_job_accepted_email.html:20
+#: core/templates/core/new_job_not_accepted_email.html:15
+#: core/templates/core/new_job_notify_email.html:18
+#: core/templates/core/order_complete_customer_email.html:22
+#: core/templates/core/order_veriff_code_send_email.html:10
+msgid "Team"
+msgstr "Meeskond"
+
+#: accounts/templates/accounts/account_activation_invalid.html:5
+#: accounts/templates/accounts/account_activation_invalid.html:21
+msgid "Account activation failed"
+msgstr "Konto aktiveerimine ebaõnnestus"
+
+#: accounts/templates/accounts/account_activation_invalid.html:13
+#: accounts/templates/accounts/account_activation_sent.html:5
+#: accounts/templates/accounts/account_activation_sent.html:13
+msgid "Account activation"
+msgstr "Konto aktiveerimine"
+
+#: accounts/templates/accounts/account_activation_sent.html:21
+msgid "Activation link is sent to your email"
+msgstr "Aktiveerimislink saadetakse teie e-posti aadressile"
+
+#: accounts/templates/accounts/account_lockout.html:5
+#: accounts/templates/accounts/account_lockout.html:13
+msgid "Account is locked"
+msgstr "Konto on lukus"
+
+#: accounts/templates/accounts/account_lockout.html:21
+msgid ""
+"Account is temporary locked: too many login attempts. Please try again later."
+msgstr "Konto on ajutiselt lukustatud: liiga palju sisselogimiskatseid. Palun proovi hiljem uuesti."
+
+#: accounts/templates/accounts/account_lockout.html:25
+#: core/templates/core/base.html:97 core/templates/core/index.html:101
+msgid "Login"
+msgstr "Logi sisse"
+
+#: accounts/templates/accounts/login.html:6
+msgid "Login to view your profile, completed and future jobs, income"
+msgstr "Logige sisse profiili, lõpetatud ja tulevaste tööde, sissetuleku vaatamiseks"
+
+#: accounts/templates/accounts/login.html:9
+#: accounts/templates/accounts/login.html:25
+msgid "Driver Login"
+msgstr "Autojuhi sisselogimine"
+
+#: accounts/templates/accounts/login.html:38
+#: accounts/templates/accounts/profile/changepwd.html:28
+#: accounts/templates/accounts/profile/profile_change.html:26
+#: accounts/templates/accounts/signup.html:38
+#: core/templates/core/driver_newjob_confirm.html:41
+#: core/templates/core/order_complete.html:110
+msgid "Confirm"
+msgstr "Kinnitage"
+
+#: accounts/templates/accounts/login.html:41
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:5
+msgid "Forgot password"
+msgstr "Unustasid parooli"
+
+#: accounts/templates/accounts/login.html:44
+msgid "Signup"
+msgstr "Registreeri"
+
+#: accounts/templates/accounts/profile/changepwd.html:5
+#: accounts/templates/accounts/profile/changepwd.html:14
+msgid "Driver Change Password"
+msgstr "Autojuhi parooli muutmine"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:5
+#: accounts/templates/accounts/profile/completed_jobs_list.html:14
+msgid "Completed Jobs"
+msgstr "Lõpetatud tööd"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:24
+#: accounts/templates/accounts/profile/future_jobs_list.html:24
+msgid "Date"
+msgstr "Kuupäev"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:25
+#: accounts/templates/accounts/profile/future_jobs_list.html:25
+msgid "Address"
+msgstr "Aadress"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:26
+#: accounts/templates/accounts/profile/future_jobs_list.html:26
+#: core/templates/core/new_job_accepted_email.html:11
+#: core/templates/core/new_job_not_accepted_email.html:11
+#: core/templates/core/order_complete.html:38
+#: core/templates/core/order_complete_customer_email.html:12
+msgid "Price"
+msgstr "Hind"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:39
+#: accounts/templates/accounts/profile/future_jobs_list.html:39
+msgid "previous"
+msgstr "eelmine"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:43
+#: accounts/templates/accounts/profile/future_jobs_list.html:43
+msgid "Page"
+msgstr "Lehekülg"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:43
+#: accounts/templates/accounts/profile/future_jobs_list.html:43
+msgid "of"
+msgstr "-"
+
+#: accounts/templates/accounts/profile/completed_jobs_list.html:47
+#: accounts/templates/accounts/profile/future_jobs_list.html:47
+msgid "next"
+msgstr "järgmine"
+
+#: accounts/templates/accounts/profile/future_jobs_list.html:5
+#: accounts/templates/accounts/profile/future_jobs_list.html:14
+msgid "Future Jobs"
+msgstr "Tulevased tööd"
+
+#: accounts/templates/accounts/profile/jobs.html:5
+#: accounts/templates/accounts/profile/jobs.html:14
+msgid "Driver Jobs"
+msgstr "Autojuhi tööd"
+
+#: accounts/templates/accounts/profile/jobs.html:21
+msgid "Number of completed jobs"
+msgstr "Lõpetatud tööde arv"
+
+#: accounts/templates/accounts/profile/jobs.html:24
+msgid "Future jobs"
+msgstr "Tulevased tööd"
+
+#: accounts/templates/accounts/profile/profile.html:5
+#: accounts/templates/accounts/profile/profile.html:14
+msgid "Driver Profile"
+msgstr "Autojuhi konto"
+
+#: accounts/templates/accounts/profile/profile.html:24
+msgid "Registered"
+msgstr "Registreeritud"
+
+#: accounts/templates/accounts/profile/profile.html:27
+msgid "Total income"
+msgstr "Sissetulek kokku"
+
+#: accounts/templates/accounts/profile/profile_base.html:49
+#: core/templates/core/base.html:62 core/templates/core/index.html:65
+msgid "Loading..."
+msgstr "Laadimine ..."
+
+#: accounts/templates/accounts/profile/profile_base.html:78
+msgid "Profile"
+msgstr "Profiil"
+
+#: accounts/templates/accounts/profile/profile_base.html:79
+msgid "Jobs"
+msgstr "Tööd"
+
+#: accounts/templates/accounts/profile/profile_base.html:80
+msgid "Settings"
+msgstr "Seaded"
+
+#: accounts/templates/accounts/profile/profile_change.html:5
+#: accounts/templates/accounts/profile/profile_change.html:14
+#: accounts/templates/accounts/profile/settings.html:21
+msgid "Change Profile"
+msgstr "Muuda profiili"
+
+#: accounts/templates/accounts/profile/settings.html:5
+#: accounts/templates/accounts/profile/settings.html:14
+msgid "Profile Settings"
+msgstr "Profiili seaded"
+
+#: accounts/templates/accounts/profile/settings.html:24
+msgid "Change password"
+msgstr "Muuda salasõna"
+
+#: accounts/templates/accounts/profile/settings.html:27
+msgid "Logout"
+msgstr "Logi välja"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_complete.html:5
+#: accounts/templates/accounts/pwd_reset/password_reset_complete.html:14
+msgid "Password Reset Complete"
+msgstr "Parool lähtestatud"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_complete.html:22
+#, python-format
+msgid ""
+"\n"
+"            Your password has been set. You may go ahead and <a "
+"href='%(the_url)s'> Login</a> now.\n"
+"            "
+msgstr ""
+"\n"
+"            Teie parool on määratud. Võite jätkata ja <a "
+"href='%(the_url)s'> Sisse logida</a>.\n"
+"            "
+
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:5
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:14
+msgid "Password Reset Confirmation"
+msgstr "Parooli lähtestamise kinnitus"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:28
+msgid "Change Password"
+msgstr "Muuda salasõna"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_confirm.html:34
+msgid ""
+"\n"
+"            The password reset link was invalid, possibly because it has "
+"already been used.\n"
+"            Please request a new password reset.\n"
+"            "
+msgstr ""
+"\n"
+"            Parooli lähtestamise link oli vale, võib-olla sellepärast, et see on "
+"juba kasutatud.\n"
+"            Taotlege uue parooli lähtestamist.\n"
+"            "
+
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:5
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:14
+msgid "Password Reset Done"
+msgstr "Parooli lähtestamine on valmis"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:21
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr "Saatsime parooli määramise juhised e-postile."
+
+#: accounts/templates/accounts/pwd_reset/password_reset_done.html:24
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr "Kui kiri ei tule, palun veenduge, et sisestasite õige e-post ja vaadake spam kaust."
+
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:3
+msgid "To initiate the password reset process for your"
+msgstr "Teie parooli lähtestamise protsessi algatamiseks"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:3
+msgid "account, click the link below"
+msgstr "palun vajutage link"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_email.html:7
+msgid ""
+"If clicking the link above doesn't work, please copy and paste the URL in a "
+"new browser window instead."
+msgstr "Kui lingi vajutamine ei tööta, siis kopeerige link ja sisestage browserisse."
+
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:14
+msgid "Reset password"
+msgstr "Lähtesta parool"
+
+#: accounts/templates/accounts/pwd_reset/password_reset_form.html:38
+msgid "Submit"
+msgstr "Esita"
+
+#: accounts/templates/accounts/signup.html:6
+msgid "Get job in Tallinn"
+msgstr "Hangi töö Tallinnas"
+
+#: accounts/templates/accounts/signup.html:9
+#: accounts/templates/accounts/signup.html:25
+msgid "Driver Signup"
+msgstr "Autojuhi registreerimine"
+
+#: core/forms.py:24 core/forms.py:87
+msgid "Delivery start"
+msgstr "Töö algus"
+
+#: core/forms.py:26 core/forms.py:91
+msgid "Delivery end"
+msgstr "Töö lõpp"
+
+#: core/forms.py:45 core/forms.py:114 core/templates/core/contact.html:62
+#: core/templates/core/index.html:363
+msgid "Leave your message here..."
+msgstr "Jäta oma sõnum siia ..."
+
+#: core/forms.py:57
+msgid "Must be at least {} hour from current time"
+msgstr "Peab olema vähemalt {} tundi praegusest kellaajast"
+
+#: core/forms.py:60
+msgid "Must be less than {} days from current date"
+msgstr "Peab olema vähem kui {} päeva alates praegusest kuupäevast"
+
+#: core/forms.py:63
+msgid "Must be at least {} hour after delivery start"
+msgstr "Peab olema vähemalt {} tundi töö algust"
+
+#: core/forms.py:66
+msgid "Must be less than {} hours after delivery start"
+msgstr "Peab olema vähem kui {} tundi pärast töö algust"
+
+#: core/forms.py:74 core/models.py:36
+msgid "Verification code"
+msgstr "Kinnituskood"
+
+#: core/forms.py:75
+msgid "Code is sent to your email"
+msgstr "Kinnituskood saadetakse teie e-posti aadressile"
+
+#: core/forms.py:82
+msgid "Invalid code"
+msgstr "Vali kinnituskood"
+
+#: core/models.py:23
+msgid "email"
+msgstr "e-post"
+
+#: core/models.py:24
+msgid "phone"
+msgstr "telefon"
+
+#: core/models.py:25
+msgid "address from"
+msgstr "algus koht"
+
+#: core/models.py:25
+msgid "Delivery start address"
+msgstr "Töö algus aadress"
+
+#: core/models.py:26
+msgid "address to"
+msgstr "lõpp koht"
+
+#: core/models.py:26
+msgid "Delivery end address"
+msgstr "Töö lõpp aadress"
+
+#: core/models.py:27
+msgid "delivery start"
+msgstr "töö algus aeg"
+
+#: core/models.py:27
+msgid "Delivery start time"
+msgstr "Töö algus aeg"
+
+#: core/models.py:28
+msgid "delivery end"
+msgstr "töö lõpp aeg"
+
+#: core/models.py:28
+msgid "Delivery end time"
+msgstr "Töö lõpp aeg"
+
+#: core/models.py:29
+msgid "number of required movers"
+msgstr "nõutavate kolijate arv"
+
+#: core/models.py:33
+msgid "message"
+msgstr "sõnum"
+
+#: core/models.py:33
+msgid "additional information"
+msgstr "lisainformatsioon"
+
+#: core/proj_conf.py:29
+msgid "Cash"
+msgstr "Sularaha"
+
+#: core/proj_conf.py:35
+msgid "English"
+msgstr "English"
+
+#: core/proj_conf.py:36
+msgid "Russian"
+msgstr "Russian"
+
+#: core/proj_conf.py:37
+msgid "Estonian"
+msgstr "Estonian"
+
+#: core/proj_conf.py:41
+msgid "S"
+msgstr "S"
+
+#: core/proj_conf.py:42
+msgid "M"
+msgstr "M"
+
+#: core/proj_conf.py:43
+msgid "L"
+msgstr "L"
+
+#: core/services/order.py:50
+msgid "New Job"
+msgstr "Uus töö"
+
+#: core/services/order.py:92
+msgid "Order verification code"
+msgstr "Tellimuse kinnituskood"
+
+#: core/services/order.py:134 core/templates/core/order_complete.html:116
+msgid "Order confirmed"
+msgstr "Tellimus on kinnitatud"
+
+#: core/services/order.py:159
+msgid "New Job Accepted"
+msgstr "Uus töö vastu võetud"
+
+#: core/tasks.py:49
+msgid "New Job Canceled"
+msgstr "Uus töö tühistatud"
+
+#: core/templates/core/base.html:91 core/templates/core/index.html:95
+msgid "Home"
+msgstr "Home"
+
+#: core/templates/core/base.html:92 core/templates/core/features.html:9
+#: core/templates/core/features.html:25 core/templates/core/index.html:96
+msgid "Features"
+msgstr "Omadused"
+
+#: core/templates/core/base.html:93 core/templates/core/index.html:97
+msgid "GET STARTED"
+msgstr "ALUSTA"
+
+#: core/templates/core/base.html:95 core/templates/core/index.html:99
+#: core/templates/core/index.html:256 core/templates/core/partner.html:9
+#: core/templates/core/partner.html:25
+msgid "Become a Partner"
+msgstr "Hakka partneriks"
+
+#: core/templates/core/base.html:98 core/templates/core/index.html:102
+#: core/templates/core/index.html:271
+msgid "Learn more"
+msgstr "Lisateave"
+
+#: core/templates/core/base.html:101 core/templates/core/index.html:105
+msgid "Blog"
+msgstr "Blogi"
+
+#: core/templates/core/base.html:102 core/templates/core/contact.html:9
+#: core/templates/core/index.html:106
+msgid "Contact"
+msgstr "Kontakt"
+
+#: core/templates/core/contact.html:6
+msgid ""
+"Leave a message if you have any questions or want to work with delivery24.ee"
+msgstr "Jätke teade, kui teil on küsimusi või soovite töötada delivery24.ee-ga"
+
+#: core/templates/core/contact.html:25 core/templates/core/index.html:328
+msgid "Contact Us"
+msgstr "Võta meiega ühendust"
+
+#: core/templates/core/contact.html:36 core/templates/core/index.html:337
+msgid "First Name"
+msgstr "Eesnimi"
+
+#: core/templates/core/contact.html:40 core/templates/core/index.html:341
+msgid "Last Name"
+msgstr "Perekonnanimi"
+
+#: core/templates/core/contact.html:54 core/templates/core/index.html:355
+msgid "Subject"
+msgstr "Teema"
+
+#: core/templates/core/contact.html:61 core/templates/core/index.html:362
+msgid "Message"
+msgstr "Sõnum"
+
+#: core/templates/core/contact.html:68 core/templates/core/index.html:369
+msgid "Send Message"
+msgstr "Saada sõnum"
+
+#: core/templates/core/contact.html:73
+msgid "Message received"
+msgstr "Sõnum vastu võetud"
+
+#: core/templates/core/driver_newjob_confirm.html:5
+msgid "New Job Confirm"
+msgstr "Uue töö kinnitamine"
+
+#: core/templates/core/driver_newjob_confirm.html:14
+msgid "Confirm New Job"
+msgstr "Kinnita uus töö"
+
+#: core/templates/core/driver_newjob_confirm.html:22
+msgid "You already have work at same time"
+msgstr "Teil on juba samal ajal tööd"
+
+#: core/templates/core/driver_newjob_confirm.html:31
+msgid "Enter price"
+msgstr "Sisestage hind"
+
+#: core/templates/core/driver_newjob_confirm.html:34
+msgid "Invalid price. Should be integer greater than zero"
+msgstr "Vale hind. Peaks olema täisarv suurem kui null"
+
+#: core/templates/core/driver_newjob_confirm.html:48
+msgid ""
+"Completed. You will receive notification soon as customer confirms your offer"
+msgstr "Valmis. Te saate teate kohe, kui klient on teie pakkumise kinnitanud"
+
+#: core/templates/core/errors/400.html:8 core/templates/core/errors/400.html:19
+msgid "Bad request"
+msgstr "Bad request"
+
+#: core/templates/core/errors/400.html:25
+#: core/templates/core/errors/403.html:25
+msgid "Oops..something went wrong ;("
+msgstr "Oops! Midagi läks valesti; ("
+
+#: core/templates/core/errors/403.html:8 core/templates/core/errors/403.html:19
+msgid "HTTP Forbidden"
+msgstr "HTTP Forbidden"
+
+#: core/templates/core/errors/404.html:8 core/templates/core/errors/404.html:19
+msgid "Page not found"
+msgstr "Page not found"
+
+#: core/templates/core/errors/404.html:25
+msgid "Oops..something went wrong. The page can't be found ;("
+msgstr "Oops! Midagi läks valesti. Lehte ei leitud; ("
+
+#: core/templates/core/errors/500.html:8 core/templates/core/errors/500.html:19
+msgid "Server error"
+msgstr "Server error"
+
+#: core/templates/core/errors/500.html:25
+msgid "Oops..something went wrong ;( It is not you, but me"
+msgstr "Vabandust ... midagi läks valesti; (See pole sina, vaid mina"
+
+#: core/templates/core/features.html:6
+msgid ""
+"Delivery24 is a marketplace of delivery and moving companies in Tallinn, "
+"Estonia"
+msgstr "Delivery24 on tarne- ja kolimisettevõtete turg Tallinnas, Eesti"
+
+#: core/templates/core/index.html:16
+msgid "DELIVERY24 &mdash; Best Price Moving"
+msgstr "DELIVERY24 &mdash; Parima hinnaga kolimine"
+
+#: core/templates/core/index.html:24
+msgid "Moving service in Tallinn. Best price offers in one place"
+msgstr "Kolimisteenus Tallinnas. Parima hinnaga pakkumised ühes kohas"
+
+#: core/templates/core/index.html:153
+msgid "Order Moving Service in<br>3 Minutes"
+msgstr "Tellige kolimisteenus<br>3 minutiga"
+
+#: core/templates/core/index.html:155
+msgid "Fastest way to find moving service with best price"
+msgstr "Kiireim viis kolimisteenuse leidmiseks parima hinnaga"
+
+#: core/templates/core/index.html:156
+msgid "No phone calls asking for schedule and price"
+msgstr "Pole telefonikõnesid, kus küsitaks ajakava ja hinda"
+
+#: core/templates/core/index.html:157
+msgid "Place your order and get response in minutes"
+msgstr "Esitage oma tellimus ja saate vastuse minutite jooksul"
+
+#: core/templates/core/index.html:160 core/templates/core/index.html:230
+msgid "Get Started"
+msgstr "Alustama"
+
+#: core/templates/core/index.html:175
+msgid "Delivery24 Features"
+msgstr "Delivery24 Omadused"
+
+#: core/templates/core/index.html:176
+msgid ""
+"We know how it is time consuming to find moving service that<br>matches your "
+"schedule and price. We made it easier for You. Fast response with better "
+"price."
+msgstr ""
+"Me teame, kuidas kolimisteenuse leidmine,<br>mis vastab teie ajakavale ja hinnale,"
+"on aeganõudev. Me tegime selle teile lihtsamaks. Kiire reageerimine parema hinnaga."
+
+#: core/templates/core/index.html:187
+msgid "Place Your Order"
+msgstr "Esita tellimus"
+
+#: core/templates/core/index.html:188
+msgid "Fill in simple form with date, addresses and payment method."
+msgstr "Täitke lihtne vorm koos kuupäeva, aadresside ja makseviisiga."
+
+#: core/templates/core/index.html:189 core/templates/core/index.html:202
+#: core/templates/core/index.html:215
+msgid "Learn More"
+msgstr "Lisateave"
+
+#: core/templates/core/index.html:200
+msgid "Best price offer in minutes"
+msgstr "Parima hinna pakkumine minutitega"
+
+#: core/templates/core/index.html:201
+msgid ""
+"You will receive best offer based on your order. Confirm if the price suits "
+"you."
+msgstr "Parima pakkumise saate oma tellimuse põhjal. Kinnitage, kas hind sobib teile"
+
+#: core/templates/core/index.html:213
+msgid "Pay online or by cash"
+msgstr "Maksa online või sularahas"
+
+#: core/templates/core/index.html:214
+msgid "You have an option to pay safely online or by cash when job is done."
+msgstr "Saate tasuda turvaliselt veebis või sularahas siis kui töö on tehtud."
+
+#: core/templates/core/index.html:241 core/templates/core/order.html:9
+#: core/templates/core/order.html:25 core/templates/core/order.html:38
+#: core/templates/core/order_complete.html:89
+msgid "Order"
+msgstr "Tellimus"
+
+#: core/templates/core/index.html:264
+msgid "Make more money with us"
+msgstr "Teeni rohkem raha koos meiega"
+
+#: core/templates/core/index.html:265
+msgid ""
+"Join DELIVERY24.EE and start making money providing moving service in "
+"Tallinn."
+msgstr "Liituge DELIVERY24.EE-ga ja alustage kolimisteenuse pakkumise teenimist Tallinnas."
+
+#: core/templates/core/index.html:267
+msgid "We offer you best matching orders"
+msgstr "Pakume teile kõige sobivamaid tellimusi"
+
+#: core/templates/core/index.html:268
+msgid "You set price and get payment right after job done"
+msgstr "Määrate hinna ja saate makse kohe pärast töö tegemist"
+
+#: core/templates/core/index.html:269
+msgid "No hidden fees"
+msgstr "Varjatud tasusid pole"
+
+#: core/templates/core/new_job_accepted_email.html:5
+msgid "New job accepted"
+msgstr "Uus töö vastu võetud"
+
+#: core/templates/core/new_job_accepted_email.html:6
+#: core/templates/core/new_job_not_accepted_email.html:6
+#: core/templates/core/new_job_notify_email.html:6
+#: core/templates/core/order_complete_customer_email.html:7
+msgid "From address"
+msgstr "Kust"
+
+#: core/templates/core/new_job_accepted_email.html:7
+#: core/templates/core/new_job_not_accepted_email.html:7
+#: core/templates/core/new_job_notify_email.html:7
+#: core/templates/core/order_complete_customer_email.html:8
+msgid "To address"
+msgstr "Kuhu"
+
+#: core/templates/core/new_job_accepted_email.html:8
+#: core/templates/core/new_job_not_accepted_email.html:8
+#: core/templates/core/new_job_notify_email.html:8
+#: core/templates/core/order_complete_customer_email.html:9
+msgid "Start date"
+msgstr "Algusaeg"
+
+#: core/templates/core/new_job_accepted_email.html:9
+#: core/templates/core/new_job_not_accepted_email.html:9
+#: core/templates/core/new_job_notify_email.html:9
+#: core/templates/core/order_complete_customer_email.html:10
+msgid "End date"
+msgstr "Lõppaeg"
+
+#: core/templates/core/new_job_accepted_email.html:10
+#: core/templates/core/new_job_not_accepted_email.html:10
+#: core/templates/core/new_job_notify_email.html:10
+#: core/templates/core/order_complete_customer_email.html:11
+msgid "Number of required movers"
+msgstr "Nõutavate kolijate arv"
+
+#: core/templates/core/new_job_accepted_email.html:12
+#: core/templates/core/new_job_notify_email.html:11
+#: core/templates/core/order_complete_customer_email.html:13
+msgid "Payment method"
+msgstr "Makseviis"
+
+#: core/templates/core/new_job_accepted_email.html:13
+msgid "Customer details"
+msgstr "Kliendi andmed"
+
+#: core/templates/core/new_job_accepted_email.html:14
+#: core/templates/core/order_complete_customer_email.html:16
+msgid "Name"
+msgstr "Nimi"
+
+#: core/templates/core/new_job_not_accepted_email.html:5
+msgid "Job Canceled"
+msgstr "Töö tühistatud"
+
+#: core/templates/core/new_job_notify_email.html:5
+msgid "New job details"
+msgstr "Uue töö detailid"
+
+#: core/templates/core/new_job_notify_email.html:13
+msgid "Please click on the link below to confirm new job"
+msgstr "Uue töö kinnitamiseks klõpsake alloleval lingil"
+
+#: core/templates/core/order.html:6
+msgid "Order moving service in Tallinn."
+msgstr "Telli kolimisteenus Tallinnas."
+
+#: core/templates/core/order_complete.html:7
+#: core/templates/core/order_complete.html:72
+msgid "Change Order"
+msgstr "Muuda tellimus"
+
+#: core/templates/core/order_complete.html:9
+#: core/templates/core/order_complete.html:74
+msgid "Order Complete"
+msgstr "Tellimus tehtud"
+
+#: core/templates/core/order_complete.html:27
+msgid "No free drivers available."
+msgstr "Vabad autod puudutav."
+
+#: core/templates/core/order_complete.html:28
+msgid "Press button to try slightly change delivery date"
+msgstr "Vajuta nuppu tarnekuupäeva veidi muutmiseks"
+
+#: core/templates/core/order_complete.html:29
+msgid "Try again"
+msgstr "Proovi uuesti"
+
+#: core/templates/core/order_complete.html:35
+msgid "Driver"
+msgstr "Autojuht"
+
+#: core/templates/core/order_complete.html:37
+msgid "Car"
+msgstr "Auto"
+
+#: core/templates/core/order_complete.html:118
+msgid "Order already confirmed"
+msgstr "Tellimus on juba kinnitatud"
+
+#: core/templates/core/order_complete_customer_email.html:6
+msgid "Confirmed order details"
+msgstr "Kinnitatud tellimuse detailid"
+
+#: core/templates/core/order_complete_customer_email.html:14
+msgid "Car type"
+msgstr "Auto tüüp"
+
+#: core/templates/core/order_complete_customer_email.html:15
+msgid "Driver details"
+msgstr "Autojuhi andmed"
+
+#: core/templates/core/order_veriff.html:5
+msgid "Order Confirm"
+msgstr "Tellimuse Kinnitamine"
+
+#: core/templates/core/order_veriff.html:14
+msgid "Order Verification"
+msgstr "Tellimuse kontrollimine"
+
+#: core/templates/core/order_veriff.html:39
+msgid "Verify"
+msgstr "Kinnita"
+
+#: core/templates/core/order_veriff_code_send_email.html:5
+msgid "Order verification code is"
+msgstr "Tellimuse kinnituskood on"
+
+#: core/templates/core/partner.html:6
+msgid ""
+"Want to get a job in Tallinn, Estonia? Become a loader, deliveryman or driver"
+msgstr "Kas soovite saada tööd Tallinnas, Eestis? Hakka laaduriks, kohaletoimetajaks või autojuhiks"
+
+#: core/templates/core/partner.html:32
+msgid "1. Register"
+msgstr "1. Registreeru"
+
+#: core/templates/core/partner.html:33
+msgid "Provide your data and confirm"
+msgstr "Esitage oma andmed ja kinnitage"
+
+#: core/templates/core/partner.html:33
+msgid "registration"
+msgstr "registreerimine"
+
+#: core/templates/core/partner.html:35
+msgid "2. Receive orders"
+msgstr "2. Saate tellimusi"
+
+#: core/templates/core/partner.html:36
+msgid "New order details will be sent to your Telegram"
+msgstr "Uued tellimuse üksikasjad saadetakse teie Telegram-i"
+
+#: core/templates/core/partner.html:38
+msgid "3. Confirm order"
+msgstr "3. Kinnitage tellimus"
+
+#: core/templates/core/partner.html:39
+msgid ""
+"Confirm new order by providing your price, ignore if you not interested in "
+"this order"
+msgstr "Kinnitage uus tellimus esitades oma hinna, ignoreerige seda, kui te pole tellimusest huvitatud"
+
+#: core/templates/core/partner.html:41
+msgid "4. Complete delivery"
+msgstr "4. Lõpeta töö"
+
+#: core/templates/core/partner.html:42
+msgid "Track bookings and assignments in your"
+msgstr "Jälgige broneeringuid ja tööd oma"
+
+#: core/templates/core/partner.html:42
+msgid "profile"
+msgstr "kontos"
+
+#: core/templates/core/partner.html:44
+msgid "5. Get payments"
+msgstr "5. Saada makse"
+
+#: core/templates/core/partner.html:45
+msgid "Get money on your bank account or in cash right after job done"
+msgstr "Saada raha oma pangakontole või sularahas kohe pärast tehtud tööd"
+
+#: core/templates/core/partner.html:48
+msgid "SIGNUP"
+msgstr "REGISTREERI"
+
+#: core/utils.py:31
+msgid "Isikukood is incorrect"
+msgstr "Isikukood on vale"
+
+#: core/utils.py:52
+msgid "Car number is incorrect"
+msgstr "Auto number on vale"
+
+#: core/views.py:184
+msgid "Please wait ..."
+msgstr "Palun oota ..."

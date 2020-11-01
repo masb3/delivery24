@@ -141,6 +141,7 @@ LANGUAGE_CODE = 'en-us'
 LANGUAGES = [
     ('en-us', 'English'),
     ('ru', 'Russian'),
+    ('et', 'Estonian'),
 ]
 
 TIME_ZONE = 'UTC'
