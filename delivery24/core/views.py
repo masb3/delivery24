@@ -36,7 +36,6 @@ class IndexView(View):
 
 
 def set_language_from_url(request, user_language):
-    # TODO: est
     response = HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     current_site_str = str(get_current_site(request))
 
@@ -47,6 +46,14 @@ def set_language_from_url(request, user_language):
             end_index = full.index(current_site_str) + len(current_site_str)
             end_path = full[end_index:]
             redirect_path = f'/{user_language}' + end_path
+
+            # in case already have ex. .../ru/order
+            if (current_site_str + '/' + 'ru' + '/') in request.META.get('HTTP_REFERER') or \
+                    (current_site_str + '/' + 'et' + '/') in request.META.get('HTTP_REFERER'):
+                full = request.META.get('HTTP_REFERER')
+                end_index = full.index(current_site_str) + len(current_site_str)
+                end_path = full[end_index+3:]
+                redirect_path = f'/{user_language}' + end_path
 
         elif user_language == settings.LANGUAGE_CODE:
             full = request.META.get('HTTP_REFERER')
