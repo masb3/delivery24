@@ -74,8 +74,10 @@ def set_language(lang):
         translation.activate('en-us')
     elif 2 == lang:
         translation.activate('ru')
+    elif 3 == lang:
+        translation.activate('et')
     else:
-        pass  # TODO estonian
+        pass
 
 
 if __name__ == '__main__':
