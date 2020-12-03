@@ -1,7 +1,7 @@
 # [DELIVERY24](https://delivery24.ee)
 ### Moving service marketplace  
 Deployed on Amazon EC2  
-#### Back-end:
+### Back-end:
 - Python3/Django
 - Celery + Redis to handle emails, notifications and post-processing
 - PostgreSQL
